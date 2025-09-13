@@ -1,0 +1,19 @@
+/* Minimal wiki-style layout and infobox */
+.wiki-container { max-width: 1100px; margin: 28px auto; padding: 0 20px; display: grid; grid-template-columns: 1.6fr 0.9fr; gap: 16px; }
+.wiki-article { background: linear-gradient(180deg, var(--panel), var(--panel-2)); border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: 0 8px 24px var(--shadow); }
+.wiki-article h1 { margin: 0 0 6px; font-size: 28px; }
+.wiki-article .muted { color: var(--muted); margin: 0 0 12px; }
+.wiki-article section + section { margin-top: 16px; }
+
+.infobox { align-self: start; background: linear-gradient(180deg, var(--panel), #121725); border: 1px solid var(--border); border-radius: 14px; padding: 12px; box-shadow: 0 8px 24px var(--shadow); }
+.infobox h2 { margin: 0 0 8px; font-size: 18px; }
+.infobox .row { display: grid; grid-template-columns: 1fr 1.2fr; gap: 6px; padding: 6px 0; border-top: 1px solid var(--border); }
+.infobox .row:first-of-type { border-top: 0; }
+.infobox .key { color: var(--muted); }
+.infobox .val a { color: var(--link); text-decoration: none; }
+
+.wiki-actions { display: flex; gap: 8px; margin-top: 10px; }
+.wiki-actions .sp-btn { padding: 8px 10px; }
+
+@media (max-width: 900px) { .wiki-container { grid-template-columns: 1fr; } }
+

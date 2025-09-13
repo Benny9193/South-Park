@@ -1,0 +1,222 @@
+[
+  {
+    "id": "eric-cartman",
+    "name": "Eric Cartman",
+    "aliases": [
+      "The Coon"
+    ],
+    "tags": [
+      "main",
+      "student"
+    ],
+    "firstAppearance": null
+  },
+  {
+    "id": "stan-marsh",
+    "name": "Stan Marsh",
+    "aliases": [
+      "ToolshedBillyRavenStan (Stanley shortened)"
+    ],
+    "tags": [
+      "main",
+      "student"
+    ],
+    "firstAppearance": null
+  },
+  {
+    "id": "kyle-broflovski",
+    "name": "Kyle Broflovski",
+    "aliases": [
+      "The Human Kite"
+    ],
+    "tags": [
+      "main",
+      "student"
+    ],
+    "firstAppearance": null
+  },
+  {
+    "id": "kenny-mccormick",
+    "name": "Kenny McCormick",
+    "aliases": [
+      "KennyMysterionEl Pollo LocoLady McCormickPrincess KennyDr. McCormickKenny McHeinenberg"
+    ],
+    "tags": [
+      "main",
+      "student"
+    ],
+    "firstAppearance": null
+  },
+  {
+    "id": "butters-stotch",
+    "name": "Butters Stotch",
+    "aliases": [
+      "Confederate Messenger ButtersMarjorineProfessor ChaosArcheologist ButtersBig Rig ButtersInspector ButtersPostman ButtersVictor ChaosMantequilla"
+    ],
+    "tags": [
+      "main",
+      "student"
+    ],
+    "firstAppearance": "s01e01"
+  },
+  {
+    "id": "wendy-testaburger",
+    "name": "Wendy Testaburger",
+    "aliases": [
+      "Call GirlWendyl"
+    ],
+    "tags": [
+      "main",
+      "student"
+    ],
+    "firstAppearance": null
+  },
+  {
+    "id": "randy-marsh",
+    "name": "Randy Marsh",
+    "aliases": [],
+    "tags": [
+      "main",
+      "student"
+    ],
+    "firstAppearance": null
+  },
+  {
+    "id": "mr-mackey",
+    "name": "Mr. Mackey",
+    "aliases": [
+      "Fireman Tom"
+    ],
+    "tags": [],
+    "firstAppearance": "s01e09"
+  },
+  {
+    "id": "mr-garrison",
+    "name": "Mr. Garrison",
+    "aliases": [
+      "Janet GarrisonEthan P. GarrisonMr. HammerheadThe President"
+    ],
+    "tags": [],
+    "firstAppearance": "s01e01"
+  },
+  {
+    "id": "chef-south-park",
+    "name": "Chef (South Park)",
+    "aliases": [
+      "Abdul Mohammed Jabar Rauf Kareem Ali (in \"Chef Goes Nanners\")"
+    ],
+    "tags": [],
+    "firstAppearance": "s01e01"
+  },
+  {
+    "id": "tolkien-black",
+    "name": "Tolkien Black",
+    "aliases": [
+      "Tupperware"
+    ],
+    "tags": [],
+    "firstAppearance": "s01e01"
+  },
+  {
+    "id": "tweek-tweak",
+    "name": "Tweek Tweak",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "craig-tucker",
+    "name": "Craig Tucker",
+    "aliases": [
+      "Super Craig"
+    ],
+    "tags": [],
+    "firstAppearance": "s01e09"
+  },
+  {
+    "id": "clyde-donovan",
+    "name": "Clyde Donovan",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "jimmy-valmer",
+    "name": "Jimmy Valmer",
+    "aliases": [
+      "JimThe BardFastpass"
+    ],
+    "tags": [],
+    "firstAppearance": "s05e02"
+  },
+  {
+    "id": "timmy-burch",
+    "name": "Timmy Burch",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "bebe-stevens",
+    "name": "Bebe Stevens",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "heidi-turner",
+    "name": "Heidi Turner",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "liane-cartman",
+    "name": "Liane Cartman",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": "s01e01"
+  },
+  {
+    "id": "sharon-marsh",
+    "name": "Sharon Marsh",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "sheila-broflovski",
+    "name": "Sheila Broflovski",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "gerald-broflovski",
+    "name": "Gerald Broflovski",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "pc-principal",
+    "name": "PC Principal",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "mr-hankey",
+    "name": "Mr. Hankey",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "ike-broflovski",
+    "name": "Ike Broflovski",
+    "aliases": [],
+    "tags": [],
+    "firstAppearance": null
+  }
+]

@@ -1,0 +1,43 @@
+[
+  {
+    "id": "q-cartman-authority",
+    "text": "Respect my authoritah!",
+    "speakers": ["Eric Cartman"],
+    "episodeId": "s02e03",
+    "timestamp": "00:12:10",
+    "tags": ["catchphrase", "authority"]
+  },
+  {
+    "id": "q-mackey-mkay",
+    "text": "Drugs are bad, m'kay?",
+    "speakers": ["Mr. Mackey"],
+    "episodeId": "s02e04",
+    "timestamp": null,
+    "tags": ["school", "psa"]
+  },
+  {
+    "id": "q-randy-pandemic",
+    "text": "I thought this was America!",
+    "speakers": ["Randy Marsh"],
+    "episodeId": "s13e10",
+    "timestamp": null,
+    "tags": ["civil-liberties", "rant"]
+  },
+  {
+    "id": "q-ike-blame-canada",
+    "text": "Blame Canada!",
+    "speakers": ["Kyle Broflovski"],
+    "episodeId": "film-south-park-movie",
+    "timestamp": null,
+    "tags": ["song", "satire"]
+  },
+  {
+    "id": "q-stan-dude",
+    "text": "Dude, this is pretty f'ed up right here.",
+    "speakers": ["Stan Marsh"],
+    "episodeId": "s08e06",
+    "timestamp": null,
+    "tags": ["reaction"]
+  }
+]
+

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "coon-and-friends",
+    "name": "Coon and Friends",
+    "type": "Superhero team",
+    "members": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "goth-kids",
+    "name": "Goth Kids",
+    "type": "Student clique",
+    "members": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "south-park-police-department",
+    "name": "South Park Police Department",
+    "type": "Police",
+    "members": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "city-wok",
+    "name": "City Wok",
+    "type": "Business",
+    "members": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "south-park-elementary",
+    "name": "South Park Elementary",
+    "type": "School",
+    "members": [],
+    "firstAppearance": null
+  },
+  {
+    "id": "super-adventure-club",
+    "name": "Super Adventure Club",
+    "type": "Cult",
+    "members": [],
+    "firstAppearance": null
+  }
+]

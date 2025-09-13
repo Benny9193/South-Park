@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Characters | South Park Hub</title>
+  <meta name="description" content="Directory of characters with search and episode links." />
+  <link rel="stylesheet" href="../Assets/css/site.css" />
+  <script src="../Assets/js/layout.js" defer></script>
+  <style>
+    .toolbar { display:flex; gap:10px; align-items:center; margin: 16px 0; }
+    .toolbar input { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: #111825; color: var(--text); width: 280px; }
+    .cards { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px; }
+    .card { background: linear-gradient(180deg, var(--panel), #121725); border:1px solid var(--border); border-radius:14px; padding:14px; box-shadow: 0 8px 24px var(--shadow); display:flex; flex-direction:column; gap:6px; }
+    .card h3 { margin: 0; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); }
+    .meta { font-size: 12px; color: var(--muted); }
+    @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="sp-header" role="banner">
+    <nav class="sp-nav" aria-label="Primary">
+      <a class="sp-brand" href="../index.html">South Park Hub</a>
+      <div class="sp-links">
+        <a class="sp-pill" href="../index.html">Home</a>
+        <a class="sp-pill" href="../themes.html">Themes</a>
+        <a class="sp-pill" href="../ideas.html">Ideas</a>
+        <a class="sp-pill" href="../social.html">Social</a>
+        <span class="sp-pill sp-active" aria-current="page">Characters</span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="sp-container" role="main">
+    <h1 style="margin:0 0 10px">Characters</h1>
+    <p class="sp-muted">Search by name, alias, or tag. First appearance links to Episodes filtered by ID.</p>
+
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search characters…" aria-label="Search characters" />
+    </div>
+
+    <section id="list" class="cards" aria-live="polite"></section>
+  </main>
+
+  <footer class="sp-footer" role="contentinfo">
+    <p><a href="../index.html">Back to Hub</a></p>
+  </footer>
+
+  <script>
+  (async function() {
+    const list = document.querySelector('#list');
+    const q = document.querySelector('#q');
+    let data = [];
+    try {
+      const res = await fetch('../Assets/data/characters.json');
+      data = await res.json();
+    } catch (e) {
+      list.innerHTML = '<p>Failed to load characters.</p>';
+      return;
+    }
+
+    function linkForEpisodeId(id) {
+      if (!id) return 'Episodes/index.html';
+      return '../Episodes/index.html?q=' + encodeURIComponent(id);
+    }
+
+    function render(items) {
+      if (!items || items.length === 0) { list.innerHTML = '<p>No characters found.</p>'; return; }
+      function slug(s){return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
+      list.innerHTML = items.map(c => `
+        <article class="card">
+          <h3>${c.name}</h3>
+          <p>${c.bio || ''}</p>
+          <div class="meta">Tags: ${(c.tags||[]).join(', ')}</div>
+          <div class="meta">First appearance: ${c.firstAppearance ? `<a href="${linkForEpisodeId((c.firstAppearance||'').toString())}">${c.firstAppearance}</a>` : '—'}</div>
+          <div class="sp-card-actions" style="margin-top:8px"><a class="sp-btn" href="../Wiki/page.html?type=character&id=${encodeURIComponent(c.id||slug(c.name))}">Open Wiki</a></div>
+        </article>
+      `).join('');
+    }
+
+    function matches(c, term) {
+      if (!term) return true;
+      term = term.toLowerCase();
+      return (
+        (c.name||'').toLowerCase().includes(term) ||
+        (c.bio||'').toLowerCase().includes(term) ||
+        (c.homeLocation||'').toLowerCase().includes(term) ||
+        (c.firstAppearance||'').toLowerCase().includes(term) ||
+        (c.aliases||[]).some(a => (a||'').toLowerCase().includes(term)) ||
+        (c.tags||[]).some(t => (t||'').toLowerCase().includes(term))
+      );
+    }
+
+    const params = new URLSearchParams(location.search);
+    const pre = params.get('q');
+    if (pre) q.value = pre;
+
+    function update() {
+      const term = q.value.trim();
+      render(data.filter(c => matches(c, term)));
+    }
+
+    q.addEventListener('input', update);
+    update();
+  })();
+  </script>
+</body>
+</html>

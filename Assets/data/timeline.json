@@ -1,0 +1,43 @@
+[
+  {
+    "id": "t-aliens",
+    "date": "1997-08-13",
+    "title": "Cartman’s Alien Encounter",
+    "description": "Cartman allegedly gets an anal probe as aliens visit South Park.",
+    "episodeId": "s01e01",
+    "tags": ["aliens", "pilot"]
+  },
+  {
+    "id": "t-city-wok-opens",
+    "date": "2002-11-13",
+    "title": "City Wok Drama",
+    "description": "City Wok becomes a recurring hotspot for town shenanigans.",
+    "episodeId": "s06e11",
+    "tags": ["business"]
+  },
+  {
+    "id": "t-coon-and-friends",
+    "date": "2009-03-18",
+    "title": "Coon and Friends Form",
+    "description": "The kids adopt superhero personas, sparking rivalries and franchise wars.",
+    "episodeId": "s13e02",
+    "tags": ["organization", "superhero"]
+  },
+  {
+    "id": "t-medicinal-kfc",
+    "date": "2010-03-31",
+    "title": "Medicinal Fried Chicken",
+    "description": "KFC turns into a dispensary; Randy and Cartman get involved.",
+    "episodeId": "s14e03",
+    "tags": ["healthcare", "business"]
+  },
+  {
+    "id": "t-pandemic-randy",
+    "date": "2019-09-25",
+    "title": "Randy’s Tegridy Era",
+    "description": "Tegridy Farms shifts town dynamics and Randy’s priorities.",
+    "episodeId": "s23e01",
+    "tags": ["tegridy", "business"]
+  }
+]
+

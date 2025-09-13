@@ -1,0 +1,35 @@
+[
+  {
+    "id": "south-park-elementary",
+    "name": "South Park Elementary",
+    "type": "School",
+    "description": "Public school and frequent epicenter of town drama.",
+    "tags": ["school", "education"],
+    "address": null
+  },
+  {
+    "id": "city-wok",
+    "name": "City Wok",
+    "type": "Restaurant",
+    "description": "Local Chinese restaurant and source of recurring town drama.",
+    "tags": ["business", "food"],
+    "address": null
+  },
+  {
+    "id": "hells-pass-hospital",
+    "name": "Hell's Pass Hospital",
+    "type": "Hospital",
+    "description": "Emergency care for improbable incidents.",
+    "tags": ["healthcare"],
+    "address": null
+  },
+  {
+    "id": "starks-pond",
+    "name": "Stark's Pond",
+    "type": "Park",
+    "description": "Quiet pond often disturbed by outrageous events.",
+    "tags": ["outdoors"],
+    "address": null
+  }
+]
+

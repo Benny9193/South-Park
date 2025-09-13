@@ -1,0 +1,63 @@
+/* Optimized CSS Import Structure for South Park Facebook */
+
+/* Critical CSS - Load First */
+@import url('facebook-authentic.css');
+
+/* Enhanced features - Load after critical styles */
+@import url('enhanced-visual-effects.css') screen;
+@import url('character-animations.css') screen;
+
+/* Mobile styles - Load conditionally */
+@import url('mobile-responsive.css') screen and (max-width: 900px);
+
+/* Common styles - Load last */
+@import url('common.css');
+
+/* Performance Optimizations */
+* {
+    /* Hardware acceleration for better performance */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Reduce paint and layout thrashing */
+.character-card,
+.fb-btn,
+.filter-btn {
+    will-change: transform;
+}
+
+/* Optimize animations for better performance */
+@media (prefers-reduced-motion: no-preference) {
+    .character-card:hover {
+        will-change: transform, box-shadow;
+    }
+}
+
+/* Lazy loading optimization */
+.character-avatar {
+    /* Improve image loading performance */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
+
+/* Critical font loading */
+@font-face {
+    font-family: 'Helvetica Neue';
+    font-display: swap; /* Improve font loading performance */
+}
+
+/* Print styles */
+@media print {
+    .fb-header,
+    .filter-bar,
+    .fb-nav-icons {
+        display: none !important;
+    }
+
+    .character-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}

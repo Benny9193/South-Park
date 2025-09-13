@@ -1,0 +1,78 @@
+/* Site-wide styles for hub and info pages */
+
+:root {
+  --bg: #0f1115;
+  --panel: #151922;
+  --panel-2: #1b2130;
+  --text: #e6e9ef;
+  --muted: #aab2c5;
+  --primary: #ffd166; /* South Park-y warm accent */
+  --primary-2: #06d6a0;
+  --link: #8ecaff;
+  --border: #283145;
+  --shadow: rgba(0,0,0,0.35);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 20% -10%, #1e2432 0%, #0f1115 55%) fixed;
+  color: var(--text);
+}
+
+.skip-link {
+  position: absolute; left: -9999px; top: auto; width: 1px; height: 1px; overflow: hidden;
+}
+.skip-link:focus { position: static; width: auto; height: auto; padding: 8px 12px; background: var(--primary); color: #111; }
+
+/* Header / Navbar */
+.sp-header {
+  position: sticky; top: 0; z-index: 1000;
+  background: linear-gradient(180deg, rgba(21,25,34,0.95), rgba(21,25,34,0.85));
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+.sp-nav { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 16px; padding: 12px 20px; }
+.sp-brand { color: var(--primary); font-weight: 800; letter-spacing: 0.3px; text-decoration: none; font-size: 20px; }
+.sp-nav a { color: var(--text); text-decoration: none; opacity: 0.9; }
+.sp-nav a:hover { opacity: 1; color: var(--link); }
+.sp-nav .sp-links { display: flex; gap: 14px; margin-left: auto; }
+.sp-pill { padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--panel); }
+.sp-active { border-color: var(--primary); color: var(--primary); }
+
+/* Layout */
+.sp-container { max-width: 1100px; margin: 28px auto; padding: 0 20px; }
+.sp-hero {
+  display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; align-items: center;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: 0 10px 30px var(--shadow);
+}
+.sp-hero h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: 0.2px; }
+.sp-hero p { margin: 0; color: var(--muted); }
+.sp-hero .sp-cta { display: flex; gap: 12px; margin-top: 14px; }
+.sp-btn { display: inline-flex; gap: 8px; align-items: center; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--border); background: #111825; color: var(--text); text-decoration: none; }
+.sp-btn.primary { background: var(--primary); color: #111; border-color: #e4b94a; }
+.sp-btn.ghost { background: transparent; }
+.sp-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 18px var(--shadow); }
+.sp-btn:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.sp-nav a:focus-visible, a.focus-ring { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 6px; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+
+/* Cards */
+.sp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 22px; }
+.sp-card { background: linear-gradient(180deg, var(--panel), #121725); border: 1px solid var(--border); border-radius: 14px; padding: 16px; box-shadow: 0 8px 24px var(--shadow); display: flex; flex-direction: column; gap: 8px; }
+.sp-card h3 { margin: 0; font-size: 18px; }
+.sp-card p { margin: 0; color: var(--muted); }
+.sp-card .sp-card-actions { margin-top: 8px; }
+.sp-badge { display: inline-block; padding: 3px 8px; border-radius: 999px; font-size: 12px; border: 1px solid var(--border); color: var(--muted); }
+
+/* Footer */
+.sp-footer { margin: 32px 0 24px; color: var(--muted); font-size: 13px; text-align: center; }
+.sp-footer a { color: var(--link); text-decoration: none; }
+
+@media (max-width: 900px) {
+  .sp-hero { grid-template-columns: 1fr; }
+  .sp-grid { grid-template-columns: 1fr; }
+}
