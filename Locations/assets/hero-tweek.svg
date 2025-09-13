@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-label="South Park mountains with a coffee cup">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#5aa0ff"/>
+      <stop offset="1" stop-color="#a9d3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="420" fill="url(#sky)"/>
+  <!-- Mountains (paper cutout style) -->
+  <path d="M0 300 L120 220 L200 260 L280 210 L360 250 L460 190 L540 240 L620 200 L720 250 L820 220 L960 300 L960 420 L0 420 Z" fill="#cfe7ff"/>
+  <path d="M0 340 L140 260 L240 300 L320 250 L420 300 L520 240 L600 280 L700 250 L820 300 L960 280 L960 420 L0 420 Z" fill="#b6d7ff"/>
+  <!-- Coffee cup -->
+  <g transform="translate(680,240)">
+    <rect x="-60" y="-40" width="120" height="80" rx="12" fill="#ffffff" stroke="#1b1f2a" stroke-width="4"/>
+    <path d="M60 -20 q40 0 40 20 t-40 20" fill="none" stroke="#1b1f2a" stroke-width="4"/>
+    <rect x="-40" y="10" width="80" height="10" rx="5" fill="#ffd166"/>
+    <!-- Steam lines -->
+    <path d="M-20 -60 c -10 -20 10 -30 0 -50" stroke="#ffffff" stroke-width="4" fill="none" opacity="0.8"/>
+    <path d="M10 -60 c -10 -20 10 -30 0 -50" stroke="#ffffff" stroke-width="4" fill="none" opacity="0.8"/>
+  </g>
+</svg>
+

@@ -439,6 +439,253 @@
         .post-composer .composer-actions { display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid #e4e6eb; margin-top:12px; }
         .post-composer .composer-action { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 0; cursor:pointer; border-radius:6px; font-size:14px; color:#65676b; }
         .post-composer .composer-action:hover { background:#f0f2f5; }
+
+        /* Hamburger Counter Widget */
+        .hamburger-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ffd700, #ffeb3b);
+            color: #333;
+            padding: 15px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid #ffc107;
+            text-align: center;
+            min-width: 180px;
+        }
+
+        .hamburger-counter:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .hamburger-counter::before {
+            content: '🍔';
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        .hamburger-count {
+            font-size: 18px;
+            color: #d84315;
+        }
+
+        .hamburger-celebration {
+            animation: celebration 0.5s ease-in-out;
+        }
+
+        @keyframes celebration {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Hug Dispenser Widget */
+        .hug-dispenser {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #4caf50, #8bc34a);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid #66bb6a;
+            text-align: center;
+            min-width: 160px;
+        }
+
+        .hug-dispenser:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+            background: linear-gradient(135deg, #66bb6a, #9ccc65);
+        }
+
+        .hug-dispenser::before {
+            content: '🤗';
+            font-size: 20px;
+            margin-right: 8px;
+        }
+
+        .hug-animation {
+            animation: hug-pulse 0.6s ease-in-out;
+        }
+
+        @keyframes hug-pulse {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1) rotate(-5deg); }
+            50% { transform: scale(1.2); }
+            75% { transform: scale(1.1) rotate(5deg); }
+        }
+
+        .hug-counter {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 2px;
+        }
+
+        /* Floating Hug Hearts */
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 24px;
+            animation: float-up 3s ease-out forwards;
+        }
+
+        @keyframes float-up {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1.5);
+            }
+        }
+
+        /* Professor Chaos Mode Toggle */
+        .chaos-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #9c27b0, #673ab7);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid #ab47bc;
+            text-align: center;
+            min-width: 140px;
+            font-size: 14px;
+        }
+
+        .chaos-toggle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(156, 39, 176, 0.6);
+        }
+
+        .chaos-toggle.innocent {
+            background: linear-gradient(135deg, #ffd700, #ffeb3b);
+            color: #333;
+            border-color: #ffc107;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .chaos-toggle.innocent:hover {
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Professor Chaos Mode Styles */
+        body.chaos-mode {
+            background: linear-gradient(135deg, #2c1810 0%, #4a2c2a 50%, #1a0e1a 100%);
+        }
+
+        .chaos-mode .header {
+            background: linear-gradient(135deg, #9c27b0, #673ab7);
+        }
+
+        .chaos-mode .cover-photo {
+            background: linear-gradient(135deg, #9c27b0 0%, #673ab7 50%, #4a148c 100%);
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .chaos-mode .innocent-badge {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            animation: evil-pulse 2s infinite;
+        }
+
+        @keyframes evil-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .chaos-mode .profile-name {
+            color: #e1bee7;
+        }
+
+        .chaos-mode .profile-subtitle {
+            color: #ce93d8;
+        }
+
+        .chaos-mode .sidebar,
+        .chaos-mode .post,
+        .chaos-mode .post-composer,
+        .chaos-mode .profile-header {
+            background: #3e2723;
+            border-color: #6a4c93;
+            color: #e1bee7;
+        }
+
+        .chaos-mode .info-section h3,
+        .chaos-mode .post-info h4 {
+            color: #ce93d8;
+        }
+
+        .chaos-mode .info-item,
+        .chaos-mode .post-time,
+        .chaos-mode .post-content {
+            color: #d1c4e9;
+        }
+
+        .chaos-mode .innocent-moment {
+            background: linear-gradient(45deg, #4a148c, #6a1b9a);
+            border-left-color: #9c27b0;
+            color: #e1bee7;
+        }
+
+        .chaos-mode .grounding-alert {
+            background: linear-gradient(45deg, #1a0e1a, #2c1810);
+            border-left-color: #9c27b0;
+            color: #ce93d8;
+        }
+
+        .chaos-mode .optimistic-spin {
+            background: #4a148c;
+            border-left-color: #9c27b0;
+            color: #e1bee7;
+        }
+
+        .chaos-mode .grounding-counter {
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+        }
+
+        /* Chaos Transformation Animation */
+        .chaos-transformation {
+            animation: chaos-transform 1s ease-in-out;
+        }
+
+        @keyframes chaos-transform {
+            0% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Hidden elements in different modes */
+        .chaos-only {
+            display: none;
+        }
+
+        .chaos-mode .chaos-only {
+            display: block;
+        }
+
+        .chaos-mode .innocent-only {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -461,17 +708,23 @@
     <div class="container">
         <div class="profile-header">
             <div class="cover-photo">
-                🌻 GOLLY, LIFE IS JUST SWELL! EVERYTHING HAPPENS FOR A REASON! 🌻
+                <span class="innocent-only">🌻 GOLLY, LIFE IS JUST SWELL! EVERYTHING HAPPENS FOR A REASON! 🌻</span>
+                <span class="chaos-only">⚡ BEWARE THE WRATH OF PROFESSOR CHAOS! CHAOS REIGNS SUPREME! ⚡</span>
             </div>
             <div class="profile-info">
                 <div class="profile-pic"></div>
                 <div class="profile-details">
                     <h1 class="profile-name">
-                        Leopold "Butters" Stotch
-                        <span class="innocent-badge">INNOCENT</span>
+                        <span class="innocent-only">Leopold "Butters" Stotch</span>
+                        <span class="chaos-only">Professor Chaos</span>
+                        <span class="innocent-badge innocent-only">INNOCENT</span>
+                        <span class="innocent-badge chaos-only">EVIL</span>
                         <span class="status-indicator" title="Currently Not Grounded (Rare!)"></span>
                     </h1>
-                    <p class="profile-subtitle">Professional Optimist • Part-time Professor Chaos • Full-time Target • Everyone's Favorite Victim • Hamburgers Enthusiast</p>
+                    <p class="profile-subtitle">
+                        <span class="innocent-only">Professional Optimist • Part-time Professor Chaos • Full-time Target • Everyone's Favorite Victim • Hamburgers Enthusiast</span>
+                        <span class="chaos-only">Supreme Overlord of Chaos • Professional Villain • Master of Minor Inconveniences • Bringer of Mayhem • Destroyer of Order</span>
+                    </p>
                 </div>
             </div>
             <div class="profile-nav-bar">
@@ -561,10 +814,10 @@
                             <div class="friend-avatar parents-avatar">LL</div>
                             <div class="friend-name">Leopold & Linda<br><small>Best Parents Ever!</small></div>
                         </div>
-                        <div class="friend-card">
+                        <a href="Eric Cartman.html" class="friend-card" style="text-decoration: none; color: inherit; display: block;">
                             <div class="friend-avatar cartman-avatar">EC</div>
                             <div class="friend-name">Eric Cartman<br><small>My Best Friend (Right?)</small></div>
-                        </div>
+                        </a>
                         <div class="friend-card">
                             <div class="friend-avatar" style="background: linear-gradient(45deg, #8e24aa, #ab47bc);">GS</div>
                             <div class="friend-name">Grandma Stotch<br><small>Teaching Me Life!</small></div>
@@ -900,6 +1153,23 @@
         </div>
     </div>
 
+    <!-- Hamburger Counter Widget -->
+    <div class="hamburger-counter" id="hamburgerCounter" title="Butters' 'Oh hamburgers!' counter">
+        <div>Oh hamburgers!</div>
+        <div class="hamburger-count" id="hamburgerCount">0</div>
+    </div>
+
+    <!-- Professor Chaos Mode Toggle -->
+    <div class="chaos-toggle innocent" id="chaosToggle" title="Transform into Professor Chaos!">
+        <div id="toggleText">🦹‍♂️ CHAOS MODE</div>
+    </div>
+
+    <!-- Hug Dispenser Widget -->
+    <div class="hug-dispenser" id="hugDispenser" title="Free hugs from Butters' Hug Company!">
+        <div>Free Hugs!</div>
+        <div class="hug-counter" id="hugCounter">Hugs given: 0</div>
+    </div>
+
     <!-- Enhanced Navigation & Interaction Systems -->
     <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
     <script src="../../../Assets/js/character-switcher.js"></script>
@@ -907,9 +1177,22 @@
     <script src="../../../Assets/js/emoji-reactions.js"></script>
     <script src="../../../Assets/js/mobile-enhancements.js"></script>
     <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/character-cross-reference.js"></script>
+    <script src="../../../Assets/js/south-park-news-network.js"></script>
+    <script src="../../../Assets/js/relationship-dynamics-tracker.js"></script>
+    <script src="../../../Assets/js/interactive-communication-system.js"></script>
     <script>
+        // Global variables
+        let hamburgerCount = 0;
+        let hugCount = 0;
+        let chaosMode = false;
+
         // Initialize enhanced features for Butters' profile
         document.addEventListener('DOMContentLoaded', function() {
+            initializeHamburgerCounter();
+            initializeHugDispenser();
+            initializeChaosToggle();
+
             // Character interactions
             setTimeout(() => {
                 if (window.characterInteractions) {
@@ -930,6 +1213,266 @@
                 action.classList.add('card-hover-effect');
             });
         });
+
+        // Hamburger Counter Functions
+        function initializeHamburgerCounter() {
+            countHamburgers();
+
+            // Make counter clickable for celebration
+            document.getElementById('hamburgerCounter').addEventListener('click', function() {
+                this.classList.add('hamburger-celebration');
+                setTimeout(() => {
+                    this.classList.remove('hamburger-celebration');
+                }, 500);
+
+                // Show a random Butters quote
+                showHamburgerQuote();
+            });
+        }
+
+        function countHamburgers() {
+            const bodyText = document.body.textContent.toLowerCase();
+            const hamburgerMatches = bodyText.match(/oh hamburgers/g) || [];
+            hamburgerCount = hamburgerMatches.length;
+            document.getElementById('hamburgerCount').textContent = hamburgerCount;
+        }
+
+        function showHamburgerQuote() {
+            const quotes = [
+                "Gee whiz, that's a lot of hamburgers!",
+                "Oh hamburgers, I sure do say that a lot!",
+                "Golly, I hope I'm not being too repetitive!",
+                "Well, hamburgers are just really neat!",
+                "Oh hamburgers, I can't help myself!",
+                "Boy howdy, that's my favorite saying!"
+            ];
+
+            const quote = quotes[Math.floor(Math.random() * quotes.length)];
+            const quoteDiv = document.createElement('div');
+            quoteDiv.innerHTML = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                           background: rgba(255, 215, 0, 0.95); color: #333; padding: 20px;
+                           border-radius: 15px; z-index: 10000; text-align: center; border: 3px solid #ffc107;">
+                    <h3>🍔 Butters says:</h3>
+                    <p>"${quote}"</p>
+                    <button onclick="this.parentElement.remove()" style="margin-top: 10px; padding: 5px 15px; background: #ffc107; border: none; border-radius: 5px; cursor: pointer;">
+                        Golly!
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(quoteDiv);
+        }
+
+        // Hug Dispenser Functions
+        function initializeHugDispenser() {
+            const hugDispenser = document.getElementById('hugDispenser');
+
+            hugDispenser.addEventListener('click', function() {
+                giveHug();
+            });
+        }
+
+        function giveHug() {
+            hugCount++;
+            document.getElementById('hugCounter').textContent = `Hugs given: ${hugCount}`;
+
+            // Animate the dispenser
+            const hugDispenser = document.getElementById('hugDispenser');
+            hugDispenser.classList.add('hug-animation');
+            setTimeout(() => {
+                hugDispenser.classList.remove('hug-animation');
+            }, 600);
+
+            // Create floating hearts
+            createFloatingHearts();
+
+            // Show hug message
+            showHugMessage();
+        }
+
+        function createFloatingHearts() {
+            const hearts = ['💖', '💕', '💗', '🤗', '💛', '🌟'];
+
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-heart';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+
+                    // Start from hug dispenser position
+                    const hugDispenser = document.getElementById('hugDispenser');
+                    const rect = hugDispenser.getBoundingClientRect();
+                    heart.style.left = (rect.left + Math.random() * 100 - 50) + 'px';
+                    heart.style.bottom = '100px';
+
+                    document.body.appendChild(heart);
+
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 3000);
+                }, i * 200);
+            }
+        }
+
+        function showHugMessage() {
+            const hugMessages = [
+                "Aw gee, that's real nice! Here's a big ol' hug for you!",
+                "Golly, everyone needs more hugs in their life!",
+                "Oh hamburgers, that was the best hug ever!",
+                "Boy howdy, hugs make everything better!",
+                "Gee whiz, you're such a swell person!",
+                "That hug was just super duper!",
+                "Aw shucks, hugs are the best medicine!",
+                "Well, aren't you just the nicest person ever!",
+                "Golly gee, that made my whole day!",
+                "Oh boy, free hugs for everyone!"
+            ];
+
+            const message = hugMessages[Math.floor(Math.random() * hugMessages.length)];
+            const hugDiv = document.createElement('div');
+            hugDiv.innerHTML = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                           background: linear-gradient(135deg, #4caf50, #8bc34a); color: white; padding: 20px;
+                           border-radius: 15px; z-index: 10000; text-align: center; border: 3px solid #66bb6a;
+                           max-width: 300px;">
+                    <h3>🤗 Butters' Hug Company!</h3>
+                    <p>"${message}"</p>
+                    <p style="font-size: 12px; opacity: 0.9; margin-top: 10px;">Business is booming! Hug #${hugCount}</p>
+                    <button onclick="this.parentElement.remove()" style="margin-top: 10px; padding: 5px 15px; background: #66bb6a; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Aw, thanks Butters! 🤗
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(hugDiv);
+
+            // Auto-dismiss after 4 seconds if not clicked
+            setTimeout(() => {
+                if (hugDiv.parentNode) {
+                    hugDiv.remove();
+                }
+            }, 4000);
+        }
+
+        // Professor Chaos Mode Functions
+        function initializeChaosToggle() {
+            const chaosToggle = document.getElementById('chaosToggle');
+
+            chaosToggle.addEventListener('click', function() {
+                toggleChaosMode();
+            });
+        }
+
+        function toggleChaosMode() {
+            chaosMode = !chaosMode;
+            const body = document.body;
+            const toggle = document.getElementById('chaosToggle');
+            const toggleText = document.getElementById('toggleText');
+
+            // Add transformation animation
+            body.classList.add('chaos-transformation');
+            setTimeout(() => {
+                body.classList.remove('chaos-transformation');
+            }, 1000);
+
+            if (chaosMode) {
+                // Switch to Professor Chaos mode
+                body.classList.add('chaos-mode');
+                toggle.classList.remove('innocent');
+                toggleText.innerHTML = '😇 INNOCENT MODE';
+
+                // Show evil transformation message
+                showChaosTransformation();
+
+                // Update widgets for chaos mode
+                updateWidgetsForChaos();
+            } else {
+                // Switch back to innocent Butters
+                body.classList.remove('chaos-mode');
+                toggle.classList.add('innocent');
+                toggleText.innerHTML = '🦹‍♂️ CHAOS MODE';
+
+                // Show innocent transformation message
+                showInnocentTransformation();
+
+                // Reset widgets to normal
+                resetWidgetsToInnocent();
+            }
+        }
+
+        function showChaosTransformation() {
+            const transformDiv = document.createElement('div');
+            transformDiv.innerHTML = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                           background: linear-gradient(135deg, #9c27b0, #673ab7); color: white; padding: 25px;
+                           border-radius: 15px; z-index: 10000; text-align: center; border: 3px solid #ab47bc;
+                           max-width: 350px; animation: evil-pulse 2s infinite;">
+                    <h3>⚡ PROFESSOR CHAOS EMERGES! ⚡</h3>
+                    <p>"Mwahahaha! You fools! You have unleashed the most diabolical villain South Park has ever seen!"</p>
+                    <p style="font-size: 12px; opacity: 0.9; margin-top: 10px;">*adjusts cape dramatically*</p>
+                    <button onclick="this.parentElement.remove()" style="margin-top: 15px; padding: 8px 15px; background: #ab47bc; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Tremble Before Me! 👹
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(transformDiv);
+
+            // Auto-dismiss after 5 seconds
+            setTimeout(() => {
+                if (transformDiv.parentNode) {
+                    transformDiv.remove();
+                }
+            }, 5000);
+        }
+
+        function showInnocentTransformation() {
+            const transformDiv = document.createElement('div');
+            transformDiv.innerHTML = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                           background: linear-gradient(135deg, #ffd700, #ffeb3b); color: #333; padding: 25px;
+                           border-radius: 15px; z-index: 10000; text-align: center; border: 3px solid #ffc107;
+                           max-width: 350px;">
+                    <h3>🌻 BUTTERS IS BACK! 🌻</h3>
+                    <p>"Oh hamburgers! I don't know what came over me! I'm just happy to be my regular ol' self again!"</p>
+                    <p style="font-size: 12px; opacity: 0.8; margin-top: 10px;">*straightens tie innocently*</p>
+                    <button onclick="this.parentElement.remove()" style="margin-top: 15px; padding: 8px 15px; background: #ffc107; color: #333; border: none; border-radius: 5px; cursor: pointer;">
+                        Golly gee! 😊
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(transformDiv);
+
+            // Auto-dismiss after 5 seconds
+            setTimeout(() => {
+                if (transformDiv.parentNode) {
+                    transformDiv.remove();
+                }
+            }, 5000);
+        }
+
+        function updateWidgetsForChaos() {
+            // Update hug dispenser for chaos mode
+            const hugDispenser = document.getElementById('hugDispenser');
+            hugDispenser.innerHTML = `
+                <div>Evil Schemes!</div>
+                <div class="hug-counter" id="hugCounter">Schemes planned: ${hugCount}</div>
+            `;
+            hugDispenser.title = "Professor Chaos' Evil Scheme Generator!";
+            hugDispenser.style.background = "linear-gradient(135deg, #9c27b0, #673ab7)";
+            hugDispenser.style.borderColor = "#ab47bc";
+        }
+
+        function resetWidgetsToInnocent() {
+            // Reset hug dispenser to normal
+            const hugDispenser = document.getElementById('hugDispenser');
+            hugDispenser.innerHTML = `
+                <div>Free Hugs!</div>
+                <div class="hug-counter" id="hugCounter">Hugs given: ${hugCount}</div>
+            `;
+            hugDispenser.title = "Free hugs from Butters' Hug Company!";
+            hugDispenser.style.background = "linear-gradient(135deg, #4caf50, #8bc34a)";
+            hugDispenser.style.borderColor = "#66bb6a";
+        }
     </script>
     <script src="../../../Assets/js/navigation.js"></script>
 </body>

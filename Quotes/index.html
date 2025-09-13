@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quotes | South Park Hub</title>
+  <meta name="description" content="Searchable quotes with speakers and episode references." />
+  <link rel="stylesheet" href="../Assets/css/site.css" />
+  <script src="../Assets/js/layout.js" defer></script>
+  <style>
+    .toolbar { display:flex; gap:10px; align-items:center; margin: 16px 0; }
+    .toolbar input { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: #111825; color: var(--text); width: 280px; }
+    .cards { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:16px; }
+    .card { background: linear-gradient(180deg, var(--panel), #121725); border:1px solid var(--border); border-radius:14px; padding:14px; box-shadow: 0 8px 24px var(--shadow); }
+    .quote { font-size: 16px; margin: 0 0 6px; }
+    .meta { font-size: 12px; color: var(--muted); }
+    @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="sp-header" role="banner">
+    <nav class="sp-nav" aria-label="Primary">
+      <a class="sp-brand" href="../index.html">South Park Hub</a>
+      <div class="sp-links">
+        <a class="sp-pill" href="../index.html">Home</a>
+        <a class="sp-pill" href="../themes.html">Themes</a>
+        <a class="sp-pill" href="../ideas.html">Ideas</a>
+        <a class="sp-pill" href="../social.html">Social</a>
+        <span class="sp-pill sp-active" aria-current="page">Quotes</span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="sp-container" role="main">
+    <h1 style="margin:0 0 10px">Quotes</h1>
+    <p class="sp-muted">Search by text, speaker, or tag. Links show episode IDs where known.</p>
+
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search quotes…" aria-label="Search quotes" />
+    </div>
+
+    <section id="list" class="cards" aria-live="polite"></section>
+  </main>
+
+  <footer class="sp-footer" role="contentinfo">
+    <p><a href="../index.html">Back to Hub</a></p>
+  </footer>
+
+  <script>
+  (async function() {
+    const list = document.querySelector('#list');
+    const q = document.querySelector('#q');
+    let data = [];
+    try {
+      const res = await fetch('../Assets/data/quotes.json');
+      data = await res.json();
+    } catch (e) {
+      list.innerHTML = '<p>Failed to load quotes.</p>';
+      return;
+    }
+
+    function render(items) {
+      if (!items || items.length === 0) { list.innerHTML = '<p>No quotes found.</p>'; return; }
+      list.innerHTML = items.map(it => `
+        <article class="card">
+          <p class="quote">“${it.text}”</p>
+          <div class="meta">Speaker(s): ${(it.speakers||[]).join(', ')}</div>
+          <div class="meta">Episode: ${it.episodeId ? `<a href="../Episodes/index.html?q=${encodeURIComponent(it.episodeId)}">${it.episodeId}</a>` : '—'} · Tags: ${(it.tags||[]).join(', ')}</div>
+        </article>
+      `).join('');
+    }
+
+    function matches(it, term) {
+      if (!term) return true;
+      term = term.toLowerCase();
+      return (
+        (it.text || '').toLowerCase().includes(term) ||
+        (it.episodeId || '').toLowerCase().includes(term) ||
+        (it.speakers || []).some(s => (s||'').toLowerCase().includes(term)) ||
+        (it.tags || []).some(t => (t||'').toLowerCase().includes(term))
+      );
+    }
+
+    q.addEventListener('input', () => {
+      const term = q.value.trim();
+      render(data.filter(it => matches(it, term)));
+    });
+
+    render(data);
+  })();
+  </script>
+</body>
+</html>

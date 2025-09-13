@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tom's Rhinoplasty â€” Cosmetic Surgery</title>
+  <meta name="description" content="Tom's Rhinoplasty: rhinoplasty and cosmetic procedures in South Park." />
+  <meta property="og:title" content="Tom's Rhinoplasty â€” Cosmetic Surgery" />
+  <meta property="og:description" content="Consultations, procedures, and a before/after gallery." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/seed/rhino-hero/1200/630" />
+  <link rel="stylesheet" href="../assets/business.css" />
+  <style>
+    :root { --accent: #ff7ac3; --link: #ffcfe8; }
+  </style>
+  <meta name="theme-color" content="#ff7ac3" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ff7ac3'/%3E%3Cpath d='M18 34c6-10 22-10 28 0' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+</head>
+<body class="brand-rhino">
+  <header class="biz-header">
+    <nav class="biz-nav" aria-label="Tom's Rhinoplasty">
+      <a class="biz-brand" href="#">Tom's Rhinoplasty</a>
+      <div class="biz-links">
+        <a class="biz-link" href="#services">Services</a>
+        <a class="biz-link" href="#gallery">Gallery</a>
+        <a class="biz-link" href="#hours">Hours</a>
+        <a class="biz-link" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="signboard">
+    <div class="board" role="img" aria-label="Tom's Rhinoplasty sign">
+      <h1>Tom's Rhinoplasty</h1>
+      <div class="tagline">Refine your look. Board-certified care.</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1>Refine Your Look with Confidence</h1>
+      <p>Board-certified practice offering rhinoplasty and minimally invasive cosmetic procedures.</p>
+      <div class="cta">
+        <a class="btn primary" data-open-modal="#book-consult" href="#">Book Consultation</a>
+        <a class="btn ghost" href="gallery.html">Before/After Gallery</a>
+        <a class="btn ghost" href="../index.html">Back to Locations</a>
+      </div>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/rhino-hero/800/420" alt="Clinic front desk" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+    </div>
+  </section>
+
+  <main>
+    <section id="services" class="section grid cols-2" aria-labelledby="services-title">
+      <article class="card">
+        <h2 id="services-title">Procedures</h2>
+        <div class="menu-item"><div><h3>Rhinoplasty</h3><p class="muted">Functional & cosmetic nose surgery</p></div><div class="price">Consult</div></div>
+        <div class="menu-item"><div><h3>Septoplasty</h3><p class="muted">Breathing-focused correction</p></div><div class="price">Consult</div></div>
+        <div class="menu-item"><div><h3>Otoplasty</h3><p class="muted">Ear reshaping</p></div><div class="price">Consult</div></div>
+        <div class="menu-item"><div><h3>Fillers</h3><p class="muted">Minimally invasive touch-ups</p></div><div class="price">From $399</div></div>
+      </article>
+      <article class="card">
+        <h2>Patient Care</h2>
+        <p class="muted">Private consult rooms, discreet scheduling, and board-certified care. Financing options available.</p>
+      </article>
+    </section>
+
+    <section id="gallery" class="section" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">Clinic Gallery</h2>
+      <div class="grid cols-3" style="margin-top:10px">
+        <img alt="Clinic" src="https://picsum.photos/seed/rhino1/480/320" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+        <img alt="Room" src="https://picsum.photos/seed/rhino2/480/320" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+        <img alt="Lobby" src="https://picsum.photos/seed/rhino3/480/320" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+      </div>
+    </section>
+
+    <section id="hours" class="section grid cols-2" aria-labelledby="hours-title">
+      <article class="card">
+        <h2 id="hours-title">Hours</h2>
+        <p>Monâ€“Fri: 9 AM â€“ 5 PM</p>
+        <p>Sat: Consult by appointment</p>
+      </article>
+      <article class="card">
+        <h2>Find Us</h2>
+        <img src="https://picsum.photos/seed/rhino-map/640/320" alt="Map to Tom's Rhinoplasty" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+      </article>
+    </section>
+
+    <section id="contact" class="section grid cols-2" aria-labelledby="contact-title">
+      <article class="card">
+        <h2 id="contact-title">Contact</h2>
+        <p><span class="badge">Phone</span> (719) 555-0133</p>
+        <p><span class="badge">Email</span> rhinoplasty@example.com</p>
+      </article>
+      <article class="card">
+        <h2>Policies</h2>
+        <p class="muted">This is a fictional clinic for a fan project. Always consult a real professional.</p>
+      </article>
+    </section>
+  </main>
+
+  <!-- Booking modal -->
+  <div id="book-consult" class="modal-backdrop" data-click-to-close="true" style="display:none">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bc-title">
+      <div class="modal-header">
+        <h3 id="bc-title" class="modal-title">Consultation Request</h3>
+        <button class="modal-close" data-close-modal>Close</button>
+      </div>
+      <div class="modal-body">
+        <form class="form-grid">
+          <div class="field"><label>Name<input required type="text" placeholder="Your name"/></label></div>
+          <div class="field"><label>Email<input required type="email" placeholder="you@example.com"/></label></div>
+          <div class="field"><label>Preferred Date<input type="date" /></label></div>
+          <div class="field"><label>Time<input type="time" /></label></div>
+          <div class="field full"><label>Notes<textarea rows="3" placeholder="Goals, medical notes..."></textarea></label></div>
+          <div class="actions full">
+            <button class="btn" data-close-modal type="button">Cancel</button>
+            <button class="btn primary" type="submit">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/business.js"></script>
+  
+  <footer class="biz-footer">
+    <p>Â© Tom's Rhinoplasty, South Park. Fan-made demo.</p>
+    <p><a href="../index.html">Back to Locations</a></p>
+  </footer>
+</body>
+</html>
+

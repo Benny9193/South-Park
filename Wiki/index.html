@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Encyclopedia | South Park Hub</title>
+  <meta name="description" content="Wiki-style index for characters, locations, organizations, and episodes." />
+  <link rel="stylesheet" href="../Assets/css/site.css" />
+  <link rel="stylesheet" href="../Assets/css/wiki.css" />
+  <script src="../Assets/js/layout.js" defer></script>
+  <style>
+    .grid { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:16px; margin-top: 14px; }
+    .card { background: linear-gradient(180deg, var(--panel), #121725); border:1px solid var(--border); border-radius:14px; padding:14px; box-shadow: 0 8px 24px var(--shadow); }
+    .toolbar { display:flex; gap:10px; align-items:center; margin: 16px 0; }
+    .toolbar input, .toolbar select { padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: #111825; color: var(--text); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="sp-header" role="banner">
+    <nav class="sp-nav" aria-label="Primary">
+      <a class="sp-brand" href="../index.html">South Park Hub</a>
+      <div class="sp-links"></div>
+    </nav>
+  </header>
+
+  <main id="main" class="sp-container" role="main">
+    <h1 style="margin:0 0 10px">Encyclopedia</h1>
+    <p class="sp-muted">Wiki-style directory for characters, locations, organizations, and episodes.</p>
+
+    <div class="toolbar">
+      <input id="q" type="search" placeholder="Search encyclopedia…" aria-label="Search encyclopedia" />
+      <select id="type" aria-label="Filter by type">
+        <option value="all" selected>All</option>
+        <option value="character">Characters</option>
+        <option value="location">Locations</option>
+        <option value="organization">Organizations</option>
+        <option value="episode">Episodes</option>
+      </select>
+    </div>
+
+    <section id="list" class="grid" aria-live="polite"></section>
+  </main>
+
+  <footer class="sp-footer" role="contentinfo">
+    <p><a href="../index.html">Back to Hub</a></p>
+  </footer>
+
+  <script>
+  (async function() {
+    const list = document.querySelector('#list');
+    const q = document.querySelector('#q');
+    const type = document.querySelector('#type');
+
+    const [episodes, characters, locations, organizations] = await Promise.all([
+      fetch('../Assets/data/episodes.json').then(r=>r.json()).catch(()=>[]),
+      fetch('../Assets/data/characters.json').then(r=>r.json()).catch(()=>[]),
+      fetch('../Assets/data/locations.json').then(r=>r.json()).catch(()=>[]),
+      fetch('../Assets/data/organizations.json').then(r=>r.json()).catch(()=>[])
+    ]);
+
+    function slug(s){return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
+
+    function items() {
+      const e = episodes.map(ep=>({type:'episode', id:ep.id, title:`S${ep.season}E${ep.episode} · ${ep.title}`, text: ep.synopsis||'', href:`page.html?type=episode&id=${encodeURIComponent(ep.id)}`}));
+      const c = characters.map(x=>({type:'character', id:x.id||slug(x.name), title:x.name, text:(x.aliases||[]).join(', '), href:`page.html?type=character&id=${encodeURIComponent(x.id||slug(x.name))}`}));
+      const l = locations.map(x=>({type:'location', id:x.id||slug(x.name), title:x.name, text:x.description||'', href:`page.html?type=location&id=${encodeURIComponent(x.id||slug(x.name))}`}));
+      const o = organizations.map(x=>({type:'organization', id:x.id||slug(x.name), title:x.name, text:x.type||'', href:`page.html?type=organization&id=${encodeURIComponent(x.id||slug(x.name))}`}));
+      return [...c,...l,...o,...e];
+    }
+
+    const all = items();
+
+    function matches(it, term){ if(!term) return true; term=term.toLowerCase(); return (it.title||'').toLowerCase().includes(term) || (it.text||'').toLowerCase().includes(term) }
+
+    function render(rows){
+      if (!rows || rows.length===0){ list.innerHTML='<p>No entries.</p>'; return; }
+      list.innerHTML = rows.map(it=>`
+        <article class="card">
+          <div class="meta">${it.type.toUpperCase()}</div>
+          <h3 style="margin:2px 0 6px">${it.title}</h3>
+          <p style="margin:0">${it.text}</p>
+          <div class="sp-card-actions" style="margin-top:8px"><a class="sp-btn" href="${it.href}">Open</a></div>
+        </article>
+      `).join('');
+    }
+
+    function update(){
+      const t = type.value; const term = q.value.trim();
+      render(all.filter(it => (t==='all' || it.type===t) && matches(it, term)));
+    }
+
+    q.addEventListener('input', update);
+    type.addEventListener('change', update);
+    update();
+  })();
+  </script>
+</body>
+</html>
+

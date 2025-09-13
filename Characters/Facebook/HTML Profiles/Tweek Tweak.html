@@ -169,20 +169,305 @@
             border: 2px solid #cc0000;
         }
 
+        /* Coffee Tracker Styles */
+        .coffee-tracker {
+            background: var(--tweek-accent);
+            color: var(--tweek-primary);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            border: 3px solid var(--tweek-secondary);
+        }
+
+        .coffee-cups {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .coffee-cup {
+            width: 25px;
+            height: 25px;
+            background: #8B4513;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .coffee-cup.full {
+            background: #D2691E;
+            animation: coffee-steam 2s ease-in-out infinite;
+        }
+
+        .coffee-cup:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes coffee-steam {
+            0%, 100% { box-shadow: 0 -5px 5px rgba(255,255,255,0.3); }
+            50% { box-shadow: 0 -8px 8px rgba(255,255,255,0.6); }
+        }
+
+        /* Gnome Alert System */
+        .gnome-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: red;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            z-index: 10000;
+            display: none;
+            animation: emergency-flash 0.5s ease-in-out infinite;
+            border: 5px solid yellow;
+        }
+
+        /* Control Panel */
+        .tweek-controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 248, 220, 0.95);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--tweek-secondary);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .control-button {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            background: var(--tweek-primary);
+            border: 2px solid var(--tweek-secondary);
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .control-button:hover {
+            background: var(--tweek-secondary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Stress Meter */
+        .stress-meter {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 68, 68, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            z-index: 1000;
+            width: 200px;
+        }
+
+        .stress-bar {
+            width: 100%;
+            height: 20px;
+            background: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+
+        .stress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, yellow, orange, red);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        /* Enhanced Animations */
+        @keyframes hair-twitch {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
+
+        .hair-pull:hover {
+            animation: hair-twitch 0.2s ease-in-out infinite;
+        }
+
+        @keyframes conspiracy-overlay {
+            0% { opacity: 0; transform: translateY(100px); }
+            50% { opacity: 0.7; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-100px); }
+        }
+
+        .conspiracy-text {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 500;
+            color: rgba(255, 68, 68, 0.5);
+            font-size: 12px;
+            font-weight: bold;
+            animation: conspiracy-overlay 4s ease-in-out;
+        }
+
+        /* Craig Presence Indicator */
+        .craig-glow {
+            box-shadow: 0 0 20px rgba(135, 206, 235, 0.6);
+            background: linear-gradient(135deg, rgba(135, 206, 235, 0.1), rgba(70, 130, 180, 0.1));
+        }
+
+        /* Jitter Intensity Slider */
+        .jitter-control {
+            margin: 10px 0;
+        }
+
+        .jitter-slider {
+            width: 100%;
+            margin: 5px 0;
+        }
+
+        /* Anxiety Heatmap */
+        .anxiety-hotspot {
+            position: relative;
+        }
+
+        .anxiety-hotspot::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255, 68, 68, 0.3) 0%, transparent 70%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .anxiety-hotspot:hover::after {
+            opacity: 1;
+        }
+
+        .heatmap-indicator {
+            position: fixed;
+            bottom: 120px;
+            left: 20px;
+            background: rgba(255, 248, 220, 0.95);
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid var(--tweek-secondary);
+            z-index: 1000;
+            font-size: 12px;
+        }
+
+        .heat-legend {
+            display: flex;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .heat-level {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+
+        .heat-low { background: rgba(255, 255, 0, 0.5); }
+        .heat-medium { background: rgba(255, 165, 0, 0.7); }
+        .heat-high { background: rgba(255, 68, 68, 0.9); }
+
+        /* Accessibility Options */
+        .reduced-motion body {
+            animation: none !important;
+        }
+
+        .reduced-motion * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+
         /* Mobile optimization for anxiety effects */
         @media screen and (max-width: 768px) {
             body {
                 animation: anxiety-shake 3s ease-in-out infinite; /* Slower shake on mobile */
             }
-            
+
             .anxiety-level {
                 font-size: 14px;
                 padding: 6px;
+            }
+
+            .tweek-controls {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 10px 0;
+            }
+
+            .stress-meter {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin: 10px 0;
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Tweek Control Panel -->
+    <div class="tweek-controls" id="tweekControls">
+        <h4>🎛️ ANXIETY CONTROLS</h4>
+        <button class="control-button" onclick="triggerAnxietyMode()">😱 PANIC MODE</button>
+        <button class="control-button" onclick="emergencyCraig()">💙 EMERGENCY CRAIG</button>
+        <button class="control-button" onclick="gnomeAlert()">👺 GNOME ALERT</button>
+        <button class="control-button" onclick="conspiracyOverlay()">🕵️ CONSPIRACY</button>
+        <div class="jitter-control">
+            <label>Jitter Level:</label>
+            <input type="range" min="0" max="10" value="5" class="jitter-slider" id="jitterSlider">
+        </div>
+        <button class="control-button" onclick="toggleMotion()">♿ REDUCE MOTION</button>
+    </div>
+
+    <!-- Stress Meter -->
+    <div class="stress-meter" id="stressMeter">
+        <div>😰 STRESS LEVEL</div>
+        <div class="stress-bar">
+            <div class="stress-fill" id="stressFill"></div>
+        </div>
+        <div id="stressLevel">Moderately Terrified</div>
+    </div>
+
+    <!-- Anxiety Heatmap Indicator -->
+    <div class="heatmap-indicator" id="heatmapIndicator">
+        <div>🔥 ANXIETY HEATMAP</div>
+        <div>Hover over content to see stress levels</div>
+        <div class="heat-legend">
+            <div class="heat-level heat-low" title="Low Anxiety"></div>
+            <div class="heat-level heat-medium" title="Medium Anxiety"></div>
+            <div class="heat-level heat-high" title="High Anxiety"></div>
+        </div>
+    </div>
+
+    <!-- Gnome Alert -->
+    <div class="gnome-alert" id="gnomeAlert">
+        <h2>🚨 GNOME DETECTED! 🚨</h2>
+        <p>Underwear theft probability: 97%!</p>
+        <button onclick="hideGnomeAlert()">I'M PREPARED!</button>
+    </div>
+
     <div class="container">
         <div class="profile-header">
             <div class="cover-photo">
@@ -202,8 +487,11 @@
                     🚨 CURRENT ANXIETY LEVEL: EXTREME ⚠️ COFFEE WITHDRAWAL IMMINENT 🚨
                 </div>
 
-                <div class="coffee-counter">
-                    ☕ DAILY COFFEE COUNT: 47 CUPS (and it's only 2 PM!) ☕
+                <div class="coffee-tracker">
+                    <div>☕ DAILY COFFEE CONSUMPTION TRACKER ☕</div>
+                    <div>Current Count: <span id="coffeeCount">47</span> cups</div>
+                    <div class="coffee-cups" id="coffeeCups"></div>
+                    <div style="font-size: 12px; margin-top: 5px;">Click empty cups to refill! ☕⚡</div>
                 </div>
 
                 <div class="post panic-post">
@@ -370,26 +658,31 @@
                 </div>
 
                 <div class="recent-activity">
-                    <h3>Recent Panic Attacks</h3>
-                    <div class="activity-item">
-                        <span class="activity-icon">😱</span>
-                        <span class="activity-text">Worried about pop quiz that doesn't exist</span>
-                        <span class="activity-time">5 min ago</span>
+                    <h3>Panic Attack Timeline</h3>
+                    <div id="panicTimeline">
+                        <div class="activity-item">
+                            <span class="activity-icon">😱</span>
+                            <span class="activity-text">Worried about pop quiz that doesn't exist</span>
+                            <span class="activity-time">5 min ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">⚠️</span>
+                            <span class="activity-text">Spotted suspicious gnome activity</span>
+                            <span class="activity-time">15 min ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">☕</span>
+                            <span class="activity-text">Coffee machine made weird noise - investigated for 20 minutes</span>
+                            <span class="activity-time">30 min ago</span>
+                        </div>
+                        <div class="activity-item">
+                            <span class="activity-icon">💙</span>
+                            <span class="activity-text">Craig said "whatever" and somehow felt better</span>
+                            <span class="activity-time">1 hour ago</span>
+                        </div>
                     </div>
-                    <div class="activity-item">
-                        <span class="activity-icon">⚠️</span>
-                        <span class="activity-text">Spotted suspicious gnome activity</span>
-                        <span class="activity-time">15 min ago</span>
-                    </div>
-                    <div class="activity-item">
-                        <span class="activity-icon">☕</span>
-                        <span class="activity-text">Coffee machine made weird noise - investigated for 20 minutes</span>
-                        <span class="activity-time">30 min ago</span>
-                    </div>
-                    <div class="activity-item">
-                        <span class="activity-icon">💙</span>
-                        <span class="activity-text">Craig said "whatever" and somehow felt better</span>
-                        <span class="activity-time">1 hour ago</span>
+                    <div style="margin-top: 10px;">
+                        <strong>Craig Calming Counter: <span id="craigCounterDisplay">0</span></strong>
                     </div>
                 </div>
 
@@ -428,9 +721,27 @@
     <script src="../../../Assets/js/mobile-enhancements.js"></script>
     <script src="../../../Assets/js/character-interactions.js"></script>
     <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script src="../../../Assets/js/character-cross-reference.js"></script>
+    <script src="../../../Assets/js/south-park-news-network.js"></script>
+    <script src="../../../Assets/js/relationship-dynamics-tracker.js"></script>
+    <script src="../../../Assets/js/interactive-communication-system.js"></script>
     <script>
+        // Global variables
+        let coffeeCount = 47;
+        let stressLevel = 50;
+        let craigCounter = 0;
+        let motionReduced = false;
+        let currentJitterLevel = 5;
+
         // Initialize enhanced features for Tweek's profile
         document.addEventListener('DOMContentLoaded', function() {
+            initializeCoffeeTracker();
+            initializeStressMeter();
+            initializeCraigPresence();
+            initializeAnxietyEffects();
+            initializeRandomEvents();
+            initializeAnxietyHeatmap();
+
             // Character interactions
             setTimeout(() => {
                 if (window.characterInteractions) {
@@ -456,28 +767,19 @@
                 const interactions = new CharacterInteractions();
                 interactions.initializeProfile('tweek');
             }
-            
+
             // Add Tweek-specific anxiety effects
             const anxietyElements = document.querySelectorAll('.tweek-scream, .panic-post');
             anxietyElements.forEach(element => {
                 element.addEventListener('mouseenter', function() {
                     this.style.animation = 'shake-text 0.1s ease-in-out infinite';
+                    increaseStress(5);
                 });
                 element.addEventListener('mouseleave', function() {
                     this.style.animation = '';
                 });
             });
-            
-            // Coffee counter that increases randomly
-            const coffeeCounter = document.querySelector('.coffee-counter');
-            let coffeeCount = 47;
-            setInterval(() => {
-                if (Math.random() > 0.7) { // 30% chance every interval
-                    coffeeCount++;
-                    coffeeCounter.innerHTML = `☕ DAILY COFFEE COUNT: ${coffeeCount} CUPS (and it's only 2 PM!) ☕`;
-                }
-            }, 30000); // Check every 30 seconds
-            
+
             // Dynamic anxiety level updates
             const anxietyLevel = document.querySelector('.anxiety-level');
             const anxietyStates = [
@@ -487,14 +789,351 @@
                 "💥 RED ALERT: WHAT IF SOMETHING TERRIBLE HAPPENS?! 💥",
                 "😱 MAXIMUM ANXIETY - CRAIG SAID 'WHATEVER' TOO CALMLY 😱"
             ];
-            
+
             setInterval(() => {
                 if (Math.random() > 0.6) {
                     const randomState = anxietyStates[Math.floor(Math.random() * anxietyStates.length)];
                     anxietyLevel.innerHTML = randomState;
+                    increaseStress(10);
                 }
             }, 45000); // Update every 45 seconds
+
+            // Jitter slider functionality
+            const jitterSlider = document.getElementById('jitterSlider');
+            jitterSlider.addEventListener('input', function() {
+                currentJitterLevel = this.value;
+                updateJitterLevel();
+            });
         });
+
+        // Coffee Tracker Functions
+        function initializeCoffeeTracker() {
+            const coffeeCupsContainer = document.getElementById('coffeeCups');
+            for (let i = 0; i < 50; i++) {
+                const cup = document.createElement('div');
+                cup.className = 'coffee-cup';
+                if (i < coffeeCount) {
+                    cup.classList.add('full');
+                }
+                cup.addEventListener('click', () => refillCoffee(cup, i));
+                coffeeCupsContainer.appendChild(cup);
+            }
+
+            // Auto-add coffee
+            setInterval(() => {
+                if (Math.random() > 0.8) {
+                    drinkCoffee();
+                }
+            }, 20000);
+        }
+
+        function refillCoffee(cup, index) {
+            if (!cup.classList.contains('full') && index < coffeeCount + 5) {
+                cup.classList.add('full');
+                coffeeCount++;
+                document.getElementById('coffeeCount').textContent = coffeeCount;
+                increaseStress(-5); // Coffee reduces stress temporarily
+
+                // Add temporary steam effect
+                setTimeout(() => {
+                    decreaseStress(2); // But then anxiety returns
+                }, 3000);
+            }
+        }
+
+        function drinkCoffee() {
+            if (coffeeCount < 100) {
+                coffeeCount++;
+                document.getElementById('coffeeCount').textContent = coffeeCount;
+
+                const cups = document.querySelectorAll('.coffee-cup');
+                if (cups[coffeeCount - 1]) {
+                    cups[coffeeCount - 1].classList.add('full');
+                }
+
+                increaseStress(2); // More coffee = more anxiety
+            }
+        }
+
+        // Stress Meter Functions
+        function initializeStressMeter() {
+            updateStressMeter();
+
+            // Random stress fluctuations
+            setInterval(() => {
+                const change = Math.random() > 0.5 ? Math.random() * 10 : -Math.random() * 5;
+                changeStress(change);
+            }, 15000);
+        }
+
+        function increaseStress(amount) {
+            stressLevel = Math.min(100, stressLevel + amount);
+            updateStressMeter();
+            updateBackgroundIntensity();
+        }
+
+        function decreaseStress(amount) {
+            stressLevel = Math.max(0, stressLevel - amount);
+            updateStressMeter();
+            updateBackgroundIntensity();
+        }
+
+        function changeStress(amount) {
+            stressLevel = Math.max(0, Math.min(100, stressLevel + amount));
+            updateStressMeter();
+            updateBackgroundIntensity();
+        }
+
+        function updateStressMeter() {
+            const stressFill = document.getElementById('stressFill');
+            const stressLevelText = document.getElementById('stressLevel');
+
+            stressFill.style.width = stressLevel + '%';
+
+            let stressDescription;
+            if (stressLevel < 20) stressDescription = "Relatively Calm (for Tweek)";
+            else if (stressLevel < 40) stressDescription = "Mildly Concerned";
+            else if (stressLevel < 60) stressDescription = "Moderately Terrified";
+            else if (stressLevel < 80) stressDescription = "Highly Anxious";
+            else stressDescription = "MAXIMUM PANIC MODE";
+
+            stressLevelText.textContent = stressDescription;
+        }
+
+        // Craig Presence Functions
+        function initializeCraigPresence() {
+            const craigMentions = document.querySelectorAll('.craig-mention');
+            craigMentions.forEach(mention => {
+                mention.classList.add('craig-glow');
+                mention.addEventListener('mouseenter', () => {
+                    decreaseStress(10);
+                    craigCounter++;
+                });
+            });
+        }
+
+        // Anxiety Effects
+        function initializeAnxietyEffects() {
+            const hairPulls = document.querySelectorAll('.hair-pull');
+            hairPulls.forEach(element => {
+                element.addEventListener('mouseenter', () => {
+                    increaseStress(5);
+                });
+            });
+        }
+
+        function updateBackgroundIntensity() {
+            const body = document.body;
+            const intensity = stressLevel / 100;
+
+            // Adjust background based on stress level
+            const red = Math.floor(255 * intensity);
+            const alpha = 0.1 + (intensity * 0.2);
+
+            body.style.background = `linear-gradient(135deg,
+                rgba(${red}, 0, 0, ${alpha}),
+                var(--tweek-background) 100%)`;
+        }
+
+        function updateJitterLevel() {
+            const body = document.body;
+            if (motionReduced) return;
+
+            const intensity = currentJitterLevel / 10;
+            body.style.animationDuration = (3 - intensity * 2) + 's';
+        }
+
+        // Random Events
+        function initializeRandomEvents() {
+            // Random gnome alerts
+            setInterval(() => {
+                if (Math.random() > 0.95) {
+                    gnomeAlert();
+                }
+            }, 60000);
+
+            // Random conspiracy thoughts
+            setInterval(() => {
+                if (Math.random() > 0.9) {
+                    conspiracyOverlay();
+                }
+            }, 90000);
+        }
+
+        // Control Functions
+        function triggerAnxietyMode() {
+            stressLevel = 100;
+            updateStressMeter();
+            updateBackgroundIntensity();
+            addToPanicTimeline('😱', 'MAXIMUM PANIC MODE ACTIVATED!', 'just now');
+
+            // Intense shaking
+            if (!motionReduced) {
+                document.body.style.animation = 'anxiety-shake 0.1s ease-in-out infinite';
+                setTimeout(() => {
+                    document.body.style.animation = 'anxiety-shake 2s ease-in-out infinite';
+                }, 5000);
+            }
+
+            // Flash all panic posts
+            const panicPosts = document.querySelectorAll('.panic-post');
+            panicPosts.forEach(post => {
+                post.style.animation = 'emergency-flash 0.2s ease-in-out infinite';
+                setTimeout(() => {
+                    post.style.animation = 'emergency-flash 1s ease-in-out infinite alternate';
+                }, 3000);
+            });
+
+            // Trigger multiple coffee cups
+            for (let i = 0; i < 3; i++) {
+                setTimeout(() => {
+                    drinkCoffee();
+                }, i * 500);
+            }
+        }
+
+        function emergencyCraig() {
+            craigCounter++;
+            decreaseStress(30);
+            updateCraigCounter();
+
+            const craigQuotes = [
+                "Whatever, Tweek. It's going to be fine.",
+                "Seriously, dude, calm down.",
+                "Whatever, you're overthinking it.",
+                "Just breathe or whatever.",
+                "It's not that big of a deal, Tweek.",
+                "Whatever helps you feel better, I guess."
+            ];
+
+            // Show Craig's calming presence
+            const craigDiv = document.createElement('div');
+            craigDiv.innerHTML = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                           background: rgba(135, 206, 235, 0.9); color: white; padding: 20px;
+                           border-radius: 10px; z-index: 10000; text-align: center; max-width: 300px;">
+                    <h2>💙 Craig says:</h2>
+                    <p>"${craigQuotes[Math.floor(Math.random() * craigQuotes.length)]}"</p>
+                    <p>Craig Calming Counter: ${craigCounter}</p>
+                    <button onclick="this.parentElement.remove()" style="margin-top: 10px; padding: 5px 10px; background: #4682B4; color: white; border: none; border-radius: 5px;">
+                        Feeling Better...
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(craigDiv);
+
+            // Add to panic timeline
+            addToPanicTimeline('💙', 'Craig provided emergency calming assistance', 'just now');
+        }
+
+        function updateCraigCounter() {
+            document.getElementById('craigCounterDisplay').textContent = craigCounter;
+        }
+
+        function addToPanicTimeline(icon, text, time) {
+            const timeline = document.getElementById('panicTimeline');
+            const newItem = document.createElement('div');
+            newItem.className = 'activity-item';
+            newItem.style.background = 'rgba(255, 215, 0, 0.1)';
+            newItem.innerHTML = `
+                <span class="activity-icon">${icon}</span>
+                <span class="activity-text">${text}</span>
+                <span class="activity-time">${time}</span>
+            `;
+            timeline.insertBefore(newItem, timeline.firstChild);
+
+            // Keep only last 6 items
+            while (timeline.children.length > 6) {
+                timeline.removeChild(timeline.lastChild);
+            }
+        }
+
+        function gnomeAlert() {
+            document.getElementById('gnomeAlert').style.display = 'block';
+            increaseStress(25);
+            addToPanicTimeline('👺', 'GNOME ALERT TRIGGERED - CODE RED!', 'just now');
+
+            // Auto-hide after 10 seconds
+            setTimeout(() => {
+                hideGnomeAlert();
+            }, 10000);
+        }
+
+        function hideGnomeAlert() {
+            document.getElementById('gnomeAlert').style.display = 'none';
+            decreaseStress(5);
+            addToPanicTimeline('✅', 'Successfully handled gnome threat (probably)', 'just now');
+        }
+
+        function conspiracyOverlay() {
+            const conspiracies = [
+                "WHAT IF THE GNOMES ARE WORKING WITH THE GOVERNMENT?!",
+                "COFFEE SHOPS COULD BE SURVEILLANCE POINTS...",
+                "WHY DO THEY CALL IT 'HOMEWORK' IF WE DO IT AT SCHOOL?!",
+                "WHAT IF CRAIG'S CALMNESS IS MIND CONTROL?!",
+                "ARE THE UNDERPANTS GNOMES PLANNING SOMETHING BIGGER?!",
+                "WHAT IF FACEBOOK IS ACTUALLY RUN BY GNOMES?!",
+                "WHY DO THEY WANT US TO BE 'SOCIAL' ON MEDIA?!",
+                "COFFEE BEAN SHORTAGES COULD BE PLANNED!"
+            ];
+
+            const conspiracy = conspiracies[Math.floor(Math.random() * conspiracies.length)];
+            const overlay = document.createElement('div');
+            overlay.className = 'conspiracy-text';
+            overlay.innerHTML = `<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; text-align: center; padding: 20px; background: rgba(255, 68, 68, 0.8); border-radius: 10px; color: white;">${conspiracy}</div>`;
+
+            document.body.appendChild(overlay);
+            increaseStress(15);
+            addToPanicTimeline('🕵️', 'New conspiracy theory discovered!', 'just now');
+
+            setTimeout(() => {
+                overlay.remove();
+            }, 4000);
+        }
+
+        function toggleMotion() {
+            motionReduced = !motionReduced;
+            const body = document.body;
+
+            if (motionReduced) {
+                body.classList.add('reduced-motion');
+                body.style.animation = 'none';
+                addToPanicTimeline('♿', 'Activated accessibility mode', 'just now');
+            } else {
+                body.classList.remove('reduced-motion');
+                updateJitterLevel();
+                addToPanicTimeline('🎛️', 'Resumed anxiety animations', 'just now');
+            }
+        }
+
+        // Anxiety Heatmap Functions
+        function initializeAnxietyHeatmap() {
+            const anxietyElements = [
+                { selector: '.tweek-scream', level: 'high' },
+                { selector: '.panic-post', level: 'high' },
+                { selector: '.hair-pull', level: 'medium' },
+                { selector: '.danger-assessment', level: 'high' },
+                { selector: '.caffeine-buzz', level: 'medium' },
+                { selector: '.anxiety-level', level: 'high' },
+                { selector: '.coffee-tracker', level: 'low' }
+            ];
+
+            anxietyElements.forEach(({ selector, level }) => {
+                const elements = document.querySelectorAll(selector);
+                elements.forEach(el => {
+                    el.classList.add('anxiety-hotspot');
+                    el.dataset.anxietyLevel = level;
+                });
+            });
+
+            // Update Craig mentions to be calming zones
+            const craigMentions = document.querySelectorAll('.craig-mention');
+            craigMentions.forEach(mention => {
+                mention.classList.add('anxiety-hotspot');
+                mention.dataset.anxietyLevel = 'calm';
+                mention.style.setProperty('--heat-color', 'rgba(135, 206, 235, 0.3)');
+            });
+        }
     </script>
     <script src="../../../Assets/js/navigation.js"></script>
 </body>

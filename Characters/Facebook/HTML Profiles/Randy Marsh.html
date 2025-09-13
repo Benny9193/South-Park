@@ -474,6 +474,81 @@
             color:#65676b;
         }
         .post-composer .composer-action:hover { background:#f0f2f5; }
+
+        /* Obsession Cycle Timer Widget */
+        .obsession-timer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            font-weight: bold;
+            z-index: 1000;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid #ff8c42;
+            text-align: center;
+            min-width: 200px;
+            font-size: 14px;
+        }
+
+        .obsession-timer:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+        }
+
+        .obsession-timer::before {
+            content: '🔥';
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        .timer-display {
+            font-size: 16px;
+            margin: 5px 0;
+        }
+
+        .obsession-name {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .intensity-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 8px 0;
+        }
+
+        .intensity-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ffeb3b, #ff5722);
+            width: 0%;
+            transition: width 0.5s ease;
+            animation: intensity-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes intensity-pulse {
+            0% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+
+        .timer-celebration {
+            animation: timer-bounce 0.6s ease-in-out;
+        }
+
+        @keyframes timer-bounce {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1) rotate(-3deg); }
+            50% { transform: scale(1.15); }
+            75% { transform: scale(1.1) rotate(3deg); }
+        }
     </style>
 </head>
 <body>
@@ -559,14 +634,14 @@
                 <div class="info-section">
                     <h3>Family (Captive Audience)</h3>
                     <div class="friends-grid">
-                        <div class="friend-card">
+                        <a href="Sharon Marsh.html" class="friend-card" style="text-decoration: none; color: inherit; display: block;">
                             <div class="friend-avatar sharon-avatar">SM</div>
                             <div class="friend-name">Sharon Marsh<br><small>Long-Suffering Wife</small></div>
-                        </div>
-                        <div class="friend-card">
+                        </a>
+                        <a href="Stan Marsh.html" class="friend-card" style="text-decoration: none; color: inherit; display: block;">
                             <div class="friend-avatar stan-avatar">SM</div>
                             <div class="friend-name">Stan Marsh<br><small>Disappointed Son</small></div>
-                        </div>
+                        </a>
                     </div>
                 </div>
 
@@ -711,6 +786,16 @@
         </div>
     </div>
 
+    <!-- Obsession Cycle Timer Widget -->
+    <div class="obsession-timer" id="obsessionTimer" title="Randy's current obsession intensity">
+        <div class="obsession-name" id="obsessionName">Artisanal Soap Making</div>
+        <div class="timer-display" id="timerDisplay">2 weeks, 3 days</div>
+        <div class="intensity-bar">
+            <div class="intensity-fill" id="intensityFill"></div>
+        </div>
+        <div style="font-size: 11px; opacity: 0.8;">EXPERT LEVEL ACHIEVED</div>
+    </div>
+
     <!-- Enhanced Navigation & Interaction Systems -->
     <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
     <script src="../../../Assets/js/character-switcher.js"></script>
@@ -718,9 +803,20 @@
     <script src="../../../Assets/js/emoji-reactions.js"></script>
     <script src="../../../Assets/js/mobile-enhancements.js"></script>
     <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/character-cross-reference.js"></script>
+    <script src="../../../Assets/js/south-park-news-network.js"></script>
+    <script src="../../../Assets/js/relationship-dynamics-tracker.js"></script>
+    <script src="../../../Assets/js/interactive-communication-system.js"></script>
     <script>
+        // Global variables
+        let obsessionStartTime = new Date('2024-01-01T00:00:00'); // Soap making start date
+        let currentObsession = 'Artisanal Soap Making';
+        let obsessionIntensity = 85; // Percentage
+
         // Initialize enhanced features for Randy's profile
         document.addEventListener('DOMContentLoaded', function() {
+            initializeObsessionTimer();
+
             // Character interactions
             setTimeout(() => {
                 if (window.characterInteractions) {
@@ -741,6 +837,103 @@
                 action.classList.add('card-hover-effect');
             });
         });
+
+        // Obsession Timer Functions
+        function initializeObsessionTimer() {
+            updateObsessionTimer();
+
+            // Update timer every minute
+            setInterval(updateObsessionTimer, 60000);
+
+            // Make timer clickable for celebration
+            document.getElementById('obsessionTimer').addEventListener('click', function() {
+                celebrateObsession();
+            });
+
+            // Randomly increase intensity over time
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    obsessionIntensity = Math.min(100, obsessionIntensity + Math.random() * 5);
+                    updateIntensityBar();
+                }
+            }, 30000);
+        }
+
+        function updateObsessionTimer() {
+            const now = new Date();
+            const timeDiff = now - obsessionStartTime;
+
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            let timeString;
+            if (days === 0) {
+                timeString = `${hours} hours`;
+            } else if (days < 7) {
+                timeString = `${days} days, ${hours} hours`;
+            } else {
+                const weeks = Math.floor(days / 7);
+                const remainingDays = days % 7;
+                timeString = `${weeks} week${weeks > 1 ? 's' : ''}, ${remainingDays} days`;
+            }
+
+            document.getElementById('timerDisplay').textContent = timeString;
+            document.getElementById('obsessionName').textContent = currentObsession;
+
+            updateIntensityBar();
+        }
+
+        function updateIntensityBar() {
+            const intensityFill = document.getElementById('intensityFill');
+            intensityFill.style.width = obsessionIntensity + '%';
+        }
+
+        function celebrateObsession() {
+            const timer = document.getElementById('obsessionTimer');
+            timer.classList.add('timer-celebration');
+
+            setTimeout(() => {
+                timer.classList.remove('timer-celebration');
+            }, 600);
+
+            // Show Randy's obsession celebration
+            showObsessionCelebration();
+        }
+
+        function showObsessionCelebration() {
+            const celebrationMessages = [
+                `I'm DOMINATING the ${currentObsession.toLowerCase()} game!`,
+                `This is my calling! I was BORN for ${currentObsession.toLowerCase()}!`,
+                `Sharon doesn't understand my ${currentObsession.toLowerCase()} genius!`,
+                `I'm basically a professional ${currentObsession.toLowerCase()} expert now!`,
+                `This ${obsessionIntensity}% intensity isn't even my final form!`,
+                `Stan should be PROUD to have a ${currentObsession.toLowerCase()} master as a dad!`
+            ];
+
+            const message = celebrationMessages[Math.floor(Math.random() * celebrationMessages.length)];
+            const celebrationDiv = document.createElement('div');
+            celebrationDiv.innerHTML = `
+                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                           background: linear-gradient(135deg, #ff6b35, #f7931e); color: white; padding: 20px;
+                           border-radius: 15px; z-index: 10000; text-align: center; border: 3px solid #ff8c42;
+                           max-width: 300px;">
+                    <h3>🔥 OBSESSION CELEBRATION! 🔥</h3>
+                    <p>"${message}"</p>
+                    <p style="font-size: 12px; opacity: 0.9; margin-top: 10px;">Current intensity: ${obsessionIntensity}%</p>
+                    <button onclick="this.parentElement.remove()" style="margin-top: 10px; padding: 5px 15px; background: #ff8c42; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        I'M AN EXPERT! 🏆
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(celebrationDiv);
+
+            // Auto-dismiss after 4 seconds
+            setTimeout(() => {
+                if (celebrationDiv.parentNode) {
+                    celebrationDiv.remove();
+                }
+            }, 4000);
+        }
     </script>
     <script src="../../../Assets/js/navigation.js"></script>
 </body>

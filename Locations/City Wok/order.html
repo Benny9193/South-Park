@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>City Wok â€” Order Online</title>
+  <meta name="description" content="Order delivery or pickup from City Wok." />
+  <meta property="og:title" content="City Wok â€” Order Online" />
+  <meta property="og:description" content="Build your order and checkout for delivery or pickup." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/seed/citywok-hero/1200/630" />
+  <link rel="stylesheet" href="../assets/business.css" />
+  <style>:root{ --accent:#ff4d4f; --link:#ffb3b3; }</style>
+</head>
+<body>
+  <header class="biz-header">
+    <nav class="biz-nav" aria-label="City Wok Order">
+      <a class="biz-brand" href="website.html">City Wok</a>
+      <div class="biz-links">
+        <a class="biz-link" href="website.html#menu">Menu</a>
+        <a class="biz-link" href="website.html">Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Order Online</h1>
+      <p>Select items from our menu. Choose pickup or delivery at checkout.</p>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/citywok-order/800/420" alt="City Wok dishes" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+    </div>
+  </section>
+
+  <main class="section" style="display:grid; grid-template-columns:2fr 1fr; gap:16px;">
+    <div style="display:grid; gap:16px;">
+      <article class="card">
+        <h2>Popular</h2>
+        <div class="products" id="popular"></div>
+      </article>
+      <article class="card">
+        <h2>Entrees</h2>
+        <div class="products" id="entrees"></div>
+      </article>
+      <article class="card">
+        <h2>Sides</h2>
+        <div class="products" id="sides"></div>
+      </article>
+    </div>
+    <aside class="cart card">
+      <h3>Your Cart</h3>
+      <div class="cart-list"></div>
+      <div class="total"><span>Total</span><span class="cart-total">$0.00</span></div>
+      <div class="actions" style="margin-top:10px; justify-content:space-between;">
+        <a class="btn" href="website.html">Back</a>
+        <button class="btn primary" data-open-modal="#checkout-modal">Checkout</button>
+      </div>
+    </aside>
+  </main>
+
+  <div id="checkout-modal" class="modal-backdrop" data-click-to-close="true" style="display:none">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+      <div class="modal-header">
+        <h3 id="checkout-title" class="modal-title">Checkout</h3>
+        <button class="modal-close" data-close-modal>Close</button>
+      </div>
+      <div class="modal-body">
+        <form class="form-grid">
+          <div class="field full"><label>Fulfillment
+            <select id="fulfillment"><option>Pickup</option><option>Delivery</option></select>
+          </label></div>
+          <div class="field"><label>Name<input required type="text" placeholder="Your name"/></label></div>
+          <div class="field"><label>Phone<input required type="tel" placeholder="(555) 123-4567"/></label></div>
+          <div class="field full"><label>Address (Delivery)
+            <input type="text" placeholder="123 Main St"/>
+          </label></div>
+          <div class="field full"><label>Notes<textarea rows="3" placeholder="Allergies, substitutions..."></textarea></label></div>
+          <div class="actions full">
+            <button class="btn" data-close-modal type="button">Cancel</button>
+            <button class="btn primary" type="submit">Place Order</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/business.js"></script>
+  <script>
+    const popular = [
+      { name: 'City Chicken', price: 10.95, img: 'https://picsum.photos/seed/cw1/400/240' },
+      { name: "General Tso's Chicken", price: 12.25, img: 'https://picsum.photos/seed/cw2/400/240' },
+      { name: 'Beef Lo Mein', price: 11.50, img: 'https://picsum.photos/seed/cw3/400/240' }
+    ];
+    const entrees = [
+      { name: 'Kung Pao Chicken', price: 12.00, img: 'https://picsum.photos/seed/cw4/400/240' },
+      { name: 'Mongolian Beef', price: 13.00, img: 'https://picsum.photos/seed/cw5/400/240' },
+      { name: 'Sweet & Sour Pork', price: 11.75, img: 'https://picsum.photos/seed/cw6/400/240' },
+      { name: 'Shrimp Fried Rice', price: 12.50, img: 'https://picsum.photos/seed/cw7/400/240' }
+    ];
+    const sides = [
+      { name: 'Steamed Rice', price: 2.50, img: 'https://picsum.photos/seed/cw8/400/240' },
+      { name: 'Egg Roll (2)', price: 3.50, img: 'https://picsum.photos/seed/cw9/400/240' },
+      { name: 'Wonton Soup', price: 3.95, img: 'https://picsum.photos/seed/cw10/400/240' }
+    ];
+
+    const sections = [ ['popular', popular], ['entrees', entrees], ['sides', sides] ];
+    const cart = SPBiz.initCart(document);
+    function renderList(id, items){
+      const root = document.getElementById(id);
+      root.innerHTML = '';
+      for (const it of items){
+        const el = document.createElement('div');
+        el.className = 'product';
+        el.innerHTML = `<img alt="${it.name}" src="${it.img}">
+          <div class="p-body">
+            <h3>${it.name}</h3>
+            <div class="p-meta">$${it.price.toFixed(2)}</div>
+            <div class="p-actions">
+              <span></span>
+              <button class="btn" data-name="${it.name}" data-price="${it.price}">Add</button>
+            </div>
+          </div>`;
+        root.appendChild(el);
+      }
+    }
+    sections.forEach(([id, items])=>renderList(id, items));
+    document.addEventListener('click', (e)=>{
+      const b = e.target;
+      if(b.matches('.product .btn')){
+        cart.add(b.dataset.name, +b.dataset.price);
+      }
+    });
+  </script>
+</body>
+</html>
+
+

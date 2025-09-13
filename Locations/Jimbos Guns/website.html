@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jimbo's Guns â€” Sporting Goods</title>
+  <meta name="description" content="Jimbo's Guns: outdoor gear, safety courses, and seasonal licenses." />
+  <meta property="og:title" content="Jimbo's Guns â€” Sporting Goods" />
+  <meta property="og:description" content="Gear up for the outdoors. Safety-first courses and licenses." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/seed/jimbos-hero/1200/630" />
+  <link rel="stylesheet" href="../assets/business.css" />
+  <style>
+    :root { --accent: #ffaa00; --link: #ffd48a; }
+  </style>
+  <meta name="theme-color" content="#ffaa00" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ffaa00'/%3E%3Cpath d='M16 34h32' stroke='%23000' stroke-width='6'/%3E%3C/svg%3E" />
+</head>
+<body class="brand-jimbos">
+  <header class="biz-header">
+    <nav class="biz-nav" aria-label="Jimbo's Guns">
+      <a class="biz-brand" href="#">Jimbo's Guns</a>
+      <div class="biz-links">
+        <a class="biz-link" href="#gear">Gear</a>
+        <a class="biz-link" href="#courses">Courses</a>
+        <a class="biz-link" href="#hours">Hours</a>
+        <a class="biz-link" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="signboard">
+    <div class="board" role="img" aria-label="Jimbo's Guns sign">
+      <h1>Jimbo's Guns</h1>
+      <div class="tagline">Outdoor gear. Safety first.</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1>Outdoor Gear for Every Season</h1>
+      <p>Hunting, fishing, and camping supplies with friendly advice and safety first.</p>
+      <div class="cta">
+        <a class="btn primary" href="#gear">Browse Gear</a>
+        <a class="btn ghost" data-open-modal="#book-fitting" href="#">Book Fitting</a>
+        <a class="btn ghost" href="../index.html">Back to Locations</a>
+      </div>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/jimbos-hero/800/420" alt="Storefront" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+    </div>
+  </section>
+
+  <main>
+    <section id="gear" class="section grid cols-2" aria-labelledby="gear-title">
+      <article class="card">
+        <h2 id="gear-title">Featured Gear</h2>
+        <div class="menu-item"><div><h3>Hunting Jacket</h3><p class="muted">Insulated, weather-resistant</p></div><div class="price">$129</div></div>
+        <div class="menu-item"><div><h3>Fishing Kit</h3><p class="muted">Rod + tackle + case</p></div><div class="price">$89</div></div>
+        <div class="menu-item"><div><h3>Camping Stove</h3><p class="muted">Portable dual-fuel</p></div><div class="price">$59</div></div>
+      </article>
+      <article class="card">
+        <h2>Seasonal Licenses</h2>
+        <p class="muted">Pick up your hunting and fishing permits here. Bring a valid ID.</p>
+      </article>
+    </section>
+
+    <section id="courses" class="section" aria-labelledby="courses-title">
+      <h2 id="courses-title">Safety Courses</h2>
+      <div class="grid cols-3" style="margin-top:10px">
+        <article class="card"><h3>Hunting Safety</h3><p class="muted">Sat 9â€“12 Â· Includes range time</p></article>
+        <article class="card"><h3>First Aid Basics</h3><p class="muted">Sun 1â€“3 Â· Field essentials</p></article>
+        <article class="card"><h3>Trail Navigation</h3><p class="muted">Sun 10â€“12 Â· Map & compass</p></article>
+      </div>
+    </section>
+
+    <section id="hours" class="section grid cols-2" aria-labelledby="hours-title">
+      <article class="card">
+        <h2 id="hours-title">Hours</h2>
+        <p>Monâ€“Fri: 10 AM â€“ 6 PM</p>
+        <p>Sat: 9 AM â€“ 6 PM</p>
+        <p>Sun: 11 AM â€“ 4 PM</p>
+      </article>
+      <article class="card">
+        <h2>Find Us</h2>
+        <img src="https://picsum.photos/seed/jimbos-map/640/320" alt="Map to Jimbo's Guns" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+      </article>
+    </section>
+
+    <section id="contact" class="section grid cols-2" aria-labelledby="contact-title">
+      <article class="card">
+        <h2 id="contact-title">Contact</h2>
+        <p><span class="badge">Phone</span> (719) 555-0199</p>
+        <p><span class="badge">Email</span> jimbos@example.com</p>
+      </article>
+      <article class="card">
+        <h2>Community</h2>
+        <p class="muted">Store events and local meetups posted monthly.</p>
+      </article>
+    </section>
+  </main>
+  <div id="book-fitting" class="modal-backdrop" data-click-to-close="true" style="display:none">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bf-title">
+      <div class="modal-header">
+        <h3 id="bf-title" class="modal-title">Book Gear Fitting</h3>
+        <button class="modal-close" data-close-modal>Close</button>
+      </div>
+      <div class="modal-body">
+        <form class="form-grid">
+          <div class="field"><label>Name<input required type="text" /></label></div>
+          <div class="field"><label>Phone<input required type="tel" /></label></div>
+          <div class="field"><label>Date<input type="date" /></label></div>
+          <div class="field"><label>Time<input type="time" /></label></div>
+          <div class="field full"><label>Notes<textarea rows="3" placeholder="What gear do you need help with?"></textarea></label></div>
+          <div class="actions full">
+            <button class="btn" data-close-modal type="button">Cancel</button>
+            <button class="btn primary" type="submit">Request Slot</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/business.js"></script>
+
+  <footer class="biz-footer">
+    <p>Â© Jimbo's Guns, South Park. Fan-made demo.</p>
+    <p><a href="../index.html">Back to Locations</a></p>
+  </footer>
+</body>
+</html>
+

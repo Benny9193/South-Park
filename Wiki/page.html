@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Encyclopedia Article | South Park Hub</title>
+  <meta name="description" content="Wiki-style page for a character, location, organization, or episode." />
+  <link rel="stylesheet" href="../Assets/css/site.css" />
+  <link rel="stylesheet" href="../Assets/css/wiki.css" />
+  <script src="../Assets/js/layout.js" defer></script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="sp-header" role="banner">
+    <nav class="sp-nav" aria-label="Primary">
+      <a class="sp-brand" href="../index.html">South Park Hub</a>
+      <div class="sp-links"></div>
+    </nav>
+  </header>
+
+  <main id="main" class="wiki-container" role="main">
+    <article id="article" class="wiki-article">
+      <h1 id="title">Loading…</h1>
+      <p id="subtitle" class="muted"></p>
+      <section id="summary"></section>
+      <section id="details"></section>
+    </article>
+    <aside id="infobox" class="infobox" aria-label="Infobox"></aside>
+  </main>
+
+  <footer class="sp-footer" role="contentinfo">
+    <p><a href="index.html">Back to Encyclopedia</a></p>
+  </footer>
+
+  <script>
+  (async function(){
+    const $ = sel => document.querySelector(sel);
+    const params = new URLSearchParams(location.search);
+    const type = (params.get('type')||'').toLowerCase();
+    const id = (params.get('id')||'').toLowerCase();
+    const name = params.get('name');
+    function slug(s){return (s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')}
+    function linkEp(id){ return `../Episodes/index.html?id=${encodeURIComponent(id)}` }
+    function linkWiki(t,i){ return `page.html?type=${encodeURIComponent(t)}&id=${encodeURIComponent(i)}` }
+
+    const datasets = {
+      episode: () => fetch('../Assets/data/episodes.json').then(r=>r.json()),
+      character: () => fetch('../Assets/data/characters.json').then(r=>r.json()),
+      location: () => fetch('../Assets/data/locations.json').then(r=>r.json()),
+      organization: () => fetch('../Assets/data/organizations.json').then(r=>r.json())
+    };
+
+    if (!datasets[type]) {
+      $('#title').textContent = 'Unknown type';
+      $('#summary').textContent = 'Supported: character, location, organization, episode.';
+      return;
+    }
+    const data = await datasets[type]().catch(()=>[]);
+
+    function findItem(list){
+      const byId = list.find(x => (x.id||'').toLowerCase() === id);
+      if (byId) return byId;
+      if (name) {
+        const byName = list.find(x => (x.name||'').toLowerCase() === (name||'').toLowerCase());
+        if (byName) return byName;
+      }
+      // attempt slug match on name field
+      return list.find(x => slug(x.name) === id) || null;
+    }
+
+    const item = findItem(data);
+    if (!item) {
+      $('#title').textContent = 'Not found';
+      $('#summary').textContent = `No ${type} found for id ${id || '(none)'}`;
+      return;
+    }
+
+    // Render basics
+    const title = type==='episode' ? `S${item.season}E${item.episode} · ${item.title}` : (item.name||item.title||'');
+    document.title = `${title} — Encyclopedia`;
+    $('#title').textContent = title;
+    $('#subtitle').textContent = type.toUpperCase();
+
+    // Summary text
+    const summary = $('#summary');
+    if (type==='location') {
+      summary.textContent = item.description || '';
+    } else if (type==='episode') {
+      summary.textContent = item.synopsis || '';
+    } else {
+      summary.textContent = '';
+    }
+
+    // Details
+    const details = $('#details');
+    function addDetail(title, content){
+      if (!content) return;
+      const sec = document.createElement('section');
+      const h = document.createElement('h3'); h.textContent = title; sec.appendChild(h);
+      if (Array.isArray(content)) {
+        const ul = document.createElement('ul');
+        content.forEach(x=>{ const li=document.createElement('li'); li.innerHTML = x; ul.appendChild(li); });
+        sec.appendChild(ul);
+      } else {
+        const p = document.createElement('p'); p.innerHTML = content; sec.appendChild(p);
+      }
+      details.appendChild(sec);
+    }
+
+    // Infobox
+    const info = $('#infobox');
+    function row(k,v){ if(!v && v!==0) return ''; return `<div class="row"><div class="key">${k}</div><div class="val">${v}</div></div>` }
+    if (type==='character') {
+      info.innerHTML = `<h2>Character</h2>`
+        + row('Name', item.name)
+        + row('Aliases', (item.aliases||[]).join(', '))
+        + row('Tags', (item.tags||[]).join(', '))
+        + row('First appearance', item.firstAppearance ? `<a href="${linkEp(item.firstAppearance)}">${item.firstAppearance}</a>` : '—');
+      addDetail('Aliases', (item.aliases||[]).map(a=>a));
+      addDetail('First Appearance', item.firstAppearance ? `<a href="${linkEp(item.firstAppearance)}">${item.firstAppearance}</a>` : null);
+      addDetail('Related', [ `<a href="../Characters/index.html?q=${encodeURIComponent(item.name)}">Browse in Characters</a>` ]);
+    } else if (type==='location') {
+      info.innerHTML = `<h2>Location</h2>`
+        + row('Name', item.name)
+        + row('Type', item.type||'')
+        + row('Tags', (item.tags||[]).join(', '));
+      addDetail('Overview', item.description || null);
+      addDetail('Related', [ `<a href="../Locations/index.html">Browse Locations</a>` ]);
+    } else if (type==='organization') {
+      info.innerHTML = `<h2>Organization</h2>`
+        + row('Name', item.name)
+        + row('Type', item.type||'')
+        + row('First appearance', item.firstAppearance ? `<a href="${linkEp(item.firstAppearance)}">${item.firstAppearance}</a>` : '—')
+        + row('Members', (item.members||[]).join(', '));
+      addDetail('Related', [ `<a href="../Organizations/index.html">Browse Organizations</a>` ]);
+    } else if (type==='episode') {
+      info.innerHTML = `<h2>Episode</h2>`
+        + row('ID', item.id)
+        + row('Season', item.season)
+        + row('Episode', item.episode)
+        + row('Air date', item.airDate||'—')
+        + row('Tags', (item.tags||[]).join(', '));
+      addDetail('Open in Episodes', `<a href="${linkEp(item.id)}">${item.id}</a>`);
+    }
+
+    // Actions
+    const act = document.createElement('div');
+    act.className = 'wiki-actions';
+    act.innerHTML = `<a class="sp-btn" href="index.html">Encyclopedia Index</a>
+      <a class="sp-btn" href="${linkEp('s01e01').replace('s01e01', item.firstAppearance || item.id || '')}">${type==='episode' ? 'Open in Episodes' : 'Open First Appearance'}</a>`;
+    $('#article').appendChild(act);
+  })();
+  </script>
+</body>
+</html>
+

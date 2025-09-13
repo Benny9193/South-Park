@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Immersive South Park Ideas</title>
+  <meta name="description" content="Interactive concepts and features to explore South Park’s world." />
+  <link rel="stylesheet" href="Assets/css/site.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="sp-header" role="banner">
+    <nav class="sp-nav" aria-label="Primary">
+      <a class="sp-brand" href="index.html">South Park Hub</a>
+      <div class="sp-links">
+        <a class="sp-pill" href="index.html">Home</a>
+        <a class="sp-pill" href="themes.html">Themes</a>
+        <a class="sp-pill sp-active" href="ideas.html" aria-current="page">Ideas</a>
+        <a class="sp-pill" href="social.html">Social</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="sp-container" role="main">
+    <section class="sp-hero" aria-labelledby="title">
+      <div>
+        <h1 id="title">Immersive Ideas</h1>
+        <p>Concepts you can build out over time. Start small with stubs and link them into existing pages like the Facebook-style profiles and feed.</p>
+        <div class="sp-cta">
+          <a class="sp-btn" href="facebook.html">Character Facebook</a>
+          <a class="sp-btn" href="south-park-feed.html">News Feed</a>
+        </div>
+      </div>
+      <div class="sp-card">
+        <span class="sp-badge">Build Path</span>
+        <p>Each card suggests features and where to hook in. Add one at a time.</p>
+      </div>
+    </section>
+
+    <section style="margin-top:22px" aria-labelledby="ideas">
+      <h2 id="ideas" style="margin:0 0 10px">Ideas Board</h2>
+      <div class="sp-grid">
+        <article class="sp-card">
+          <h3>Interactive Timeline</h3>
+          <p>Scroll seasons, filter by characters and themes. Link to episodes and quotes.</p>
+          <div class="sp-card-actions"><span class="sp-badge">Hook: Assets/js/timeline-visualization.js</span></div>
+        </article>
+        <article class="sp-card">
+          <h3>South Park Map</h3>
+          <p>Clickable locations (school, City Wok, Casa Bonita). Each opens summaries and character ties.</p>
+          <div class="sp-card-actions"><span class="sp-badge">Hook: Locations/</span></div>
+        </article>
+        <article class="sp-card">
+          <h3>Soundboard</h3>
+          <p>Iconic lines per character. Optionally add keyboard triggers and shareable links.</p>
+          <div class="sp-card-actions"><span class="sp-badge">Note: check licensing</span></div>
+        </article>
+        <article class="sp-card">
+          <h3>Theme Explorer</h3>
+          <p>Pick a theme to see related episodes, quotes, and character arcs.</p>
+          <div class="sp-card-actions"><a class="sp-btn" href="themes.html">Start from Themes</a></div>
+        </article>
+        <article class="sp-card">
+          <h3>Relationship Mapper</h3>
+          <p>Visualize friendships, rivalries, and family ties; click nodes to open profiles.</p>
+          <div class="sp-card-actions"><span class="sp-badge">Hook: Assets/js/character-relationship-mapper.js</span></div>
+        </article>
+        <article class="sp-card">
+          <h3>Quizzes & Trivia</h3>
+          <p>By season or theme with shareable scores. Link answers to episode pages.</p>
+          <div class="sp-card-actions"><span class="sp-badge">Future feature</span></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sp-footer" role="contentinfo">
+    <p>Fan-made hub for educational/entertainment purposes. South Park © their respective owners.</p>
+    <p><a href="privacy.html">Privacy</a></p>
+  </footer>
+</body>
+</html>
+

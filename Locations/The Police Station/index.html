@@ -1,0 +1,415 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>South Park Police Station - Protecting and Serving (Sort Of)</title>
+  <meta name="description" content="South Park Police Station: Your first line of defense against aliens, underpants gnomes, and the occasional actual crime.">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#1877f2">
+
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .hero-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      background: linear-gradient(45deg, #FFD700, #FFA500);
+      color: #8B4513;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 8px;
+    }
+
+    .incident {
+      background: #f8f9fa;
+      border-left: 4px solid #dc3545;
+      padding: 12px;
+      margin: 8px 0;
+      border-radius: 4px;
+    }
+
+    .incident-time {
+      color: #6c757d;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .priority-high { border-left-color: #dc3545; }
+    .priority-medium { border-left-color: #ffc107; }
+    .priority-low { border-left-color: #28a745; }
+
+    .officer-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .officer-avatar {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(45deg, #6c757d, #495057);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .officer-info h4 {
+      margin: 0 0 4px 0;
+      font-size: 16px;
+    }
+
+    .officer-info p {
+      margin: 0;
+      color: #6c757d;
+      font-size: 13px;
+    }
+
+    .equipment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+
+    .equipment-item {
+      background: #e9ecef;
+      padding: 12px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .equipment-icon {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+  </style>
+  <meta name="sp:location-id" content="police_station">`r`n</head>
+<body>
+  <header class="header" role="banner">
+    <div class="brand"><a href="../facebook.html" aria-label="Back to Community">South Park Community</a></div>
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="../" aria-label="Locations index">Locations</a>
+      <span aria-hidden="true"> / </span>
+      <strong>The Police Station</strong>
+    </nav>
+  </header>
+
+  <main class="container" role="main">
+    <section class="hero" aria-label="South Park Police Station overview">
+      <img src="https://picsum.photos/seed/southparkpolice/800/200" alt="South Park Police Station" class="hero-image">
+      <h1>ðŸš” South Park Police Station</h1>
+      <p>Protecting and Serving South Park Since 1997 â€” "We'll probably get there eventually!"</p>
+    </section>
+
+    <section class="grid cols-3" style="margin-top:16px" aria-label="Quick facts and information">
+      <article class="card">
+        <h2>ðŸ“‹ Quick Facts</h2>
+        <div class="facts" role="list">
+          <div class="fact-label">Established</div><div class="fact-value">1997</div>
+          <div class="fact-label">Chief</div><div class="fact-value">Chief Myers</div>
+          <div class="fact-label">Officers</div><div class="fact-value">3 (allegedly)</div>
+          <div class="fact-label">Motto</div><div class="fact-value">"Respect My Authority!"</div>
+          <div class="fact-label">Response Time</div><div class="fact-value">2-4 hours (avg)</div>
+          <div class="fact-label">Solved Cases</div><div class="fact-value">37% (disputed)</div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>ðŸš¨ Emergency Services</h2>
+        <p><strong>Emergency:</strong> 911</p>
+        <p><strong>Non-Emergency:</strong> (719) 555-PARK</p>
+        <p><strong>Tip Line:</strong> (719) 555-TIPS</p>
+        <div style="margin-top: 12px;">
+          <p class="muted"><strong>Hours:</strong></p>
+          <p>Mon-Fri: 9 AM - 5 PM<br>
+          Sat-Sun: "Call if it's really important"<br>
+          <em>Emergency response: 24/7*</em></p>
+          <p style="font-size: 11px; color: #999;">*Results may vary</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>ðŸŽ¯ Current Priority</h2>
+        <div style="background: linear-gradient(45deg, #ffc107, #fd7e14); color: white; padding: 12px; border-radius: 8px; text-align: center; margin-bottom: 12px;">
+          <strong>ðŸ›¸ ALIEN ACTIVITY ALERT</strong>
+        </div>
+        <p>Recent reports of UFO sightings near Stark's Pond. Citizens advised to avoid probing situations.</p>
+        <p class="muted">Last updated: 23 minutes ago</p>
+      </article>
+    </section>
+
+    <section class="grid cols-2" style="margin-top:16px">
+      <article class="card">
+        <h2>ðŸ‘®â€â™‚ï¸ Department Personnel</h2>
+
+        <div class="officer-profile">
+          <div class="officer-avatar">CM</div>
+          <div class="officer-info">
+            <h4>Chief Myers <span class="badge">Chief</span></h4>
+            <p>25 years of service â€¢ Expert in crowd control and donut procurement</p>
+          </div>
+        </div>
+
+        <div class="officer-profile">
+          <div class="officer-avatar" style="background: linear-gradient(45deg, #28a745, #20c997);">OB</div>
+          <div class="officer-info">
+            <h4>Officer Barbrady <span class="badge" style="background: #dc3545; color: white;">Retired</span></h4>
+            <p>Former beat officer â€¢ Specialized in not reading and missing obvious clues</p>
+          </div>
+        </div>
+
+        <div class="officer-profile">
+          <div class="officer-avatar" style="background: linear-gradient(45deg, #007bff, #0056b3);">OJ</div>
+          <div class="officer-info">
+            <h4>Officer Johnson</h4>
+            <p>Traffic enforcement â€¢ Professional jaywalking prevention specialist</p>
+          </div>
+        </div>
+
+        <div class="officer-profile">
+          <div class="officer-avatar" style="background: linear-gradient(45deg, #6f42c1, #5a2d8c);">DS</div>
+          <div class="officer-info">
+            <h4>Detective Smith</h4>
+            <p>Investigations unit â€¢ Currently investigating the Great Underpants Mystery</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>ðŸ“Š Recent Police Activity</h2>
+
+        <div class="incident priority-high">
+          <div class="incident-time">14:32 - HIGH PRIORITY</div>
+          <strong>Disturbance at City Wok:</strong> Reports of loud arguing about "Mongorians." Unit dispatched. Again.
+        </div>
+
+        <div class="incident priority-medium">
+          <div class="incident-time">13:15 - MEDIUM PRIORITY</div>
+          <strong>Suspicious Activity:</strong> Underpants found missing from multiple clotheslines. Investigation ongoing.
+        </div>
+
+        <div class="incident priority-low">
+          <div class="incident-time">11:47 - LOW PRIORITY</div>
+          <strong>Noise Complaint:</strong> Resident reports "weird music" from neighbor's house. Determined to be Kenny's death screams.
+        </div>
+
+        <div class="incident priority-medium">
+          <div class="incident-time">10:23 - MEDIUM PRIORITY</div>
+          <strong>Public Safety:</strong> Cartman reported "kidnapped by aliens." Found at KFC 20 minutes later.
+        </div>
+
+        <div class="incident priority-high">
+          <div class="incident-time">09:05 - HIGH PRIORITY</div>
+          <strong>Emergency Response:</strong> Multiple reports of "Oh my God, they killed Kenny!" False alarm - he got better.
+        </div>
+
+        <p class="muted" style="margin-top: 12px;">Updated every 15 minutes â€¢ <a href="#" style="color: var(--blue);">View Full Police Log</a></p>
+      </article>
+    </section>
+
+    <section class="grid cols-2" style="margin-top:16px">
+      <article class="card">
+        <h2>ðŸ” Notable Cases & History</h2>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="color: var(--blue); margin-bottom: 6px;">The Great Chicken Lover Mystery (1998)</h4>
+          <p>Officer Barbrady's first major case involving literacy and poultry. Status: Solved (barely)</p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="color: var(--blue); margin-bottom: 6px;">The Underpants Gnome Investigation (1998-Present)</h4>
+          <p>Ongoing investigation into Phase 2 of the underpants collection operation. Status: Pending</p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="color: var(--blue); margin-bottom: 6px;">Multiple Alien Encounter Reports (1997-Present)</h4>
+          <p>Classified files regarding extraterrestrial activities. Status: "We don't talk about that"</p>
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <h4 style="color: var(--blue); margin-bottom: 6px;">The Chewbacca Defense Case (1999)</h4>
+          <p>Landmark legal proceeding that redefined courtroom procedure. Status: It doesn't make sense</p>
+        </div>
+
+        <p class="muted">For full case files, please submit a Freedom of Information request (allow 6-8 months for processing).</p>
+      </article>
+
+      <article class="card">
+        <h2>ðŸ›¡ï¸ Equipment & Facilities</h2>
+
+        <div class="equipment-grid">
+          <div class="equipment-item">
+            <div class="equipment-icon">ðŸš—</div>
+            <strong>Police Cruisers</strong>
+            <p>2 vehicles (1 operational)</p>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-icon">ðŸ“»</div>
+            <strong>Radio System</strong>
+            <p>CB radio with 3-mile range</p>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-icon">ðŸ”</div>
+            <strong>Holding Cells</strong>
+            <p>3 cells (1 has working lock)</p>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-icon">ðŸ“</div>
+            <strong>Evidence Room</strong>
+            <p>Filing cabinet with sticky lock</p>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-icon">â˜•</div>
+            <strong>Break Room</strong>
+            <p>Coffee machine and donut storage</p>
+          </div>
+
+          <div class="equipment-item">
+            <div class="equipment-icon">ðŸ–¥ï¸</div>
+            <strong>Computer System</strong>
+            <p>Windows 95 (recently upgraded)</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; padding: 12px; background: #fff3cd; border-radius: 8px;">
+          <strong>âš ï¸ Equipment Notice:</strong> The breathalyzer is currently out of order. Officers are using the "smell test" method.
+        </div>
+      </article>
+    </section>
+
+    <section class="grid cols-1" style="margin-top:16px">
+      <article class="card">
+        <h2>ðŸ“¢ Public Safety Announcements</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 12px;">
+          <div style="padding: 12px; border-left: 4px solid #28a745; background: #d4edda; border-radius: 0 8px 8px 0;">
+            <h4 style="color: #155724; margin-bottom: 6px;">ðŸŽƒ Halloween Safety Reminder</h4>
+            <p style="color: #155724; margin: 0;">Please check all candy for razor blades, poison, and/or alien tracking devices before consumption.</p>
+          </div>
+
+          <div style="padding: 12px; border-left: 4px solid #ffc107; background: #fff3cd; border-radius: 0 8px 8px 0;">
+            <h4 style="color: #856404; margin-bottom: 6px;">âš ï¸ Traffic Update</h4>
+            <p style="color: #856404; margin: 0;">Main Street is temporarily closed due to a "Mexican standoff" between City Wok and P.F. Chang's.</p>
+          </div>
+
+          <div style="padding: 12px; border-left: 4px solid #dc3545; background: #f8d7da; border-radius: 0 8px 8px 0;">
+            <h4 style="color: #721c24; margin-bottom: 6px;">ðŸš¨ Be Alert</h4>
+            <p style="color: #721c24; margin: 0;">If you see any suspicious gnome-like activity around your underwear drawer, report it immediately.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid cols-1" style="margin-top:16px">
+      <article class="card">
+        <h2>ðŸ“ž Community Resources</h2>
+        <div class="grid cols-3" style="margin-top: 12px;">
+          <div>
+            <h4>ðŸ†˜ Emergency Services</h4>
+            <p>Fire Department: (719) 555-FIRE<br>
+            Ambulance: (719) 555-HELP<br>
+            Animal Control: (719) 555-PETS</p>
+          </div>
+
+          <div>
+            <h4>ðŸ›ï¸ Other Departments</h4>
+            <p>City Hall: (719) 555-CITY<br>
+            Public Works: (719) 555-ROAD<br>
+            DMV: (719) 555-PAIN</p>
+          </div>
+
+          <div>
+            <h4>ðŸ¤ Community Programs</h4>
+            <p>Neighborhood Watch<br>
+            D.A.R.E. Program*<br>
+            Alien Abduction Support Group</p>
+            <p style="font-size: 11px; color: #999;">*Currently suspended</p>
+          </div>
+        </div>
+      </article>
+    </section>
+    <section class="grid cols-2" style="margin-top:16px" aria-label="More details">
+      <article class="card">
+        <h2>Notable Episodes</h2>
+        <ul id="notable-episodes" class="clean" aria-label="Episode references">
+          <li>Example placeholder â€” add specific episode references later</li>
+          <li>Example placeholder â€” add specific episode references later</li>
+        </ul>
+        <p class="muted">List police-led investigations and town-wide incidents relevant to the station.</p>
+      </article>
+      <article class="card">
+        <h2>Related</h2>
+        <p class="muted"><strong>Key Characters:</strong> Officer Barbrady, Detectives</p>
+        <p class="muted"><strong>Themes:</strong> Authority, Responsibility, Public Safety</p>
+        <p>
+          Nearby: <a class="link" href="../South Park Elementary/index.html">South Park Elementary</a> Â·
+          <a class="link" href="../The Community Center/index.html">The Community Center</a>
+        </p>
+      </article>
+    </section>
+  </main>\r\n  <script src="../assets/locations.js"></script>
+
+  <script>
+    // Add some interactive functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Simulate real-time updates to the police activity
+      const incidents = document.querySelectorAll('.incident');
+
+      function updateTimestamps() {
+        incidents.forEach((incident, index) => {
+          const timeElement = incident.querySelector('.incident-time');
+          if (timeElement) {
+            const currentTime = new Date();
+            currentTime.setMinutes(currentTime.getMinutes() - (index * 15 + Math.random() * 30));
+            const hours = currentTime.getHours().toString().padStart(2, '0');
+            const minutes = currentTime.getMinutes().toString().padStart(2, '0');
+            const priority = incident.classList.contains('priority-high') ? 'HIGH PRIORITY' :
+                           incident.classList.contains('priority-medium') ? 'MEDIUM PRIORITY' : 'LOW PRIORITY';
+            timeElement.textContent = `${hours}:${minutes} - ${priority}`;
+          }
+        });
+      }
+
+      // Update timestamps on load
+      updateTimestamps();
+
+      // Update every 5 minutes
+      setInterval(updateTimestamps, 300000);
+
+      // Add click handlers for officer profiles
+      const officerProfiles = document.querySelectorAll('.officer-profile');
+      officerProfiles.forEach(profile => {
+        profile.style.cursor = 'pointer';
+        profile.addEventListener('click', function() {
+          const name = this.querySelector('h4').textContent;
+          alert(`${name} says: "Respect my authority!"`);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+

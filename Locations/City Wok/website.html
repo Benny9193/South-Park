@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>City Wok â€” Authentic Chinese Cuisine</title>
+  <meta name="description" content="City Wok: Delivery, takeout, and catering in South Park." />
+  <meta property="og:title" content="City Wok â€” Authentic Chinese Cuisine" />
+  <meta property="og:description" content="Order delivery, takeout, and catering from City Wok in South Park." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/seed/citywok-hero/1200/630" />
+  <meta property="og:url" content="City%20Wok/website.html" />
+  <link rel="stylesheet" href="../assets/business.css" />
+  <style>
+    :root { --accent: #ff4d4f; --link: #ffb3b3; }
+  </style>
+  <link rel="preconnect" href="https://picsum.photos" />
+  <meta name="theme-color" content="#ff4d4f" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23ff4d4f'/%3E%3Cpath d='M14 40h36M20 24l12 10 12-10' stroke='%23fff' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E" />
+  <meta name="sp:brand" content="city-wok" />
+  <meta name="sp:location-id" content="city_wok" />
+</head>
+<body class="brand-citywok">
+  <header class="biz-header">
+    <nav class="biz-nav" aria-label="City Wok">
+      <a class="biz-brand" href="#">City Wok</a>
+      <div class="biz-links">
+        <a class="biz-link" href="#menu">Menu</a>
+        <a class="biz-link" href="#deals">Deals</a>
+        <a class="biz-link" href="#hours">Hours</a>
+        <a class="biz-link" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="signboard">
+    <div class="board" role="img" aria-label="City Wok sign">
+      <div class="pagoda" aria-hidden="true"></div>
+      <h1>City Wok</h1>
+      <div class="tagline">Authentic (questionable) Chinese Cuisine</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1>Authentic Chinese Cuisine, Fresh and Fast</h1>
+      <p>Family-run kitchen serving South Park since forever. Order pickup or delivery; catering available.</p>
+      <div class="cta">
+        <a class="btn primary" href="order.html">Order Online</a>
+        <a class="btn ghost" data-open-modal="#book-modal" href="#">Book Catering</a>
+        <a class="btn ghost" href="../index.html">Back to Locations</a>
+      </div>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/citywok-hero/800/420" alt="City Wok kitchen" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+    </div>
+  </section>
+
+  <main>
+    <section id="menu" class="section" aria-labelledby="menu-title">
+      <h2 id="menu-title">Menu Highlights</h2>
+      <div class="grid cols-2" style="margin-top:10px">
+        <article class="card">
+          <div class="menu-item"><div><h3>City Chicken</h3><p class="muted">House special, sweet-savory glaze</p></div><div class="price">$10.95</div></div>
+          <div class="menu-item"><div><h3>City Beef</h3><p class="muted">Stir-fried beef, peppers, scallions</p></div><div class="price">$11.95</div></div>
+          <div class="menu-item"><div><h3>Beef Lo Mein</h3><p class="muted">Wok-tossed noodles, veggies</p></div><div class="price">$11.50</div></div>
+          <div class="menu-item"><div><h3>Moo Goo Gai Pan</h3><p class="muted">Chicken, mushrooms, snow peas</p></div><div class="price">$11.25</div></div>
+          <div class="menu-item"><div><h3>General Tso's Chicken</h3><p class="muted">Sweet heat, crispy bite</p></div><div class="price">$12.25</div></div>
+        </article>
+        <article class="card">
+          <h2>Delivery & Catering</h2>
+          <p class="muted">Call for big-group orders or same-day delivery. We try our best to get there quick.</p>
+          <p><span class="badge">Phone</span> (719) 555-0111</p>
+          <p><span class="badge">Address</span> 123 Main St, South Park, CO</p>
+          <p class="muted"><em>Note:</em> City Airlines service has been discontinued. Please enjoy our food safely on the ground.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="deals" class="section" aria-labelledby="deals-title">
+      <h2 id="deals-title">Todayâ€™s Deals</h2>
+      <div class="grid cols-3" style="margin-top:10px">
+        <article class="card"><h3>Combo A</h3><p class="muted">Entree + Rice + Drink</p><p class="price">$9.99</p></article>
+        <article class="card"><h3>Family Pack</h3><p class="muted">3 Entrees + 2 Sides</p><p class="price">$29.99</p></article>
+        <article class="card"><h3>Lunch Special</h3><p class="muted">Weekdays 11â€“2</p><p class="price">$7.99</p></article>
+      </div>
+    </section>
+
+    <section id="hours" class="section grid cols-2" aria-labelledby="hours-title">
+      <article class="card">
+        <h2 id="hours-title">Hours</h2>
+        <p>Monâ€“Thu: 11 AM â€“ 9 PM</p>
+        <p>Friâ€“Sat: 11 AM â€“ 10 PM</p>
+        <p>Sun: 12 PM â€“ 8 PM</p>
+      </article>
+      <article class="card">
+        <h2>Find Us</h2>
+        <img src="https://picsum.photos/seed/citywok-map/640/320" alt="Map to City Wok" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+      </article>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+      <div class="grid cols-2" style="margin-top:10px">
+        <article class="card">
+          <p><span class="badge">Phone</span> (719) 555-0111</p>
+          <p><span class="badge">Email</span> citywok@example.com</p>
+        </article>
+        <article class="card">
+          <p class="muted">Allergen notice: Our kitchen handles wheat, soy, peanuts, and shellfish.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <!-- Booking modal -->
+  <div id="book-modal" class="modal-backdrop" data-click-to-close="true" style="display:none">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="book-title">
+      <div class="modal-header">
+        <h3 id="book-title" class="modal-title">Catering Request</h3>
+        <button class="modal-close" data-close-modal>Close</button>
+      </div>
+      <div class="modal-body">
+        <form class="form-grid">
+          <div class="field"><label>Name<input required type="text" placeholder="Your name"/></label></div>
+          <div class="field"><label>Email<input required type="email" placeholder="you@example.com"/></label></div>
+          <div class="field"><label>Phone<input type="tel" placeholder="(555) 123-4567"/></label></div>
+          <div class="field"><label>Guests<select><option>10-20</option><option>20-50</option><option>50-100</option><option>100+</option></select></label></div>
+          <div class="field full"><label>Notes<textarea rows="3" placeholder="Event date, menu preferences..."></textarea></label></div>
+          <div class="actions full">
+            <button class="btn" data-close-modal type="button">Cancel</button>
+            <button class="btn primary" type="submit">Send Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/business.js"></script>
+  <footer class="biz-footer">
+    <p>Â© City Wok, South Park. This is a fan-made site for entertainment.</p>
+    <p><a href="../index.html">Back to Locations</a></p>
+  </footer>
+</body>
+</html>
+

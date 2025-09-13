@@ -1,0 +1,52 @@
+{
+  "south_park_elementary": [
+    { "id": "S03E06", "title": "Sexual Harassment Panda", "season": 3, "episode": 6, "ref": "https://southpark.fandom.com/wiki/Sexual_Harassment_Panda" },
+    { "id": "S07E03", "title": "Toilet Paper", "season": 7, "episode": 3, "ref": "https://southpark.fandom.com/wiki/Toilet_Paper" },
+    { "id": "S10E10", "title": "Miss Teacher Bangs a Boy", "season": 10, "episode": 10, "ref": "https://southpark.fandom.com/wiki/Miss_Teacher_Bangs_a_Boy" },
+    { "id": "S12E13", "title": "Elementary School Musical", "season": 12, "episode": 13, "ref": "https://southpark.fandom.com/wiki/Elementary_School_Musical" }
+  ],
+  "city_wok": [
+    { "id": "S06E11", "title": "Child Abduction is Not Funny", "season": 6, "episode": 11, "ref": "https://southpark.fandom.com/wiki/Child_Abduction_is_Not_Funny" },
+    { "id": "S15E06", "title": "City Sushi", "season": 15, "episode": 6, "ref": "https://southpark.fandom.com/wiki/City_Sushi" }
+  ],
+  "starks_pond": [
+    { "id": "S07E14", "title": "Raisins", "season": 7, "episode": 14, "ref": "https://southpark.fandom.com/wiki/Raisins" }
+  ],
+  "toms_rhinoplasty": [
+    { "id": "S01E11", "title": "Tom's Rhinoplasty", "season": 1, "episode": 11, "ref": "https://southpark.fandom.com/wiki/Tom%27s_Rhinoplasty" }
+  ],
+  "police_station": [
+    { "id": "S02E04", "title": "Chickenlover", "season": 2, "episode": 4, "ref": "https://southpark.fandom.com/wiki/Chickenlover" }
+  ],
+  "hells_pass_hospital": [
+    { "id": "S01E07", "title": "Pinkeye", "season": 1, "episode": 7, "ref": "https://southpark.fandom.com/wiki/Pinkeye" },
+    { "id": "S05E13", "title": "Kenny Dies", "season": 5, "episode": 13, "ref": "https://southpark.fandom.com/wiki/Kenny_Dies" },
+    { "id": "S12E01", "title": "Tonsil Trouble", "season": 12, "episode": 1, "ref": "https://southpark.fandom.com/wiki/Tonsil_Trouble" }
+  ],
+  "jimbos_guns": [
+    { "id": "S01E02", "title": "Volcano", "season": 1, "episode": 2, "ref": "https://southpark.fandom.com/wiki/Volcano" }
+  ],
+  "tweek_bros": [
+    { "id": "S02E17", "title": "Gnomes", "season": 2, "episode": 17, "ref": "https://southpark.fandom.com/wiki/Gnomes" },
+    { "id": "S21E02", "title": "Put It Down", "season": 21, "episode": 2, "ref": "https://southpark.fandom.com/wiki/Put_It_Down" }
+  ],
+  "cartmans_house": [
+    { "id": "S08E05", "title": "AWESOM-O", "season": 8, "episode": 5, "ref": "https://southpark.fandom.com/wiki/AWESOM-O" },
+    { "id": "S07E11", "title": "Casa Bonita", "season": 7, "episode": 11, "ref": "https://southpark.fandom.com/wiki/Casa_Bonita" },
+    { "id": "S10E07", "title": "Tsst", "season": 10, "episode": 7, "ref": "https://southpark.fandom.com/wiki/Tsst" }
+  ],
+  "kyles_house": [
+    { "id": "S10E02", "title": "Smug Alert!", "season": 10, "episode": 2, "ref": "https://southpark.fandom.com/wiki/Smug_Alert!" }
+  ],
+  "stans_house": [
+    { "id": "S15E07", "title": "You're Getting Old", "season": 15, "episode": 7, "ref": "https://southpark.fandom.com/wiki/You%27re_Getting_Old" },
+    { "id": "S03E02", "title": "Spontaneous Combustion", "season": 3, "episode": 2, "ref": "https://southpark.fandom.com/wiki/Spontaneous_Combustion" }
+  ],
+  "kennys_house": [
+    { "id": "S02E10", "title": "Chickenpox", "season": 2, "episode": 10, "ref": "https://southpark.fandom.com/wiki/Chickenpox" },
+    { "id": "S15E14", "title": "The Poor Kid", "season": 15, "episode": 14, "ref": "https://southpark.fandom.com/wiki/The_Poor_Kid" }
+  ],
+  "bijou_theater": [],
+  "photo_dojo": [],
+  "community_center": []
+}

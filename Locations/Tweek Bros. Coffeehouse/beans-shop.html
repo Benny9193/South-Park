@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tweek Bros. â€” Bean Shop</title>
+  <meta name="description" content="Shop Tweek Bros. house beans and seasonal blends." />
+  <meta property="og:title" content="Tweek Bros. â€” Bean Shop" />
+  <meta property="og:description" content="Buy whole bean or ground. Fresh roasts weekly." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/seed/tweek-beans/1200/630" />
+  <link rel="stylesheet" href="../assets/business.css" />
+  <style>:root{ --accent:#c0f; --link:#d8bfff; }</style>
+</head>
+<body>
+  <header class="biz-header">
+    <nav class="biz-nav" aria-label="Tweek Bros Beans">
+      <a class="biz-brand" href="website.html">Tweek Bros.</a>
+      <div class="biz-links">
+        <a class="biz-link" href="website.html#beans">About Beans</a>
+        <a class="biz-link" href="website.html">Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Bean Shop</h1>
+      <p>Freshly roasted beans. Choose your grind and weâ€™ll get it ready.</p>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/beans-hero/800/420" alt="Coffee beans" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+    </div>
+  </section>
+
+  <main class="section" style="display:grid; grid-template-columns:2fr 1fr; gap:16px;">
+    <div class="card">
+      <div class="products" id="beans"></div>
+    </div>
+    <aside class="cart card">
+      <h3>Your Cart</h3>
+      <div class="cart-list"></div>
+      <div class="total"><span>Total</span><span class="cart-total">$0.00</span></div>
+      <div class="actions" style="margin-top:10px; justify-content:flex-end;">
+        <button class="btn primary" data-open-modal="#checkout">Checkout</button>
+      </div>
+    </aside>
+  </main>
+
+  <div id="checkout" class="modal-backdrop" data-click-to-close="true" style="display:none">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="co-title">
+      <div class="modal-header">
+        <h3 id="co-title" class="modal-title">Checkout</h3>
+        <button class="modal-close" data-close-modal>Close</button>
+      </div>
+      <div class="modal-body">
+        <form class="form-grid">
+          <div class="field"><label>Name<input required type="text" placeholder="Your name"/></label></div>
+          <div class="field"><label>Email<input required type="email" placeholder="you@example.com"/></label></div>
+          <div class="field full"><label>Pickup or Shipping<select><option>Pickup</option><option>Ship (local)</option></select></label></div>
+          <div class="field full"><label>Notes<textarea rows="3" placeholder="Grind size, delivery notes..."></textarea></label></div>
+          <div class="actions full"><button class="btn" data-close-modal type="button">Cancel</button><button class="btn primary" type="submit">Place Order</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../assets/business.js"></script>
+  <script>
+    const beans = [
+      { name: 'House Blend', price: 14.00, img: 'https://picsum.photos/seed/b1/400/240', desc: 'Balanced, chocolate, almond' },
+      { name: 'Single Origin: Ethiopia', price: 16.00, img: 'https://picsum.photos/seed/b2/400/240', desc: 'Citrus, floral, tea-like' },
+      { name: 'Single Origin: Colombia', price: 15.00, img: 'https://picsum.photos/seed/b3/400/240', desc: 'Caramel, red fruit, cocoa' },
+      { name: 'Decaf', price: 14.00, img: 'https://picsum.photos/seed/b4/400/240', desc: 'Swiss water processed' }
+    ];
+    const cart = SPBiz.initCart(document);
+    const root = document.getElementById('beans');
+    beans.forEach(b=>{
+      const el = document.createElement('div');
+      el.className = 'product';
+      el.innerHTML = `<img alt="${b.name}" src="${b.img}">
+        <div class="p-body">
+          <h3>${b.name}</h3>
+          <div class="p-meta">${b.desc}</div>
+          <div class="p-actions"><div>$${b.price.toFixed(2)}</div>
+            <button class="btn" data-name="${b.name}" data-price="${b.price}">Add</button>
+          </div>
+        </div>`;
+      root.appendChild(el);
+    });
+    document.addEventListener('click', (e)=>{
+      const b = e.target; if(b.matches('.product .btn')){ cart.add(b.dataset.name, +b.dataset.price); }
+    });
+  </script>
+</body>
+</html>
+
+

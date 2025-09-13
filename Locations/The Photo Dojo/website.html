@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Photo Dojo â€” Portrait & ID Photos</title>
+  <meta name="description" content="The Photo Dojo: portraits, passport photos, and event photography." />
+  <meta property="og:title" content="The Photo Dojo â€” Portrait & ID Photos" />
+  <meta property="og:description" content="Quick ID photos, portraits, and events with fast turnaround." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/seed/photo-dojo-hero/1200/630" />
+  <link rel="stylesheet" href="../assets/business.css" />
+  <style>
+    :root { --accent: #4dd0e1; --link: #b2ebf2; }
+  </style>
+  <meta name="theme-color" content="#4dd0e1" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%234dd0e1'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23fff'/%3E%3C/svg%3E" />
+</head>
+<body class="brand-photo">
+  <header class="biz-header">
+    <nav class="biz-nav" aria-label="The Photo Dojo">
+      <a class="biz-brand" href="#">The Photo Dojo</a>
+      <div class="biz-links">
+        <a class="biz-link" href="#services">Services</a>
+        <a class="biz-link" href="#portfolio">Portfolio</a>
+        <a class="biz-link" href="#hours">Hours</a>
+        <a class="biz-link" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="signboard">
+    <div class="board" role="img" aria-label="The Photo Dojo sign">
+      <h1>The Photo Dojo</h1>
+      <div class="tagline">Portraits. IDs. Events.</div>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div>
+      <h1>Professional Photos, Quick Turnaround</h1>
+      <p>From portraits to official IDs, weâ€™ve got your best angle.</p>
+      <div class="cta">
+        <a class="btn primary" data-open-modal="#book-session" href="#">Book a Session</a>
+        <a class="btn ghost" href="../index.html">Back to Locations</a>
+      </div>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/photo-dojo-hero/800/420" alt="Studio backdrop" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+    </div>
+  </section>
+
+  <main>
+    <section id="services" class="section grid cols-2" aria-labelledby="services-title">
+      <article class="card">
+        <h2 id="services-title">Services</h2>
+        <div class="menu-item"><div><h3>Portrait Session</h3><p class="muted">30 minutes, 5 edits</p></div><div class="price">$69</div></div>
+        <div class="menu-item"><div><h3>Passport / ID</h3><p class="muted">Government-compliant sizing</p></div><div class="price">$19</div></div>
+        <div class="menu-item"><div><h3>Event Coverage</h3><p class="muted">Hourly booking</p></div><div class="price">$99/hr</div></div>
+      </article>
+      <article class="card">
+        <h2>Turnaround</h2>
+        <p class="muted">Digital proofs within 24 hours. Passport prints on-the-spot.</p>
+      </article>
+    </section>
+
+    <section id="portfolio" class="section" aria-labelledby="portfolio-title">
+      <h2 id="portfolio-title">Portfolio</h2>
+      <div class="grid cols-3" style="margin-top:10px">
+        <img alt="Portrait" src="https://picsum.photos/seed/dojo1/480/320" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+        <img alt="Portrait" src="https://picsum.photos/seed/dojo2/480/320" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+        <img alt="Portrait" src="https://picsum.photos/seed/dojo3/480/320" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+      </div>
+    </section>
+
+    <section id="hours" class="section grid cols-2" aria-labelledby="hours-title">
+      <article class="card">
+        <h2 id="hours-title">Hours</h2>
+        <p>Monâ€“Sat: 10 AM â€“ 6 PM</p>
+        <p>Sun: Closed</p>
+      </article>
+      <article class="card">
+        <h2>Find Us</h2>
+        <img src="https://picsum.photos/seed/dojo-map/640/320" alt="Map to The Photo Dojo" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+      </article>
+    </section>
+
+    <section id="contact" class="section grid cols-2" aria-labelledby="contact-title">
+      <article class="card">
+        <h2 id="contact-title">Contact</h2>
+        <p><span class="badge">Phone</span> (719) 555-0155</p>
+        <p><span class="badge">Email</span> photodojo@example.com</p>
+      </article>
+      <article class="card">
+        <h2>Notes</h2>
+        <p class="muted">Walk-ins welcome for passport photos. Appointments recommended for portraits.</p>
+      </article>
+    </section>
+  </main>
+  <div id="book-session" class="modal-backdrop" data-click-to-close="true" style="display:none">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="bs-title">
+      <div class="modal-header">
+        <h3 id="bs-title" class="modal-title">Book Photo Session</h3>
+        <button class="modal-close" data-close-modal>Close</button>
+      </div>
+      <div class="modal-body">
+        <form class="form-grid">
+          <div class="field"><label>Name<input required type="text" /></label></div>
+          <div class="field"><label>Email<input required type="email" /></label></div>
+          <div class="field"><label>Date<input type="date" /></label></div>
+          <div class="field"><label>Time<input type="time" /></label></div>
+          <div class="field full"><label>Session Type<select><option>Passport/ID</option><option>Portrait</option><option>Event</option></select></label></div>
+          <div class="field full"><label>Notes<textarea rows="3" placeholder="Any specifics or props needed"></textarea></label></div>
+          <div class="actions full">
+            <button class="btn" data-close-modal type="button">Cancel</button>
+            <button class="btn primary" type="submit">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="../assets/business.js"></script>
+
+  <footer class="biz-footer">
+    <p>Â© The Photo Dojo, South Park. Fan-made demo.</p>
+    <p><a href="../index.html">Back to Locations</a></p>
+  </footer>
+</body>
+</html>
+

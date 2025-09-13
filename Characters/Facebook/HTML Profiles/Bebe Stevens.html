@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../../../Assets/css/common.css">
     <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
     <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <link rel="stylesheet" href="../../../Assets/css/site.css">
+    <script src="../../../Assets/js/layout.js" defer></script>
+    <script src="../../../Assets/js/profile-upgrade.js" defer></script>
     <style>
         :root {
             --bebe-primary: #FF69B4;
@@ -54,6 +57,37 @@
             border: 3px solid var(--bebe-gold);
             position: relative;
             overflow: hidden;
+        }
+
+        .cover-photo {
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23FF69B4;stop-opacity:0.8" /><stop offset="50%" style="stop-color:%23FFB6C1;stop-opacity:0.6" /><stop offset="100%" style="stop-color:%23FFD700;stop-opacity:0.8" /></linearGradient></defs><rect width="800" height="200" fill="url(%23bg)"/><g opacity="0.3"><circle cx="100" cy="50" r="20" fill="%23FFD700"/><circle cx="200" cy="80" r="15" fill="%23FF1493"/><circle cx="300" cy="40" r="25" fill="%23FFB6C1"/><circle cx="500" cy="60" r="18" fill="%23FF69B4"/><circle cx="600" cy="90" r="22" fill="%23FFD700"/><circle cx="700" cy="45" r="16" fill="%23FF1493"/></g></svg>') center/cover;
+            height: 200px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .avatar-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-image:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-picture {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
         }
 
         .profile-header::before {
@@ -117,6 +151,7 @@
             border: 2px solid var(--bebe-secondary);
             background: rgba(255, 240, 245, 0.9);
             position: relative;
+            transition: all 0.3s ease;
         }
 
         .post::before {
@@ -130,6 +165,16 @@
             z-index: -1;
             border-radius: inherit;
             opacity: 0.2;
+            transition: opacity 0.3s ease;
+        }
+
+        .post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.3);
+        }
+
+        .post:hover::before {
+            opacity: 0.4;
         }
 
         .popular-girl-drama {
@@ -148,11 +193,29 @@
             color: var(--bebe-accent);
             font-weight: bold;
             animation: fashion-shimmer 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fashion-statement::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+            animation: fashion-sparkle 4s ease-in-out infinite;
         }
 
         @keyframes fashion-shimmer {
             0%, 100% { text-shadow: 0 0 5px rgba(255, 105, 180, 0.5); }
-            50% { text-shadow: 0 0 15px rgba(255, 105, 180, 0.8); }
+            50% { text-shadow: 0 0 15px rgba(255, 105, 180, 0.8), 0 0 25px rgba(255, 215, 0, 0.6); }
+        }
+
+        @keyframes fashion-sparkle {
+            0%, 90%, 100% { left: -100%; }
+            95% { left: 100%; }
         }
 
         .social-hierarchy {
@@ -222,34 +285,249 @@
             50% { opacity: 1; transform: scale(1.1); }
         }
 
-        /* Mobile optimization */
+        /* Enhanced Mobile optimization with image handling */
         @media screen and (max-width: 768px) {
             body::before, body::after {
                 display: none; /* Hide sparkles on mobile for performance */
             }
-            
+
             .confidence-boost::after {
                 position: static;
                 display: block;
                 margin-top: 5px;
             }
-            
+
             .popularity-meter {
                 font-size: 14px;
                 padding: 6px;
             }
+
+            .content-area {
+                display: block;
+            }
+
+            .sidebar {
+                order: -1;
+                margin-bottom: 20px;
+            }
+
+            .fashion-statement {
+                font-size: 16px;
+            }
+
+            .profile-header::before {
+                right: -200px;
+                padding: 3px 250px;
+                font-size: 10px;
+            }
+
+            .popular-insight {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .relationship-drama {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .post-actions {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .action-button {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+
+            /* Mobile image optimizations */
+            .avatar-image {
+                width: 100px;
+                height: 100px;
+            }
+
+            .cover-photo {
+                height: 150px;
+            }
+
+            .profile-picture {
+                bottom: -50px;
+            }
+
+            .post-image {
+                max-width: 120px;
+                max-height: 120px;
+            }
+
+            .photo-gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+
+            .gallery-item img {
+                height: 50px;
+            }
+
+            /* Disable heavy image effects on mobile */
+            .fashion-frame::after,
+            .post-image:hover,
+            .gallery-item:hover {
+                display: none;
+                transform: none;
+                box-shadow: none;
+            }
         }
-    </style>
+
+        @media screen and (max-width: 480px) {
+            .fashion-statement::before {
+                display: none; /* Remove sparkle animation on small screens */
+            }
+
+            .post {
+                margin-bottom: 15px;
+            }
+
+            .character-name {
+                font-size: 24px;
+            }
+
+            .character-tagline {
+                font-size: 14px;
+            }
+
+            .profile-stats .stat-item {
+                padding: 8px;
+                margin-bottom: 8px;
+            }
+
+            .stat-number {
+                font-size: 18px;
+            }
+
+            .stat-label {
+                font-size: 12px;
+            }
+
+            /* Extra small screen image optimizations */
+            .avatar-image {
+                width: 80px;
+                height: 80px;
+            }
+
+            .post-image {
+                max-width: 100px;
+                max-height: 100px;
+            }
+
+            .photo-gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4px;
+            }
+
+            .comment-avatar {
+                width: 20px !important;
+                height: 20px !important;
+            }
+
+            .friend-avatar {
+                width: 28px !important;
+                height: 28px !important;
+            }
+        }
+
+        /* Lazy loading and performance improvements */
+        img {
+            loading: lazy;
+        }
+
+        .avatar-image,
+        .post-image,
+        .comment-avatar,
+        .friend-avatar {
+            image-rendering: optimizeQuality;
+            object-position: center;
+        }
+
+        /* Image Styling and Effects */
+        .post-image {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .post-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+        }
+
+        .gallery-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+        }
+
+        .fashion-frame {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fashion-frame::after {
+            content: '✨';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .fashion-frame:hover::after {
+            opacity: 1;
+        }
+
+        /* Character avatars enhancement */
+        .comment-avatar {
+            transition: transform 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .comment-avatar:hover {
+            transform: scale(1.1);
+            border-color: var(--bebe-primary);
+        }
+
+        /* Photo gallery animations */
+        .photo-gallery-grid {
+            animation: galleryFadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes galleryFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }`n    </style>
 </head>
 <body>
     <div class="container">
         <div class="profile-header">
             <div class="cover-photo">
                 <div class="profile-picture">
-                    <div class="avatar-circle" style="background: var(--bebe-primary); color: white;">BS</div>
+                    <img src="../../../Assets/images/bebe_stevens.png" alt="Bebe Stevens" class="avatar-image">
                 </div>
             </div>
-            <div class="name-banner">
+            <div class="name-banner" style="padding-top: 70px;">
                 <h1 class="character-name">Bebe Stevens</h1>
                 <p class="character-tagline">"Obviously I look amazing today! Did you even have to ask? 💅"</p>
             </div>
@@ -265,6 +543,28 @@
                     ✨ TODAY'S OUTFIT RATING: 11/10 (Breaking the scale again!) ✨
                 </div>
 
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">15 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        UGH! So I got an A+ on my science project about weather patterns, but does anyone care? NO! 😤
+                        <div class="relationship-drama">
+                            All day people have been like "omg Bebe your hair looks so good!" or "where did you get that lip gloss?" but NOBODY mentioned that my project was literally the best one in class! I worked SO hard on those cloud formations!
+                        </div>
+                        <div class="popular-insight">
+                            Like, yes, I obviously look amazing today, but I'm also SMART and I want people to notice that too! Is it too much to ask for compliments on my brain AND my beauty?? 🧠✨
+                        </div>
+                        <div class="confidence-boost">Maybe I need to start posting more about my grades. Time to show everyone that popular girls can be academic overachievers too! 📚💅</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (189)</span>
+                        <span class="action-button">💬 Comment (43)</span>
+                        <span class="action-button">🧠 Smart & Pretty</span>
+                    </div>
+                </div>
+
                 <div class="post popular-girl-drama">
                     <div class="post-header">
                         <strong>Bebe Stevens</strong>
@@ -272,6 +572,17 @@
                     </div>
                     <div class="post-content">
                         <div class="fashion-statement">Can we talk about how CUTE this new lip gloss is? 💋✨</div>
+
+                        <!-- Selfie Image -->
+                        <div style="margin: 15px 0; text-align: center;">
+                            <div style="display: inline-block; background: linear-gradient(45deg, #FF69B4, #FFB6C1); padding: 3px; border-radius: 12px; box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);">
+                                <div style="background: white; border-radius: 10px; padding: 10px;">
+                                    <img src="../../../Assets/images/bebe_stevens.png" alt="Bebe's selfie" class="post-image fashion-frame" style="width: 150px; height: 150px; border-radius: 8px; object-fit: cover; filter: brightness(1.1) saturate(1.2);">
+                                    <div style="margin-top: 8px; font-size: 12px; color: #FF1493; font-weight: bold;">✨ OOTD: Lip gloss perfection! ✨</div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="social-hierarchy">I literally started a trend just by wearing it to school today. By third period, half the girls were asking where I got it. By lunch, it was basically the new standard for looking put-together.</div>
                         <div class="popular-insight">
                             <strong>TREND ANALYSIS:</strong><br>
@@ -286,6 +597,55 @@
                         <span class="action-button">👍 Like (234)</span>
                         <span class="action-button">💬 Comment (67)</span>
                         <span class="action-button">✨ Share Style</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">1 hour ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div style="background: #e8f5e8; padding: 12px; border-radius: 8px; border-left: 4px solid #4CAF50;">
+                            Kyle helped me with my math homework today and he was actually really patient when I didn't get the algebra stuff right away... 💚
+                        </div>
+                        <div class="relationship-drama">
+                            Like, he could have been all condescending about it (like some people are when they're smart), but instead he just explained it different ways until it clicked. That's... actually really sweet? 🤔
+                        </div>
+                        <div class="popular-insight">
+                            Also can we talk about how his eyes get all focused when he's thinking through a problem? Very cute. Very Kyle. 😊
+                        </div>
+                        <div class="confidence-boost">Maybe I should ask for help with homework more often... you know, for academic reasons... definitely not because I like hanging out with him or anything... 😏</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (203)</span>
+                        <span class="action-button">💬 Comment (78)</span>
+                        <span class="action-button">💚 Kyle Appreciation</span>
+                    </div>
+
+                    <!-- Character Comments Section -->
+                    <div style="padding: 12px 0; border-top: 1px solid #e4e6eb; margin-top: 10px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <img src="../../../Assets/images/kyle_broflovski.png" alt="Kyle" class="comment-avatar" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <strong style="font-size: 13px;">Kyle Broflovski</strong>
+                                <div style="font-size: 12px; color: #65676b;">Uh... thanks Bebe! You're really smart too, you just needed to see the pattern. 😅</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <img src="../../../Assets/images/wendy_testaburger.png" alt="Wendy" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <strong style="font-size: 13px;">Wendy Testaburger</strong>
+                                <div style="font-size: 12px; color: #65676b;">Kyle IS a good tutor! Maybe we should all study together sometime? 📚</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <img src="../../../Assets/images/eric_cartman.png" alt="Cartman" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <strong style="font-size: 13px;">Eric Cartman</strong>
+                                <div style="font-size: 12px; color: #65676b;">Bebe and Kyle sitting in a tree, K-I-S-S-I-N-G! 😂</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -367,6 +727,66 @@
                         <span class="action-button">👍 Like (176)</span>
                         <span class="action-button">💬 Comment (52)</span>
                         <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post popular-girl-drama">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">3 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="fashion-statement">DRAMA ALERT! 🚨</div>
+                        <div class="relationship-drama">
+                            So apparently some girls in my class think I'm being "too bossy" during our group projects??? Like, excuse me, but if I don't take charge, nothing gets done! 😤
+                        </div>
+                        <!-- Project Photo -->
+                        <div style="margin: 15px 0;">
+                            <div style="background: linear-gradient(135deg, #FFD700, #FFA500); padding: 2px; border-radius: 8px;">
+                                <div style="background: white; border-radius: 6px; padding: 12px; text-align: center;">
+                                    <div style="background: linear-gradient(45deg, #87CEEB, #98FB98); width: 200px; height: 120px; margin: 0 auto; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: #333; font-weight: bold; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                        📊 Science Project:<br>Weather Patterns<br>🌤️ ⛈️ 🌈<br><small style="color: #666;">Grade: A+</small>
+                                    </div>
+                                    <div style="margin-top: 8px; font-size: 11px; color: #666;">Our group's award-winning presentation board ✨</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="popular-insight">
+                            Maybe they're just jealous that I actually know how to organize things and make them look good? I mean, our presentation board was literally the prettiest one in class and we got an A+, so... you're welcome?? 💅
+                        </div>
+                        <div class="social-hierarchy">I'm not being bossy, I'm being a LEADER. There's a difference! Some people just can't handle when girls know what they're doing! 👑</div>
+                        <div class="confidence-boost">Whatever. My group got the best grade and looked the best doing it. That's what matters! ✨</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (167)</span>
+                        <span class="action-button">💬 Comment (92)</span>
+                        <span class="action-button">👑 Boss Babe</span>
+                    </div>
+
+                    <!-- Drama Comments Section -->
+                    <div style="padding: 12px 0; border-top: 1px solid #e4e6eb; margin-top: 10px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <img src="../../../Assets/images/red_mcarthur.png" alt="Red" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <strong style="font-size: 13px;">Red McArthur</strong>
+                                <div style="font-size: 12px; color: #65676b;">You were totally being bossy though... but like, in a good way? Our project looked amazing! 💅</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <img src="../../../Assets/images/wendy_testaburger.png" alt="Wendy" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <strong style="font-size: 13px;">Wendy Testaburger</strong>
+                                <div style="font-size: 12px; color: #65676b;">Being a leader is hard! Some people just don't get that organization takes work. 👊</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <img src="../../../Assets/images/clyde_donovan.png" alt="Clyde" style="width: 24px; height: 24px; border-radius: 50%; object-fit: cover;">
+                            <div>
+                                <strong style="font-size: 13px;">Clyde Donovan</strong>
+                                <div style="font-size: 12px; color: #65676b;">I was just happy someone knew what they were doing! Thanks for keeping us on track Bebe! 😊</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -455,25 +875,59 @@
                     </div>
                 </div>
 
+                <div class="photo-gallery">
+                    <h3>📸 Photo Gallery</h3>
+                    <div class="photo-gallery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 15px;">
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #FF69B4, #FFB6C1); padding: 2px; border-radius: 8px;">
+                            <div style="background: white; border-radius: 6px; padding: 6px;">
+                                <img src="../../../Assets/images/bebe_stevens.png" alt="Fashion look" class="fashion-frame" style="width: 100%; height: 60px; object-fit: cover; border-radius: 4px; filter: sepia(20%) saturate(1.2);">
+                                <div style="font-size: 9px; text-align: center; margin-top: 3px; color: #FF1493;">💄 Beauty Day</div>
+                            </div>
+                        </div>
+                        <div class="gallery-item" style="background: linear-gradient(45deg, #FFD700, #FFA500); padding: 2px; border-radius: 8px;">
+                            <div style="background: white; border-radius: 6px; padding: 6px;">
+                                <img src="../../../Assets/images/bebe_stevens.png" alt="School outfit" class="fashion-frame" style="width: 100%; height: 60px; object-fit: cover; border-radius: 4px; filter: brightness(1.1) contrast(1.1);">
+                                <div style="font-size: 9px; text-align: center; margin-top: 3px; color: #FF8C00;">👗 OOTD</div>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(45deg, #DA70D6, #BA55D3); padding: 2px; border-radius: 8px;">
+                            <div style="background: white; border-radius: 6px; padding: 6px;">
+                                <div style="width: 100%; height: 60px; background: linear-gradient(135deg, #FF69B4, #8A2BE2); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: bold;">
+                                    👭<br>Squad
+                                </div>
+                                <div style="font-size: 9px; text-align: center; margin-top: 3px; color: #8A2BE2;">Friends</div>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(45deg, #00CED1, #20B2AA); padding: 2px; border-radius: 8px;">
+                            <div style="background: white; border-radius: 6px; padding: 6px;">
+                                <div style="width: 100%; height: 60px; background: linear-gradient(135deg, #87CEEB, #4682B4); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 11px; font-weight: bold;">
+                                    📚<br>A+
+                                </div>
+                                <div style="font-size: 9px; text-align: center; margin-top: 3px; color: #4682B4;">Projects</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="friends-widget">
                     <h3>Social Circle</h3>
                     <div class="friend-item">
-                        <span class="friend-avatar" style="background: #87CEEB; color: #4169E1;">CD</span>
+                        <img src="../../../Assets/images/clyde_donovan.png" alt="Clyde" class="friend-avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
                         <span class="friend-name">Clyde Donovan</span>
                         <span class="friend-status">💙 Sweet & Emotional</span>
                     </div>
                     <div class="friend-item">
-                        <span class="friend-avatar" style="background: #e91e63; color: white;">WT</span>
+                        <img src="../../../Assets/images/wendy_testaburger.png" alt="Wendy" class="friend-avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
                         <span class="friend-name">Wendy Testaburger</span>
                         <span class="friend-status">🤝 Fellow Leader</span>
                     </div>
                     <div class="friend-item">
-                        <span class="friend-avatar" style="background: #FFB6C1; color: #FF1493;">RM</span>
+                        <img src="../../../Assets/images/red_mcarthur.png" alt="Red" class="friend-avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
                         <span class="friend-name">Red McArthur</span>
                         <span class="friend-status">👭 Girl Squad</span>
                     </div>
                     <div class="friend-item">
-                        <span class="friend-avatar" style="background: #32CD32; color: #006400;">TB</span>
+                        <img src="../../../Assets/images/tolkien_black.png" alt="Token" class="friend-avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
                         <span class="friend-name">Token Black</span>
                         <span class="friend-status">🎯 Voice of Reason</span>
                     </div>
@@ -540,7 +994,7 @@
                 "💅 CURRENT VIBE: EFFORTLESSLY PERFECT AS USUAL 💅"
             ];
             
-            setInterval(() => {
+            setInterval(() => { if (document.hidden) return; 
                 if (Math.random() > 0.7) {
                     const randomState = popularityStates[Math.floor(Math.random() * popularityStates.length)];
                     popularityMeter.innerHTML = randomState;
@@ -548,7 +1002,7 @@
             }, 40000); // Update every 40 seconds
             
             // Add more sparkles randomly on desktop
-            setInterval(() => {
+            setInterval(() => { if (document.hidden) return; 
                 if (Math.random() > 0.6 && window.innerWidth > 768) {
                     const sparkle = document.createElement('div');
                     sparkle.innerHTML = '✨';
@@ -570,7 +1024,7 @@
             
             // Crown bounce effect for social hierarchy elements
             const hierarchyElements = document.querySelectorAll('.social-hierarchy');
-            setInterval(() => {
+            setInterval(() => { if (document.hidden) return; 
                 hierarchyElements.forEach(element => {
                     if (Math.random() > 0.8) {
                         element.style.animation = 'popular-shine 2s ease-in-out';
@@ -585,3 +1039,6 @@
     <script src="../../../Assets/js/navigation.js"></script>
 </body>
 </html>
+
+
+

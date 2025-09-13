@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tom's Rhinoplasty â€” Before/After Gallery</title>
+  <meta name="description" content="Explore sample before/after images from Tom's Rhinoplasty." />
+  <meta property="og:title" content="Tom's Rhinoplasty â€” Before/After Gallery" />
+  <meta property="og:description" content="Sample transformations with a simple comparison slider." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://picsum.photos/seed/rhino1/1200/630" />
+  <link rel="stylesheet" href="../assets/business.css" />
+  <style>:root{ --accent:#ff7ac3; --link:#ffcfe8; }</style>
+</head>
+<body>
+  <header class="biz-header">
+    <nav class="biz-nav" aria-label="Tom's Rhinoplasty Gallery">
+      <a class="biz-brand" href="website.html">Tom's Rhinoplasty</a>
+      <div class="biz-links">
+        <a class="biz-link" href="website.html#services">Services</a>
+        <a class="biz-link" href="website.html">Home</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>Before / After</h1>
+      <p>Drag the slider to compare before and after images.</p>
+    </div>
+    <div>
+      <img src="https://picsum.photos/seed/rhino-cover/800/420" alt="Clinic" style="width:100%; border-radius:12px; border:1px solid var(--border)" />
+    </div>
+  </section>
+
+  <main class="section" style="display:grid; gap:16px;">
+    <article class="card">
+      <h2>Case A</h2>
+      <div class="ba">
+        <img src="https://picsum.photos/seed/ba-before-1/1200/600" alt="Before" />
+        <img class="after" src="https://picsum.photos/seed/ba-after-1/1200/600" alt="After" />
+        <div class="handle"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Comparison slider">
+      </div>
+    </article>
+    <article class="card">
+      <h2>Case B</h2>
+      <div class="ba">
+        <img src="https://picsum.photos/seed/ba-before-2/1200/600" alt="Before" />
+        <img class="after" src="https://picsum.photos/seed/ba-after-2/1200/600" alt="After" />
+        <div class="handle"></div>
+        <input type="range" min="0" max="100" value="60" aria-label="Comparison slider">
+      </div>
+    </article>
+  </main>
+
+  <script>
+    document.querySelectorAll('.ba').forEach((wrap)=>{
+      const range = wrap.querySelector('input[type=range]');
+      const after = wrap.querySelector('.after');
+      const handle = wrap.querySelector('.handle');
+      function update(){
+        const v = +range.value; // 0..100
+        after.style.clipPath = `inset(0 0 0 ${v}%)`;
+        handle.style.left = v + '%';
+      }
+      range.addEventListener('input', update);
+      update();
+    });
+  </script>
+</body>
+</html>
+
+

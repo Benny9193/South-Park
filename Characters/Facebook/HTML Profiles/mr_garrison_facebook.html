@@ -156,12 +156,54 @@
             border-radius: 12px;
             font-size: 12px;
             font-weight: bold;
-            animation: identity-flux 4s infinite;
+            animation: identity-flux 3s infinite;
+            position: relative;
+            overflow: hidden;
         }
-        
+
         @keyframes identity-flux {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; transform: scale(0.9); }
+            0% {
+                opacity: 1;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                transform: scale(1);
+            }
+            20% {
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                transform: scale(1.1);
+            }
+            40% {
+                background: linear-gradient(45deg, #f9ca24, #f0932b);
+                transform: scale(0.9);
+            }
+            60% {
+                background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+                transform: scale(1.05);
+            }
+            80% {
+                background: linear-gradient(45deg, #00b894, #00cec9);
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                transform: scale(1);
+            }
+        }
+
+        .identity-badge::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: badge-glitch 6s infinite;
+        }
+
+        @keyframes badge-glitch {
+            0%, 90%, 100% { left: -100%; }
+            95% { left: 100%; }
         }
         
         .profile-subtitle {
@@ -409,6 +451,30 @@
             text-align: center;
             margin: 15px 0;
             font-weight: bold;
+            animation: identity-uncertainty 8s infinite;
+        }
+
+        @keyframes identity-uncertainty {
+            0% {
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                transform: scale(1);
+            }
+            25% {
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                transform: scale(1.02);
+            }
+            50% {
+                background: linear-gradient(45deg, #f9ca24, #f0932b);
+                transform: scale(0.98);
+            }
+            75% {
+                background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+                transform: scale(1.01);
+            }
+            100% {
+                background: linear-gradient(45deg, #667eea, #764ba2);
+                transform: scale(1);
+            }
         }
         
         .identity-timeline {
@@ -429,6 +495,95 @@
             color: #c62828;
             text-align: center;
             font-weight: bold;
+        }
+
+        /* Mobile Responsiveness Enhancements */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .content-area {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .profile-details {
+                margin-left: 0;
+                padding-top: 80px;
+                text-align: center;
+            }
+
+            .profile-pic {
+                left: 50%;
+                transform: translateX(-50%);
+                top: -75px;
+            }
+
+            .profile-name {
+                justify-content: center;
+                font-size: 24px;
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .nav-icons {
+                gap: 8px;
+            }
+
+            .nav-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .friends-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-actions-bar {
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+
+            .profile-actions-bar .action-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+
+        /* Enhanced Hover Effects */
+        .post {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .post:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .card-hover-effect {
+            transition: all 0.2s ease;
+        }
+
+        .card-hover-effect:hover {
+            transform: scale(1.05);
+            background: #e8f4fd !important;
+        }
+
+        .slide-in {
+            animation: slideInUp 0.6s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Facebook-like structural additions */
@@ -540,6 +695,41 @@
                 </div>
 
                 <div class="info-section">
+                    <h3>📸 Photo Albums</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 15px;">
+                        <div style="background: linear-gradient(45deg, #ff6b6b, #4ecdc4); padding: 8px; border-radius: 6px; text-align: center; color: white; font-size: 11px; cursor: pointer;">
+                            🏛️ Presidential Years(?)<br><small>23 photos</small>
+                        </div>
+                        <div style="background: linear-gradient(45deg, #6c5ce7, #a29bfe); padding: 8px; border-radius: 6px; text-align: center; color: white; font-size: 11px; cursor: pointer;">
+                            👩 Janet Era<br><small>47 photos</small>
+                        </div>
+                        <div style="background: linear-gradient(45deg, #00b894, #00cec9); padding: 8px; border-radius: 6px; text-align: center; color: white; font-size: 11px; cursor: pointer;">
+                            🎭 Mr. Hat Memorial<br><small>156 photos</small>
+                        </div>
+                        <div style="background: linear-gradient(45deg, #f9ca24, #f0932b); padding: 8px; border-radius: 6px; text-align: center; color: white; font-size: 11px; cursor: pointer;">
+                            🌈 Gay Phase<br><small>89 photos</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>🧠 Memory Fragments</h3>
+                    <div style="background: #fff3cd; padding: 10px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #ffc107;">
+                        <div style="font-size: 12px; color: #856404;">
+                            "Facebook Memory: On this day 4 years ago..."<br>
+                            <em>Shows photo of Janet Garrison at a women's rights rally</em><br>
+                            <strong>Current Garrison:</strong> "Who is this woman and why does she look familiar?"
+                        </div>
+                    </div>
+                    <div style="background: #f8d7da; padding: 10px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid #dc3545;">
+                        <div style="font-size: 12px; color: #721c24;">
+                            <strong>Conflicting Memory Alert:</strong><br>
+                            Two photos from same date showing different people claiming to be "Herbert Garrison"
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
                     <h3>Audience (Captive)</h3>
                     <div class="friends-grid">
                         <div class="friend-card">
@@ -584,28 +774,78 @@
                         <div class="post-avatar">HG</div>
                         <div class="post-info">
                             <h4>Herbert Garrison</h4>
+                            <div class="post-time">37 minutes ago • 🚨 URGENT IDENTITY UPDATE</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        WAIT. False alarm on that heterosexual thing. 🌈
+
+                        I just remembered I have strong feelings about interior decorating and I teared up during a Hallmark commercial. This changes everything!
+
+                        <div class="identity-crisis">
+                            Maybe I'm actually a gay liberal Democrat? Or wait... am I confusing myself with someone else again? Did I dream the whole heterosexual phase? Was that even me or was that Mr. Hat??
+                        </div>
+
+                        <div class="therapy-session">
+                            I asked my students to vote on my sexuality during spelling time. Cartman said "You're just weird, Mr. Garrison" which honestly isn't helpful for my self-discovery process.
+                        </div>
+
+                        New lesson plan: "Spelling Words That Describe Mr. Garrison's Confusing Identity"
+
+                        #IdentityWhiplash #StillFiguring #HelpMe #Confused #MaybeGay #MaybeNot
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🌈 Still Gay?</div>
+                        <div class="post-action">🤔 Identity Vote</div>
+                        <div class="post-action">🙄 Classic Garrison</div>
+                    </div>
+
+                    <!-- Student Comments Section -->
+                    <div style="padding: 12px 0; border-top: 1px solid #e4e6eb; margin-top: 10px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <div style="width: 24px; height: 24px; background: #2196F3; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">S</div>
+                            <div>
+                                <strong style="font-size: 13px;">Stan Marsh</strong>
+                                <div style="font-size: 12px; color: #65676b;">Mr. Garrison, this is getting weird even for you...</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <div style="width: 24px; height: 24px; background: #ff9800; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">E</div>
+                            <div>
+                                <strong style="font-size: 13px;">Eric Cartman</strong>
+                                <div style="font-size: 12px; color: #65676b;">Sweet! No math homework if you're having another identity crisis! 😎</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">HG</div>
+                        <div class="post-info">
+                            <h4>Herbert Garrison</h4>
                             <div class="post-time">2 hours ago • 🎭 IDENTITY BREAKTHROUGH</div>
                         </div>
                     </div>
                     <div class="post-content">
                         CLASS ANNOUNCEMENT: I've had a MAJOR realization about my identity! 🌟
-                        
+
                         After extensive self-reflection (during math class), I've discovered that my current persona as a heterosexual conservative male is actually the REAL me! All those other identities were just... phases, I guess?
-                        
+
                         <div class="therapy-session">
                             I explained this to my 4th graders today. Stan asked why I keep changing who I am, and I told him it's called "growth," which he wouldn't understand because he's 10 and hasn't lived through the complex journey of self-discovery like I have.
                         </div>
-                        
+
                         <div class="identity-crisis">
                             Although... now that I think about it, maybe THIS identity is also temporary? What if the real me is actually someone who's constantly searching for the real me? Is the journey the destination??
                         </div>
-                        
+
                         <div class="inappropriate-overshare">
                             I've scheduled a parent-teacher conference to discuss my identity evolution with the parents. They seem "concerned" for some reason. Kyle's dad asked if I need "professional help." I AM a professional! I teach children!
                         </div>
-                        
+
                         Tomorrow's lesson plan: "Why Mr. Garrison's Personal Journey is More Important Than Fractions"
-                        
+
                         #IdentityJourney #Growth #Teaching #PersonalBreakthrough #SelfDiscovery #ProfessionalDevelopment
                     </div>
                     <div class="post-actions">
@@ -620,30 +860,89 @@
                         <div class="post-avatar">HG</div>
                         <div class="post-info">
                             <h4>Herbert Garrison</h4>
+                            <div class="post-time">4 hours ago • 📧 PARENT COMMUNICATION</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Email from Kyle's mom: "Mr. Garrison, why did Kyle come home asking if he needs therapy for his identity issues? He's 10."
+
+                        I replied: "Sheila, it's never too early to start the journey of self-discovery! In fact, I'm offering after-school identity counseling sessions. Only $50 per hour!" 💰
+
+                        <div class="inappropriate-overshare">
+                            She responded with something about "reporting me to the school board" and "professional boundaries." I don't understand what she means. I AM being professional - I'm charging market rates for therapy!
+                        </div>
+
+                        <div class="therapy-session">
+                            Today's lesson plan was "Math Word Problems About Mr. Garrison's Identity Crisis":
+                            - If Mr. Garrison changes identities 3 times per week, how many identities will he have tried by Christmas?
+                            - Janet lasted 4 years, Gay Garrison lasted 2 years. What's the average lifespan of a Garrison identity?
+                        </div>
+
+                        Stan raised his hand and asked "Can we just learn regular math?" So I gave him detention for disrupting my innovative curriculum.
+
+                        #ParentComplaint #EducationalEntrepreneurship #InnovativeMath #Detention #TherapyRates
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">📧 Angry Parents</div>
+                        <div class="post-action">💰 Side Hustle</div>
+                        <div class="post-action">📊 Math Innovation</div>
+                    </div>
+
+                    <!-- Parent Comments Section -->
+                    <div style="padding: 12px 0; border-top: 1px solid #e4e6eb; margin-top: 10px;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <div style="width: 24px; height: 24px; background: #9c27b0; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">S</div>
+                            <div>
+                                <strong style="font-size: 13px;">Sheila Broflovski</strong>
+                                <div style="font-size: 12px; color: #65676b;">This is completely inappropriate! I'm calling the school board AGAIN! 😡</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <div style="width: 24px; height: 24px; background: #4caf50; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">R</div>
+                            <div>
+                                <strong style="font-size: 13px;">Randy Marsh</strong>
+                                <div style="font-size: 12px; color: #65676b;">Dude, at least your identity crises are more interesting than my midlife crisis 🍺</div>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                            <div style="width: 24px; height: 24px; background: #ff5722; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: bold;">L</div>
+                            <div>
+                                <strong style="font-size: 13px;">Liane Cartman</strong>
+                                <div style="font-size: 12px; color: #65676b;">Oh my! Well, Eric does seem to enjoy your... creative teaching methods! 😅</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">HG</div>
+                        <div class="post-info">
+                            <h4>Herbert Garrison</h4>
                             <div class="post-time">Yesterday • 📚 EDUCATIONAL INNOVATION</div>
                         </div>
                     </div>
                     <div class="post-content">
                         Revolutionizing education one therapy session at a time! 📖✨
-                        
+
                         Instead of teaching boring old history today, I shared my personal history of identity exploration with the class. Much more relevant to their lives!
-                        
+
                         <div class="therapy-session">
                             We spent two hours discussing my relationship with Mr. Hat, my transition period, my presidential term, and my current heterosexual awakening. The children took notes! Some were crying, but that's just because they were moved by my honesty.
                         </div>
-                        
-                        Kenny mumbled something through his parka, but I chose to interpret it as support for my teaching methods. 
-                        
+
+                        Kenny mumbled something through his parka, but I chose to interpret it as support for my teaching methods.
+
                         Cartman asked if my identity changes would be on the test. I told him life IS the test, Eric!
-                        
+
                         <div class="inappropriate-overshare">
                             The principal called me into her office again. She said parents are "complaining" about my "inappropriate oversharing" and "unprofessional behavior." I explained that transparency in education is key to building trust with students!
                         </div>
-                        
+
                         <div class="identity-crisis">
                             Although, maybe she has a point? What if my teaching style is just another identity I've adopted? What if I'm not actually meant to be a teacher? What if I'm meant to be... a principal who calls teachers into her office??
                         </div>
-                        
+
                         #EducationalInnovation #TransparentTeaching #LifeLessons #PersonalizedLearning #PrincipalMeeting
                     </div>
                     <div class="post-actions">
@@ -658,30 +957,73 @@
                         <div class="post-avatar">HG</div>
                         <div class="post-info">
                             <h4>Herbert Garrison</h4>
+                            <div class="post-time">2 days ago • 🏛️ MEMORY CONTRADICTION</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        GUYS. I think I found a glitch in my own timeline... 🕳️
+
+                        I Googled myself and apparently I WAS President, but also it says I was never President, but ALSO there are photos of me in the Oval Office, but ALSO those might be from when I visited as a tourist??
+
+                        <div class="identity-crisis">
+                            Timeline Check:
+                            - 2016: Definitely male teacher
+                            - 2017-2020: President? (Sources unclear)
+                            - 2009-2012: Was I a woman named Janet?
+                            - 2003-2008: Gay phase with Mr. Slave?
+                            - 1997-2003: Repressed with Mr. Hat?
+
+                            WHO PROGRAMMED THIS SIMULATION??
+                        </div>
+
+                        <div class="therapy-session">
+                            My therapist suggested I might have "dissociative episodes" but I think she's just jealous that I've lived more lives in 20 years than she has in her entire boring existence.
+                        </div>
+
+                        <div class="inappropriate-overshare">
+                            Found a box in my closet labeled "Presidential Stuff" but it just contains a Make America Great Again hat, a wig that might be from my Janet phase, and a photo of me with someone who looks like Mike Pence but I can't be sure.
+                        </div>
+
+                        Maybe the real presidency was the friends I made along the way? (Did I have friends during the presidency? I feel like I mostly just yelled at people...)
+
+                        #TimelineGlitch #PresidentialMystery #MemoryHole #IdentityDetective #AmIReal #SimulationTheory
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🔍 Investigate</div>
+                        <div class="post-action">🤖 Glitch</div>
+                        <div class="post-action">📦 Check Closet</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">HG</div>
+                        <div class="post-info">
+                            <h4>Herbert Garrison</h4>
                             <div class="post-time">3 days ago • 🇺🇸 POLITICAL REFLECTION</div>
                         </div>
                     </div>
                     <div class="post-content">
                         Random thought: Did I used to be President? 🤔
-                        
+
                         I have these weird memories of living in the White House and making important decisions, but that seems unlikely since I'm clearly just a 4th grade teacher who's never left Colorado...
-                        
+
                         <div class="identity-crisis">
                             But then again, maybe that WAS me? It's hard to keep track of all my different phases. Was that before or after I was a woman? And was I gay or straight during the presidency? These details matter for my memoir!
                         </div>
-                        
+
                         <div class="therapy-session">
                             I asked my students if they remember me being President. Butters said "Oh hamburgers, I don't know Mr. Garrison!" which is basically confirmation. Kyle rolled his eyes, but Kyle rolls his eyes at everything important.
                         </div>
-                        
+
                         I should probably put "Former President" on my resume, right? Even if I'm not 100% sure it happened, it's the kind of experience that shows leadership potential!
-                        
+
                         <div class="inappropriate-overshare">
                             Note to self: Google "Herbert Garrison President" to fact-check my own life. Also, ask my therapist if selective memory is normal during identity transitions.
                         </div>
-                        
+
                         Maybe I should run for President again? Or School Board? Or maybe I should figure out who I am before seeking positions of authority over others...
-                        
+
                         #PoliticalMemories #FormerPresident #IdentityConfusion #Leadership #Memoir #FactCheck
                     </div>
                     <div class="post-actions">

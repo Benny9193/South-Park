@@ -18,36 +18,152 @@
 
     .container { max-width: 1100px; margin: 20px auto; padding: 0 16px; }
     .profile { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); overflow: hidden; margin-bottom: 16px; }
-    .cover { height: 260px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; letter-spacing: .3px;
-             background: linear-gradient(135deg, #2ecc71 0%, #27ae60 40%, #16a085 100%); text-shadow: 2px 2px 4px rgba(0,0,0,.35); }
+    .cover {
+      height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: .3px;
+      background: linear-gradient(135deg, #2ecc71 0%, #27ae60 40%, #16a085 100%),
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpolygon points='50 0 60 40 100 50 60 60 50 100 40 60 0 50 40 40'/%3E%3C/g%3E%3C/svg%3E");
+      text-shadow: 2px 2px 4px rgba(0,0,0,.35);
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 2px dashed rgba(255,255,255,0.3);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+    .cover::after {
+      content: '📋 GUIDANCE OFFICE 📋';
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
     .profile-info { position: relative; padding: 20px; }
-    .avatar { position: absolute; top: -60px; left: 24px; width: 120px; height: 120px; border-radius: 50%; border: 5px solid #fff; background: linear-gradient(45deg, #2ecc71, #16a085); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 44px; box-shadow: 0 4px 10px rgba(0,0,0,.25); }
+    .avatar { position: absolute; top: -60px; left: 24px; width: 120px; height: 120px; border-radius: 50%; border: 5px solid #fff; background: url('../../../Assets/images/mr_mackey.jpg') center/cover; color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 44px; box-shadow: 0 4px 10px rgba(0,0,0,.25); }
     .details { margin-left: 170px; }
     .name { display: flex; align-items: center; gap: 10px; font-size: 28px; font-weight: 800; }
     .badge { background: #10b981; color: #fff; font-size: 12px; padding: 4px 8px; border-radius: 999px; font-weight: 700; }
     .meta { color: #65676b; margin-top: 4px; }
     .actions { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .btn { background: #e7f3ff; color: #1877f2; padding: 8px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; }
-    .btn.primary { background: #1877f2; color: #fff; }
+    .btn {
+      background: #e7f3ff;
+      color: #1877f2;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .btn:hover {
+      background: #d0e7ff;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(24, 119, 242, 0.2);
+    }
+    .btn.primary {
+      background: #1877f2;
+      color: #fff;
+    }
+    .btn.primary:hover {
+      background: #166fe5;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(24, 119, 242, 0.3);
+    }
 
     .grid { display: grid; grid-template-columns: 340px 1fr; gap: 16px; }
-    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); padding: 16px; }
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+      padding: 16px;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.15);
+    }
     .card h3 { margin: 0 0 10px; font-size: 18px; }
     .about p { margin: 6px 0; color: #1c1e21; }
     .pill { display: inline-block; background: #f0f2f5; padding: 6px 10px; border-radius: 999px; margin: 4px 6px 0 0; font-size: 13px; color: #25634d; }
     .list { padding-left: 18px; color: #1c1e21; }
     .list li { margin: 6px 0; }
 
-    .composer, .post { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); padding: 16px; }
+    .composer, .post {
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+      padding: 16px;
+      transition: all 0.3s ease;
+    }
+    .post:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,.12);
+    }
     .post + .post { margin-top: 16px; }
     .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .post-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(45deg, #2ecc71, #16a085); color: #fff; display: grid; place-items: center; font-weight: 800; }
+    .post-avatar { width: 40px; height: 40px; border-radius: 50%; background: url('../../../Assets/images/mr_mackey.jpg') center/cover; color: #fff; display: grid; place-items: center; font-weight: 800; }
     .post-time { color: #65676b; font-size: 12px; }
     .post .section { background: #ecfdf5; border-left: 3px solid #10b981; padding: 10px; border-radius: 6px; margin: 10px 0; }
     .warn { background: #fff7ed; border-left-color: #f59e0b; }
     .rule { background: #eff6ff; border-left-color: #3b82f6; }
     .cta-row { display: flex; gap: 8px; margin-top: 10px; }
-    .cta { background: #f0f2f5; padding: 8px 12px; border-radius: 6px; color: #1c1e21; font-weight: 600; }
+    .cta {
+      background: #f0f2f5;
+      padding: 8px 12px;
+      border-radius: 6px;
+      color: #1c1e21;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+    .cta:hover {
+      background: #e4e6ea;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Mmkay Counter Widget */
+    .mmkay-counter {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #10b981, #16a085);
+      color: white;
+      padding: 12px 16px;
+      border-radius: 25px;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      font-weight: 700;
+      font-size: 14px;
+      z-index: 1000;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+    .mmkay-counter:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    .mmkay-counter::before {
+      content: '💬';
+      margin-right: 8px;
+    }
   </style>
   <!-- Parody profile for humor/analysis; not affiliated with Facebook. -->
   <!-- South Park character © respective rights holders; this is fan-made. -->
@@ -73,7 +189,7 @@
     <div class="profile">
       <div class="cover">"Let's make good choices, mmkay?"</div>
       <div class="profile-info">
-        <div class="avatar">MM</div>
+        <div class="avatar"></div>
         <div class="details">
           <div class="name">Mr. Mackey <span class="badge">Guidance Counselor</span></div>
           <div class="meta">South Park Elementary • Community Guidelines Enthusiast • "Mmkay"</div>
@@ -118,7 +234,7 @@
       <main>
         <div class="composer">
           <div style="display:flex; gap:10px; align-items:center;">
-            <div class="post-avatar">MM</div>
+            <div class="post-avatar"></div>
             <input style="flex:1; padding:10px 12px; border-radius: 20px; border:1px solid #e4e6ea;" placeholder="What's on your mind, Mr. Mackey?"/>
             <div class="btn">Go Live</div>
           </div>
@@ -126,7 +242,7 @@
 
         <article class="post">
           <div class="post-header">
-            <div class="post-avatar">MM</div>
+            <div class="post-avatar"></div>
             <div>
               <div style="font-weight:700;">Mr. Mackey</div>
               <div class="post-time">Just now • 📢 ANNOUNCEMENT</div>
@@ -148,7 +264,7 @@
 
         <article class="post">
           <div class="post-header">
-            <div class="post-avatar">MM</div>
+            <div class="post-avatar"></div>
             <div>
               <div style="font-weight:700;">Mr. Mackey</div>
               <div class="post-time">1 hr • 🧠 COUNSELING CORNER</div>
@@ -169,7 +285,7 @@
 
         <article class="post">
           <div class="post-header">
-            <div class="post-avatar">MM</div>
+            <div class="post-avatar"></div>
             <div>
               <div style="font-weight:700;">Mr. Mackey</div>
               <div class="post-time">Yesterday • 🏫 SCHOOL POLICY</div>
@@ -192,7 +308,7 @@
 
         <article class="post">
           <div class="post-header">
-            <div class="post-avatar">MM</div>
+            <div class="post-avatar"></div>
             <div>
               <div style="font-weight:700;">Mr. Mackey</div>
               <div class="post-time">3 days ago • 🎤 ASSEMBLY RECAP</div>
@@ -206,6 +322,11 @@
         </article>
       </main>
     </div>
+  </div>
+
+  <!-- Mmkay Counter Widget -->
+  <div class="mmkay-counter" id="mmkayCounter" title="Click to see 'mmkay' locations">
+    <span id="mmkayCount">0</span> mmkays found!
   </div>
 
   <!-- End parody profile -->
@@ -239,9 +360,41 @@
       actions.forEach(action => {
         action.classList.add('card-hover-effect');
       });
+
+      // Mmkay Counter functionality
+      function countMmkays() {
+        const bodyText = document.body.textContent.toLowerCase();
+        const mmkayCount = (bodyText.match(/mmkay/g) || []).length;
+        document.getElementById('mmkayCount').textContent = mmkayCount;
+      }
+
+      // Initialize counter
+      countMmkays();
+
+      // Add click functionality to highlight mmkays
+      document.getElementById('mmkayCounter').addEventListener('click', function() {
+        const elements = document.querySelectorAll('*');
+        let highlighted = false;
+
+        elements.forEach(el => {
+          if (el.children.length === 0 && el.textContent.toLowerCase().includes('mmkay')) {
+            if (!highlighted) {
+              el.innerHTML = el.innerHTML.replace(/mmkay/gi, '<span style="background: yellow; padding: 2px 4px; border-radius: 3px; font-weight: bold;">$&</span>');
+              highlighted = true;
+            }
+          }
+        });
+
+        if (highlighted) {
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
+        }
+      });
     });
   </script>
     <script src="../../../Assets/js/navigation.js"></script>
 </body>
 </html>
+
 

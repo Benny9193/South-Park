@@ -1,0 +1,13 @@
+{
+  "name": "south-park-hub",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "fetch:episodes": "node scripts/fetch-episodes.mjs",
+    "fetch:characters": "node scripts/fetch-characters.mjs",
+    "fetch:organizations": "node scripts/fetch-organizations.mjs",
+    "fetch:all": "npm run fetch:episodes && npm run fetch:characters && npm run fetch:organizations",
+    "validate:data": "node scripts/validate-data.mjs"
+  }
+}

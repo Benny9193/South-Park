@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timeline | South Park Hub</title>
+  <meta name="description" content="Chronological timeline of notable events with episode anchors." />
+  <link rel="stylesheet" href="../Assets/css/site.css" />
+  <script src="../Assets/js/layout.js" defer></script>
+  <style>
+    .timeline { position: relative; margin: 20px 0; }
+    .timeline::before { content: ''; position: absolute; left: 12px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+    .item { position: relative; margin-left: 36px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 12px; background: linear-gradient(180deg, var(--panel), #121725); box-shadow: 0 8px 24px var(--shadow); }
+    .item + .item { margin-top: 12px; }
+    .dot { position: absolute; left: -26px; top: 12px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); border: 2px solid #333; }
+    .date { font-size: 12px; color: var(--muted); margin: 0 0 2px; }
+    .title { margin: 0 0 4px; font-size: 18px; }
+    .desc { margin: 0; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+  <header class="sp-header" role="banner">
+    <nav class="sp-nav" aria-label="Primary">
+      <a class="sp-brand" href="../index.html">South Park Hub</a>
+      <div class="sp-links">
+        <a class="sp-pill" href="../index.html">Home</a>
+        <a class="sp-pill" href="../themes.html">Themes</a>
+        <a class="sp-pill" href="../ideas.html">Ideas</a>
+        <a class="sp-pill" href="../social.html">Social</a>
+        <span class="sp-pill sp-active" aria-current="page">Timeline</span>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="sp-container" role="main">
+    <h1 style="margin:0 0 10px">Timeline</h1>
+    <p class="sp-muted">Key events across seasons. Sorted by date.</p>
+    <section id="list" class="timeline" aria-live="polite"></section>
+  </main>
+
+  <footer class="sp-footer" role="contentinfo">
+    <p><a href="../index.html">Back to Hub</a></p>
+  </footer>
+
+  <script>
+  (async function() {
+    const list = document.querySelector('#list');
+    let data = [];
+    try {
+      const res = await fetch('../Assets/data/timeline.json');
+      data = await res.json();
+    } catch (e) {
+      list.innerHTML = '<p>Failed to load timeline.</p>';
+      return;
+    }
+    data.sort((a,b) => (a.date||'').localeCompare(b.date||''));
+    if (!data || data.length === 0) { list.innerHTML = '<p>No events yet.</p>'; return; }
+    list.innerHTML = data.map(item => `
+      <article class="item">
+        <div class="dot" aria-hidden="true"></div>
+        <div class="date">${item.date || '—'} · ${item.episodeId ? `<a href="../Episodes/index.html?q=${encodeURIComponent(item.episodeId)}">${item.episodeId}</a>` : ''}</div>
+        <h3 class="title">${item.title}</h3>
+        <p class="desc">${item.description || ''}</p>
+      </article>
+    `).join('');
+  })();
+  </script>
+</body>
+</html>
