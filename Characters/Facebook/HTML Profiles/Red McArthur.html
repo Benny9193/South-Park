@@ -1,0 +1,668 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red McArthur - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --red-primary: #DC143C;
+            --red-secondary: #FF6347;
+            --red-accent: #B22222;
+            --red-cute: #FFB6C1;
+            --red-background: #FFF0F5;
+            --red-popular: #FF1493;
+            --red-stylish: #FF69B4;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--red-background) 0%, #FFDEDF 100%);
+            position: relative;
+        }
+
+        /* Stylish floating hearts */
+        body::before, body::after {
+            content: "💄";
+            position: fixed;
+            font-size: 16px;
+            animation: style-float 7s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.4;
+            color: var(--red-popular);
+        }
+
+        body::before {
+            left: 25%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            right: 20%;
+            top: 60%;
+            animation-delay: 3.5s;
+        }
+
+        @keyframes style-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+            50% { transform: translateY(-15px) rotate(15deg); opacity: 0.7; }
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--red-primary), var(--red-secondary));
+            border: 3px solid var(--red-stylish);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "💋 STYLE ICON ZONE 💋";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--red-popular);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--red-primary);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(220, 20, 60, 0.2);
+            border: 2px solid var(--red-secondary);
+            animation: style-shine 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes style-shine {
+            0% { box-shadow: 0 0 5px rgba(220, 20, 60, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(255, 20, 147, 0.6); }
+        }
+
+        .style-meter {
+            background: linear-gradient(90deg, #dc143c, #ff6347, #ff1493);
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: style-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes style-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .popularity-rank {
+            background: var(--red-stylish);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--red-secondary);
+            background: rgba(255, 240, 245, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--red-stylish), var(--red-primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.2;
+        }
+
+        .girl-squad-post {
+            background: linear-gradient(135deg, #ffe4e1, #ffb6c1);
+            border: 3px solid var(--red-popular);
+            animation: squad-energy 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes squad-energy {
+            0% { border-color: var(--red-popular); }
+            100% { border-color: var(--red-stylish); }
+        }
+
+        .cute-exclamation {
+            font-size: 18px;
+            color: var(--red-popular);
+            font-weight: bold;
+            animation: cute-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes cute-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .fashion-statement {
+            color: var(--red-accent);
+            font-weight: 600;
+            border-left: 4px solid var(--red-stylish);
+            padding-left: 10px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .fashion-statement::before {
+            content: "👗";
+            position: absolute;
+            left: -15px;
+            animation: outfit-spin 4s ease-in-out infinite;
+        }
+
+        @keyframes outfit-spin {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(20deg); }
+        }
+
+        .bebe-collaboration {
+            background: rgba(255, 182, 193, 0.2);
+            border: 2px dotted var(--red-secondary);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .bebe-mention {
+            background: #FF69B4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .social-hierarchy {
+            background: linear-gradient(90deg, #dc143c, #ff69b4);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #b22222;
+        }
+
+        .cute-confidence {
+            position: relative;
+            font-weight: bold;
+            color: var(--red-popular);
+            animation: confidence-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes confidence-glow {
+            0%, 100% { text-shadow: 0 0 5px rgba(255, 20, 147, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(255, 20, 147, 0.8); }
+        }
+
+        .trend-alert {
+            border: 3px solid var(--red-popular);
+            background: linear-gradient(135deg, #fff0f5, #ffdedf);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            animation: trend-urgency 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes trend-urgency {
+            0% { box-shadow: 0 0 10px rgba(255, 20, 147, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.6); }
+        }
+
+        .squad-goals {
+            background: var(--red-cute);
+            color: var(--red-accent);
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Mobile optimization */
+        @media screen and (max-width: 768px) {
+            body::before, body::after {
+                display: none; /* Hide floating elements on mobile */
+            }
+            
+            .style-meter {
+                font-size: 14px;
+                padding: 6px;
+            }
+            
+            .cute-exclamation {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--red-primary); color: white;">RM</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Red McArthur</h1>
+                <p class="character-tagline">"That's like, so totally cute! We should definitely do that! 💄✨"</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="style-meter">
+                    💋 CURRENT STYLE STATUS: ABSOLUTELY FLAWLESS AS ALWAYS! 💋
+                </div>
+
+                <div class="popularity-rank">
+                    👑 OFFICIAL POPULAR GIRLS SQUAD CO-LEADER WITH BEBE! 👑
+                </div>
+
+                <div class="post girl-squad-post">
+                    <div class="post-header">
+                        <strong>Red McArthur</strong>
+                        <span class="timestamp">32 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="cute-exclamation">OMG you guys! Shopping day with Bebe was AMAZING! 💕✨</div>
+                        <div class="fashion-statement">We found the cutest outfits for the school dance! I got this adorable red dress that totally matches my hair, and Bebe found this gorgeous pink number that makes her look like a movie star!</div>
+                        <div class="social-hierarchy">
+                            <strong>SHOPPING SUCCESS METRICS:</strong><br>
+                            • New outfits acquired: 7 (each!)<br>
+                            • Compliments from store staff: 23<br>
+                            • Other shoppers asking for style advice: 12<br>
+                            • Looks that will dominate the dance: GUARANTEED
+                        </div>
+                        <div class="bebe-collaboration">
+                            <div class="bebe-mention">Bebe</div> and I make such a perfect team! We have the same taste in literally everything - fashion, boys, music, and making sure we always look absolutely perfect! 💄👗
+                        </div>
+                        <div class="cute-confidence">Can't wait to see everyone's faces when we show up looking like total princesses! 👸✨</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (234)</span>
+                        <span class="action-button">💬 Comment (89)</span>
+                        <span class="action-button">✨ Share Style</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Red McArthur</strong>
+                        <span class="timestamp">2 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="bebe-mention">Bebe totally called it - the new lip gloss trend is taking over the entire school! 💋</div>
+                        I love how we can start a trend just by trying something new! By lunch period, half the girls were asking where we got our lip gloss. By the end of the day, it was basically the new standard for looking put-together.
+                        <div class="bebe-collaboration">
+                            That's what I love about being part of the popular crowd - we don't just follow trends, we CREATE them! And when me and Bebe team up, we can basically influence the entire social scene! 👑
+                        </div>
+                        <div class="fashion-statement">Fashion is like, so much more than just clothes. It's about expressing your personality and showing everyone that you care about how you present yourself! ✨</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (167)</span>
+                        <span class="action-button">💬 Comment (73)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post trend-alert">
+                    <div class="post-header">
+                        <strong>Red McArthur</strong>
+                        <span class="timestamp">4 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="cute-exclamation">🚨 TREND ALERT! 🚨 New hair accessories just dropped! 💄</div>
+                        <div class="cute-confidence">Just got the most adorable hair clips that perfectly match my natural red hair! They're like, so sparkly and cute, and they make any hairstyle look instantly more glamorous!</div>
+                        <div class="social-hierarchy">
+                            <strong>STYLE IMPACT PREDICTION:</strong><br>
+                            • Cuteness level: Off the charts<br>
+                            • Trend-setting potential: Maximum<br>
+                            • Other girls copying by tomorrow: Definitely<br>
+                            • My influence on school fashion: Undeniable
+                        </div>
+                        <div class="bebe-collaboration">
+                            <div class="bebe-mention">Bebe</div> already ordered the same ones in pink! We're going to coordinate our looks for the rest of the week and basically revolutionize how everyone thinks about hair accessories! 💕
+                        </div>
+                        <div class="squad-goals">#TrendSetters</div>
+                        <div class="squad-goals">#PopularSquad</div>
+                        <div class="squad-goals">#StyleGoals</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (298)</span>
+                        <span class="action-button">💬 Comment (145)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post girl-squad-post">
+                    <div class="post-header">
+                        <strong>Red McArthur</strong>
+                        <span class="timestamp">6 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="cute-exclamation">Girl squad movie night was absolutely perfect! 💕🎬</div>
+                        <div class="bebe-collaboration">
+                            Me and <div class="bebe-mention">Bebe</div> watched the most romantic movie ever and spent the whole time talking about our dream relationships and what we want in a boyfriend. It's so nice to have a best friend who totally gets your feelings about everything!
+                        </div>
+                        <div class="fashion-statement">We also did each other's nails in matching colors - mine are this gorgeous coral red and Bebe's are the perfect bubblegum pink! We look like we stepped out of a magazine! 💅</div>
+                        <div class="cute-confidence">Having a bestie who shares your exact taste in everything makes life so much more fun! We can coordinate outfits, share makeup tips, and always have someone who understands exactly what you mean! ✨</div>
+                        <div class="squad-goals">#BestieGoals</div>
+                        <div class="squad-goals">#GirlsNight</div>
+                        <div class="squad-goals">#PerfectFriendship</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (189)</span>
+                        <span class="action-button">💬 Comment (67)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Red McArthur</strong>
+                        <span class="timestamp">8 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Had the most adorable conversation with Clyde today! He's actually really sweet when he's not crying about everything. 😊
+                        <div class="fashion-statement">
+                            I think it's actually kind of cute how emotional he gets about things. Most boys our age try so hard to act tough and cool, but Clyde actually shows his feelings! That takes courage!
+                        </div>
+                        <div class="bebe-collaboration">
+                            <div class="bebe-mention">Bebe</div> thinks I should give him more of a chance. She says sensitive boys make the best boyfriends because they actually care about your feelings instead of just pretending everything is fine all the time.
+                        </div>
+                        <div class="cute-confidence">Maybe there's something to be said for a guy who isn't afraid to show his emotions... even if he shows them a LOT! 💙</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (156)</span>
+                        <span class="action-button">💬 Comment (89)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post girl-squad-post">
+                    <div class="post-header">
+                        <strong>Red McArthur</strong>
+                        <span class="timestamp">12 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="cute-exclamation">School photo day prep with my girl! 📸✨</div>
+                        <div class="bebe-collaboration">
+                            Spent an hour with <div class="bebe-mention">Bebe</div> planning our outfits for school pictures tomorrow! We want to look absolutely perfect because these photos are going to be in the yearbook FOREVER!
+                        </div>
+                        <div class="social-hierarchy">
+                            <strong>PHOTO DAY STRATEGY:</strong><br>
+                            • Outfit coordination: Complementary but not matching<br>
+                            • Hair styling: Professional-level perfection<br>
+                            • Makeup application: Age-appropriate but flawless<br>
+                            • Pose practice: Magazine-worthy confidence
+                        </div>
+                        <div class="fashion-statement">
+                            The key to a perfect school photo is looking natural but polished. You want to look like yourself, but like the absolute BEST version of yourself! That's what separates the popular girls from everyone else - we understand the art of effortless perfection! 💄
+                        </div>
+                        <div class="cute-confidence">Tomorrow's photos are going to be legendary! Years from now, people will look at our pictures and remember why we were the style icons of fourth grade! 👑</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (267)</span>
+                        <span class="action-button">💬 Comment (123)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Red McArthur</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        You know what I love most about being popular? It's not just about looking good or having everyone know your name. It's about using your influence to make other people feel good about themselves too! ✨
+                        <div class="bebe-collaboration">
+                            <div class="bebe-mention">Bebe</div> and I always try to compliment girls who are trying new looks or stepping out of their comfort zones. Just because we're at the top of the social ladder doesn't mean we have to step on other people to stay there!
+                        </div>
+                        <div class="fashion-statement">
+                            Real popularity comes from lifting other people up, not tearing them down. When you make someone else feel beautiful and confident, it doesn't take away from your own beauty - it actually makes you shine brighter! 💕
+                        </div>
+                        <div class="cute-confidence">
+                            Being a style icon means inspiring others to find their own style, not making them feel bad for being different. The best part about fashion and beauty is that there are so many ways to express yourself! 🌟
+                        </div>
+                        <div class="squad-goals">#PositiveVibes</div>
+                        <div class="squad-goals">#LiftEachOtherUp</div>
+                        <div class="squad-goals">#RealPopularity</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (345)</span>
+                        <span class="action-button">💬 Comment (178)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>About Red</h3>
+                    <div class="info-item">
+                        <strong>🏫 School:</strong> South Park Elementary
+                    </div>
+                    <div class="info-item">
+                        <strong>👑 Role:</strong> Popular Squad Co-Leader & Style Icon
+                    </div>
+                    <div class="info-item">
+                        <strong>💕 Best Friend:</strong> Bebe Stevens (fashion twin!)
+                    </div>
+                    <div class="info-item">
+                        <strong>✨ Specialty:</strong> Trend-setting and positive vibes
+                    </div>
+                    <div class="info-item">
+                        <strong>🌟 Status:</strong> Living her best stylish life
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Style Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">47</span>
+                        <span class="stat-label">Trends started this year</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">234</span>
+                        <span class="stat-label">Compliments received weekly</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Style advice requests</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Cuteness level achieved</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Style Updates</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">🛍️</span>
+                        <span class="activity-text">Epic shopping day with Bebe</span>
+                        <span class="activity-time">32 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💋</span>
+                        <span class="activity-text">Started new lip gloss trend</span>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">✨</span>
+                        <span class="activity-text">Hair accessory trend alert</span>
+                        <span class="activity-time">4 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">📸</span>
+                        <span class="activity-text">School photo day preparation</span>
+                        <span class="activity-time">12 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Popular Squad</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FF69B4; color: white;">BS</span>
+                        <span class="friend-name">Bebe Stevens</span>
+                        <span class="friend-status">👭 Best Friend & Style Twin</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #87CEEB; color: #4169E1;">CD</span>
+                        <span class="friend-name">Clyde Donovan</span>
+                        <span class="friend-status">💙 Sweet & Sensitive</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #e91e63; color: white;">WT</span>
+                        <span class="friend-name">Wendy Testaburger</span>
+                        <span class="friend-status">🤝 Fellow Leader</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #32CD32; color: #006400;">TB</span>
+                        <span class="friend-name">Token Black</span>
+                        <span class="friend-status">🎯 Voice of Reason</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Scripts -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize character interactions for Red
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof CharacterInteractions !== 'undefined') {
+                const interactions = new CharacterInteractions();
+                interactions.initializeProfile('red');
+            }
+            
+            // Add Red-specific style effects
+            const styleElements = document.querySelectorAll('.cute-exclamation, .girl-squad-post');
+            styleElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.animation = 'cute-bounce 0.8s ease-in-out infinite';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Dynamic style meter updates
+            const styleMeter = document.querySelector('.style-meter');
+            const styleStates = [
+                "💋 CURRENT STYLE STATUS: ABSOLUTELY FLAWLESS AS ALWAYS! 💋",
+                "✨ STYLE UPDATE: SETTING NEW TRENDS DAILY! ✨",
+                "👑 FASHION ALERT: LOOKING LIKE TOTAL ROYALTY TODAY! 👑",
+                "💄 CURRENT VIBE: EFFORTLESSLY PERFECT AND ADORABLE! 💄",
+                "🌟 STYLE LEVEL: INFLUENCER STATUS ACHIEVED! 🌟"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const randomState = styleStates[Math.floor(Math.random() * styleStates.length)];
+                    styleMeter.innerHTML = randomState;
+                }
+            }, 45000); // Update every 45 seconds
+            
+            // Confidence glow effects
+            const confidenceElements = document.querySelectorAll('.cute-confidence');
+            setInterval(() => {
+                confidenceElements.forEach(element => {
+                    if (Math.random() > 0.8) {
+                        element.style.animation = 'confidence-glow 2s ease-in-out';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                        }, 2000);
+                    }
+                });
+            }, 30000); // Glow every 30 seconds
+            
+            // Add floating style elements randomly on desktop
+            setInterval(() => {
+                if (Math.random() > 0.7 && window.innerWidth > 768) {
+                    const styleIcons = ['💄', '✨', '👑', '💋', '🌟'];
+                    const randomIcon = styleIcons[Math.floor(Math.random() * styleIcons.length)];
+                    
+                    const styleElement = document.createElement('div');
+                    styleElement.innerHTML = randomIcon;
+                    styleElement.style.position = 'fixed';
+                    styleElement.style.left = Math.random() * window.innerWidth + 'px';
+                    styleElement.style.top = Math.random() * window.innerHeight + 'px';
+                    styleElement.style.fontSize = '16px';
+                    styleElement.style.zIndex = '-1';
+                    styleElement.style.opacity = '0.5';
+                    styleElement.style.animation = 'style-float 4s ease-out forwards';
+                    styleElement.style.pointerEvents = 'none';
+                    document.body.appendChild(styleElement);
+                    
+                    setTimeout(() => {
+                        styleElement.remove();
+                    }, 4000);
+                }
+            }, 18000); // Add style element every 18 seconds
+            
+            // Squad energy pulses
+            const squadElements = document.querySelectorAll('.girl-squad-post');
+            setInterval(() => {
+                squadElements.forEach(element => {
+                    if (Math.random() > 0.85) {
+                        element.style.animation = 'squad-energy 1.5s ease-in-out';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                        }, 1500);
+                    }
+                });
+            }, 35000); // Squad energy every 35 seconds
+        });
+        
+        // Initialize enhanced features
+        if (typeof BreadcrumbNavigation !== 'undefined') {
+            new BreadcrumbNavigation();
+        }
+        if (typeof CharacterSwitcher !== 'undefined') {
+            new CharacterSwitcher();
+        }
+        if (typeof FABIntegration !== 'undefined') {
+            new FABIntegration();
+        }
+        if (typeof EmojiReactionsSystem !== 'undefined') {
+            new EmojiReactionsSystem();
+        }
+        if (typeof MobileEnhancements !== 'undefined') {
+            new MobileEnhancements();
+        }
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

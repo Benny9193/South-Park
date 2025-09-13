@@ -1,0 +1,723 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stan Marsh - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f0f2f5;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: #1877f2;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .fb-logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .nav-icon:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .profile-header {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .cover-photo {
+            height: 300px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #224fbf 45%, #c71e3a 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .profile-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            background-image: url('../StanMarsh.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 5px solid white;
+            position: absolute;
+            top: -75px;
+            left: 30px;
+            box-shadow: inset 0 0 0 3px #c71e3a;
+        }
+        
+        .profile-details {
+            margin-left: 200px;
+            padding-top: 20px;
+        }
+        
+        .profile-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 5px;
+        }
+        
+        .profile-subtitle {
+            color: #65676b;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #1877f2;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #e4e6ea;
+            color: #1c1e21;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .content-area {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .post-composer {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background-image: url('../StanMarsh.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: inset 0 0 0 2px #c71e3a;
+        }
+        
+        .post-info h4 {
+            color: #1c1e21;
+            margin-bottom: 2px;
+        }
+        
+        .post-time {
+            color: #65676b;
+            font-size: 13px;
+        }
+        
+        .post-content {
+            color: #1c1e21;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #e4e6ea;
+            padding-top: 10px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #65676b;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        
+        .post-action:hover {
+            background: #f0f2f5;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-section h3 {
+            color: #1c1e21;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: #65676b;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background: #42b883;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); background: #42b883; }
+            50% { transform: scale(1.3); background: #2fa06f; }
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 12px;
+            margin-left: 6px;
+            color: #fff;
+            letter-spacing: .5px;
+        }
+
+        .badge.skeptic {
+            background: linear-gradient(135deg,#224fbf,#1e3a8a);
+        }
+
+        .badge.disillusioned {
+            background: linear-gradient(135deg,#3d3d3d,#c71e3a);
+        }
+
+        .existential-reflection {
+            background: #eef2ff;
+            border-left: 4px solid #1e3a8a;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin: 12px 0;
+            color: #273046;
+            font-size: 14px;
+        }
+
+        .normalcy-break {
+            background: #fafafa;
+            border: 2px dashed #c71e3a;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin: 12px 0;
+            font-size: 14px;
+            color: #3a3a3a;
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .friend-card {
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f7f8fa;
+        }
+        
+        .friend-avatar {
+            width: 50px;
+            height: 50px;
+            background: #4267B2;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .friend-name {
+            font-size: 13px;
+            color: #1c1e21;
+        }
+
+        /* Facebook-like profile nav bar and tab styling */
+        .profile-nav-bar {
+            background: white;
+            border-top: 1px solid #e4e6eb;
+            border-bottom: 1px solid #e4e6eb;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .profile-tabs {
+            display: flex;
+            gap: 4px;
+        }
+        .profile-tab {
+            padding: 14px 16px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #65676b;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-radius: 4px 4px 0 0;
+        }
+        .profile-tab.active {
+            color: #1c1e21;
+            border-bottom-color: #1877f2;
+            font-weight: 600;
+        }
+        .profile-tab:hover {
+            background: #f0f2f5;
+        }
+        .profile-actions-bar {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .profile-actions-bar .action-btn {
+            background: #e4e6eb;
+            color: #050505;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .profile-actions-bar .action-btn.primary {
+            background: #1877f2;
+            color: #fff;
+        }
+        .profile-actions-bar .action-btn:hover {
+            background: #d8dadf;
+        }
+        .profile-actions-bar .action-btn.primary:hover {
+            background: #166fe0;
+        }
+        /* Uniform card borders */
+        .profile-header, .sidebar, .post, .post-composer {
+            border: 1px solid #e4e6eb;
+        }
+        .post-composer .composer-actions {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 8px;
+            border-top: 1px solid #e4e6eb;
+            margin-top: 12px;
+        }
+        .post-composer .composer-action {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 0;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #65676b;
+        }
+        .post-composer .composer-action:hover { background:#f0f2f5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../../../facebook.html" class="fb-logo">facebook</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Facebook">
+        </div>
+        <div class="nav-icons">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-icon">👥</div>
+            <div class="nav-icon">📺</div>
+            <div class="nav-icon">🏪</div>
+            <div class="nav-icon">🎮</div>
+            <div class="nav-icon">🔔</div>
+            <div class="nav-icon">💬</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                🏔️ South Park Elementary - Go Cows! (Wait, what's our mascot again?)
+            </div>
+            <div class="profile-info">
+                <div class="profile-pic"></div>
+                <div class="profile-details">
+                    <h1 class="profile-name">Stan Marsh <span class="status-indicator" title="Online - Playing Guitar Hero"></span><span class="badge skeptic" title="The normal one (somehow)">VOICE OF REASON</span></h1>
+                    <p class="profile-subtitle">4th Grade Student • Denver Broncos Fan • Kyle's Best Friend • Trying to Stay Normal</p>
+                </div>
+            </div>
+            <div class="profile-nav-bar">
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Posts</div>
+                    <div class="profile-tab">About</div>
+                    <div class="profile-tab">Friends</div>
+                    <div class="profile-tab">Photos</div>
+                    <div class="profile-tab">More ▾</div>
+                </div>
+                <div class="profile-actions-bar">
+                    <button class="action-btn primary">➕ Add Friend</button>
+                    <button class="action-btn">✉️ Message</button>
+                    <button class="action-btn">⭐ Follow</button>
+                    <button class="action-btn">⋯</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="sidebar">
+                <div class="info-section">
+                    <h3>About Stan</h3>
+                    <div class="info-item">
+                        <span>🏠</span>Lives in South Park, Colorado (Trying to stay normal)
+                    </div>
+                    <div class="info-item">
+                        <span>🏫</span>South Park Elementary - 4th Grade
+                    </div>
+                    <div class="info-item">
+                        <span>🏈</span>Denver Broncos Fan (Since forever!)
+                    </div>
+                    <div class="info-item">
+                        <span>👨‍👦</span>Son of Randy Marsh (Please don't ask)
+                    </div>
+                    <div class="info-item">
+                        <span>💔</span>Dating: Wendy (On and off... mostly off)
+                    </div>
+                    <div class="info-item">
+                        <span>🐕</span>Dog Owner: Sparky (Best dog ever)
+                    </div>
+                    <div class="info-item">
+                        <span>👥</span>Super Best Friend: Kyle Broflovski
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Friends (3)</h3>
+                    <div class="friends-grid">
+                        <div class="friend-card">
+                            <div class="friend-avatar" style="background:#0f766e; box-shadow: inset 0 0 0 2px #16a34a;">KB</div>
+                            <div class="friend-name">Kyle Broflovski</div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar" style="background:#f59e0b; box-shadow: inset 0 0 0 2px #b45309;">KM</div>
+                            <div class="friend-name">Kenny McCormick</div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar" style="background:#991b1b; box-shadow: inset 0 0 0 2px #fb923c;">EC</div>
+                            <div class="friend-name">Eric Cartman</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Stuff I Like</h3>
+                    <div class="info-item">🏈 Football (Playing and watching)</div>
+                    <div class="info-item">🎮 Video Games (Guitar Hero is awesome)</div>
+                    <div class="info-item">🎸 Playing Guitar (Still learning)</div>
+                    <div class="info-item">🐕 Hanging out with Sparky</div>
+                    <div class="info-item">🎬 Movies (Not the weird ones dad likes)</div>
+                </div>
+                <div class="info-section">
+                    <h3>What's Bugging Me</h3>
+                    <div class="info-item">🏫 Why do adults make everything weird?</div>
+                    <div class="info-item">😵 My dad Randy's latest embarrassing phase</div>
+                    <div class="info-item">💔 Wendy and I fighting again</div>
+                    <div class="info-item">🤪 South Park's crazy weekly disasters</div>
+                </div>
+                <div class="info-section">
+                    <h3>How I Deal</h3>
+                    <div class="info-item">🎮 Video games with Kenny and Kyle</div>
+                    <div class="info-item">🎸 Playing guitar (badly but loudly)</div>
+                    <div class="info-item">🏈 Throwing football with dad</div>
+                    <div class="info-item">🐕 Talking to Sparky (he gets it)</div>
+                </div>
+                <div class="info-section">
+                    <h3>Mood Today</h3>
+                    <div style="background:#f7f8fa; padding:10px 12px; border-radius:6px;">
+                        <div style="display:flex; gap:4px; margin-bottom:6px;">
+                            <div style="flex:1; height:10px; background:#1e3a8a; border-radius:3px;"></div>
+                            <div style="flex:1; height:10px; background:#224fbf; border-radius:3px;"></div>
+                            <div style="flex:1; height:10px; background:#c71e3a; border-radius:3px; opacity:.7;"></div>
+                            <div style="flex:1; height:10px; background:#c71e3a; border-radius:3px; opacity:.35;"></div>
+                        </div>
+                        <div style="font-size:12px; color:#65676b; display:flex; justify-content:space-between;">
+                            <span>Great</span><span>OK</span><span>Annoyed</span><span>Done</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="post-composer">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <div class="post-avatar" style="flex-shrink:0;"></div>
+                        <input type="text" style="flex:1; padding:12px 16px; border:1px solid #e4e6ea; border-radius:25px; background:#f0f2f5; font-size:14px;" placeholder="What's on your mind, Stan?" />
+                    </div>
+                    <div class="composer-actions">
+                        <div class="composer-action">🎥 Live Video</div>
+                        <div class="composer-action">📸 Photo/Video</div>
+                        <div class="composer-action">🙂 Feeling/Activity</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Stan Marsh</h4>
+                            <div class="post-time">2 hours ago • 😤 Dad Problems</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        My dad Randy just convinced the whole town that we need to start a new sport called "extreme leaf-raking." He's going to embarrass me at the school fundraiser, isn't he?
+
+                        <div class="existential-reflection">Why can't I just have a normal dad who doesn't try to make everything into the next big thing?</div>
+
+                        At least Kyle's dad just does lawyer stuff. My dad wants to be famous for RAKING LEAVES. I'm gonna hide during the demonstration.
+
+                        #DadProblems #Please-Stop #Normal-Families-Exist-Right
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👍 Like</div>
+                        <div class="post-action">💬 Comment</div>
+                        <div class="post-action">↗️ Share</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Stan Marsh</h4>
+                            <div class="post-time">Yesterday • 😔 Another Weird Day</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Kenny died again today. Cartman's already planning to sell "Kenny Memorial" t-shirts, Kyle's mad about Cartman being insensitive, and I'm just... tired.
+
+                        <div class="normalcy-break">Nobody else seems to think this is weird. Like, at all. How is this my life?</div>
+
+                        Kenny's probably gonna show up tomorrow like nothing happened. And we'll all just act normal. Because that's what we do here, I guess.
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👍 Like</div>
+                        <div class="post-action">💬 Comment</div>
+                        <div class="post-action">↗️ Share</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Stan Marsh</h4>
+                            <div class="post-time">3 days ago • 💔 Relationship Drama</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Wendy and I broke up again because I said her climate presentation was "really good" instead of "amazing." Apparently I don't care enough about the environment.
+
+                        <div class="existential-reflection">Girls are confusing. Like, I thought it WAS good. What more does she want?</div>
+
+                        Kyle says I should write her a note. Kenny says (I think) to buy her flowers. Cartman says to ignore her. I'm just gonna play Guitar Hero.
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👍 Like</div>
+                        <div class="post-action">💬 Comment</div>
+                        <div class="post-action">↗️ Share</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Stan Marsh</h4>
+                            <div class="post-time">Just now • 🤦‍♂️ Help Me Please</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        What should I do about my dad's latest crazy idea? He wants to start a South Park boy band with Mr. Mackey and Principal Victoria. I wish I was making this up.
+                        <div style="margin-top:12px; line-height:1.4;">
+                            <div>🫣 Hide until it's over</div>
+                            <div>🎸 Learn guitar so I can drown out the singing</div>
+                            <div>🏈 Focus extra hard on football season</div>
+                            <div>📱 Move in with Kyle's family</div>
+                        </div>
+                        <div class="existential-reflection" style="margin-top:14px;">Why can't my dad just have a midlife crisis with a sports car like normal dads?</div>
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👍 Like</div>
+                        <div class="post-action">💬 Comment</div>
+                        <div class="post-action">↗️ Share</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script>
+        // Initialize enhanced features for Stan's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Stan profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

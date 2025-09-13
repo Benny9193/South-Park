@@ -1,0 +1,288 @@
+/**
+ * South Park Facebook Profiles - Enhanced Visual Effects
+ * Advanced animations, particle effects, and interactive visual elements
+ */
+
+/* ===== ENHANCED ANIMATION VARIABLES ===== */
+:root {
+    /* Animation timing functions */
+    --elastic-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --smooth-bounce: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --dramatic-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --quick-snap: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    
+    /* Color variables for effects */
+    --glow-blue: #4285f4;
+    --glow-green: #34a853;
+    --glow-red: #ea4335;
+    --glow-yellow: #fbbc05;
+    --glow-purple: #9c27b0;
+    --glow-orange: #ff9800;
+    
+    /* Particle colors */
+    --particle-cartman: rgba(255, 68, 68, 0.6);
+    --particle-kyle: rgba(76, 175, 80, 0.6);
+    --particle-stan: rgba(33, 150, 243, 0.6);
+    --particle-kenny: rgba(255, 152, 0, 0.6);
+    --particle-butters: rgba(255, 235, 59, 0.6);
+}
+
+/* ===== ADVANCED CHARACTER ANIMATIONS ===== */
+
+/* CARTMAN - Enhanced scheming and business animations */
+@keyframes cartman-business-explosion {
+    0% { transform: scale(1) rotate(0deg); }
+    20% { transform: scale(1.1) rotate(-5deg); }
+    40% { transform: scale(1.05) rotate(5deg); }
+    60% { transform: scale(1.15) rotate(-3deg); }
+    80% { transform: scale(1.08) rotate(3deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes cartman-dollar-signs {
+    0% { 
+        content: "💰";
+        transform: translateY(0px) scale(0);
+        opacity: 0;
+    }
+    50% { 
+        transform: translateY(-20px) scale(1);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(-40px) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes cartman-evil-aura {
+    0%, 100% { 
+        box-shadow: 0 0 0px var(--particle-cartman);
+        filter: brightness(1);
+    }
+    50% { 
+        box-shadow: 0 0 30px var(--particle-cartman), 0 0 60px var(--particle-cartman);
+        filter: brightness(1.2);
+    }
+}
+
+.cartman-business-mode {
+    animation: cartman-business-explosion 2s var(--elastic-ease);
+    position: relative;
+}
+
+.cartman-business-mode::before {
+    content: "💰";
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    animation: cartman-dollar-signs 1.5s ease-out infinite;
+}
+
+.cartman-evil-mode {
+    animation: cartman-evil-aura 2s ease-in-out infinite;
+}
+
+/* KYLE - Enhanced moral crusade animations */
+@keyframes kyle-righteous-fire {
+    0% { 
+        background: linear-gradient(45deg, #4CAF50, #2E7D32);
+        transform: scale(1);
+    }
+    50% { 
+        background: linear-gradient(45deg, #66BB6A, #4CAF50, #FFD54F);
+        transform: scale(1.05);
+    }
+    100% { 
+        background: linear-gradient(45deg, #4CAF50, #2E7D32);
+        transform: scale(1);
+    }
+}
+
+.kyle-justice-mode {
+    animation: kyle-righteous-fire 2s ease-in-out infinite;
+}
+
+/* TWEEK - Enhanced anxiety and panic effects */
+@keyframes tweek-anxiety-attack {
+    0% { transform: translateX(0px) translateY(0px); }
+    10% { transform: translateX(-2px) translateY(-1px); }
+    20% { transform: translateX(2px) translateY(1px); }
+    30% { transform: translateX(-1px) translateY(-2px); }
+    40% { transform: translateX(1px) translateY(2px); }
+    50% { transform: translateX(-2px) translateY(1px); }
+    60% { transform: translateX(2px) translateY(-1px); }
+    70% { transform: translateX(-1px) translateY(2px); }
+    80% { transform: translateX(1px) translateY(-2px); }
+    90% { transform: translateX(-2px) translateY(-1px); }
+    100% { transform: translateX(0px) translateY(0px); }
+}
+
+.tweek-panic-mode {
+    animation: tweek-anxiety-attack 1s ease-in-out infinite;
+}
+
+/* ===== MICRO-INTERACTIONS AND HOVER EFFECTS ===== */
+
+/* Enhanced button interactions */
+.enhanced-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s var(--smooth-bounce);
+}
+
+.enhanced-button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s var(--elastic-ease);
+}
+
+.enhanced-button:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.enhanced-button:active {
+    transform: scale(0.95);
+}
+
+/* Magnetic hover effect */
+@keyframes magnetic-pull {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-5px); }
+}
+
+.magnetic-hover {
+    transition: all 0.3s var(--smooth-bounce);
+}
+
+.magnetic-hover:hover {
+    animation: magnetic-pull 0.3s var(--elastic-ease) forwards;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== DYNAMIC STATUS INDICATORS ===== */
+
+/* Animated status dots */
+@keyframes status-pulse {
+    0%, 100% { 
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+}
+
+@keyframes status-scheming {
+    0%, 100% { background-color: #F44336; }
+    50% { background-color: #FF5722; }
+}
+
+.status-indicator-enhanced {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: status-pulse 2s ease-in-out infinite;
+}
+
+.status-scheming-enhanced {
+    animation: status-pulse 1s ease-in-out infinite, status-scheming 2s ease-in-out infinite;
+}
+
+/* ===== PARTICLE SYSTEM ===== */
+
+/* Floating emoji particles */
+@keyframes float-emoji {
+    0% { 
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 1;
+    }
+    90% { 
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.particle-system {
+    position: relative;
+    overflow: hidden;
+}
+
+.emoji-particle {
+    position: absolute;
+    font-size: 16px;
+    animation: float-emoji 4s linear infinite;
+    pointer-events: none;
+}
+
+/* ===== THEME SYSTEM ===== */
+
+/* Dark mode theme */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --accent-color: #4285f4;
+}
+
+[data-theme="dark"] .character-card {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid #404040;
+}
+
+[data-theme="dark"] .character-card:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 25px rgba(66, 133, 244, 0.2);
+}
+
+/* ===== ACCESSIBILITY ===== */
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .tweek-panic-mode,
+    .cartman-evil-mode,
+    .kyle-justice-mode {
+        animation: none;
+    }
+    
+    .emoji-particle {
+        animation: none;
+        display: none;
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.enhance-on-hover {
+    transition: all 0.3s var(--smooth-bounce);
+}
+
+.enhance-on-hover:hover {
+    transform: translateY(-3px) scale(1.02);
+    filter: brightness(1.1);
+}
+
+.glow-effect {
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+.shake-effect {
+    animation: tweek-anxiety-attack 0.5s ease-in-out;
+}

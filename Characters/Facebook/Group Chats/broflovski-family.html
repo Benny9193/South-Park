@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broflovski Family Chat</title>
+    <link rel="stylesheet" href="../../../Assets/css/facebook-style.css">
+    <style>
+        .family-header {
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .family-emoji {
+            font-size: 2em;
+            margin: 10px;
+        }
+
+        .gerald-message {
+            border-left: 4px solid #8B4513;
+        }
+
+        .sheila-message {
+            border-left: 4px solid #FF1493;
+            animation: motherly-concern 2s ease-in-out;
+        }
+
+        .kyle-message {
+            border-left: 4px solid #228B22;
+        }
+
+        @keyframes motherly-concern {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+            100% { transform: translateX(0); }
+        }
+
+        .troll-hint {
+            opacity: 0.7;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .sheila-caps {
+            font-weight: bold;
+            color: #FF1493;
+            animation: outrage-pulse 1s ease-in-out;
+        }
+
+        @keyframes outrage-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 10px 0;
+            background: #f0f2f5;
+            border-radius: 18px;
+            max-width: 200px;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #42a5f5;
+            animation: typing 1.4s ease-in-out infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chat-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #1877f2;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            background: #166fe5;
+        }
+
+        .family-stats {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="facebook-container">
+        <div class="facebook-header">
+            <h1>👪 Broflovski Family Chat</h1>
+            <p>Where helicopter parenting meets teenage exasperation</p>
+        </div>
+
+        <div class="family-header">
+            <div>
+                <span class="family-emoji">👨‍💼</span>
+                <span class="family-emoji">👩‍🏫</span>
+                <span class="family-emoji">👦</span>
+            </div>
+            <h2>The Broflovski Family</h2>
+            <p>Gerald • Sheila • Kyle</p>
+        </div>
+
+        <div class="family-stats">
+            <strong>Family Dynamics:</strong> 1 Lawyer/Internet Troll, 1 Concerned Mother, 1 Exasperated Son
+            <br><strong>Current Drama Level:</strong> <span style="color: #FF6B35;">MODERATE TO HIGH</span>
+        </div>
+
+        <div class="chat-container" id="familyChat">
+            <!-- Messages will be dynamically loaded -->
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator" style="display: none;">
+            <span style="margin-right: 10px;">Someone is typing</span>
+            <div class="typing-dots">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+        </div>
+
+        <div class="chat-controls">
+            <button class="control-btn" onclick="simulateConversation()">Start Family Drama</button>
+            <button class="control-btn" onclick="showTyping()">Show Typing</button>
+        </div>
+    </div>
+
+    <script>
+        const familyMessages = [
+            {
+                sender: 'Sheila',
+                message: 'Kyle, bubbeleh! Are you eating enough vegetables at school? I packed extra carrots in your lunch.',
+                time: '2:15 PM',
+                class: 'sheila-message'
+            },
+            {
+                sender: 'Kyle',
+                message: 'Mom, I\'m fine. You don\'t need to text me during lunch.',
+                time: '2:16 PM',
+                class: 'kyle-message'
+            },
+            {
+                sender: 'Gerald',
+                message: 'Let the boy eat in peace, Sheila. When I was his age, we didn\'t have smartphones to bother us.',
+                time: '2:17 PM',
+                class: 'gerald-message'
+            },
+            {
+                sender: 'Sheila',
+                message: 'WHAT WHAT WHAT?! Gerald, our son needs proper nutrition! The internet says kids today don\'t eat enough fiber!',
+                time: '2:18 PM',
+                class: 'sheila-message'
+            },
+            {
+                sender: 'Gerald',
+                message: 'The internet says a lot of things, dear. Not all of it should be believed. *cough* skankhunt *cough*',
+                time: '2:19 PM',
+                class: 'gerald-message troll-hint'
+            },
+            {
+                sender: 'Kyle',
+                message: 'Dad, did you just cough "skankhunt"? That\'s weird.',
+                time: '2:20 PM',
+                class: 'kyle-message'
+            },
+            {
+                sender: 'Gerald',
+                message: 'Just clearing my throat, son. Allergies.',
+                time: '2:21 PM',
+                class: 'gerald-message'
+            },
+            {
+                sender: 'Sheila',
+                message: 'ANYWAY! Kyle, I\'ve scheduled a parent-teacher conference. Mrs. Choksondik says you\'ve been "questioning authority."',
+                time: '2:25 PM',
+                class: 'sheila-message'
+            },
+            {
+                sender: 'Kyle',
+                message: 'Mom, that\'s literally what you taught me to do.',
+                time: '2:26 PM',
+                class: 'kyle-message'
+            },
+            {
+                sender: 'Sheila',
+                message: 'Not at SCHOOL, Kyle! At school you listen and learn!',
+                time: '2:27 PM',
+                class: 'sheila-message'
+            },
+            {
+                sender: 'Gerald',
+                message: 'Actually, questioning authority is a fundamental right. First Amendment, Tinker v. Des Moines...',
+                time: '2:28 PM',
+                class: 'gerald-message'
+            },
+            {
+                sender: 'Sheila',
+                message: 'Gerald! Don\'t encourage him!',
+                time: '2:29 PM',
+                class: 'sheila-message'
+            },
+            {
+                sender: 'Kyle',
+                message: 'Can we just... be a normal family? Please?',
+                time: '2:30 PM',
+                class: 'kyle-message'
+            },
+            {
+                sender: 'Gerald',
+                message: 'Define "normal," Kyle. Everyone\'s got their secrets online... I mean, in life.',
+                time: '2:31 PM',
+                class: 'gerald-message troll-hint'
+            },
+            {
+                sender: 'Sheila',
+                message: 'We ARE normal! I just want what\'s best for my bubbeleh!',
+                time: '2:32 PM',
+                class: 'sheila-message'
+            }
+        ];
+
+        const moreFamilyScenarios = [
+            {
+                scenario: 'homework',
+                messages: [
+                    { sender: 'Sheila', message: 'Kyle! How was the math test?', class: 'sheila-message' },
+                    { sender: 'Kyle', message: 'Fine, Mom. I got a B+.', class: 'kyle-message' },
+                    { sender: 'Sheila', message: 'WHAT WHAT WHAT?! A B+?! What happened to the other 7%?!', class: 'sheila-message' },
+                    { sender: 'Gerald', message: 'Sheila, a B+ is good. Let\'s not create unnecessary anxiety.', class: 'gerald-message' },
+                    { sender: 'Kyle', message: 'Thank you, Dad.', class: 'kyle-message' },
+                    { sender: 'Sheila', message: 'I\'m calling your teacher! This is unacceptable!', class: 'sheila-message' }
+                ]
+            },
+            {
+                scenario: 'bedtime',
+                messages: [
+                    { sender: 'Sheila', message: 'Kyle, it\'s 9 PM! Time for bed!', class: 'sheila-message' },
+                    { sender: 'Kyle', message: 'Mom, I\'m 10 years old. Can\'t I stay up until 9:30?', class: 'kyle-message' },
+                    { sender: 'Gerald', message: 'When I was his age, I stayed up trolling... I mean, studying until midnight.', class: 'gerald-message troll-hint' },
+                    { sender: 'Sheila', message: 'Gerald! Don\'t undermine my parenting!', class: 'sheila-message' },
+                    { sender: 'Kyle', message: 'This family is weird.', class: 'kyle-message' }
+                ]
+            }
+        ];
+
+        let currentMessageIndex = 0;
+        let isTyping = false;
+
+        function addMessage(messageObj) {
+            const chatContainer = document.getElementById('familyChat');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${messageObj.class}`;
+            
+            let messageContent = messageObj.message;
+            if (messageContent.includes('WHAT WHAT WHAT')) {
+                messageContent = messageContent.replace(/WHAT WHAT WHAT/g, '<span class="sheila-caps">WHAT WHAT WHAT</span>');
+            }
+            
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <strong>${messageObj.sender}</strong>
+                    <span class="message-time">${messageObj.time || 'Now'}</span>
+                </div>
+                <div class="message-content">${messageContent}</div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function showTyping() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (!isTyping) {
+                typingIndicator.style.display = 'flex';
+                isTyping = true;
+                setTimeout(() => {
+                    typingIndicator.style.display = 'none';
+                    isTyping = false;
+                }, 3000);
+            }
+        }
+
+        function simulateConversation() {
+            if (currentMessageIndex < familyMessages.length) {
+                addMessage(familyMessages[currentMessageIndex]);
+                currentMessageIndex++;
+                setTimeout(simulateConversation, 2000);
+            } else {
+                // Start random scenarios
+                setTimeout(() => {
+                    const scenario = moreFamilyScenarios[Math.floor(Math.random() * moreFamilyScenarios.length)];
+                    scenario.messages.forEach((msg, index) => {
+                        setTimeout(() => addMessage(msg), index * 1500);
+                    });
+                }, 3000);
+            }
+        }
+
+        // Load initial message
+        window.addEventListener('load', () => {
+            addMessage({
+                sender: 'System',
+                message: '👨‍👩‍👦 Welcome to the Broflovski Family Chat! Prepare for helicopter parenting and mysterious internet references.',
+                class: 'system-message',
+                time: '2:00 PM'
+            });
+        });
+    </script>
+</body>
+</html>

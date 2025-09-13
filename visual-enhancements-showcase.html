@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Park Visual Enhancements Showcase</title>
+    <link rel="stylesheet" href="Assets/css/common.css">
+    <link rel="stylesheet" href="Assets/css/mobile-responsive.css">
+    <link rel="stylesheet" href="Assets/css/character-animations.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        .showcase-wrapper {
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .background-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float-particles 10s linear infinite;
+        }
+
+        @keyframes float-particles {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .showcase-header {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .showcase-title {
+            font-size: 48px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: none;
+            animation: title-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes title-glow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
+        }
+
+        .showcase-subtitle {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 30px;
+            animation: fade-in-up 1s ease-out 0.5s both;
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navigation-pills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            animation: fade-in-up 1s ease-out 0.8s both;
+        }
+
+        .nav-pill {
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+            border: 2px solid transparent;
+        }
+
+        .nav-pill:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(102,126,234,0.4);
+            text-decoration: none;
+            color: white;
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .nav-pill:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .enhancement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .enhancement-card {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            animation: card-entrance 0.6s ease-out both;
+        }
+
+        .enhancement-card:nth-child(1) { animation-delay: 0.1s; }
+        .enhancement-card:nth-child(2) { animation-delay: 0.2s; }
+        .enhancement-card:nth-child(3) { animation-delay: 0.3s; }
+        .enhancement-card:nth-child(4) { animation-delay: 0.4s; }
+        .enhancement-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes card-entrance {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .enhancement-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+        }
+
+        .enhancement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            transition: left 0.5s;
+        }
+
+        .enhancement-card:hover::before {
+            left: 100%;
+        }
+
+        .card-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: header-shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes header-shimmer {
+            0%, 100% { transform: rotate(45deg) translate(-50%, -50%); opacity: 0; }
+            50% { transform: rotate(45deg) translate(0%, 0%); opacity: 1; }
+        }
+
+        .card-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+            animation: icon-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes icon-bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-description {
+            opacity: 0.95;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .demo-area {
+            min-height: 300px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #e0e0e0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .demo-area:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .demo-content {
+            text-align: center;
+            z-index: 2;
+            position: relative;
+        }
+
+        .demo-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .demo-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .demo-btn:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.3);
+        }
+
+        .demo-btn:active {
+            transform: translateY(0);
+        }
+
+        .demo-btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Character Avatar Demo Area */
+        .avatar-demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .avatar-demo-item {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-demo-item:hover {
+            transform: scale(1.1);
+        }
+
+        .avatar-label {
+            margin-top: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        /* Reactions Demo Area */
+        .reactions-demo {
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            margin: 10px 0;
+        }
+
+        .demo-post {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .post-author {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .post-content {
+            color: #333;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        /* Gallery Demo */
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #ddd, #f0f0f0);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .gallery-item:hover::before {
+            left: 100%;
+        }
+
+        /* Timeline Preview */
+        .timeline-preview {
+            padding: 20px;
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-preview::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255,255,255,0.3);
+        }
+
+        .timeline-events-preview {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-event-preview {
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            animation: timeline-pulse 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-event-preview:hover {
+            transform: scale(1.2);
+        }
+
+        .timeline-event-preview:nth-child(1) { animation-delay: 0s; }
+        .timeline-event-preview:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-event-preview:nth-child(3) { animation-delay: 0.8s; }
+        .timeline-event-preview:nth-child(4) { animation-delay: 1.2s; }
+        .timeline-event-preview:nth-child(5) { animation-delay: 1.6s; }
+
+        @keyframes timeline-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+        }
+
+        /* Feature stats */
+        .feature-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-item:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* Footer */
+        .showcase-footer {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            padding: 12px 24px;
+            background: rgba(102,126,234,0.1);
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(102,126,234,0.2);
+        }
+
+        .footer-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .showcase-title {
+                font-size: 32px;
+            }
+            
+            .enhancement-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .navigation-pills {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .demo-controls {
+                flex-direction: column;
+            }
+            
+            .avatar-demo-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+                gap: 15px;
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #5a6fd8, #6a3d9a);
+        }
+    </style>
+</head>
+<body>
+    <div class="showcase-wrapper">
+        <!-- Animated background -->
+        <div class="background-particles">
+            <!-- Particles will be generated by JavaScript -->
+        </div>
+
+        <div class="showcase-header">
+            <h1 class="showcase-title">✨ Visual Enhancements Showcase ✨</h1>
+            <p class="showcase-subtitle">
+                Experience the next level of South Park Facebook with stunning animations, 
+                interactive avatars, custom reactions, media galleries, and timeline visualization!
+            </p>
+            
+            <div class="navigation-pills">
+                <a href="facebook.html" class="nav-pill">🏠 Main Page</a>
+                <a href="features-showcase.html" class="nav-pill">🚀 Core Features</a>
+                <a href="group-chat-demo.html" class="nav-pill">💬 Group Chats</a>
+                <a href="#" class="nav-pill" onclick="createTimelineModal()">🕐 Timeline</a>
+                <a href="#" class="nav-pill" onclick="exportVisualData()">💾 Export Demo</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="enhancement-grid">
+                
+                <!-- Character Animation System -->
+                <div class="enhancement-card">
+                    <div class="card-header">
+                        <span class="card-icon">🎭</span>
+                        <h2 class="card-title">Character Animation System</h2>
+                        <p class="card-description">
+                            Character-specific animations with personality-driven movements, 
+                            expressions, and interactive feedback systems.
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="demo-area">
+                            <div class="demo-content">
+                                <div id="animation-demo">
+                                    <h3>🎪 Animation Playground</h3>
+                                    <p>Click buttons below to see character-specific animations!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-controls">
+                            <button class="demo-btn" onclick="triggerCartmanScheme()">
+                                <span>💰 Cartman Schemes</span>
+                            </button>
+                            <button class="demo-btn" onclick="triggerKylePassionate()">
+                                <span>✊ Kyle Argues</span>
+                            </button>
+                            <button class="demo-btn" onclick="triggerTweekAnxiety()">
+                                <span>☕ Tweek Panics</span>
+                            </button>
+                            <button class="demo-btn" onclick="triggerRandyDramatic()">
+                                <span>🎯 Randy Drama</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">15+</span>
+                                <span class="stat-label">Unique Animations</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Character Styles</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">CSS Effects</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character Avatar System -->
+                <div class="enhancement-card">
+                    <div class="card-header">
+                        <span class="card-icon">😊</span>
+                        <h2 class="card-title">Dynamic Avatar System</h2>
+                        <p class="card-description">
+                            Interactive avatars with mood changes, dynamic expressions, 
+                            and context-aware emotional responses.
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="demo-area">
+                            <div id="avatar-demo-container" class="avatar-demo-grid">
+                                <!-- Avatars will be generated here -->
+                            </div>
+                        </div>
+                        
+                        <div class="demo-controls">
+                            <button class="demo-btn" onclick="changeAllExpressions('happy')">
+                                <span>😊 Happy Mode</span>
+                            </button>
+                            <button class="demo-btn" onclick="changeAllExpressions('angry')">
+                                <span>😠 Angry Mode</span>
+                            </button>
+                            <button class="demo-btn" onclick="changeAllExpressions('surprised')">
+                                <span>😲 Surprised</span>
+                            </button>
+                            <button class="demo-btn" onclick="randomizeAllAvatars()">
+                                <span>🎲 Randomize All</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">14</span>
+                                <span class="stat-label">Expressions</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Mood States</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">∞</span>
+                                <span class="stat-label">Combinations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- South Park Reactions -->
+                <div class="enhancement-card">
+                    <div class="card-header">
+                        <span class="card-icon">🎉</span>
+                        <h2 class="card-title">South Park Reactions</h2>
+                        <p class="card-description">
+                            Custom emoji reactions with South Park themes, character responses, 
+                            and authentic catchphrase integration.
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="demo-area">
+                            <div class="reactions-demo">
+                                <div class="demo-post">
+                                    <div class="post-author">
+                                        <div id="demo-post-avatar"></div>
+                                        <span>Eric Cartman</span>
+                                    </div>
+                                    <div class="post-content">
+                                        "ATTENTION FRIENDS! I am REVOLUTIONIZING the air industry with my latest venture: 
+                                        Cartman's Premium Air™! Only $5 per bottle! This is genuine South Park mountain air 
+                                        with 100% natural tegridy!"
+                                    </div>
+                                    <div id="demo-reactions-picker">
+                                        <!-- Reactions will be rendered here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="demo-controls">
+                            <button class="demo-btn" onclick="addDemoReaction('respect_authority')">
+                                <span>👮‍♂️ Respect Authority</span>
+                            </button>
+                            <button class="demo-btn" onclick="addDemoReaction('oh_my_god')">
+                                <span>😱 Oh My God!</span>
+                            </button>
+                            <button class="demo-btn" onclick="addDemoReaction('sweet')">
+                                <span>🍬 Sweet!</span>
+                            </button>
+                            <button class="demo-btn" onclick="showReactionStats()">
+                                <span>📊 View Stats</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">20+</span>
+                                <span class="stat-label">Custom Reactions</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">Rarity Levels</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">100%</span>
+                                <span class="stat-label">Authentic</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Media Gallery System -->
+                <div class="enhancement-card">
+                    <div class="card-header">
+                        <span class="card-icon">📸</span>
+                        <h2 class="card-title">Media Gallery System</h2>
+                        <p class="card-description">
+                            Rich photo and video galleries with album organization, 
+                            character memories, and interactive media viewing.
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="demo-area">
+                            <div class="gallery-preview">
+                                <div class="gallery-item" onclick="openGallery('cartman')">💰</div>
+                                <div class="gallery-item" onclick="openGallery('kyle')">📚</div>
+                                <div class="gallery-item" onclick="openGallery('stan')">🏈</div>
+                                <div class="gallery-item" onclick="openGallery('kenny')">💀</div>
+                                <div class="gallery-item" onclick="openGallery('randy')">🌿</div>
+                                <div class="gallery-item" onclick="openGallery('butters')">🌈</div>
+                            </div>
+                            <div style="text-align: center; padding: 20px; color: #666;">
+                                Click on character icons to view their galleries!
+                            </div>
+                        </div>
+
+                        <div class="demo-controls">
+                            <button class="demo-btn" onclick="openGallery('cartman')">
+                                <span>💼 Cartman's Empire</span>
+                            </button>
+                            <button class="demo-btn" onclick="openGallery('randy')">
+                                <span>🌿 Tegridy Farms</span>
+                            </button>
+                            <button class="demo-btn" onclick="openGallery('butters')">
+                                <span>😇 Butters' Joy</span>
+                            </button>
+                            <button class="demo-btn" onclick="demoMediaUpload()">
+                                <span>📤 Upload Demo</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">200+</span>
+                                <span class="stat-label">Media Items</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">8</span>
+                                <span class="stat-label">Album Types</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">Character Galleries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Visualization -->
+                <div class="enhancement-card">
+                    <div class="card-header">
+                        <span class="card-icon">🕐</span>
+                        <h2 class="card-title">Timeline Visualization</h2>
+                        <p class="card-description">
+                            Interactive timeline of South Park events with smooth animations, 
+                            character relationships, and episode connections.
+                        </p>
+                    </div>
+                    <div class="card-content">
+                        <div class="demo-area">
+                            <div class="timeline-preview">
+                                <div class="timeline-events-preview">
+                                    <div class="timeline-event-preview" title="Cartman Arrives">👑</div>
+                                    <div class="timeline-event-preview" title="Kyle vs Cartman">⚔️</div>
+                                    <div class="timeline-event-preview" title="Kenny Dies">💀</div>
+                                    <div class="timeline-event-preview" title="Randy's Tegridy">🌿</div>
+                                    <div class="timeline-event-preview" title="Present Day">🎭</div>
+                                </div>
+                            </div>
+                            <div style="text-align: center; padding: 20px; color: #666;">
+                                Interactive timeline with character events and relationships
+                            </div>
+                        </div>
+
+                        <div class="demo-controls">
+                            <button class="demo-btn" onclick="createTimelineModal()">
+                                <span>🎬 Full Timeline</span>
+                            </button>
+                            <button class="demo-btn" onclick="timelineCharacterView()">
+                                <span>👥 Character View</span>
+                            </button>
+                            <button class="demo-btn" onclick="timelineEpisodeView()">
+                                <span>📺 Episode View</span>
+                            </button>
+                            <button class="demo-btn" onclick="exportTimelineData()">
+                                <span>💾 Export Data</span>
+                            </button>
+                        </div>
+
+                        <div class="feature-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Timeline Events</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">View Modes</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">25+</span>
+                                <span class="stat-label">Years Covered</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Overall Enhancement Stats -->
+            <div style="margin-top: 60px; text-align: center;">
+                <h2 style="color: white; margin-bottom: 30px; font-size: 32px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+                    🎯 Total Enhancements Summary
+                </h2>
+                
+                <div class="enhancement-grid" style="max-width: 800px; margin: 0 auto;">
+                    <div class="stat-item" style="padding: 30px;">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Major Systems</span>
+                    </div>
+                    <div class="stat-item" style="padding: 30px;">
+                        <span class="stat-number">2000+</span>
+                        <span class="stat-label">Lines of Code</span>
+                    </div>
+                    <div class="stat-item" style="padding: 30px;">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Animations</span>
+                    </div>
+                    <div class="stat-item" style="padding: 30px;">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Authentic</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="showcase-footer">
+            <div class="footer-links">
+                <a href="facebook.html" class="footer-link">🏠 Home</a>
+                <a href="features-showcase.html" class="footer-link">🚀 Core Features</a>
+                <a href="group-chat-demo.html" class="footer-link">💬 Group Chats</a>
+                <a href="#" class="footer-link" onclick="window.print()">🖨️ Print</a>
+            </div>
+            <p style="color: #666; margin-top: 20px;">
+                🎭 <strong>South Park Visual Enhancements</strong> - Bringing characters to life with cutting-edge web technology!<br>
+                <small>All South Park characters © Matt Stone & Trey Parker</small>
+            </p>
+        </div>
+    </div>
+
+    <!-- Load all visual enhancement scripts -->
+    <script src="Assets/js/character-avatar-system.js"></script>
+    <script src="Assets/js/south-park-reactions.js"></script>
+    <script src="Assets/js/media-gallery-system.js"></script>
+    <script src="Assets/js/timeline-visualization.js"></script>
+    <script src="Assets/js/episode-database.js"></script>
+    <script src="Assets/js/notification-system.js"></script>
+    
+    <script>
+        // Initialize all systems when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎭 Visual Enhancements Showcase Loading...');
+            
+            // Generate background particles
+            generateBackgroundParticles();
+            
+            // Initialize avatar demo
+            initializeAvatarDemo();
+            
+            // Initialize reactions demo
+            initializeReactionsDemo();
+            
+            // Add entrance animations
+            animatePageEntrance();
+            
+            console.log('✨ All visual enhancements loaded successfully!');
+        });
+
+        // Background particles generation
+        function generateBackgroundParticles() {
+            const particlesContainer = document.querySelector('.background-particles');
+            const particleCount = 20;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 12) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Avatar demo initialization
+        function initializeAvatarDemo() {
+            const container = document.getElementById('avatar-demo-container');
+            const characters = ['cartman', 'kyle', 'stan', 'kenny', 'butters', 'randy'];
+            
+            container.innerHTML = characters.map(character => `
+                <div class="avatar-demo-item">
+                    ${window.avatarSystem.generateAvatar(character, 'medium')}
+                    <div class="avatar-label">${character.charAt(0).toUpperCase() + character.slice(1)}</div>
+                </div>
+            `).join('');
+        }
+
+        // Reactions demo initialization
+        function initializeReactionsDemo() {
+            // Generate demo post avatar
+            const demoPostAvatar = document.getElementById('demo-post-avatar');
+            demoPostAvatar.innerHTML = window.avatarSystem.generateAvatar('cartman', 'small');
+            
+            // Initialize reactions picker
+            const reactionsContainer = document.getElementById('demo-reactions-picker');
+            reactionsContainer.innerHTML = window.southParkReactions.renderReactionPicker('demo-post', 'cartman');
+        }
+
+        // Animation demo functions
+        function triggerCartmanScheme() {
+            const demoArea = document.getElementById('animation-demo');
+            demoArea.innerHTML = `
+                <div class="cartman-business" style="font-size: 24px; animation: cartman-money 1.5s ease-in-out 3; color: #FF4444;">
+                    💰 CARTMAN ENTERPRISES™ 💰<br>
+                    <small style="font-size: 16px;">Respect mah authoritah!</small>
+                </div>
+            `;
+        }
+
+        function triggerKylePassionate() {
+            const demoArea = document.getElementById('animation-demo');
+            demoArea.innerHTML = `
+                <div class="kyle-argument" style="font-size: 24px; animation: kyle-passionate 0.5s ease-in-out 5; color: #44AA44;">
+                    ✊ THAT'S NOT RIGHT! ✊<br>
+                    <small style="font-size: 16px;">I learned something today...</small>
+                </div>
+            `;
+        }
+
+        function triggerTweekAnxiety() {
+            const demoArea = document.getElementById('animation-demo');
+            demoArea.innerHTML = `
+                <div class="tweek-panic" style="font-size: 24px; animation: tweek-anxiety 2s ease-in-out 3; color: #FFAA00;">
+                    ☕ TOO MUCH PRESSURE! ☕<br>
+                    <small style="font-size: 16px;">AAAHHH!</small>
+                </div>
+            `;
+        }
+
+        function triggerRandyDramatic() {
+            const demoArea = document.getElementById('animation-demo');
+            demoArea.innerHTML = `
+                <div class="randy-excited" style="font-size: 24px; animation: randy-obsession 1s ease-in-out 4; color: #9C27B0;">
+                    🌿 TEGRIDY FARMS! 🌿<br>
+                    <small style="font-size: 16px;">This changes EVERYTHING!</small>
+                </div>
+            `;
+        }
+
+        // Avatar control functions
+        function changeAllExpressions(expression) {
+            const characters = ['cartman', 'kyle', 'stan', 'kenny', 'butters', 'randy'];
+            characters.forEach(character => {
+                window.avatarSystem.changeExpression(character, expression);
+            });
+            
+            // Refresh avatar display
+            setTimeout(initializeAvatarDemo, 500);
+        }
+
+        function randomizeAllAvatars() {
+            const expressions = ['happy', 'angry', 'surprised', 'sad', 'scheming', 'thoughtful'];
+            const characters = ['cartman', 'kyle', 'stan', 'kenny', 'butters', 'randy'];
+            
+            characters.forEach(character => {
+                const randomExpression = expressions[Math.floor(Math.random() * expressions.length)];
+                window.avatarSystem.changeExpression(character, randomExpression);
+            });
+            
+            setTimeout(initializeAvatarDemo, 500);
+        }
+
+        // Reaction demo functions
+        function addDemoReaction(reactionId) {
+            window.southParkReactions.addReaction('demo-post', reactionId);
+            
+            // Update the display
+            const reactionsContainer = document.getElementById('demo-reactions-picker');
+            reactionsContainer.innerHTML = window.southParkReactions.renderReactionPicker('demo-post', 'cartman');
+        }
+
+        // Timeline functions
+        function timelineCharacterView() {
+            alert('🎭 Character Timeline View\n\nThis would show character-focused timeline events with relationship connections and character development arcs!');
+        }
+
+        function timelineEpisodeView() {
+            alert('📺 Episode Timeline View\n\nThis would organize events by South Park episodes with episode references and thematic connections!');
+        }
+
+        function exportTimelineData() {
+            const timelineData = window.timeline.exportTimelineData();
+            const dataStr = JSON.stringify(timelineData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'south-park-timeline-data.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Media gallery functions
+        function demoMediaUpload() {
+            alert('📤 Media Upload Demo\n\nThis would allow users to upload photos and videos to character galleries with automatic tagging and album organization!');
+        }
+
+        // Export functions
+        function exportVisualData() {
+            const visualData = {
+                avatars: window.avatarSystem.exportAvatarData(),
+                reactions: window.southParkReactions.exportReactionData(),
+                galleries: window.mediaGallery.exportGalleryData(),
+                timeline: window.timeline.exportTimelineData(),
+                timestamp: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(visualData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'south-park-visual-enhancements-data.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            // Show success message
+            const exportMsg = document.createElement('div');
+            exportMsg.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(45deg, #4CAF50, #45a049);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                z-index: 10001;
+                font-weight: 600;
+                animation: slide-in-right 0.3s ease-out;
+            `;
+            exportMsg.textContent = '✅ Visual data exported successfully!';
+            document.body.appendChild(exportMsg);
+            
+            setTimeout(() => {
+                exportMsg.style.animation = 'slide-out-right 0.3s ease-in';
+                setTimeout(() => exportMsg.remove(), 300);
+            }, 3000);
+        }
+
+        // Page entrance animation
+        function animatePageEntrance() {
+            const cards = document.querySelectorAll('.enhancement-card');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        // Add CSS animations for export message
+        const exportAnimationStyles = document.createElement('style');
+        exportAnimationStyles.textContent = `
+            @keyframes slide-in-right {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slide-out-right {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(exportAnimationStyles);
+
+        // Make functions globally available
+        window.triggerCartmanScheme = triggerCartmanScheme;
+        window.triggerKylePassionate = triggerKylePassionate;
+        window.triggerTweekAnxiety = triggerTweekAnxiety;
+        window.triggerRandyDramatic = triggerRandyDramatic;
+        window.changeAllExpressions = changeAllExpressions;
+        window.randomizeAllAvatars = randomizeAllAvatars;
+        window.addDemoReaction = addDemoReaction;
+        window.timelineCharacterView = timelineCharacterView;
+        window.timelineEpisodeView = timelineEpisodeView;
+        window.exportTimelineData = exportTimelineData;
+        window.demoMediaUpload = demoMediaUpload;
+        window.exportVisualData = exportVisualData;
+    </script>
+</body>
+</html>

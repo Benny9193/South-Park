@@ -1,0 +1,577 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liane Cartman - Facebook Profile</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <style>
+        .liane-gradient {
+            background: linear-gradient(135deg, #FF69B4 0%, #FFB6C1 50%, #FFC0CB 100%);
+        }
+        
+        .liane-post {
+            border-left: 4px solid #FF69B4;
+            background: linear-gradient(to right, #FFF0F5, #FFFFFF);
+        }
+        
+        .enabling-meter {
+            background: linear-gradient(90deg, #90EE90 0%, #FFD700 50%, #FF6B6B 100%);
+            height: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            position: relative;
+            animation: enabling-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes enabling-pulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        .enabling-indicator {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: white;
+            border: 3px solid #FF69B4;
+            border-radius: 50%;
+            top: -3px;
+            right: 5%; /* Very high enabling level */
+            animation: enabling-wobble 3s ease-in-out infinite;
+        }
+        
+        @keyframes enabling-wobble {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-3px) scale(1.15); }
+        }
+        
+        .sweet-mom {
+            background: linear-gradient(45deg, #FFE4E1, #FFF0F5);
+            border: 2px solid #FFB6C1;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+            position: relative;
+            animation: maternal-glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes maternal-glow {
+            from { box-shadow: 0 2px 15px rgba(255, 105, 180, 0.3); }
+            to { box-shadow: 0 4px 25px rgba(255, 105, 180, 0.5); }
+        }
+        
+        .cartman-praise {
+            font-style: italic;
+            color: #FF1493;
+            background: linear-gradient(90deg, #FFEBEE, #FCE4EC);
+            padding: 10px;
+            border-radius: 10px;
+            border-left: 4px solid #FF69B4;
+            animation: proud-mom 2s ease-in-out;
+        }
+        
+        @keyframes proud-mom {
+            0% { transform: scale(0.98); opacity: 0.9; }
+            50% { transform: scale(1.02); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.95; }
+        }
+        
+        .spoiling-alert {
+            background: linear-gradient(90deg, #FFE4E1, #FFEBEE);
+            border: 2px dashed #FF69B4;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            position: relative;
+            animation: spoiling-notification 2s ease-in-out infinite;
+        }
+        
+        @keyframes spoiling-notification {
+            0%, 100% { border-color: #FF69B4; }
+            50% { border-color: #FF1493; }
+        }
+        
+        .spoiling-alert::before {
+            content: "💝";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 1.3em;
+            background: white;
+            border-radius: 50%;
+            padding: 3px;
+        }
+        
+        .sweet-innocence {
+            background: linear-gradient(45deg, #FFF8DC, #FFFACD);
+            color: #8B0000;
+            padding: 10px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px 0;
+            animation: innocent-sparkle 3s ease-in-out infinite;
+            border: 2px solid #FFB6C1;
+        }
+        
+        @keyframes innocent-sparkle {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.1) drop-shadow(0 0 10px rgba(255, 182, 193, 0.6)); }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            font-size: 1.2em;
+            animation: float-hearts 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes float-hearts {
+            0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            50% { transform: translateY(-15px) rotate(10deg); opacity: 1; }
+        }
+        
+        .denial-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFF0F5;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #FFB6C1;
+        }
+        
+        .denial-bar {
+            flex: 1;
+            height: 10px;
+            background: #E0E0E0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .denial-level {
+            height: 100%;
+            width: 95%;
+            background: linear-gradient(90deg, #FF69B4, #FF1493);
+            animation: denial-strength 2s ease-in-out infinite;
+        }
+        
+        @keyframes denial-strength {
+            0%, 100% { width: 95%; }
+            50% { width: 98%; }
+        }
+        
+        .eric-mention {
+            background: linear-gradient(90deg, #FFE4E1, #FFF0F5);
+            border: 3px solid #FF69B4;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            position: relative;
+            animation: loving-glow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes loving-glow {
+            from { box-shadow: 0 3px 15px rgba(255, 105, 180, 0.4); }
+            to { box-shadow: 0 6px 25px rgba(255, 105, 180, 0.6); }
+        }
+        
+        .eric-mention::before {
+            content: "👑";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+            border: 3px solid #FF69B4;
+        }
+        
+        .gift-counter {
+            background: linear-gradient(45deg, #FFB6C1, #FFC0CB);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin: 5px;
+            animation: gift-sparkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes gift-sparkle {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); filter: brightness(1.1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="facebook-container">
+        <div class="facebook-header">
+            <h1>Liane Cartman's Facebook Profile</h1>
+            <p>The sweetest, most loving mother in South Park</p>
+        </div>
+
+        <div class="profile-header liane-gradient">
+            <div class="cover-content">
+                <h2>💕 Liane Cartman 💕</h2>
+                <p>Devoted Mother • Professional Enabler • Eric's #1 Fan</p>
+                <div class="stats">
+                    <span>👦 Mother to Eric</span>
+                    <span>💝 Gift Giver Extraordinaire</span>
+                    <span>🍪 Snack Provider</span>
+                    <span>😇 Innocent Angel</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-nav">
+            <a href="#timeline" class="nav-active">Timeline</a>
+            <a href="#about">About</a>
+            <a href="#photos">Photos</a>
+            <a href="#friends">Friends</a>
+            <a href="#more">More</a>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-sidebar">
+                <div class="about-section">
+                    <h3>About Liane</h3>
+                    <div class="about-item">
+                        <strong>🏠 Lives in:</strong> South Park, Colorado
+                    </div>
+                    <div class="about-item">
+                        <strong>💼 Works as:</strong> Full-time devoted mother
+                    </div>
+                    <div class="about-item">
+                        <strong>👨‍👩‍👦 Family:</strong> Eric (my perfect angel)
+                    </div>
+                    <div class="about-item">
+                        <strong>🎯 Life Goal:</strong> Making Eric happy
+                    </div>
+                    <div class="about-item">
+                        <strong>💖 Relationship Status:</strong> Committed to Eric
+                    </div>
+                </div>
+
+                <div class="current-status">
+                    <h3>Current Status</h3>
+                    <div class="denial-status">
+                        <span>Eric Denial Level:</span>
+                        <div class="denial-bar">
+                            <div class="denial-level"></div>
+                        </div>
+                        <span>MAXIMUM</span>
+                    </div>
+                    
+                    <div class="enabling-meter">
+                        <div class="enabling-indicator"></div>
+                    </div>
+                    <small>Enabling Eric: Peak Performance</small>
+                </div>
+
+                <div class="friends-preview">
+                    <h3>Friends</h3>
+                    <div class="friends-grid">
+                        <div class="friend-card">Eric Cartman<br><small>My precious baby</small></div>
+                        <div class="friend-card">Other Moms<br><small>Fellow parents</small></div>
+                        <div class="friend-card">Delivery Drivers<br><small>Essential workers</small></div>
+                        <div class="friend-card">Toy Store Staff<br><small>Frequent contacts</small></div>
+                    </div>
+                </div>
+
+                <div class="gift-counter">
+                    🎁 Today's Gifts for Eric: 7
+                </div>
+                <div class="gift-counter">
+                    🍪 Snacks Prepared: 23
+                </div>
+                <div class="gift-counter">
+                    😇 Times Said "No" to Eric: 0
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="post liane-post">
+                    <div class="post-header">
+                        <div class="post-avatar liane-gradient">LC</div>
+                        <div class="post-info">
+                            <h4>Liane Cartman</h4>
+                            <span class="post-time">1 hour ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="cartman-praise">
+                            Oh my! Eric just had the most WONDERFUL idea for his latest business venture! 💡✨
+                        </div>
+                        
+                        <div class="eric-mention">
+                            <strong>Eric's Latest Genius Project:</strong>
+                            <br>He wants to sell premium air in fancy bottles! 
+                            <br>Such an entrepreneur! I'm so proud! 👑
+                            <br><br>I already ordered 500 empty bottles and a professional air pump!
+                        </div>
+                        
+                        <div class="sweet-innocence">
+                            My little businessman is going to change the world! 🌍💕
+                        </div>
+                        
+                        <div class="spoiling-alert">
+                            <strong>Support Update:</strong>
+                            <br>✅ Bought Eric a CEO desk chair
+                            <br>✅ Set up a "corporate headquarters" in his room
+                            <br>✅ Made business cards with gold foil
+                            <br>✅ Hired someone to be his "assistant" (it's me)
+                        </div>
+                    </div>
+                    <div class="post-stats">
+                        <span>💕 34 people love supportive moms</span>
+                        <span>😅 28 people are concerned</span>
+                        <span>💬 19 comments</span>
+                    </div>
+                </div>
+
+                <div class="post liane-post">
+                    <div class="post-header">
+                        <div class="post-avatar liane-gradient">LC</div>
+                        <div class="post-info">
+                            <h4>Liane Cartman</h4>
+                            <span class="post-time">3 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Just spent the morning baking Eric's favorite cookies! 🍪💕</p>
+                        
+                        <div class="sweet-mom">
+                            <strong>Today's Baking Achievement:</strong>
+                            <ul>
+                                <li>🍪 Chocolate chip cookies (3 dozen)</li>
+                                <li>🧁 Birthday cupcakes (even though it's not his birthday)</li>
+                                <li>🥧 Apple pie (Eric said he "might" want some later)</li>
+                                <li>🍰 Celebration cake (celebrating Tuesday!)</li>
+                            </ul>
+                        </div>
+                        
+                        <p class="cartman-praise">Eric said the cookies were "decent" and that means they're PERFECT! 😊</p>
+                        
+                        <p>Nothing makes a mother happier than seeing her son smile! Well, except maybe when he asks for seconds... or thirds... or fourths! 💖</p>
+                        
+                        <div class="floating-hearts" style="top: 30px; right: 60px;">💕</div>
+                        <div class="floating-hearts" style="top: 70px; right: 120px; animation-delay: 1s;">💖</div>
+                        <div class="floating-hearts" style="top: 50px; right: 180px; animation-delay: 2s;">💝</div>
+                    </div>
+                    <div class="post-stats">
+                        <span>🍪 56 baking enthusiasts</span>
+                        <span>😍 41 sweet tooth sufferers</span>
+                        <span>💬 22 comments</span>
+                    </div>
+                </div>
+
+                <div class="post liane-post">
+                    <div class="post-header">
+                        <div class="post-avatar liane-gradient">LC</div>
+                        <div class="post-info">
+                            <h4>Liane Cartman</h4>
+                            <span class="post-time">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Eric came home from school today and told me all about his day! 🏫✨</p>
+                        
+                        <div class="eric-mention">
+                            <strong>Eric's School Report:</strong>
+                            <br>"Mom, Kyle was being totally lame again, and I had to correct his stupid opinions."
+                            <br><br>Such a helpful young man! Always looking out for his classmates! 😇
+                        </div>
+                        
+                        <div class="spoiling-alert">
+                            <strong>Reward System Activated:</strong>
+                            <br>🎁 New video game for being "helpful"
+                            <br>🍕 His favorite pizza for dinner
+                            <br>🛍️ Shopping trip this weekend
+                            <br>💰 Extra allowance for "good behavior"
+                        </div>
+                        
+                        <p class="sweet-innocence">Eric is such a natural leader! I can tell all the other children look up to him! 👑</p>
+                        
+                        <p>Sometimes other parents give me strange looks, but I think they're just jealous that their children aren't as special as my Eric! 💕</p>
+                    </div>
+                    <div class="post-stats">
+                        <span>😬 43 concerned parents</span>
+                        <span>🤔 29 people confused</span>
+                        <span>💬 35 comments</span>
+                    </div>
+                </div>
+
+                <div class="post liane-post">
+                    <div class="post-header">
+                        <div class="post-avatar liane-gradient">LC</div>
+                        <div class="post-info">
+                            <h4>Liane Cartman</h4>
+                            <span class="post-time">2 days ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Parent-Teacher Conference update! 👩‍🏫📚</p>
+                        
+                        <div class="sweet-mom">
+                            <strong>What Eric's Teachers Said:</strong>
+                            <br>"Eric is... unique."
+                            <br>"He certainly has strong opinions."
+                            <br>"Eric never fails to surprise us."
+                            <br>"He's definitely memorable."
+                        </div>
+                        
+                        <p class="cartman-praise">Such wonderful compliments! They clearly recognize Eric's special talents! ✨</p>
+                        
+                        <div class="spoiling-alert">
+                            <strong>Celebration Plan:</strong>
+                            <br>🏆 Trophy for "Best Student Ever" (custom made)
+                            <br>🎉 Success party this weekend
+                            <br>🎁 New gaming setup
+                            <br>🍰 Victory cake with his face on it
+                        </div>
+                        
+                        <p>I knew Eric was gifted, but hearing it from his teachers just confirms what I've always known! My little angel is destined for greatness! 👼💕</p>
+                    </div>
+                    <div class="post-stats">
+                        <span>🤯 67 reality-check needed</span>
+                        <span>😇 23 fellow enablers</span>
+                        <span>💬 41 comments</span>
+                    </div>
+                </div>
+
+                <div class="post liane-post">
+                    <div class="post-header">
+                        <div class="post-avatar liane-gradient">LC</div>
+                        <div class="post-info">
+                            <h4>Liane Cartman</h4>
+                            <span class="post-time">3 days ago</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>Motivational Monday! 💪✨</p>
+                        
+                        <div class="sweet-innocence">
+                            "A mother's love knows no bounds, especially when her child is as perfect as Eric!" 💕
+                        </div>
+                        
+                        <div class="eric-mention">
+                            <strong>This Week's Eric Achievements:</strong>
+                            <br>🌟 Woke up (every day!)
+                            <br>🌟 Ate breakfast (with enthusiasm!)
+                            <br>🌟 Had opinions (very strong ones!)
+                            <br>🌟 Made me laugh (by just being himself!)
+                        </div>
+                        
+                        <p class="cartman-praise">Every day with Eric is a blessing! He brings so much joy and... uniqueness... to my life! 😊</p>
+                        
+                        <div class="spoiling-alert">
+                            Remember fellow parents: There's no such thing as loving your child TOO much! 💝
+                        </div>
+                        
+                        <div class="floating-hearts" style="top: 100px; right: 40px;">💕</div>
+                        <div class="floating-hearts" style="top: 140px; right: 90px; animation-delay: 1.5s;">💖</div>
+                        <div class="floating-hearts" style="top: 120px; right: 140px; animation-delay: 3s;">🥰</div>
+                    </div>
+                    <div class="post-stats">
+                        <span>💕 38 loving parents</span>
+                        <span>😮 52 people speechless</span>
+                        <span>💬 31 comments</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Scripts -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script>
+        // Liane-specific interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating hearts randomly
+            setInterval(() => {
+                if (Math.random() < 0.4) {
+                    const heart = document.createElement('div');
+                    heart.className = 'floating-hearts';
+                    heart.innerHTML = Math.random() < 0.5 ? '💕' : Math.random() < 0.5 ? '💖' : '💝';
+                    heart.style.position = 'fixed';
+                    heart.style.left = Math.random() * window.innerWidth + 'px';
+                    heart.style.top = '100%';
+                    heart.style.zIndex = '1000';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.animation = 'float-up-hearts 5s ease-out forwards';
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 5000);
+                }
+            }, 6000);
+            
+            // Add enabling moments
+            const posts = document.querySelectorAll('.post');
+            posts.forEach(post => {
+                post.addEventListener('click', () => {
+                    const ericMention = post.querySelector('.eric-mention');
+                    if (ericMention) {
+                        ericMention.style.animation = 'loving-glow 1s ease-in-out';
+                        setTimeout(() => {
+                            ericMention.style.animation = 'loving-glow 3s ease-in-out infinite alternate';
+                        }, 1000);
+                    }
+                });
+            });
+            
+            // Update gift counter randomly
+            setInterval(() => {
+                const giftCounters = document.querySelectorAll('.gift-counter');
+                giftCounters.forEach(counter => {
+                    if (counter.innerHTML.includes("Today's Gifts")) {
+                        const currentNum = parseInt(counter.innerHTML.match(/\\d+/)[0]);
+                        const newNum = currentNum + Math.floor(Math.random() * 3);
+                        counter.innerHTML = `🎁 Today's Gifts for Eric: ${newNum}`;
+                    }
+                });
+            }, 30000);
+        });
+        
+        // Initialize enhanced features
+        if (typeof BreadcrumbNavigation !== 'undefined') {
+            new BreadcrumbNavigation();
+        }
+        if (typeof CharacterSwitcher !== 'undefined') {
+            new CharacterSwitcher();
+        }
+        if (typeof FABIntegration !== 'undefined') {
+            new FABIntegration();
+        }
+        if (typeof EmojiReactionsSystem !== 'undefined') {
+            new EmojiReactionsSystem();
+        }
+        if (typeof MobileEnhancements !== 'undefined') {
+            new MobileEnhancements();
+        }
+        
+        // Add floating hearts animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float-up-hearts {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(-100vh) rotate(180deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

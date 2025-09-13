@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerald Broflovski - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --gerald-primary: #2C3E50;
+            --gerald-secondary: #34495E;
+            --gerald-accent: #3498DB;
+            --gerald-professional: #1ABC9C;
+            --gerald-background: #ECF0F1;
+            --gerald-troll: #E74C3C;
+            --gerald-secret: #8E44AD;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--gerald-background) 0%, #D5DBDB 100%);
+            position: relative;
+        }
+
+        /* Subtle dual personality hints */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 80% 20%, rgba(231, 76, 60, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(52, 73, 94, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--gerald-primary), var(--gerald-secondary));
+            border: 3px solid var(--gerald-professional);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "⚖️ PROFESSIONAL ZONE ⚖️";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--gerald-professional);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--gerald-primary);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(44, 62, 80, 0.1);
+            border: 2px solid var(--gerald-secondary);
+            animation: professional-confidence 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes professional-confidence {
+            0% { box-shadow: 0 0 5px rgba(44, 62, 80, 0.2); }
+            100% { box-shadow: 0 0 15px rgba(44, 62, 80, 0.4); }
+        }
+
+        .professional-status {
+            background: linear-gradient(90deg, #2c3e50, #1abc9c);
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: status-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes status-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+
+        .law-firm-badge {
+            background: var(--gerald-professional);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--gerald-secondary);
+            background: rgba(236, 240, 241, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--gerald-professional), var(--gerald-primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.2;
+        }
+
+        .professional-post {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 3px solid var(--gerald-professional);
+            animation: professional-highlight 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes professional-highlight {
+            0% { border-color: var(--gerald-professional); }
+            100% { border-color: var(--gerald-accent); }
+        }
+
+        .subtle-hint {
+            font-size: 16px;
+            color: var(--gerald-secret);
+            font-style: italic;
+            opacity: 0.7;
+            animation: hint-flash 4s ease-in-out infinite;
+        }
+
+        @keyframes hint-flash {
+            0%, 90%, 100% { opacity: 0.7; }
+            95% { opacity: 1; color: var(--gerald-troll); }
+        }
+
+        .legal-wisdom {
+            color: var(--gerald-primary);
+            font-weight: 600;
+            border-left: 4px solid var(--gerald-professional);
+            padding-left: 10px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .legal-wisdom::before {
+            content: "⚖️";
+            position: absolute;
+            left: -15px;
+            animation: justice-scale 3s ease-in-out infinite;
+        }
+
+        @keyframes justice-scale {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .family-mention {
+            background: rgba(26, 188, 156, 0.2);
+            border: 2px dotted var(--gerald-professional);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .kyle-reference {
+            background: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .professional-achievement {
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #1abc9c;
+        }
+
+        .double-life-hint {
+            position: relative;
+            font-size: 12px;
+            color: var(--gerald-secret);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .double-life-hint:hover {
+            opacity: 1;
+            color: var(--gerald-troll);
+            cursor: default;
+        }
+
+        .anonymous-whisper {
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            font-size: 10px;
+            color: var(--gerald-troll);
+            opacity: 0.3;
+            font-style: italic;
+            pointer-events: none;
+        }
+
+        /* Subtle troll mode indicators that appear rarely */
+        .troll-mode-hint {
+            animation: troll-emergence 10s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes troll-emergence {
+            0%, 95%, 100% { 
+                background: rgba(236, 240, 241, 0.9);
+                border-color: var(--gerald-secondary);
+            }
+            97.5% { 
+                background: rgba(231, 76, 60, 0.1);
+                border-color: var(--gerald-troll);
+            }
+        }
+
+        /* Mobile optimization */
+        @media screen and (max-width: 768px) {
+            .professional-status {
+                font-size: 14px;
+                padding: 6px;
+            }
+            
+            .double-life-hint {
+                position: static;
+                display: block;
+                margin-top: 5px;
+            }
+            
+            .anonymous-whisper {
+                position: static;
+                display: block;
+                text-align: right;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--gerald-primary); color: white;">GB</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Gerald Broflovski</h1>
+                <p class="character-tagline">"Justice is my profession... integrity is my passion."</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="professional-status">
+                    ⚖️ CURRENT STATUS: FIGHTING FOR JUSTICE (PROFESSIONALLY SPEAKING) ⚖️
+                </div>
+
+                <div class="law-firm-badge">
+                    🏛️ PARTNER AT BROFLOVSKI & ASSOCIATES - SERVING SOUTH PARK FOR 15+ YEARS 🏛️
+                </div>
+
+                <div class="post professional-post">
+                    <div class="post-header">
+                        <strong>Gerald Broflovski</strong>
+                        <span class="timestamp">1 hour ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="legal-wisdom">Just closed another successful case defending local business owners against frivolous lawsuits. 📋⚖️</div>
+                        <div class="family-mention">
+                            It's important to me that my son Kyle sees the value of standing up for what's right and protecting those who can't protect themselves. The law isn't just about winning cases—it's about building a better community for our families.
+                        </div>
+                        <div class="professional-achievement">
+                            <strong>CASE RESULT:</strong><br>
+                            • Client vindicated: 100% success rate maintained<br>
+                            • Community impact: Small business protected<br>
+                            • Legal precedent: Strengthened local commerce law<br>
+                            • Professional satisfaction: Immeasurable
+                        </div>
+                        <div class="double-life-hint">Sometimes the real victory is knowing you made a difference... in the right way. 😏</div>
+                        <div class="anonymous-whisper">*skankhunt42 has entered the chat*</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (127)</span>
+                        <span class="action-button">💬 Comment (43)</span>
+                        <span class="action-button">⚖️ Share Justice</span>
+                    </div>
+                </div>
+
+                <div class="post troll-mode-hint">
+                    <div class="post-header">
+                        <strong>Gerald Broflovski</strong>
+                        <span class="timestamp">3 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="kyle-reference">Kyle made honor roll again! So proud of my brilliant son! 📚✨</div>
+                        Had dinner with the family tonight and Kyle was telling us about his latest school project on internet ethics and digital citizenship. Smart kid - he really understands how important it is to be responsible online.
+                        <div class="family-mention">
+                            Sheila and I are raising him to understand that your actions have consequences, whether online or offline. Character matters, and we want him to be someone who builds others up rather than tears them down.
+                        </div>
+                        <div class="subtle-hint">It's fascinating how different people can be when they think nobody's watching... 🤔</div>
+                        <div class="double-life-hint">Good thing our Kyle has such strong moral guidance at home.</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (89)</span>
+                        <span class="action-button">💬 Comment (31)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Gerald Broflovski</strong>
+                        <span class="timestamp">6 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Successfully mediated a complex contract dispute today. Both parties walked away satisfied, which is exactly what good legal work should accomplish.
+                        <div class="professional-achievement">
+                            The key to effective negotiation is understanding what motivates each side and finding common ground. Sometimes you have to be creative in how you... shall we say... present your arguments. 😈
+                        </div>
+                        <div class="legal-wisdom">Twenty years in law has taught me that there's always more than one way to get the result you want. The trick is knowing which approach works best for each situation.</div>
+                        <div class="double-life-hint">People are so predictable once you figure out what buttons to push... I mean, what solutions they need! 😊</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (156)</span>
+                        <span class="action-button">💬 Comment (67)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post professional-post troll-mode-hint">
+                    <div class="post-header">
+                        <strong>Gerald Broflovski</strong>
+                        <span class="timestamp">8 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="legal-wisdom">Reminder: Internet safety is crucial for our families and community! 💻🔒</div>
+                        <div class="family-mention">
+                            With kids spending so much time online, it's important that we teach them about digital citizenship, cyberbullying prevention, and the importance of treating others with respect in virtual spaces.
+                        </div>
+                        <div class="professional-achievement">
+                            <strong>PARENTAL GUIDANCE TIPS:</strong><br>
+                            • Monitor your children's online activity<br>
+                            • Teach them about anonymous trolls and how to avoid them<br>
+                            • Emphasize that real people are behind every username<br>
+                            • Remember: actions have consequences, even online
+                        </div>
+                        <div class="subtle-hint">It's amazing how cruel people can be when they think they're anonymous... 😈</div>
+                        <div class="double-life-hint">Good thing none of us would ever engage in that kind of behavior! Right? 😏</div>
+                        <div class="anonymous-whisper">*trolling intensifies*</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (234)</span>
+                        <span class="action-button">💬 Comment (89)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Gerald Broflovski</strong>
+                        <span class="timestamp">12 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Spending quality time with Sheila and Kyle this weekend. Family barbecue, board games, and just enjoying each other's company without the distractions of work.
+                        <div class="kyle-reference">Kyle beat me at Scrabble AGAIN. Kid's vocabulary is incredible! Wonder where he gets it from... 📚</div>
+                        <div class="family-mention">
+                            Sometimes I think about how lucky we are to live in this digital age where we can connect with people all over the world. The internet has given us so many opportunities to... expand our horizons... and explore different sides of ourselves.
+                        </div>
+                        <div class="double-life-hint">There's something liberating about being able to express yourself freely without the constraints of your daily persona, don't you think? 🤫</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (178)</span>
+                        <span class="action-button">💬 Comment (52)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post professional-post">
+                    <div class="post-header">
+                        <strong>Gerald Broflovski</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="legal-wisdom">Professional development never stops! Attended a seminar on digital law and online privacy rights today. 💼</div>
+                        <div class="professional-achievement">
+                            The legal implications of internet behavior are fascinating. People often don't realize how their online actions can have real-world consequences. Anonymity creates a false sense of security that can lead to... interesting situations.
+                        </div>
+                        <div class="family-mention">
+                            As both a lawyer and a father, I believe it's crucial to understand these platforms so we can better protect our families and communities from the darker sides of digital interaction.
+                        </div>
+                        <div class="subtle-hint">Knowledge is power, and understanding the system means you can... work within it... more effectively. 😏</div>
+                        <div class="double-life-hint">After all, you never know when you might need to defend someone against online harassment charges... 😈</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (267)</span>
+                        <span class="action-button">💬 Comment (91)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>About Gerald</h3>
+                    <div class="info-item">
+                        <strong>⚖️ Profession:</strong> Partner, Broflovski & Associates
+                    </div>
+                    <div class="info-item">
+                        <strong>🎓 Education:</strong> JD, University of Colorado Law
+                    </div>
+                    <div class="info-item">
+                        <strong>👨‍👩‍👦 Family:</strong> Married to Sheila, father to Kyle
+                    </div>
+                    <div class="info-item">
+                        <strong>🏠 Location:</strong> South Park, Colorado
+                    </div>
+                    <div class="info-item">
+                        <strong>💼 Status:</strong> Respected community member
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Professional Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">247</span>
+                        <span class="stat-label">Cases won</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years serving South Park</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Client satisfaction rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Commitment to justice*</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Professional Activity</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">⚖️</span>
+                        <span class="activity-text">Won complex contract dispute</span>
+                        <span class="activity-time">1 hour ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">👨‍👦</span>
+                        <span class="activity-text">Kyle made honor roll celebration</span>
+                        <span class="activity-time">3 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💻</span>
+                        <span class="activity-text">Digital law seminar attendance</span>
+                        <span class="activity-time">Earlier today</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🔒</span>
+                        <span class="activity-text">Internet safety awareness post</span>
+                        <span class="activity-time">8 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Professional Network</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FF69B4; color: white;">SB</span>
+                        <span class="friend-name">Sheila Broflovski</span>
+                        <span class="friend-status">💕 Beloved Wife</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #4CAF50; color: white;">KB</span>
+                        <span class="friend-name">Kyle Broflovski</span>
+                        <span class="friend-status">👨‍👦 Brilliant Son</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #9C27B0; color: white;">RM</span>
+                        <span class="friend-name">Randy Marsh</span>
+                        <span class="friend-status">🤝 Fellow Parent</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #607D8B; color: white;">??</span>
+                        <span class="friend-name">Anonymous User</span>
+                        <span class="friend-status">👻 *connection hidden*</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Gerald's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Gerald profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+
+            // Legacy Gerald interactions
+            if (typeof CharacterInteractions !== 'undefined') {
+                const interactions = new CharacterInteractions();
+                interactions.initializeProfile('gerald');
+            }
+            
+            // Add Gerald-specific dual personality effects
+            const trollHints = document.querySelectorAll('.troll-mode-hint');
+            const hintElements = document.querySelectorAll('.double-life-hint, .subtle-hint');
+            
+            // Rare troll mode activation
+            setInterval(() => {
+                if (Math.random() > 0.95) { // 5% chance every interval
+                    trollHints.forEach(element => {
+                        element.style.background = 'rgba(231, 76, 60, 0.1)';
+                        element.style.borderColor = 'var(--gerald-troll)';
+                        setTimeout(() => {
+                            element.style.background = '';
+                            element.style.borderColor = '';
+                        }, 1000);
+                    });
+                }
+            }, 30000); // Check every 30 seconds
+            
+            // Hint hover effects
+            hintElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.color = 'var(--gerald-troll)';
+                    this.style.opacity = '1';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.color = '';
+                    this.style.opacity = '';
+                });
+            });
+            
+            // Professional status updates
+            const professionalStatus = document.querySelector('.professional-status');
+            const statusOptions = [
+                "⚖️ CURRENT STATUS: FIGHTING FOR JUSTICE (PROFESSIONALLY SPEAKING) ⚖️",
+                "💼 STATUS UPDATE: SERVING THE COMMUNITY WITH INTEGRITY 💼",
+                "🏛️ PROFESSIONAL MODE: UPHOLDING THE LAW (PUBLICLY) 🏛️",
+                "⚖️ CURRENT ACTIVITY: BEING A PILLAR OF THE COMMUNITY ⚖️",
+                "💼 STATUS: DEFINITELY NOT DOING ANYTHING QUESTIONABLE 💼"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.8) {
+                    const randomStatus = statusOptions[Math.floor(Math.random() * statusOptions.length)];
+                    professionalStatus.innerHTML = randomStatus;
+                }
+            }, 60000); // Update every minute
+            
+            // Secret anonymous whispers that appear occasionally
+            const anonymousWhispers = document.querySelectorAll('.anonymous-whisper');
+            setInterval(() => {
+                if (Math.random() > 0.9) {
+                    anonymousWhispers.forEach(whisper => {
+                        whisper.style.opacity = '0.8';
+                        whisper.style.color = 'var(--gerald-troll)';
+                        setTimeout(() => {
+                            whisper.style.opacity = '0.3';
+                            whisper.style.color = 'var(--gerald-secret)';
+                        }, 2000);
+                    });
+                }
+            }, 45000); // Activate every 45 seconds
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

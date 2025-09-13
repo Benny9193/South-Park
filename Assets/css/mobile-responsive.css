@@ -1,0 +1,508 @@
+/* South Park Facebook Profiles - Mobile-First Responsive Design */
+
+/* Base Mobile Styles (320px and up) */
+@media screen and (max-width: 768px) {
+    
+    /* Header adjustments */
+    .header {
+        padding: 8px 12px;
+        flex-wrap: wrap;
+    }
+    
+    .fb-logo {
+        font-size: 24px;
+    }
+    
+    .search-bar {
+        order: 3;
+        flex: 1 1 100%;
+        margin: 8px 0 0 0;
+        max-width: none;
+    }
+    
+    .search-bar input {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px 16px;
+    }
+    
+    .nav-icons {
+        gap: 8px;
+    }
+    
+    .nav-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    /* Container adjustments */
+    .container {
+        margin: 10px 0;
+        padding: 0 10px;
+    }
+    
+    /* Welcome banner mobile */
+    .welcome-banner {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    .welcome-banner h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .welcome-banner p {
+        font-size: 16px;
+    }
+    
+    /* Profile header mobile */
+    .profile-header {
+        margin-bottom: 15px;
+    }
+    
+    .cover-photo {
+        height: 200px;
+        font-size: 16px;
+        padding: 15px;
+        text-align: center;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 48px;
+    }
+    
+    .profile-details {
+        margin-left: 0;
+        padding-top: 70px;
+        text-align: center;
+    }
+    
+    .profile-name {
+        font-size: 24px;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .profile-subtitle {
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    /* Profile navigation mobile */
+    .profile-nav-bar {
+        padding: 0 12px;
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .profile-tabs {
+        justify-content: space-between;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .profile-tab {
+        padding: 12px 8px;
+        font-size: 13px;
+        white-space: nowrap;
+        min-width: 60px;
+        text-align: center;
+    }
+    
+    .profile-actions-bar {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .action-btn {
+        padding: 10px 12px;
+        font-size: 13px;
+        min-width: 80px;
+    }
+    
+    /* Content area mobile */
+    .content-area {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Sidebar mobile */
+    .sidebar {
+        order: 2;
+        padding: 15px;
+    }
+    
+    .main-content {
+        order: 1;
+        gap: 15px;
+    }
+    
+    /* Posts mobile */
+    .post, .post-composer {
+        padding: 15px;
+        margin-bottom: 0;
+    }
+    
+    .post-header {
+        margin-bottom: 12px;
+    }
+    
+    .post-avatar {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+    
+    .post-info h4 {
+        font-size: 15px;
+    }
+    
+    .post-time {
+        font-size: 12px;
+    }
+    
+    .post-content {
+        font-size: 15px;
+        line-height: 1.4;
+        margin-bottom: 12px;
+    }
+    
+    /* Post actions mobile */
+    .post-actions {
+        padding-top: 8px;
+        gap: 4px;
+    }
+    
+    .post-action {
+        padding: 10px 8px;
+        font-size: 13px;
+        min-width: 0;
+        flex: 1;
+        justify-content: center;
+    }
+    
+    /* Character cards mobile */
+    .characters-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .character-card {
+        margin-bottom: 0;
+    }
+    
+    .character-header {
+        height: 100px;
+        font-size: 12px;
+        padding: 10px;
+    }
+    
+    .character-avatar {
+        width: 60px;
+        height: 60px;
+        bottom: -30px;
+        left: 15px;
+        font-size: 24px;
+    }
+    
+    .character-info {
+        padding: 40px 15px 15px;
+    }
+    
+    .character-name {
+        font-size: 18px;
+    }
+    
+    .character-description {
+        font-size: 13px;
+    }
+    
+    .character-stats {
+        font-size: 11px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .recent-activity {
+        font-size: 11px;
+        margin-top: 8px;
+        padding: 6px 8px;
+    }
+    
+    /* Filter bar mobile */
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        padding: 12px 16px;
+        font-size: 15px;
+        border-radius: 8px;
+    }
+    
+    /* Info sections mobile */
+    .info-section {
+        margin-bottom: 15px;
+    }
+    
+    .info-section h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+    
+    .info-item {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    /* Friends grid mobile */
+    .friends-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .friend-card {
+        padding: 8px;
+    }
+    
+    .friend-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .friend-name {
+        font-size: 12px;
+    }
+    
+    /* Comments mobile */
+    .character-comment {
+        margin-bottom: 10px;
+        padding: 6px 0;
+    }
+    
+    .comment-avatar {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+    }
+    
+    .commenter-name {
+        font-size: 12px;
+    }
+    
+    .comment-content {
+        font-size: 13px;
+        margin: 2px 0;
+    }
+    
+    .comment-actions {
+        gap: 10px;
+        margin-top: 2px;
+    }
+    
+    .comment-time {
+        font-size: 11px;
+    }
+    
+    .comment-like, .comment-reply {
+        font-size: 11px;
+        padding: 1px 3px;
+    }
+    
+    /* Special content blocks mobile */
+    .scheme-alert, .victim-card, .kyle-hatred, 
+    .innocent-moment, .grounding-alert, .optimistic-spin,
+    .stutter-text, .punchline, .competition-update,
+    .existential-reflection, .normalcy-break {
+        padding: 10px 12px;
+        margin: 10px 0;
+        border-radius: 6px;
+        font-size: 14px;
+        line-height: 1.3;
+    }
+    
+    /* Special counters and stats mobile */
+    .business-venture, .victim-counter, .grounding-counter,
+    .comedy-stats {
+        padding: 12px;
+        margin: 12px 0;
+        font-size: 14px;
+    }
+    
+    .business-venture div:first-of-type,
+    .victim-counter div:first-of-type,
+    .comedy-stats div:first-of-type {
+        font-size: 18px !important;
+    }
+    
+    /* Footer mobile */
+    .footer {
+        padding: 20px 15px;
+        margin-top: 20px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .footer-copyright {
+        font-size: 11px;
+        padding-top: 15px;
+    }
+}
+
+/* Small mobile devices (320px - 480px) */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 0 8px;
+    }
+    
+    .welcome-banner {
+        padding: 15px 10px;
+    }
+    
+    .welcome-banner h1 {
+        font-size: 20px;
+    }
+    
+    .profile-name {
+        font-size: 20px;
+    }
+    
+    .character-name {
+        font-size: 16px;
+    }
+    
+    .post-content, .comment-content {
+        font-size: 14px;
+    }
+    
+    .filter-btn {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Touch interactions */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets */
+    .post-action, .comment-like, .comment-reply,
+    .action-btn, .filter-btn, .nav-icon {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .character-card:hover {
+        transform: none;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    
+    .nav-icon:hover,
+    .post-action:hover,
+    .filter-btn:hover {
+        background: initial;
+    }
+    
+    /* Add active states for touch */
+    .nav-icon:active,
+    .post-action:active,
+    .filter-btn:active,
+    .action-btn:active {
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+}
+
+/* Improved accessibility for mobile */
+@media screen and (max-width: 768px) {
+    /* Ensure text is readable */
+    body {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+    }
+    
+    /* Improve contrast on mobile */
+    .post-time, .comment-time {
+        color: #4a4a4a;
+    }
+    
+    /* Better focus states */
+    button:focus,
+    input:focus,
+    .character-card:focus {
+        outline: 2px solid #1877f2;
+        outline-offset: 2px;
+    }
+    
+    /* Prevent horizontal scrolling */
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Improve readability */
+    .post-content {
+        word-wrap: break-word;
+        hyphens: auto;
+    }
+}
+
+/* Progressive Web App improvements */
+@media screen and (display-mode: standalone) {
+    /* Add top padding when in PWA mode */
+    .header {
+        padding-top: 12px;
+    }
+    
+    /* Adjust for safe areas on phones with notches */
+    .header {
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+    }
+    
+    .container {
+        padding-left: max(10px, env(safe-area-inset-left));
+        padding-right: max(10px, env(safe-area-inset-right));
+    }
+}
+
+/* Dark mode support (system preference) */
+@media (prefers-color-scheme: dark) {
+    /* This would be implemented in a future update */
+    /* For now, maintain light theme for consistency */
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .post, .character-card, .sidebar {
+        border: 2px solid #000;
+    }
+    
+    .post-action, .filter-btn, .action-btn {
+        border: 1px solid #000;
+    }
+}

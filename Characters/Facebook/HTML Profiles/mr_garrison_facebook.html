@@ -1,0 +1,730 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbert Garrison - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f0f2f5;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: #1877f2;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .fb-logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .nav-icon:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .profile-header {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .cover-photo {
+            height: 300px;
+            background: linear-gradient(45deg, #ff6b6b 0%, #4ecdc4 25%, #45b7d1 50%, #f9ca24 75%, #6c5ce7 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+            animation: identity-shift 10s infinite;
+        }
+        
+        @keyframes identity-shift {
+            0% { background: linear-gradient(45deg, #ff6b6b 0%, #4ecdc4 100%); }
+            25% { background: linear-gradient(45deg, #4ecdc4 0%, #45b7d1 100%); }
+            50% { background: linear-gradient(45deg, #45b7d1 0%, #f9ca24 100%); }
+            75% { background: linear-gradient(45deg, #f9ca24 0%, #6c5ce7 100%); }
+            100% { background: linear-gradient(45deg, #6c5ce7 0%, #ff6b6b 100%); }
+        }
+        
+        .profile-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            border: 5px solid white;
+            position: absolute;
+            top: -75px;
+            left: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            animation: identity-shift 8s infinite;
+        }
+        
+        .profile-details {
+            margin-left: 200px;
+            padding-top: 20px;
+        }
+        
+        .profile-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .identity-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: identity-flux 4s infinite;
+        }
+        
+        @keyframes identity-flux {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; transform: scale(0.9); }
+        }
+        
+        .profile-subtitle {
+            color: #65676b;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #e4e6ea;
+            color: #1c1e21;
+        }
+        
+        .btn-therapy {
+            background: linear-gradient(45deg, #ff6b6b, #764ba2);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .content-area {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .post-composer {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: identity-shift 6s infinite;
+        }
+        
+        .post-info h4 {
+            color: #1c1e21;
+            margin-bottom: 2px;
+        }
+        
+        .post-time {
+            color: #65676b;
+            font-size: 13px;
+        }
+        
+        .post-content {
+            color: #1c1e21;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .therapy-session {
+            background: linear-gradient(45deg, #fff3cd, #ffeaa7);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ff6b6b;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .identity-crisis {
+            background: linear-gradient(45deg, #d4edda, #c3e6cb);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #667eea;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .inappropriate-overshare {
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #dc3545;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #721c24;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #e4e6ea;
+            padding-top: 10px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #65676b;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        
+        .post-action:hover {
+            background: #f0f2f5;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-section h3 {
+            color: #1c1e21;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: #65676b;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background: #667eea;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            animation: crisis 3s infinite;
+        }
+        
+        @keyframes crisis {
+            0% { background: #667eea; }
+            25% { background: #ff6b6b; }
+            50% { background: #4ecdc4; }
+            75% { background: #f9ca24; }
+            100% { background: #667eea; }
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .friend-card {
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f7f8fa;
+        }
+        
+        .friend-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .friend-name {
+            font-size: 13px;
+            color: #1c1e21;
+        }
+        
+        .students-avatar {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+        }
+        
+        .therapist-avatar {
+            background: linear-gradient(45deg, #9c27b0, #7b1fa2);
+        }
+        
+        .current-identity {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .identity-timeline {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 3px solid #6c757d;
+        }
+        
+        .warning-label {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 13px;
+            color: #c62828;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Facebook-like structural additions */
+        .profile-nav-bar {
+            background: white;
+            border-top: 1px solid #e4e6eb;
+            border-bottom: 1px solid #e4e6eb;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .profile-tabs { display:flex; gap:4px; }
+        .profile-tab {
+            padding:14px 16px; font-size:15px; font-weight:500; color:#65676b; cursor:pointer;
+            border-bottom:3px solid transparent; display:flex; align-items:center; gap:6px; border-radius:4px 4px 0 0;
+        }
+        .profile-tab.active { color:#1c1e21; border-bottom-color:#1877f2; font-weight:600; }
+        .profile-tab:hover { background:#f0f2f5; }
+        .profile-actions-bar { display:flex; gap:8px; align-items:center; }
+        .profile-actions-bar .action-btn { background:#e4e6eb; color:#050505; border:none; padding:8px 14px; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; }
+        .profile-actions-bar .action-btn.primary { background:#667eea; color:#fff; }
+        .profile-actions-bar .action-btn:hover { background:#d8dadf; }
+        .profile-actions-bar .action-btn.primary:hover { background:#5466c4; }
+        .profile-header, .sidebar, .post, .post-composer { border:1px solid #e4e6eb; }
+        .post-composer .composer-actions { display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid #e4e6eb; margin-top:12px; }
+        .post-composer .composer-action { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 0; cursor:pointer; border-radius:6px; font-size:14px; color:#65676b; }
+        .post-composer .composer-action:hover { background:#f0f2f5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../../../facebook.html" class="fb-logo">facebook</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for my true self...">
+        </div>
+        <div class="nav-icons">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-icon">👥</div>
+            <div class="nav-icon">📺</div>
+            <div class="nav-icon">🎭</div>
+            <div class="nav-icon">🎮</div>
+            <div class="nav-icon">🔔</div>
+            <div class="nav-icon">💬</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                🎭 CURRENTLY REINVENTING MYSELF - IDENTITY SUBJECT TO CHANGE WITHOUT NOTICE 🎭
+            </div>
+            <div class="profile-info">
+                <div class="profile-pic">HG</div>
+                <div class="profile-details">
+                    <h1 class="profile-name">
+                        Herbert Garrison
+                        <span class="identity-badge">EVOLVING</span>
+                        <span class="status-indicator" title="Currently Having Identity Crisis"></span>
+                    </h1>
+                    <p class="profile-subtitle">4th Grade Teacher • Former President • Current Identity Crisis • Professional Oversharer • Your Children's Therapist (Whether You Like It Or Not)</p>
+                </div>
+            </div>
+            <div class="profile-nav-bar">
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Posts</div>
+                    <div class="profile-tab">About</div>
+                    <div class="profile-tab">Friends</div>
+                    <div class="profile-tab">Photos</div>
+                    <div class="profile-tab">More ▾</div>
+                </div>
+                <div class="profile-actions-bar">
+                    <button class="action-btn primary">➕ Add Friend</button>
+                    <button class="action-btn">✉️ Message</button>
+                    <button class="action-btn">⭐ Follow</button>
+                    <button class="action-btn">⋯</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="sidebar">
+                <div class="info-section">
+                    <h3>About Herbert (Currently)</h3>
+                    <div class="info-item">
+                        <span>🏠</span>Lives in South Park, Colorado (This Week's Address)
+                    </div>
+                    <div class="info-item">
+                        <span>🏫</span>South Park Elementary - 4th Grade Trauma Center
+                    </div>
+                    <div class="info-item">
+                        <span>👨‍🏫</span>Teacher/Therapist/Identity Experiment Subject
+                    </div>
+                    <div class="info-item">
+                        <span>🇺🇸</span>Former President of the United States (Conveniently Forgotten)
+                    </div>
+                    <div class="info-item">
+                        <span>🎭</span>Gender: Currently Male (Check Back Tomorrow)
+                    </div>
+                    <div class="info-item">
+                        <span>📅</span>Born February 15th - The Day Stability Died
+                    </div>
+                </div>
+
+                <div class="current-identity">
+                    <h3>🎭 CURRENT IDENTITY</h3>
+                    <div style="font-size: 16px; margin: 10px 0;">Heterosexual Conservative Male</div>
+                    <div style="font-size: 12px;">Week 3 of This Iteration</div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Audience (Captive)</h3>
+                    <div class="friends-grid">
+                        <div class="friend-card">
+                            <div class="friend-avatar students-avatar">4TH</div>
+                            <div class="friend-name">My Students<br><small>Unwilling Therapists</small></div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar therapist-avatar">DR</div>
+                            <div class="friend-name">My Therapist<br><small>Also Confused</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="identity-timeline">
+                    <h3>📈 RECENT IDENTITIES</h3>
+                    <div style="font-size: 12px; margin: 5px 0;">Last Month: Liberal Democrat</div>
+                    <div style="font-size: 12px; margin: 5px 0;">Last Quarter: Janet Garrison (Female)</div>
+                    <div style="font-size: 12px; margin: 5px 0;">Last Year: Mr. President</div>
+                    <div style="font-size: 12px; margin: 5px 0;">2019-2020: Gay Rights Activist</div>
+                </div>
+
+                <div class="warning-label">
+                    ⚠️ WARNING: This profile may contain content inappropriate for elementary school students (but they're stuck in my class anyway)
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="post-composer">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <div class="post-avatar">HG</div>
+                        <input type="text" placeholder="Share your latest identity pivot, Garrison..." style="flex:1; padding:12px 16px; border:1px solid #e4e6eb; border-radius:25px; background:#f0f2f5; font-size:14px;">
+                    </div>
+                    <div class="composer-actions">
+                        <div class="composer-action">🎥 Live Video</div>
+                        <div class="composer-action">📸 Photo/Video</div>
+                        <div class="composer-action">🙂 Feeling/Activity</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">HG</div>
+                        <div class="post-info">
+                            <h4>Herbert Garrison</h4>
+                            <div class="post-time">2 hours ago • 🎭 IDENTITY BREAKTHROUGH</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        CLASS ANNOUNCEMENT: I've had a MAJOR realization about my identity! 🌟
+                        
+                        After extensive self-reflection (during math class), I've discovered that my current persona as a heterosexual conservative male is actually the REAL me! All those other identities were just... phases, I guess?
+                        
+                        <div class="therapy-session">
+                            I explained this to my 4th graders today. Stan asked why I keep changing who I am, and I told him it's called "growth," which he wouldn't understand because he's 10 and hasn't lived through the complex journey of self-discovery like I have.
+                        </div>
+                        
+                        <div class="identity-crisis">
+                            Although... now that I think about it, maybe THIS identity is also temporary? What if the real me is actually someone who's constantly searching for the real me? Is the journey the destination??
+                        </div>
+                        
+                        <div class="inappropriate-overshare">
+                            I've scheduled a parent-teacher conference to discuss my identity evolution with the parents. They seem "concerned" for some reason. Kyle's dad asked if I need "professional help." I AM a professional! I teach children!
+                        </div>
+                        
+                        Tomorrow's lesson plan: "Why Mr. Garrison's Personal Journey is More Important Than Fractions"
+                        
+                        #IdentityJourney #Growth #Teaching #PersonalBreakthrough #SelfDiscovery #ProfessionalDevelopment
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🎭 Identity Support</div>
+                        <div class="post-action">📞 Call Principal</div>
+                        <div class="post-action">😰 Poor Kids</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">HG</div>
+                        <div class="post-info">
+                            <h4>Herbert Garrison</h4>
+                            <div class="post-time">Yesterday • 📚 EDUCATIONAL INNOVATION</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Revolutionizing education one therapy session at a time! 📖✨
+                        
+                        Instead of teaching boring old history today, I shared my personal history of identity exploration with the class. Much more relevant to their lives!
+                        
+                        <div class="therapy-session">
+                            We spent two hours discussing my relationship with Mr. Hat, my transition period, my presidential term, and my current heterosexual awakening. The children took notes! Some were crying, but that's just because they were moved by my honesty.
+                        </div>
+                        
+                        Kenny mumbled something through his parka, but I chose to interpret it as support for my teaching methods. 
+                        
+                        Cartman asked if my identity changes would be on the test. I told him life IS the test, Eric!
+                        
+                        <div class="inappropriate-overshare">
+                            The principal called me into her office again. She said parents are "complaining" about my "inappropriate oversharing" and "unprofessional behavior." I explained that transparency in education is key to building trust with students!
+                        </div>
+                        
+                        <div class="identity-crisis">
+                            Although, maybe she has a point? What if my teaching style is just another identity I've adopted? What if I'm not actually meant to be a teacher? What if I'm meant to be... a principal who calls teachers into her office??
+                        </div>
+                        
+                        #EducationalInnovation #TransparentTeaching #LifeLessons #PersonalizedLearning #PrincipalMeeting
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">📚 Educational</div>
+                        <div class="post-action">🚨 Inappropriate</div>
+                        <div class="post-action">🤷‍♂️ Classic Garrison</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">HG</div>
+                        <div class="post-info">
+                            <h4>Herbert Garrison</h4>
+                            <div class="post-time">3 days ago • 🇺🇸 POLITICAL REFLECTION</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Random thought: Did I used to be President? 🤔
+                        
+                        I have these weird memories of living in the White House and making important decisions, but that seems unlikely since I'm clearly just a 4th grade teacher who's never left Colorado...
+                        
+                        <div class="identity-crisis">
+                            But then again, maybe that WAS me? It's hard to keep track of all my different phases. Was that before or after I was a woman? And was I gay or straight during the presidency? These details matter for my memoir!
+                        </div>
+                        
+                        <div class="therapy-session">
+                            I asked my students if they remember me being President. Butters said "Oh hamburgers, I don't know Mr. Garrison!" which is basically confirmation. Kyle rolled his eyes, but Kyle rolls his eyes at everything important.
+                        </div>
+                        
+                        I should probably put "Former President" on my resume, right? Even if I'm not 100% sure it happened, it's the kind of experience that shows leadership potential!
+                        
+                        <div class="inappropriate-overshare">
+                            Note to self: Google "Herbert Garrison President" to fact-check my own life. Also, ask my therapist if selective memory is normal during identity transitions.
+                        </div>
+                        
+                        Maybe I should run for President again? Or School Board? Or maybe I should figure out who I am before seeking positions of authority over others...
+                        
+                        #PoliticalMemories #FormerPresident #IdentityConfusion #Leadership #Memoir #FactCheck
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🇺🇸 Presidential</div>
+                        <div class="post-action">🤯 Confused</div>
+                        <div class="post-action">📚 Wikipedia Check</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script>
+        // Initialize enhanced features for Mr. Garrison's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Mr. Garrison profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

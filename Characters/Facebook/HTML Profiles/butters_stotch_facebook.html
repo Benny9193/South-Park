@@ -1,0 +1,936 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leopold "Butters" Stotch - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f0f2f5;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: #1877f2;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .fb-logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .nav-icon:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .profile-header {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .cover-photo {
+            height: 300px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffeb3b 50%, #ffc107 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .profile-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            background-image: url('../ButtersStotch.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 5px solid white;
+            position: absolute;
+            top: -75px;
+            left: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .profile-details {
+            margin-left: 200px;
+            padding-top: 20px;
+        }
+        
+        .profile-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .innocent-badge {
+            background: linear-gradient(45deg, #4caf50, #8bc34a);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: sparkle 3s infinite;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .profile-subtitle {
+            color: #65676b;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #ffd700;
+            color: #333;
+        }
+        
+        .btn-secondary {
+            background: #e4e6ea;
+            color: #1c1e21;
+        }
+        
+        .btn-chaos {
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .content-area {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .post-composer {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background-image: url('../../ButtersStotch.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .chaos-avatar {
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+            color: white;
+        }
+        
+        .post-info h4 {
+            color: #1c1e21;
+            margin-bottom: 2px;
+        }
+        
+        .post-time {
+            color: #65676b;
+            font-size: 13px;
+        }
+        
+        .post-content {
+            color: #1c1e21;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .innocent-moment {
+            background: linear-gradient(45deg, #e8f5e8, #c8e6c9);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4caf50;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .grounding-alert {
+            background: linear-gradient(45deg, #ffebee, #ffcdd2);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #f44336;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .optimistic-spin {
+            background: #fff3e0;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #ff9800;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #e65100;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #e4e6ea;
+            padding-top: 10px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #65676b;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        
+        .post-action:hover {
+            background: #f0f2f5;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-section h3 {
+            color: #1c1e21;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: #65676b;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background: #ffd700;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            animation: innocent 2s infinite;
+        }
+        
+        @keyframes innocent {
+            0%, 100% { background: #ffd700; }
+            50% { background: #ffeb3b; }
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .friend-card {
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f7f8fa;
+        }
+        
+        .friend-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .friend-name {
+            font-size: 13px;
+            color: #1c1e21;
+        }
+        
+        .parents-avatar {
+            background: linear-gradient(45deg, #795548, #5d4037);
+        }
+        
+        .cartman-avatar {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+        }
+        
+        .grounding-counter {
+            background: linear-gradient(45deg, #f44336, #d32f2f);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .chaos-section {
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .parental-note {
+            background: #fff3e0;
+            border: 1px solid #ffcc02;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 13px;
+            color: #e65100;
+        }
+
+        /* Facebook-like structural additions */
+        .profile-nav-bar {
+            background: white;
+            border-top: 1px solid #e4e6eb;
+            border-bottom: 1px solid #e4e6eb;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .profile-tabs { display:flex; gap:4px; }
+        .profile-tab {
+            padding:14px 16px; font-size:15px; font-weight:500; color:#65676b; cursor:pointer;
+            border-bottom:3px solid transparent; display:flex; align-items:center; gap:6px; border-radius:4px 4px 0 0;
+        }
+        .profile-tab.active { color:#1c1e21; border-bottom-color:#1877f2; font-weight:600; }
+        .profile-tab:hover { background:#f0f2f5; }
+        .profile-actions-bar { display:flex; gap:8px; align-items:center; }
+        .profile-actions-bar .action-btn { background:#e4e6eb; color:#050505; border:none; padding:8px 14px; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; }
+        .profile-actions-bar .action-btn.primary { background:#ffd700; color:#333; }
+        .profile-actions-bar .action-btn:hover { background:#d8dadf; }
+        .profile-actions-bar .action-btn.primary:hover { background:#e6c200; }
+        .profile-header, .sidebar, .post, .post-composer { border:1px solid #e4e6eb; }
+        .post-composer .composer-actions { display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid #e4e6eb; margin-top:12px; }
+        .post-composer .composer-action { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 0; cursor:pointer; border-radius:6px; font-size:14px; color:#65676b; }
+        .post-composer .composer-action:hover { background:#f0f2f5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../../../facebook.html" class="fb-logo">facebook</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search for happy things!">
+        </div>
+        <div class="nav-icons">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-icon">👥</div>
+            <div class="nav-icon">📺</div>
+            <div class="nav-icon">🎮</div>
+            <div class="nav-icon">🎵</div>
+            <div class="nav-icon">🔔</div>
+            <div class="nav-icon">💬</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                🌻 GOLLY, LIFE IS JUST SWELL! EVERYTHING HAPPENS FOR A REASON! 🌻
+            </div>
+            <div class="profile-info">
+                <div class="profile-pic"></div>
+                <div class="profile-details">
+                    <h1 class="profile-name">
+                        Leopold "Butters" Stotch
+                        <span class="innocent-badge">INNOCENT</span>
+                        <span class="status-indicator" title="Currently Not Grounded (Rare!)"></span>
+                    </h1>
+                    <p class="profile-subtitle">Professional Optimist • Part-time Professor Chaos • Full-time Target • Everyone's Favorite Victim • Hamburgers Enthusiast</p>
+                </div>
+            </div>
+            <div class="profile-nav-bar">
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Posts</div>
+                    <div class="profile-tab">About</div>
+                    <div class="profile-tab">Friends</div>
+                    <div class="profile-tab">Photos</div>
+                    <div class="profile-tab">More ▾</div>
+                </div>
+                <div class="profile-actions-bar">
+                    <button class="action-btn primary">➕ Add Friend</button>
+                    <button class="action-btn">✉️ Message</button>
+                    <button class="action-btn">⭐ Follow</button>
+                    <button class="action-btn">⋯</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="sidebar">
+                <div class="info-section">
+                    <h3>About Butters</h3>
+                    <div class="info-item">
+                        <span>🏠</span>Lives in South Park, Colorado (When Not Grounded)
+                    </div>
+                    <div class="info-item">
+                        <span>🏫</span>South Park Elementary Student
+                    </div>
+                    <div class="info-item">
+                        <span>👨‍👩‍👦</span>Son of Leopold & Linda Stotch (They Love Me!)
+                    </div>
+                    <div class="info-item">
+                        <span>👵</span>Grandma's Special Boy (She's Teaching Me Things!)
+                    </div>
+                    <div class="info-item">
+                        <span>🦹‍♂️</span>Secret Identity: Professor Chaos
+                    </div>
+                    <div class="info-item">
+                        <span>💛</span>Single (Too Young for Romance!)
+                    </div>
+                    <div class="info-item">
+                        <span>📅</span>Born September 11th - Always Looking on the Bright Side!
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Work Experience</h3>
+                    <div class="info-item">
+                        <span>🍽️</span>Honorary Employee - Raisins Restaurant
+                    </div>
+                    <div class="info-item">
+                        <span>💋</span>CEO - Butters' Kissing Company
+                    </div>
+                    <div class="info-item">
+                        <span>🎭</span>Professional Tap Dancer (Self-Taught)
+                    </div>
+                    <div class="info-item">
+                        <span>🧠</span>Therapy Regular (Gold Star Patient!)
+                    </div>
+                </div>
+
+                <div class="grounding-counter">
+                    <h3>⛔ GROUNDING TRACKER ⛔</h3>
+                    <div style="font-size: 24px; margin: 10px 0;">847</div>
+                    <div style="font-size: 12px;">Total Days Grounded This Year</div>
+                </div>
+
+                <div style="background: linear-gradient(45deg, #ff9800, #f57c00); color: white; padding: 15px; border-radius: 8px; text-align: center; margin: 15px 0; font-weight: bold;">
+                    <h3>⏰ GROUNDING COUNTDOWN</h3>
+                    <div style="font-size: 20px; margin: 10px 0;">3 Days, 14 Hours</div>
+                    <div style="font-size: 12px;">Until Next Ungrounding!</div>
+                    <div style="font-size: 11px; margin-top: 5px; opacity: 0.8;">*Subject to change based on behavior</div>
+                </div>
+
+                <div style="background: #e1f5fe; padding: 12px; border-radius: 6px; margin: 15px 0; border-left: 3px solid #03a9f4;">
+                    <h3>🎭 PROFESSOR CHAOS PLANS</h3>
+                    <div style="font-size: 12px; margin: 5px 0; color: #01579b;">Next Scheme: Put "Have a Nice Day" stickers on everyone's backpacks</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #01579b;">Evil Level: 2/10 (Still working on being mean)</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #01579b;">Casualties: 0 (And keeping it that way!)</div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Important People</h3>
+                    <div class="friends-grid" style="grid-template-columns: repeat(3, 1fr);">
+                        <div class="friend-card">
+                            <div class="friend-avatar parents-avatar">LL</div>
+                            <div class="friend-name">Leopold & Linda<br><small>Best Parents Ever!</small></div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar cartman-avatar">EC</div>
+                            <div class="friend-name">Eric Cartman<br><small>My Best Friend (Right?)</small></div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar" style="background: linear-gradient(45deg, #8e24aa, #ab47bc);">GS</div>
+                            <div class="friend-name">Grandma Stotch<br><small>Teaching Me Life!</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chaos-section">
+                    <h3>🦹‍♂️ PROFESSOR CHAOS SPEAKS</h3>
+                    <p>Even the most innocent souls have a dark side! Beware my schemes to... to... well, cause minor inconveniences! Mwahahaha! (But not really harmful ones!)</p>
+                </div>
+
+                <div style="background: #e8f5e8; padding: 12px; border-radius: 6px; margin: 15px 0; border-left: 3px solid #4caf50;">
+                    <h3>📚 LIFE LESSONS LEARNED</h3>
+                    <div style="font-size: 12px; margin: 5px 0; color: #2e7d32;">Lesson #1: Every grounding is a chance to reorganize!</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #2e7d32;">Lesson #2: Even bad experiences teach you something!</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #2e7d32;">Lesson #3: Optimism is a choice, not a feeling!</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #2e7d32;">Lesson #4: Everyone needs more hugs!</div>
+                </div>
+
+                <div style="background: #fff8e1; padding: 12px; border-radius: 6px; margin: 15px 0; border-left: 3px solid #ffc107;">
+                    <h3>💼 MY BUSINESSES</h3>
+                    <div style="font-size: 11px; margin: 3px 0; color: #f57c00;">💋 Butters' Kissing Company (Retired)</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #f57c00;">🤗 Butters' Hug Company (Now Open!)</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #f57c00;">👕 Butters' Fashion Line (Planning)</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #f57c00;">🍔 Butters' Future Burgers (Dream)</div>
+                </div>
+
+                <div class="parental-note">
+                    ⚠️ <strong>Parental Notice:</strong> Butters is currently grounded for looking at this computer without permission. Estimated ungrounding: Next Tuesday.
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="post-composer">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <div class="post-avatar"></div>
+                        <input type="text" placeholder="Oh hamburgers... share something swell, Butters!" style="flex:1; padding:12px 16px; border:1px solid #e4e6eb; border-radius:25px; background:#f0f2f5; font-size:14px;">
+                    </div>
+                    <div class="composer-actions">
+                        <div class="composer-action">🎥 Live Video</div>
+                        <div class="composer-action">📸 Photo/Video</div>
+                        <div class="composer-action">🙂 Feeling/Activity</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Leopold "Butters" Stotch</h4>
+                            <div class="post-time">3 hours ago • 🌈 Seeing the Bright Side</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Oh hamburgers, what a wonderful day! 😄
+                        
+                        Today Eric asked me to be his "business partner" in selling "premium air" to classmates! I feel so special that he chose ME to help with his important work!
+                        
+                        <div class="innocent-moment">
+                            I spent all morning blowing into bottles for him. My cheeks hurt something fierce, but Eric says that means I'm doing a really good job! He's letting me keep 2% of the profits because I'm such a valuable employee!
+                        </div>
+                        
+                        <div class="optimistic-spin">
+                            Sure, some kids are calling it a "scam," but I think they're just jealous they didn't think of it first! Eric is so creative and business-minded. I'm learning so much about entrepreneurship!
+                        </div>
+                        
+                        Kyle seemed upset about something and started yelling, but Eric explained that Kyle just doesn't understand innovation. I sure am lucky to have such a smart friend who includes me in his projects!
+                        
+                        <div class="grounding-alert">
+                            UPDATE: Mom found the empty bottles in my room and now I'm grounded for "participating in fraudulent business practices." I don't know what that means, but it must be something bad! Oh well, more time to think about all the fun I had helping Eric!
+                        </div>
+                        
+                        #BestFriends #BusinessPartner #LearningExperience #Grateful #OhHamburgers
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">💛 So Pure</div>
+                        <div class="post-action">😢 Protect Butters</div>
+                        <div class="post-action">🤦‍♀️ Poor Kid</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar chaos-avatar">PC</div>
+                        <div class="post-info">
+                            <h4>Professor Chaos</h4>
+                            <div class="post-time">Yesterday • 🦹‍♂️ Evil Scheme Mode</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Citizens of South Park, beware! Professor Chaos has returned! 🦹‍♂️⚡
+                        
+                        Today I enacted my most diabolical scheme yet: I switched the salt and sugar in the cafeteria! Soon, everyone's cookies will taste like... well, cookies with salt instead of sugar!
+                        
+                        <div class="innocent-moment">
+                            Actually, I felt really bad when I saw Jenny make a face after biting her cookie, so I went and told the lunch lady what I did. She just laughed and said it was "sweet" that I was honest. I don't think she gets how evil I'm supposed to be!
+                        </div>
+                        
+                        Being a supervillain is harder than it looks! Every time I try to do something bad, I end up feeling guilty and fixing it. Maybe I'm just not cut out for chaos...
+                        
+                        <div class="optimistic-spin">
+                            But you know what? Maybe the world needs more "villains" like me - ones who cause minor problems but then make sure everyone's okay! That's still chaos, right? Happy chaos!
+                        </div>
+                        
+                        Tomorrow's evil plan: Leave anonymous compliments on everyone's lockers! They'll never see the kindness coming! Mwahahaha!
+                        
+                        #ProfessorChaos #EvilButNice #SuperVillain #Guilt #KindnessAttack
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">😈 Evil (But Cute)</div>
+                        <div class="post-action">💕 Wholesome Chaos</div>
+                        <div class="post-action">🤗 Good Heart</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Leopold "Butters" Stotch</h4>
+                            <div class="post-time">3 days ago • ⛔ Currently Grounded</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Well, I'm grounded again, but gosh darn it, I'm making the best of it! 🌟
+                        
+                        This time it's because I "smiled too much during dinner" and Dad said it was "suspicious." I guess I was just really happy about the meatloaf! Mom makes the best meatloaf in the whole world!
+                        
+                        <div class="grounding-alert">
+                            Being grounded means I get to spend more time in my room reading and organizing my Pokemon cards! I found my holographic Charizard and boy howdy, that sure brightened my day!
+                        </div>
+                        
+                        <div class="innocent-moment">
+                            Dad peeked in earlier and asked why I wasn't "crying or complaining like a normal kid." I told him it's because I love spending time in my room and being with my family, even when I'm in trouble! He got that confused look again.
+                        </div>
+                        
+                        Maybe tomorrow I'll get ungrounded and we can all have ice cream together! Or maybe I'll stay grounded and get to reorganize my sock drawer! Either way sounds pretty swell to me!
+                        
+                        <div class="optimistic-spin">
+                            Being grounded teaches me patience and helps me appreciate the little things! Like how the light comes through my window just right at 3:47 PM, or how my pillow smells like lavender because Mom uses that special detergent!
+                        </div>
+                        
+                        Life is just so darn wonderful, even when it's not! Oh hamburgers, I'm lucky! 🍔
+                        
+                        #Grounded #StillHappy #Grateful #BestFamily #OhHamburgers #PositiveAttitude
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">💛 Precious Angel</div>
+                        <div class="post-action">😭 Protect This Child</div>
+                        <div class="post-action">🤗 Pure Innocence</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Leopold "Butters" Stotch</h4>
+                            <div class="post-time">5 days ago • 🩺 Therapy Day</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Just got back from my therapy session and golly, what a great day! 🌈
+                        
+                        Dr. Bradshaw says I'm making "remarkable progress" in my "emotional resilience." I'm not sure what that means, but it sounds real positive!
+                        
+                        <div class="innocent-moment">
+                            She asked me how I feel about being grounded so much, and I told her it gives me time to think about all the good things in my life! She wrote that down real fast and said something about "adaptive coping mechanisms."
+                        </div>
+                        
+                        We also talked about my Professor Chaos activities. She says it's "healthy" that I want to "express agency" but that my schemes are "remarkably benign." I think those are all good words!
+                        
+                        <div class="optimistic-spin">
+                            She gave me a gold star sticker for "maintaining positivity in challenging circumstances." I'm gonna put it right next to the other 47 gold stars on my bedroom wall!
+                        </div>
+                        
+                        Next week we're gonna talk about my "boundary-setting skills." Sounds educational! I love learning new things!
+                        
+                        #TherapyDay #GoldStar #EmotionalResilience #Learning #PositiveMindset #DrBradshaw
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">⭐ Gold Star</div>
+                        <div class="post-action">🧠 Healthy Coping</div>
+                        <div class="post-action">💕 Sweet Kid</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Leopold "Butters" Stotch</h4>
+                            <div class="post-time">1 week ago • 💃 Tap Dancing Practice</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Practicing my tap dancing routine in the basement and boy howdy, I'm getting good! 👟✨
+                        
+                        I learned a new shuffle-ball-change combination that makes the most wonderful clickety-clack sound! It's like making music with your feet!
+                        
+                        <div class="innocent-moment">
+                            Dad came downstairs and watched for a whole minute before asking if I was "sure this is what boys do." I told him dancing is for everyone and that Gene Kelly was a real tough guy who could tap dance! He just shook his head and went back upstairs.
+                        </div>
+                        
+                        <div class="optimistic-spin">
+                            Some of the kids at school call it "weird," but I think they're just impressed by my fancy footwork! Kenny even gave me a thumbs up (I think - it was hard to tell through his parka).
+                        </div>
+                        
+                        <div class="grounding-alert">
+                            UPDATE: I'm now grounded for "making too much noise" during practice. But that's okay! Silent tap dancing is even more challenging! It's like mime work but with better shoes!
+                        </div>
+                        
+                        Maybe someday I'll be on Broadway! Or at least in the school talent show! Dreams are free!
+                        
+                        #TapDancing #SilentPractice #Broadway #Dreams #ClicketyClack #GeneKelly #TalentShow
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👟 Impressive Moves</div>
+                        <div class="post-action">🎭 Future Star</div>
+                        <div class="post-action">💫 Keep Dancing</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Leopold "Butters" Stotch</h4>
+                            <div class="post-time">1 week ago • 👵 Grandma's Visit</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Grandma Stotch came to visit and we had such a special time together! 🍪👵
+                        
+                        She's teaching me all sorts of interesting things about "becoming a grown-up" and "understanding my body." She says it's important education that my parents are "too prudish" to provide!
+                        
+                        <div class="innocent-moment">
+                            We played some games that she said were "just between us," which makes me feel real special and trusted! She says I'm "developing beautifully" and that she's proud to be part of my "journey into manhood."
+                        </div>
+                        
+                        <div class="optimistic-spin">
+                            Mom and Dad seem a little upset about Grandma's visits, but I think they're just jealous of our special bond! It's nice having someone who understands me and wants to teach me about life!
+                        </div>
+                        
+                        <div class="grounding-alert">
+                            I'm grounded now for "discussing inappropriate topics at the dinner table." I was just sharing what I learned! But Grandma says that sometimes grown-up education has to be our little secret.
+                        </div>
+                        
+                        Can't wait for her next visit! She promised to bring more "educational materials" and maybe teach me about "personal exploration." Learning is so much fun!
+                        
+                        #GrandmaTime #SpecialEducation #GrowingUp #LearningExperience #FamilyTime #OurSecret
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">😰 Concerning</div>
+                        <div class="post-action">🚨 Someone Help</div>
+                        <div class="post-action">💔 Poor Butters</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Leopold "Butters" Stotch</h4>
+                            <div class="post-time">2 weeks ago • 💋 Business Venture</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Exciting business update from Butters' Kissing Company! 💋💼
+                        
+                        My kissing business is really taking off! I've helped 12 people this week feel less lonely by providing professional kissing services for $5 per smooch!
+                        
+                        <div class="innocent-moment">
+                            Mrs. Henderson seemed real surprised when I knocked on her door offering my services. She said I was "sweet" but that she'd "call my parents." I think she was just impressed by my entrepreneurial spirit!
+                        </div>
+                        
+                        <div class="optimistic-spin">
+                            The police officer who talked to me said I have a "good heart" but that my business model needs some "adjustments." He was real nice about it and even gave me a sticker!
+                        </div>
+                        
+                        <div class="grounding-alert">
+                            I'm grounded for "operating an inappropriate business without a license." I didn't know you needed a license to spread happiness! The business world sure is complicated!
+                        </div>
+                        
+                        But don't worry, I'm pivoting to "Butters' Hug Company" instead! Hugs are free and everyone needs more hugs in their life! That's got to be legal, right?
+                        
+                        #KissingCompany #Entrepreneur #SpreadLove #BusinessPivot #HugCompany #Sticker #Police
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">😅 Oh No</div>
+                        <div class="post-action">🤗 Hug Company</div>
+                        <div class="post-action">👮‍♂️ Call Authorities</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Leopold "Butters" Stotch</h4>
+                            <div class="post-time">2 weeks ago • 🍽️ Missing Raisins</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Gee whiz, I sure miss working at Raisins restaurant! 🍽️💔
+                        
+                        Those were the best days of my life, learning about the real world from all those nice waitresses! Lexus taught me about makeup, Mercedes showed me how to walk in heels, and Porsche explained what "tips" really mean!
+                        
+                        <div class="innocent-moment">
+                            I felt so grown-up wearing that little outfit and serving people! Everyone said I was "adorable" and "sweet," and the customers always left me such good tips!
+                        </div>
+                        
+                        <div class="optimistic-spin">
+                            Sure, some people said the environment was "inappropriate for a child," but I learned so much about hospitality and customer service! Plus, I made $73 in tips, which is more money than I've ever had!
+                        </div>
+                        
+                        <div class="grounding-alert">
+                            Mom and Dad won't let me go back because they say it's "not suitable for someone my age." But golly, when am I gonna be old enough to work in the service industry if not now?
+                        </div>
+                        
+                        Maybe when I'm older I can open my own family-friendly restaurant! I'll call it "Butters' Burgers" and everyone will be welcome, no matter what age!
+                        
+                        #RaisinsRestaurant #MissMyJob #CustomerService #ButtersBurgers #ServiceIndustry #Tips
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🍽️ Wholesome Dreams</div>
+                        <div class="post-action">😢 Bittersweet</div>
+                        <div class="post-action">🍔 Future Restaurant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script>
+        // Initialize enhanced features for Butters' profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Butters profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

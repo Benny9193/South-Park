@@ -1,0 +1,522 @@
+/**
+ * South Park Facebook Profiles - Character Animation System
+ * CSS animations for character-specific visual effects and interactions
+ */
+
+/* ===== GLOBAL ANIMATION VARIABLES ===== */
+:root {
+    --animation-speed-fast: 0.3s;
+    --animation-speed-normal: 0.6s;
+    --animation-speed-slow: 1.2s;
+    --bounce-ease: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --smooth-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --dramatic-ease: cubic-bezier(0.68, -0.55, 0.265, 1.8);
+}
+
+/* ===== CHARACTER-SPECIFIC ANIMATIONS ===== */
+
+/* CARTMAN - Scheming and dramatic animations */
+.cartman-animations {
+    --primary-color: #FF4444;
+}
+
+@keyframes cartman-scheme {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.05) rotate(-2deg); }
+    50% { transform: scale(1.1) rotate(2deg); }
+    75% { transform: scale(1.05) rotate(-1deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes cartman-evil-laugh {
+    0%, 100% { transform: translateY(0px); }
+    10% { transform: translateY(-2px); }
+    20% { transform: translateY(0px); }
+    30% { transform: translateY(-1px); }
+    40% { transform: translateY(0px); }
+}
+
+@keyframes cartman-money {
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-5px) scale(1.1); }
+    100% { transform: translateY(0px) scale(1); }
+}
+
+.cartman-avatar:hover {
+    animation: cartman-scheme 1s var(--bounce-ease);
+}
+
+.cartman-post:hover {
+    animation: cartman-evil-laugh 2s ease-in-out;
+}
+
+.cartman-business {
+    animation: cartman-money 1.5s ease-in-out infinite;
+}
+
+/* KYLE - Academic and passionate animations */
+.kyle-animations {
+    --primary-color: #44AA44;
+}
+
+@keyframes kyle-passionate {
+    0% { transform: translateX(0px); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-1px); }
+    100% { transform: translateX(0px); }
+}
+
+@keyframes kyle-thinking {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(1deg); }
+    75% { transform: rotate(-1deg); }
+}
+
+@keyframes kyle-righteous {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.kyle-avatar:hover {
+    animation: kyle-thinking 2s ease-in-out;
+}
+
+.kyle-argument {
+    animation: kyle-passionate 0.5s ease-in-out;
+}
+
+.kyle-moral-stance {
+    animation: kyle-righteous 1s var(--smooth-ease);
+}
+
+/* STAN - Confused and normal guy animations */
+.stan-animations {
+    --primary-color: #4444FF;
+}
+
+@keyframes stan-confused {
+    0%, 100% { transform: rotate(0deg); }
+    33% { transform: rotate(1deg); }
+    66% { transform: rotate(-1deg); }
+}
+
+@keyframes stan-shrug {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes stan-normal {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.9; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.stan-avatar:hover {
+    animation: stan-confused 3s ease-in-out;
+}
+
+.stan-shrug {
+    animation: stan-shrug 1s ease-in-out;
+}
+
+.stan-normal-response {
+    animation: stan-normal 2s ease-in-out;
+}
+
+/* KENNY - Death and mystery animations */
+.kenny-animations {
+    --primary-color: #FF8800;
+}
+
+@keyframes kenny-muffled {
+    0%, 100% { transform: scale(1); filter: blur(0px); }
+    50% { transform: scale(1.05); filter: blur(0.5px); }
+}
+
+@keyframes kenny-death {
+    0% { transform: rotate(0deg) scale(1); opacity: 1; }
+    25% { transform: rotate(90deg) scale(0.8); opacity: 0.7; }
+    50% { transform: rotate(180deg) scale(0.5); opacity: 0.3; }
+    75% { transform: rotate(270deg) scale(0.2); opacity: 0.1; }
+    100% { transform: rotate(360deg) scale(0); opacity: 0; }
+}
+
+@keyframes kenny-resurrection {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes kenny-mysterion {
+    0%, 100% { box-shadow: 0 0 0px #FF8800; }
+    50% { box-shadow: 0 0 10px #FF8800; }
+}
+
+.kenny-avatar:hover {
+    animation: kenny-muffled 1.5s ease-in-out;
+}
+
+.kenny-death-animation {
+    animation: kenny-death 2s var(--dramatic-ease);
+}
+
+.kenny-resurrection-animation {
+    animation: kenny-resurrection 1.5s var(--bounce-ease);
+}
+
+.kenny-mysterion {
+    animation: kenny-mysterion 2s ease-in-out infinite;
+}
+
+/* RANDY - Dramatic and obsessive animations */
+.randy-animations {
+    --primary-color: #9C27B0;
+}
+
+@keyframes randy-dramatic {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-5deg); }
+    50% { transform: scale(1.2) rotate(0deg); }
+    75% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes randy-obsession {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    25% { transform: translateY(-5px) scale(1.05); }
+    50% { transform: translateY(-3px) scale(1.1); }
+    75% { transform: translateY(-8px) scale(1.05); }
+}
+
+@keyframes randy-tegridy {
+    0% { transform: rotate(0deg); filter: hue-rotate(0deg); }
+    100% { transform: rotate(360deg); filter: hue-rotate(360deg); }
+}
+
+.randy-avatar:hover {
+    animation: randy-dramatic 1.5s var(--dramatic-ease);
+}
+
+.randy-excited {
+    animation: randy-obsession 1s ease-in-out;
+}
+
+.randy-tegridy {
+    animation: randy-tegridy 3s linear infinite;
+}
+
+/* BUTTERS - Innocent and sweet animations */
+.butters-animations {
+    --primary-color: #FFDD44;
+}
+
+@keyframes butters-happy {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+}
+
+@keyframes butters-grounded {
+    0% { transform: scale(1); filter: grayscale(0%); }
+    100% { transform: scale(0.9); filter: grayscale(50%); }
+}
+
+@keyframes butters-innocent {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
+}
+
+@keyframes butters-sparkle {
+    0%, 100% { box-shadow: 0 0 5px #FFDD44; }
+    50% { box-shadow: 0 0 15px #FFDD44, 0 0 25px #FFDD44; }
+}
+
+.butters-avatar:hover {
+    animation: butters-happy 1s ease-in-out;
+}
+
+.butters-grounded {
+    animation: butters-grounded 2s ease-in-out;
+}
+
+.butters-innocent {
+    animation: butters-innocent 3s ease-in-out infinite;
+}
+
+.butters-sparkle {
+    animation: butters-sparkle 2s ease-in-out infinite;
+}
+
+/* TWEEK - Anxiety and coffee animations */
+.tweek-animations {
+    --primary-color: #FFAA00;
+}
+
+@keyframes tweek-anxiety {
+    0% { transform: translateX(0px); }
+    10% { transform: translateX(-1px); }
+    20% { transform: translateX(1px); }
+    30% { transform: translateX(-1px); }
+    40% { transform: translateX(1px); }
+    50% { transform: translateX(-1px); }
+    60% { transform: translateX(1px); }
+    70% { transform: translateX(-1px); }
+    80% { transform: translateX(1px); }
+    90% { transform: translateX(-1px); }
+    100% { transform: translateX(0px); }
+}
+
+@keyframes tweek-coffee-high {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(1deg); }
+    50% { transform: scale(1.05) rotate(-1deg); }
+    75% { transform: scale(1.08) rotate(1deg); }
+}
+
+@keyframes tweek-panic {
+    0% { transform: scale(1); filter: blur(0px); }
+    50% { transform: scale(1.15); filter: blur(1px); }
+    100% { transform: scale(1); filter: blur(0px); }
+}
+
+.tweek-avatar {
+    animation: tweek-anxiety 2s ease-in-out infinite;
+}
+
+.tweek-coffee {
+    animation: tweek-coffee-high 0.8s ease-in-out infinite;
+}
+
+.tweek-panic {
+    animation: tweek-panic 0.5s ease-in-out;
+}
+
+/* CRAIG - Apathetic and minimal animations */
+.craig-animations {
+    --primary-color: #666666;
+}
+
+@keyframes craig-flip-off {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-2px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes craig-whatever {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes craig-minimal {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.01); }
+}
+
+.craig-avatar:hover {
+    animation: craig-minimal 3s ease-in-out;
+}
+
+.craig-flip {
+    animation: craig-flip-off 0.5s ease-in-out;
+}
+
+.craig-whatever {
+    animation: craig-whatever 2s ease-in-out;
+}
+
+/* ===== GENERAL UI ANIMATIONS ===== */
+
+/* Smooth card hover animations */
+.character-card {
+    transition: all var(--animation-speed-normal) var(--smooth-ease);
+}
+
+.character-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Post interaction animations */
+.post-item {
+    transition: all var(--animation-speed-fast) ease;
+}
+
+.post-item:hover {
+    background-color: rgba(0,0,0,0.02);
+    transform: translateX(5px);
+}
+
+/* Button pulse animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.pulse-animation {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Notification slide-in animation */
+@keyframes slide-in-right {
+    0% { transform: translateX(100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+.notification-slide-in {
+    animation: slide-in-right var(--animation-speed-normal) var(--bounce-ease);
+}
+
+/* Loading spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Fade animations */
+@keyframes fade-in {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+
+.fade-in {
+    animation: fade-in var(--animation-speed-normal) var(--smooth-ease);
+}
+
+.fade-out {
+    animation: fade-out var(--animation-speed-fast) var(--smooth-ease);
+}
+
+/* ===== INTERACTION FEEDBACK ANIMATIONS ===== */
+
+/* Click feedback */
+@keyframes click-feedback {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.click-feedback {
+    animation: click-feedback var(--animation-speed-fast) ease;
+}
+
+/* Success feedback */
+@keyframes success-glow {
+    0% { box-shadow: 0 0 0px #4CAF50; }
+    50% { box-shadow: 0 0 20px #4CAF50; }
+    100% { box-shadow: 0 0 0px #4CAF50; }
+}
+
+.success-glow {
+    animation: success-glow 1s ease-in-out;
+}
+
+/* Error shake */
+@keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.error-shake {
+    animation: error-shake 0.5s ease-in-out;
+}
+
+/* ===== SPECIAL EFFECT ANIMATIONS ===== */
+
+/* Floating particles effect */
+@keyframes float-up {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+.floating-particle {
+    animation: float-up 3s linear infinite;
+}
+
+/* Glowing text effect */
+@keyframes text-glow {
+    0%, 100% { text-shadow: 0 0 5px currentColor; }
+    50% { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+.glow-text {
+    animation: text-glow 2s ease-in-out infinite;
+}
+
+/* Typing effect */
+@keyframes typing {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid currentColor;
+    animation: typing 3s steps(40, end), blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { border-color: currentColor; }
+    51%, 100% { border-color: transparent; }
+}
+
+/* ===== RESPONSIVE ANIMATION CONTROLS ===== */
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+    .character-card:hover {
+        transform: translateY(-3px) scale(1.01);
+    }
+    
+    .tweek-avatar {
+        animation-duration: 3s; /* Slower on mobile to reduce battery drain */
+    }
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.no-animation {
+    animation: none !important;
+    transition: none !important;
+}
+
+.slow-animation {
+    animation-duration: calc(var(--animation-speed-normal) * 2);
+}
+
+.fast-animation {
+    animation-duration: calc(var(--animation-speed-fast) / 2);
+}
+
+.pause-animation {
+    animation-play-state: paused;
+}
+
+.resume-animation {
+    animation-play-state: running;
+}

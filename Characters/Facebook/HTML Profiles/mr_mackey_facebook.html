@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Mackey - Facebook</title>
+  <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f0f2f5; margin: 0; color: #1c1e21; }
+    .header { background: #1877f2; color: #fff; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; }
+    .fb-logo { font-weight: 800; font-size: 22px; letter-spacing: .2px; }
+    .search { flex: 1; max-width: 420px; margin: 0 16px; }
+    .search input { width: 100%; border: 0; border-radius: 20px; padding: 10px 14px; background: rgba(255,255,255,.2); color: #fff; }
+    .icons { display: flex; gap: 8px; }
+    .icon { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.15); display: grid; place-items: center; }
+
+    .container { max-width: 1100px; margin: 20px auto; padding: 0 16px; }
+    .profile { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); overflow: hidden; margin-bottom: 16px; }
+    .cover { height: 260px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; letter-spacing: .3px;
+             background: linear-gradient(135deg, #2ecc71 0%, #27ae60 40%, #16a085 100%); text-shadow: 2px 2px 4px rgba(0,0,0,.35); }
+    .profile-info { position: relative; padding: 20px; }
+    .avatar { position: absolute; top: -60px; left: 24px; width: 120px; height: 120px; border-radius: 50%; border: 5px solid #fff; background: linear-gradient(45deg, #2ecc71, #16a085); color: #fff; font-weight: 800; display: grid; place-items: center; font-size: 44px; box-shadow: 0 4px 10px rgba(0,0,0,.25); }
+    .details { margin-left: 170px; }
+    .name { display: flex; align-items: center; gap: 10px; font-size: 28px; font-weight: 800; }
+    .badge { background: #10b981; color: #fff; font-size: 12px; padding: 4px 8px; border-radius: 999px; font-weight: 700; }
+    .meta { color: #65676b; margin-top: 4px; }
+    .actions { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn { background: #e7f3ff; color: #1877f2; padding: 8px 12px; border-radius: 6px; font-weight: 600; cursor: pointer; }
+    .btn.primary { background: #1877f2; color: #fff; }
+
+    .grid { display: grid; grid-template-columns: 340px 1fr; gap: 16px; }
+    .card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); padding: 16px; }
+    .card h3 { margin: 0 0 10px; font-size: 18px; }
+    .about p { margin: 6px 0; color: #1c1e21; }
+    .pill { display: inline-block; background: #f0f2f5; padding: 6px 10px; border-radius: 999px; margin: 4px 6px 0 0; font-size: 13px; color: #25634d; }
+    .list { padding-left: 18px; color: #1c1e21; }
+    .list li { margin: 6px 0; }
+
+    .composer, .post { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); padding: 16px; }
+    .post + .post { margin-top: 16px; }
+    .post-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .post-avatar { width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(45deg, #2ecc71, #16a085); color: #fff; display: grid; place-items: center; font-weight: 800; }
+    .post-time { color: #65676b; font-size: 12px; }
+    .post .section { background: #ecfdf5; border-left: 3px solid #10b981; padding: 10px; border-radius: 6px; margin: 10px 0; }
+    .warn { background: #fff7ed; border-left-color: #f59e0b; }
+    .rule { background: #eff6ff; border-left-color: #3b82f6; }
+    .cta-row { display: flex; gap: 8px; margin-top: 10px; }
+    .cta { background: #f0f2f5; padding: 8px 12px; border-radius: 6px; color: #1c1e21; font-weight: 600; }
+  </style>
+  <!-- Parody profile for humor/analysis; not affiliated with Facebook. -->
+  <!-- South Park character © respective rights holders; this is fan-made. -->
+  <!-- No real personal data; fictional content only. -->
+  <meta name="robots" content="noindex" />
+  <meta name="description" content="Parody Facebook-style profile for Mr. Mackey (Guidance Counselor) — Mmkay." />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#1877f2" />
+</head>
+<body>
+  <div class="header">
+    <a href="../../../facebook.html" class="fb-logo">facebook</a>
+    <div class="search"><input placeholder="Search Facebook" /></div>
+    <div class="icons">
+      <div class="icon">🏠</div>
+      <div class="icon">👥</div>
+      <div class="icon">🔔</div>
+      <div class="icon">☰</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="profile">
+      <div class="cover">"Let's make good choices, mmkay?"</div>
+      <div class="profile-info">
+        <div class="avatar">MM</div>
+        <div class="details">
+          <div class="name">Mr. Mackey <span class="badge">Guidance Counselor</span></div>
+          <div class="meta">South Park Elementary • Community Guidelines Enthusiast • "Mmkay"</div>
+          <div class="actions">
+            <div class="btn primary">+ Schedule Counseling</div>
+            <div class="btn">Message</div>
+            <div class="btn">Report Bad Behavior</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <aside class="card about">
+        <h3>About</h3>
+        <p>Hi kids, I'm your school guidance counselor, mmkay? I'm here to help you make responsible decisions, mmkay.</p>
+        <p>Specialties include substance awareness, detention alternatives, and advanced "mmkay" deployment under stress.</p>
+        <div style="margin:10px 0 4px; font-weight:700;">Interests</div>
+        <div>
+          <span class="pill">Student Wellness</span>
+          <span class="pill">Behavior Contracts</span>
+          <span class="pill">No-Drama Policies</span>
+          <span class="pill">Parent Conferences</span>
+          <span class="pill">Detention Reform</span>
+        </div>
+
+        <div style="margin:14px 0 6px; font-weight:700;">Work & Education</div>
+        <ul class="list">
+          <li>Guidance Counselor at South Park Elementary</li>
+          <li>BA, Behavioral Sciences (Minor in Saying "Mmkay")</li>
+          <li>Certified in Conflict De-escalation and Poster-Making</li>
+        </ul>
+
+        <div style="margin:14px 0 6px; font-weight:700;">Featured Policies</div>
+        <ul class="list">
+          <li>Zero-Substances-At-Show-And-Tell Initiative</li>
+          <li>Three-Strike "Be Nice, Mmkay" Rule</li>
+          <li>Mindful Recess: Breathing, Not Screaming</li>
+        </ul>
+      </aside>
+
+      <main>
+        <div class="composer">
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div class="post-avatar">MM</div>
+            <input style="flex:1; padding:10px 12px; border-radius: 20px; border:1px solid #e4e6ea;" placeholder="What's on your mind, Mr. Mackey?"/>
+            <div class="btn">Go Live</div>
+          </div>
+        </div>
+
+        <article class="post">
+          <div class="post-header">
+            <div class="post-avatar">MM</div>
+            <div>
+              <div style="font-weight:700;">Mr. Mackey</div>
+              <div class="post-time">Just now • 📢 ANNOUNCEMENT</div>
+            </div>
+          </div>
+          <div>
+            Kids, quick reminder: substances are bad, mmkay? 
+            
+            <div class="section warn">If someone offers you something and it didn't come from the cafeteria or your lunchbox, say: "No thank you, mmkay" and find a trusted adult. Preferably me.</div>
+            
+            We'll be having an assembly Friday titled "Choices and Consequences (Mmkay Edition)." Attendance is mandatory; eye-rolling is optional but discouraged.
+            <div class="cta-row">
+              <div class="cta">✅ RSVP</div>
+              <div class="cta">📎 See Handout</div>
+              <div class="cta">🗣️ Parent Info</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="post">
+          <div class="post-header">
+            <div class="post-avatar">MM</div>
+            <div>
+              <div style="font-weight:700;">Mr. Mackey</div>
+              <div class="post-time">1 hr • 🧠 COUNSELING CORNER</div>
+            </div>
+          </div>
+          <div>
+            Today's tip: When you feel like yelling at your classmates, try my 3-step method, mmkay:
+            <div class="section rule">
+              1) Inhale like you're about to say a really long "mmmmm". 2) Hold it until your brain says "kay". 3) Exhale and use your inside voice. Works 60% of the time, every time, mmkay.
+            </div>
+            If that doesn't help, my office has stress balls shaped like "mmkay" speech bubbles. Please return them. We are missing twelve.
+            <div class="cta-row">
+              <div class="cta">🗓️ Book 10 min</div>
+              <div class="cta">💬 Request Check-in</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="post">
+          <div class="post-header">
+            <div class="post-avatar">MM</div>
+            <div>
+              <div style="font-weight:700;">Mr. Mackey</div>
+              <div class="post-time">Yesterday • 🏫 SCHOOL POLICY</div>
+            </div>
+          </div>
+          <div>
+            After careful consideration and a very long "mmmmm," we've updated the detention guidelines:
+            <div class="section">
+              • Detention now includes a 5-minute reflection journal titled "What I Could've Done Instead, Mmkay".
+              <br/>• Excessive tattling will be redirected into peer-mediation practice.
+              <br/>• Throwing food is still not a form of art.
+            </div>
+            Be kind, mmkay.
+            <div class="cta-row">
+              <div class="cta">📘 Read Policy</div>
+              <div class="cta">🤝 Peer Mediation</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="post">
+          <div class="post-header">
+            <div class="post-avatar">MM</div>
+            <div>
+              <div style="font-weight:700;">Mr. Mackey</div>
+              <div class="post-time">3 days ago • 🎤 ASSEMBLY RECAP</div>
+            </div>
+          </div>
+          <div>
+            Thanks to everyone who attended the Anti-Drama Summit. For those who asked: yes, Cartman is on a new "caps lock" plan. No, Kyle, you can't be in charge of the consequences. Stan, good job nodding supportively.
+            <div class="section warn">Reminder: Speaking in all caps is not a personality.</div>
+            Parents, if you need me, I'm in my office alphabetizing "mmkay" forms.
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <!-- End parody profile -->
+
+  <!-- Enhanced Navigation & Interaction Systems -->
+  <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+  <script src="../../../Assets/js/character-switcher.js"></script>
+  <script src="../../../Assets/js/fab-integration.js"></script>
+  <script src="../../../Assets/js/emoji-reactions.js"></script>
+  <script src="../../../Assets/js/mobile-enhancements.js"></script>
+  <script src="../../../Assets/js/character-interactions.js"></script>
+  <script>
+    // Initialize enhanced features for Mr. Mackey's profile
+    document.addEventListener('DOMContentLoaded', function() {
+      // Character interactions
+      setTimeout(() => {
+        if (window.characterInteractions) {
+          console.log('Mr. Mackey profile loaded - character interactions enabled');
+        }
+      }, 1000);
+
+      // Add modern animations to posts
+      const posts = document.querySelectorAll('.post');
+      posts.forEach((post, index) => {
+        post.style.animationDelay = `${index * 0.1}s`;
+        post.classList.add('slide-in');
+      });
+
+      // Add hover effects to action buttons
+      const actions = document.querySelectorAll('.post-action, .composer-action');
+      actions.forEach(action => {
+        action.classList.add('card-hover-effect');
+      });
+    });
+  </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>
+

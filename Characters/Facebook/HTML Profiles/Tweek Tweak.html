@@ -1,0 +1,501 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweek Tweak - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --tweek-primary: #FFD700;
+            --tweek-secondary: #FF6B35;
+            --tweek-accent: #8B4513;
+            --tweek-anxiety: #FF4444;
+            --tweek-background: #FFF8DC;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--tweek-background) 0%, #FFFACD 100%);
+            animation: anxiety-shake 2s ease-in-out infinite;
+        }
+
+        @keyframes anxiety-shake {
+            0%, 100% { transform: translateX(0px); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-1px); }
+            20%, 40%, 60%, 80% { transform: translateX(1px); }
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--tweek-primary), var(--tweek-secondary));
+            border: 3px dashed var(--tweek-anxiety);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "⚠️ HIGH ANXIETY ZONE ⚠️";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--tweek-anxiety);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--tweek-primary);
+            color: var(--tweek-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px solid var(--tweek-secondary);
+            animation: nervous-twitch 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes nervous-twitch {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+
+        .anxiety-level {
+            background: linear-gradient(90deg, #ff0000, #ff6600, #ffff00);
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: panic-pulse 0.5s ease-in-out infinite;
+        }
+
+        @keyframes panic-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .coffee-counter {
+            background: var(--tweek-accent);
+            color: var(--tweek-primary);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--tweek-secondary);
+            background: rgba(255, 248, 220, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, var(--tweek-anxiety), var(--tweek-secondary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+
+        .panic-post {
+            background: linear-gradient(135deg, #ffeeee, #ffe6e6);
+            border: 3px dashed var(--tweek-anxiety);
+            animation: emergency-flash 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes emergency-flash {
+            0% { box-shadow: 0 0 5px var(--tweek-anxiety); }
+            100% { box-shadow: 0 0 20px var(--tweek-anxiety); }
+        }
+
+        .tweek-scream {
+            font-size: 24px;
+            color: var(--tweek-anxiety);
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: shake-text 0.3s ease-in-out infinite;
+        }
+
+        @keyframes shake-text {
+            0%, 100% { transform: translateY(0px); }
+            25% { transform: translateY(-2px); }
+            75% { transform: translateY(2px); }
+        }
+
+        .hair-pull {
+            color: var(--tweek-secondary);
+            font-style: italic;
+            border-left: 4px solid var(--tweek-anxiety);
+            padding-left: 10px;
+            margin: 10px 0;
+        }
+
+        .caffeine-buzz {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px dotted var(--tweek-accent);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .craig-mention {
+            background: #87CEEB;
+            color: #4682B4;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .danger-assessment {
+            background: linear-gradient(90deg, #ff4444, #ff8844);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #cc0000;
+        }
+
+        /* Mobile optimization for anxiety effects */
+        @media screen and (max-width: 768px) {
+            body {
+                animation: anxiety-shake 3s ease-in-out infinite; /* Slower shake on mobile */
+            }
+            
+            .anxiety-level {
+                font-size: 14px;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--tweek-primary); color: var(--tweek-accent);">TT</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Tweek Tweak</h1>
+                <p class="character-tagline">"GAHHHHH! What if something terrible happens?!"</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="anxiety-level">
+                    🚨 CURRENT ANXIETY LEVEL: EXTREME ⚠️ COFFEE WITHDRAWAL IMMINENT 🚨
+                </div>
+
+                <div class="coffee-counter">
+                    ☕ DAILY COFFEE COUNT: 47 CUPS (and it's only 2 PM!) ☕
+                </div>
+
+                <div class="post panic-post">
+                    <div class="post-header">
+                        <strong>Tweek Tweak</strong>
+                        <span class="timestamp">2 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="tweek-scream">GAH! GUYS! WHAT IF THE HOMEWORK IS DUE TOMORROW AND NOT NEXT WEEK?!</div>
+                        <div class="hair-pull">*pulls at hair frantically* I can't remember when Mrs. Choksondik said it was due and what if I got it wrong and what if I fail 4th grade and what if I never graduate and end up living in a cardboard box under the overpass drinking instant coffee from puddles?!</div>
+                        <div class="danger-assessment">
+                            <strong>THREAT LEVEL ANALYSIS:</strong><br>
+                            • Homework confusion: 47% chance of academic doom<br>
+                            • Social humiliation: 73% probability<br>
+                            • Coffee supply shortage: CRITICAL ALERT<br>
+                            • Overall life catastrophe: IMMINENT
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (12)</span>
+                        <span class="action-button">💬 Comment (8)</span>
+                        <span class="action-button">📱 Share Panic</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Tweek Tweak</strong>
+                        <span class="timestamp">45 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="craig-mention">Craig says I worry too much, but what if NOT worrying is exactly what the gnomes want us to do?! 😰</div>
+                        Sometimes I think my boyfriend is too calm. What if his calmness is actually a government conspiracy to make me less vigilant about the REAL threats? But then he holds my hand and I feel a little better... until I remember that hand-holding could be how they transfer the mind control nanobots!
+                        <div class="caffeine-buzz">
+                            *twitches* Must... drink... more... coffee... to... stay... alert... ☕⚡
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (23)</span>
+                        <span class="action-button">💬 Comment (15)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Tweek Tweak</strong>
+                        <span class="timestamp">1 hour ago</span>
+                    </div>
+                    <div class="post-content">
+                        EMERGENCY UPDATE: The school cafeteria is serving "mystery meat" today. I've done a full risk assessment:
+                        <ul>
+                            <li>🔴 Could be alien protein designed to alter our DNA</li>
+                            <li>🔴 Might be expired food from the government surplus</li>
+                            <li>🔴 Possibly contains mind control chemicals</li>
+                            <li>🟡 Small chance it's actually food</li>
+                        </ul>
+                        <div class="hair-pull">I brought seventeen PB&J sandwiches just to be safe, but what if the peanut butter has been contaminated?! <em>*nervous hair pulling intensifies*</em></div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (31)</span>
+                        <span class="action-button">💬 Comment (22)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Tweek Tweak</strong>
+                        <span class="timestamp">3 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        My parents keep telling me that coffee will "stunt my growth" but what they don't understand is that without coffee, the gnomes will steal my underwear AND my growth potential! It's basic logic!
+                        <div class="caffeine-buzz">
+                            Plus, coffee helps me think faster so I can spot danger 0.3 seconds earlier. That could be the difference between life and death in a gnome attack scenario! ☕🔥
+                        </div>
+                        <div class="craig-mention">Craig thinks I should "try tea" but everyone knows tea is what the British use for mind control! That's how they conquered so many countries!</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (18)</span>
+                        <span class="action-button">💬 Comment (11)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post panic-post">
+                    <div class="post-header">
+                        <strong>Tweek Tweak</strong>
+                        <span class="timestamp">5 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="tweek-scream">OH GOD! I JUST REALIZED SOMETHING TERRIBLE!</div>
+                        What if homework is just practice for adult paperwork, and adult paperwork is how the government tracks everything we do, and school is actually a training program to turn us into compliant tax-paying citizens who don't question why we need to fill out forms in triplicate?!
+                        <div class="danger-assessment">
+                            <strong>CONSPIRACY PROBABILITY:</strong> 94.7%<br>
+                            <strong>RECOMMENDED ACTION:</strong> More coffee, constant vigilance<br>
+                            <strong>BACKUP PLAN:</strong> Learn to live off the grid (but still near a coffee shop)
+                        </div>
+                        <div class="hair-pull">*INTENSE HAIR PULLING* Why didn't anyone warn me about this?!</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (44)</span>
+                        <span class="action-button">💬 Comment (33)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Tweek Tweak</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        Craig helped me with my gnome-proofing strategy for my bedroom last night. He says putting salt circles around my bed is "weird" but then he helped me arrange them anyway because he's the best boyfriend even if he doesn't understand the gnome threat level.
+                        <div class="craig-mention">Sometimes I wonder if his calmness is contagious... but then I remember that being calm makes you vulnerable to surprise attacks! 😱</div>
+                        <div class="caffeine-buzz">Note to self: Research whether love can be used as a caffeine substitute. Preliminary results: Inconclusive, but promising. Still need coffee though. Always need coffee. ☕💕</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (67)</span>
+                        <span class="action-button">💬 Comment (25)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>About Tweek</h3>
+                    <div class="info-item">
+                        <strong>🏫 School:</strong> South Park Elementary
+                    </div>
+                    <div class="info-item">
+                        <strong>☕ Occupation:</strong> Professional Worrier & Coffee Tester
+                    </div>
+                    <div class="info-item">
+                        <strong>🎯 Life Goal:</strong> Survive until tomorrow (repeat daily)
+                    </div>
+                    <div class="info-item">
+                        <strong>💕 Relationship:</strong> Dating Craig Tucker (somehow)
+                    </div>
+                    <div class="info-item">
+                        <strong>⚡ Current Status:</strong> Hypervigilant
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Anxiety Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Worst-case scenarios considered today</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">47</span>
+                        <span class="stat-label">Cups of coffee (so far)</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Things that could go wrong</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Boyfriend who puts up with this</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Panic Attacks</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">😱</span>
+                        <span class="activity-text">Worried about pop quiz that doesn't exist</span>
+                        <span class="activity-time">5 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">⚠️</span>
+                        <span class="activity-text">Spotted suspicious gnome activity</span>
+                        <span class="activity-time">15 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">☕</span>
+                        <span class="activity-text">Coffee machine made weird noise - investigated for 20 minutes</span>
+                        <span class="activity-time">30 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💙</span>
+                        <span class="activity-text">Craig said "whatever" and somehow felt better</span>
+                        <span class="activity-time">1 hour ago</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Anxiety Support Network</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #87CEEB; color: #4682B4;">CT</span>
+                        <span class="friend-name">Craig Tucker</span>
+                        <span class="friend-status">💙 Boyfriend (Calm Energy)</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FFB6C1; color: #FF69B4;">BT</span>
+                        <span class="friend-name">Butters Stotch</span>
+                        <span class="friend-status">😊 Fellow Worrier</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #98FB98; color: #228B22;">JV</span>
+                        <span class="friend-name">Jimmy Valmer</span>
+                        <span class="friend-status">😄 Anxiety Comedy Relief</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #F0E68C; color: #B8860B;">TT</span>
+                        <span class="friend-name">Tweek's Coffee</span>
+                        <span class="friend-status">☕ Life Support System</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Tweek's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Tweek profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+
+            // Legacy Tweek interactions
+            if (typeof CharacterInteractions !== 'undefined') {
+                const interactions = new CharacterInteractions();
+                interactions.initializeProfile('tweek');
+            }
+            
+            // Add Tweek-specific anxiety effects
+            const anxietyElements = document.querySelectorAll('.tweek-scream, .panic-post');
+            anxietyElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.animation = 'shake-text 0.1s ease-in-out infinite';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Coffee counter that increases randomly
+            const coffeeCounter = document.querySelector('.coffee-counter');
+            let coffeeCount = 47;
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 30% chance every interval
+                    coffeeCount++;
+                    coffeeCounter.innerHTML = `☕ DAILY COFFEE COUNT: ${coffeeCount} CUPS (and it's only 2 PM!) ☕`;
+                }
+            }, 30000); // Check every 30 seconds
+            
+            // Dynamic anxiety level updates
+            const anxietyLevel = document.querySelector('.anxiety-level');
+            const anxietyStates = [
+                "🚨 CURRENT ANXIETY LEVEL: EXTREME ⚠️ COFFEE WITHDRAWAL IMMINENT 🚨",
+                "⚠️ ANXIETY LEVEL: CRITICAL - GNOME ACTIVITY DETECTED ⚠️",
+                "🔥 PANIC MODE ENGAGED - HOMEWORK DEADLINE CONFUSION 🔥",
+                "💥 RED ALERT: WHAT IF SOMETHING TERRIBLE HAPPENS?! 💥",
+                "😱 MAXIMUM ANXIETY - CRAIG SAID 'WHATEVER' TOO CALMLY 😱"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.6) {
+                    const randomState = anxietyStates[Math.floor(Math.random() * anxietyStates.length)];
+                    anxietyLevel.innerHTML = randomState;
+                }
+            }, 45000); // Update every 45 seconds
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

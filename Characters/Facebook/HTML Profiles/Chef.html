@@ -1,0 +1,662 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chef (In Memoriam) - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --chef-primary: #8B4513;
+            --chef-secondary: #A0522D;
+            --chef-accent: #CD853F;
+            --chef-soulful: #4B0082;
+            --chef-background: #FFF8DC;
+            --chef-memorial: #696969;
+            --chef-golden: #FFD700;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--chef-background) 0%, #F5DEB3 100%);
+            position: relative;
+        }
+
+        /* Memorial floating notes */
+        body::before, body::after {
+            content: "🎵";
+            position: fixed;
+            font-size: 20px;
+            animation: soulful-float 8s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.3;
+            color: var(--chef-soulful);
+        }
+
+        body::before {
+            left: 20%;
+            top: 25%;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            right: 25%;
+            top: 65%;
+            animation-delay: 4s;
+        }
+
+        @keyframes soulful-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-30px) rotate(20deg); opacity: 0.8; }
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--chef-primary), var(--chef-secondary));
+            border: 3px solid var(--chef-golden);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "🎭 IN LOVING MEMORY 🎭";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--chef-memorial);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--chef-primary);
+            color: var(--chef-golden);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .name-banner::after {
+            content: "1951-2006 • Forever in our hearts";
+            display: block;
+            font-size: 12px;
+            font-style: italic;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(139, 69, 19, 0.2);
+            border: 2px solid var(--chef-secondary);
+            animation: memorial-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes memorial-glow {
+            0% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+        }
+
+        .memorial-banner {
+            background: linear-gradient(90deg, #696969, #ffd700);
+            color: white;
+            padding: 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: memorial-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes memorial-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .legacy-badge {
+            background: var(--chef-golden);
+            color: var(--chef-primary);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--chef-secondary);
+            background: rgba(255, 248, 220, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--chef-golden), var(--chef-primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.2;
+        }
+
+        .memorial-post {
+            background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+            border: 3px solid var(--chef-memorial);
+            animation: memorial-tribute 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes memorial-tribute {
+            0% { border-color: var(--chef-memorial); }
+            100% { border-color: var(--chef-golden); }
+        }
+
+        .hello-children {
+            font-size: 18px;
+            color: var(--chef-soulful);
+            font-weight: bold;
+            animation: chef-greeting 4s ease-in-out infinite;
+        }
+
+        @keyframes chef-greeting {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .soulful-wisdom {
+            color: var(--chef-soulful);
+            font-weight: 600;
+            border-left: 4px solid var(--chef-golden);
+            padding-left: 10px;
+            margin: 10px 0;
+            position: relative;
+            font-style: italic;
+        }
+
+        .soulful-wisdom::before {
+            content: "🎤";
+            position: absolute;
+            left: -15px;
+            animation: mic-sway 3s ease-in-out infinite;
+        }
+
+        @keyframes mic-sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .student-memory {
+            background: rgba(255, 215, 0, 0.2);
+            border: 2px dotted var(--chef-primary);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .chef-song {
+            background: var(--chef-soulful);
+            color: var(--chef-golden);
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+            font-style: italic;
+        }
+
+        .tribute-message {
+            background: linear-gradient(90deg, #8b4513, #ffd700);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #a0522d;
+        }
+
+        .remembrance {
+            position: relative;
+            font-weight: bold;
+            color: var(--chef-memorial);
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .remembrance::before,
+        .remembrance::after {
+            content: "✨";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: remembrance-sparkle 2s ease-in-out infinite alternate;
+        }
+
+        .remembrance::before {
+            left: 10px;
+        }
+
+        .remembrance::after {
+            right: 10px;
+        }
+
+        @keyframes remembrance-sparkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .wisdom-quote {
+            border: 3px solid var(--chef-golden);
+            background: linear-gradient(135deg, #fff8dc, #f5deb3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            font-style: italic;
+            animation: quote-highlight 4s ease-in-out infinite;
+        }
+
+        @keyframes quote-highlight {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        /* Mobile optimization */
+        @media screen and (max-width: 768px) {
+            body::before, body::after {
+                display: none; /* Hide floating notes on mobile */
+            }
+            
+            .memorial-banner {
+                font-size: 14px;
+                padding: 8px;
+            }
+            
+            .remembrance::before,
+            .remembrance::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--chef-primary); color: var(--chef-golden);">👨‍🍳</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Jerome "Chef" McElroy</h1>
+                <p class="character-tagline">"Hello there, children!"</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="memorial-banner">
+                    🕊️ IN LOVING MEMORY OF SOUTH PARK'S BELOVED CHEF 🕊️
+                </div>
+
+                <div class="legacy-badge">
+                    🎵 "HE TAUGHT US ABOUT LIFE, LOVE, AND CHOCOLATE SALTY BALLS" 🎵
+                </div>
+
+                <div class="remembrance">
+                    This memorial page celebrates the life and wisdom of Chef, who touched the hearts of every child in South Park with his soulful songs, caring advice, and unforgettable catchphrases. Though he's no longer with us, his memory lives on in every "Hello there, children!" and every life lesson delivered through song.
+                </div>
+
+                <div class="post memorial-post">
+                    <div class="post-header">
+                        <strong>Stan Marsh</strong>
+                        <span class="timestamp">2 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="hello-children">"Hello there, children!" - I can still hear Chef's voice every time I walk past the cafeteria. 💙</div>
+                        <div class="student-memory">
+                            Chef was the one adult who never talked down to us. Sure, sometimes his advice was... really inappropriate for fourth graders, but he genuinely cared about helping us figure out life. Even when our parents couldn't handle our questions, Chef was always there with an answer. And usually a song.
+                        </div>
+                        <div class="soulful-wisdom">"Sometimes you gotta do what's right, even when everyone thinks you're wrong." - Chef taught us that through his music and his actions.</div>
+                        <div class="tribute-message">
+                            We miss you, Chef. South Park Elementary isn't the same without your soulful voice and caring heart. ❤️🎵
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (456)</span>
+                        <span class="action-button">💬 Comment (189)</span>
+                        <span class="action-button">🎵 Share Memory</span>
+                    </div>
+                </div>
+
+                <div class="post memorial-post">
+                    <div class="post-header">
+                        <strong>Kyle Broflovski</strong>
+                        <span class="timestamp">4 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="chef-song">🎵 "I'm gonna make love to you, woman..." 🎵</div>
+                        <div class="student-memory">
+                            Okay, so Chef's songs were definitely not appropriate for elementary school kids, but somehow they always made sense when we needed them most. He had this way of explaining complicated adult stuff through music that helped us understand the world better.
+                        </div>
+                        <div class="soulful-wisdom">Chef never judged us for asking weird questions. When all the adults around us were lying or avoiding tough topics, Chef gave us honest answers. Maybe too honest sometimes, but at least they were real.</div>
+                        <div class="tribute-message">
+                            I learned more about standing up for what's right from Chef's cafeteria wisdom than from most of my actual classes. He taught us that being different doesn't make you wrong, and that sometimes the most important lessons come from unexpected places.
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (234)</span>
+                        <span class="action-button">💬 Comment (156)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post memorial-post">
+                    <div class="post-header">
+                        <strong>Eric Cartman</strong>
+                        <span class="timestamp">6 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="hello-children">Chef made the best school lunches EVER! Nobody could cook like him! 🍽️</div>
+                        <div class="student-memory">
+                            I may not have always agreed with Chef's... lifestyle choices... but damn if that man couldn't make some amazing food! His Chocolate Salty Balls were legendary, and his meatloaf was actually edible, which is more than I can say for most school cafeteria food.
+                        </div>
+                        <div class="chef-song">🎵 "Chocolate Salty Balls! Put 'em in your mouth!" 🎵</div>
+                        <div class="soulful-wisdom">Chef was cool because he treated us like we were smart enough to handle the truth. Even when the truth was super weird and involved way too much information about adult relationships.</div>
+                        <div class="tribute-message">Plus, he always took my side when the other lunch ladies tried to give me smaller portions! A true ally in the fight against cafeteria oppression! 💪</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (298)</span>
+                        <span class="action-button">💬 Comment (203)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post memorial-post">
+                    <div class="post-header">
+                        <strong>Kenny McCormick</strong>
+                        <span class="timestamp">8 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="chef-song">Mmpfh mph mmpfh Chef! Mmph mmpfh mmpfh! 🎵</div>
+                        <div class="student-memory">
+                            <small>(Translation: "Chef understood us better than any other adult! He never treated us like little kids who couldn't handle real talk!")</small>
+                        </div>
+                        <div class="soulful-wisdom">Mmpfh mmpfh Chef's mmpfh mmpfh wisdom mmpfh...</div>
+                        <div class="student-memory">
+                            <small>(Translation: "Chef's songs taught us more about life than school ever did...")</small>
+                        </div>
+                        <div class="tribute-message">
+                            Mmpfh Chef! Mmpfh mmpfh mmpfh mmpfh! 💙🎵<br>
+                            <small>(Translation: "Miss you, Chef! Thanks for all the inappropriate but helpful advice!")</small>
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (189)</span>
+                        <span class="action-button">💬 Comment (67)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="wisdom-quote">
+                    <div class="soulful-wisdom">"Children, there's a time and place for everything, and it's called college." - Chef</div>
+                    <p>One of his most famous pieces of advice, perfectly capturing his unique blend of inappropriate honesty and genuine wisdom.</p>
+                </div>
+
+                <div class="post memorial-post">
+                    <div class="post-header">
+                        <strong>Principal Victoria</strong>
+                        <span class="timestamp">12 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="hello-children">On behalf of South Park Elementary, we remember Chef as an irreplaceable member of our school family. 🏫</div>
+                        <div class="student-memory">
+                            While Chef's methods were... unconventional... there's no denying that he cared deeply about our students. He had a unique gift for connecting with children and helping them navigate difficult questions when traditional approaches failed.
+                        </div>
+                        <div class="tribute-message">
+                            <strong>CHEF'S LEGACY AT SOUTH PARK ELEMENTARY:</strong><br>
+                            • 15+ years of dedicated service<br>
+                            • Countless students guided through tough times<br>
+                            • Revolutionary cafeteria meal quality<br>
+                            • Unforgettable musical education moments<br>
+                            • A caring heart that touched every life he encountered
+                        </div>
+                        <div class="soulful-wisdom">The cafeteria has been quieter since we lost him, but his spirit lives on in every child who learned that it's okay to ask hard questions and seek honest answers.</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (567)</span>
+                        <span class="action-button">💬 Comment (234)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post memorial-post">
+                    <div class="post-header">
+                        <strong>Randy Marsh</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="hello-children">As a parent, I have to admit Chef taught my son things I was too uncomfortable to discuss myself. 😅</div>
+                        <div class="student-memory">
+                            Look, we all know Chef's advice wasn't always... parent-approved... but you know what? The kids turned out okay. Maybe there's something to be said for honest, straightforward communication, even when it makes us adults squirm a little.
+                        </div>
+                        <div class="soulful-wisdom">Chef had the courage to treat kids like real people with real questions who deserved real answers. That's actually pretty admirable, even if his delivery was sometimes questionable.</div>
+                        <div class="tribute-message">Plus, the man could COOK! I still haven't found chocolate salty balls that good anywhere else in town. He was a true South Park original.</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (345)</span>
+                        <span class="action-button">💬 Comment (178)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="remembrance">
+                    <div class="soulful-wisdom">"Hello there, children! Let me sing you a song about life..."</div>
+                    <p style="margin-top: 10px; font-style: italic;">Chef's memory lives on in every lesson learned, every question answered, and every moment of genuine care shared with the children of South Park. He may be gone, but his wisdom, his songs, and his unforgettable greeting will echo in our hearts forever.</p>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>Remembering Chef</h3>
+                    <div class="info-item">
+                        <strong>👨‍🍳 Role:</strong> School Cafeteria Worker & Life Counselor
+                    </div>
+                    <div class="info-item">
+                        <strong>🎵 Known For:</strong> Soulful songs and inappropriate wisdom
+                    </div>
+                    <div class="info-item">
+                        <strong>🏫 Workplace:</strong> South Park Elementary School
+                    </div>
+                    <div class="info-item">
+                        <strong>💙 Legacy:</strong> Caring for all the children
+                    </div>
+                    <div class="info-item">
+                        <strong>🕊️ Status:</strong> Forever in our hearts
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Memorial Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Years of service</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1000+</span>
+                        <span class="stat-label">Students helped</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Memorable songs performed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">♾️</span>
+                        <span class="stat-label">Lives touched by his wisdom</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Memorial Tributes</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">💙</span>
+                        <span class="activity-text">Stan's heartfelt remembrance</span>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎵</span>
+                        <span class="activity-text">Kyle shared favorite Chef song</span>
+                        <span class="activity-time">4 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🍽️</span>
+                        <span class="activity-text">Cartman's food memories</span>
+                        <span class="activity-time">6 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🏫</span>
+                        <span class="activity-text">Principal Victoria's official tribute</span>
+                        <span class="activity-time">12 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Students He Guided</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #2196F3; color: white;">SM</span>
+                        <span class="friend-name">Stan Marsh</span>
+                        <span class="friend-status">💙 Grateful Student</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #4CAF50; color: white;">KB</span>
+                        <span class="friend-name">Kyle Broflovski</span>
+                        <span class="friend-status">💙 Forever Thankful</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #dc3545; color: white;">EC</span>
+                        <span class="friend-name">Eric Cartman</span>
+                        <span class="friend-status">🍽️ Food Appreciator</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FF9800; color: white;">KM</span>
+                        <span class="friend-name">Kenny McCormick</span>
+                        <span class="friend-status">🎵 Music Lover</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Chef's memorial profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Chef memorial profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+            // Add memorial-specific effects
+            const memorialElements = document.querySelectorAll('.memorial-post, .wisdom-quote');
+            memorialElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.animation = 'memorial-tribute 2s ease-in-out';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Gentle memorial banner updates
+            const memorialBanner = document.querySelector('.memorial-banner');
+            const memorialMessages = [
+                "🕊️ IN LOVING MEMORY OF SOUTH PARK'S BELOVED CHEF 🕊️",
+                "🎵 REMEMBERING THE SOULFUL VOICE THAT GUIDED US ALL 🎵",
+                "💙 CHEF'S WISDOM AND SONGS LIVE ON FOREVER 💙",
+                "✨ HELLO THERE, CHILDREN - WE MISS YOU, CHEF ✨",
+                "🎤 HIS MUSIC AND LOVE ECHO IN OUR HEARTS 🎤"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const randomMessage = memorialMessages[Math.floor(Math.random() * memorialMessages.length)];
+                    memorialBanner.innerHTML = randomMessage;
+                }
+            }, 60000); // Update every minute
+            
+            // Floating musical notes effect
+            setInterval(() => {
+                if (Math.random() > 0.8 && window.innerWidth > 768) {
+                    const note = document.createElement('div');
+                    note.innerHTML = '🎵';
+                    note.style.position = 'fixed';
+                    note.style.left = Math.random() * window.innerWidth + 'px';
+                    note.style.top = window.innerHeight + 'px';
+                    note.style.fontSize = '18px';
+                    note.style.color = '#4B0082';
+                    note.style.zIndex = '-1';
+                    note.style.opacity = '0.4';
+                    note.style.animation = 'memorial-float 6s ease-out forwards';
+                    note.style.pointerEvents = 'none';
+                    
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes memorial-float {
+                            0% { transform: translateY(0px); opacity: 0.4; }
+                            50% { opacity: 0.8; }
+                            100% { transform: translateY(-${window.innerHeight + 100}px); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    document.body.appendChild(note);
+                    
+                    setTimeout(() => {
+                        note.remove();
+                        style.remove();
+                    }, 6000);
+                }
+            }, 20000); // Add floating note every 20 seconds
+            
+            // Gentle remembrance sparkle effects
+            const remembranceElements = document.querySelectorAll('.remembrance');
+            setInterval(() => {
+                remembranceElements.forEach(element => {
+                    if (Math.random() > 0.9) {
+                        element.style.animation = 'remembrance-sparkle 3s ease-in-out';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                        }, 3000);
+                    }
+                });
+            }, 45000); // Sparkle every 45 seconds
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sheila Broflovski - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --sheila-primary: #FF6B35;
+            --sheila-secondary: #F7931E;
+            --sheila-accent: #E74C3C;
+            --sheila-righteous: #8E44AD;
+            --sheila-background: #FFF3E0;
+            --sheila-outrage: #C0392B;
+            --sheila-activism: #2E7D32;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--sheila-background) 0%, #FFECB3 100%);
+            position: relative;
+        }
+
+        /* Righteous energy effects */
+        body::before, body::after {
+            content: "⚠️";
+            position: fixed;
+            font-size: 24px;
+            animation: righteous-bounce 3s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.3;
+            color: var(--sheila-outrage);
+        }
+
+        body::before {
+            left: 10%;
+            top: 15%;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            right: 15%;
+            top: 70%;
+            animation-delay: 1.5s;
+        }
+
+        @keyframes righteous-bounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.1); }
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--sheila-primary), var(--sheila-secondary));
+            border: 3px solid var(--sheila-outrage);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "👩‍⚖️ MORAL AUTHORITY ZONE 👩‍⚖️";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--sheila-righteous);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--sheila-primary);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px solid var(--sheila-secondary);
+            animation: outrage-intensity 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes outrage-intensity {
+            0% { box-shadow: 0 0 5px rgba(255, 107, 53, 0.3); }
+            100% { box-shadow: 0 0 20px rgba(231, 76, 60, 0.6); }
+        }
+
+        .outrage-meter {
+            background: linear-gradient(90deg, #ff6b35, #e74c3c, #c0392b);
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: outrage-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes outrage-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pta-badge {
+            background: var(--sheila-activism);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--sheila-secondary);
+            background: rgba(255, 243, 224, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--sheila-outrage), var(--sheila-primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.2;
+        }
+
+        .moral-crusade {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border: 3px dashed var(--sheila-outrage);
+            animation: crusade-energy 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes crusade-energy {
+            0% { border-color: var(--sheila-outrage); }
+            100% { border-color: var(--sheila-righteous); }
+        }
+
+        .what-what-what {
+            font-size: 20px;
+            color: var(--sheila-outrage);
+            font-weight: bold;
+            text-transform: uppercase;
+            animation: outrage-shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes outrage-shake {
+            0%, 100% { transform: translateX(0px); }
+            25% { transform: translateX(-2px); }
+            75% { transform: translateX(2px); }
+        }
+
+        .righteous-indignation {
+            color: var(--sheila-righteous);
+            font-weight: 600;
+            border-left: 4px solid var(--sheila-outrage);
+            padding-left: 10px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .righteous-indignation::before {
+            content: "⚡";
+            position: absolute;
+            left: -15px;
+            animation: righteous-flash 2s ease-in-out infinite;
+        }
+
+        @keyframes righteous-flash {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .maternal-protection {
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px dotted var(--sheila-primary);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .kyle-mention {
+            background: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .policy-proposal {
+            background: linear-gradient(90deg, #ff6b35, #8e44ad);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #c0392b;
+        }
+
+        .catastrophic-thinking {
+            position: relative;
+            font-weight: bold;
+            color: var(--sheila-outrage);
+            animation: escalation-grow 3s ease-in-out infinite;
+        }
+
+        @keyframes escalation-grow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .community-organizing {
+            background: var(--sheila-activism);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .petition-drive {
+            border: 3px solid var(--sheila-outrage);
+            background: linear-gradient(135deg, #fff3e0, #ffecb3);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            animation: petition-urgency 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes petition-urgency {
+            0% { box-shadow: 0 0 10px rgba(192, 57, 43, 0.3); }
+            100% { box-shadow: 0 0 25px rgba(192, 57, 43, 0.6); }
+        }
+
+        /* Mobile optimization */
+        @media screen and (max-width: 768px) {
+            body::before, body::after {
+                display: none; /* Hide bouncing warnings on mobile */
+            }
+            
+            .outrage-meter {
+                font-size: 14px;
+                padding: 6px;
+            }
+            
+            .what-what-what {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--sheila-primary); color: white;">SB</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Sheila Broflovski</h1>
+                <p class="character-tagline">"WHAT, WHAT, WHAT?! This is unacceptable for our children!"</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="outrage-meter">
+                    ⚠️ CURRENT OUTRAGE LEVEL: MAXIMUM - COMMUNITY ACTION REQUIRED! ⚠️
+                </div>
+
+                <div class="pta-badge">
+                    👩‍⚖️ PTA PRESIDENT & COMMUNITY MORAL GUARDIAN - PROTECTING OUR CHILDREN SINCE 1998 👩‍⚖️
+                </div>
+
+                <div class="post moral-crusade">
+                    <div class="post-header">
+                        <strong>Sheila Broflovski</strong>
+                        <span class="timestamp">47 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="what-what-what">EMERGENCY PTA MEETING CALLED! ⚠️⚡</div>
+                        <div class="righteous-indignation">I discovered that the school vending machines are selling candy with 12 grams of sugar per serving! TWELVE GRAMS! Do you realize what this is doing to our children's developing brains?!</div>
+                        <div class="policy-proposal">
+                            <strong>IMMEDIATE ACTION REQUIRED:</strong><br>
+                            • Ban all sugary snacks from school property<br>
+                            • Mandatory nutrition education for all students<br>
+                            • Sugar content warnings on ALL food items<br>
+                            • Federal oversight of school cafeteria programs<br>
+                            • International treaty on child dietary protection
+                        </div>
+                        <div class="catastrophic-thinking">If we don't act NOW, we're looking at a generation of sugar-addicted, hyperactive, academically compromised children! This is bigger than South Park - this is about the future of American civilization!</div>
+                        <div class="maternal-protection">As mothers, we have a DUTY to protect our babies from these corporate predators who would poison our children for profit! 👩‍👧‍👦⚔️</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (289)</span>
+                        <span class="action-button">💬 Comment (127)</span>
+                        <span class="action-button">⚡ Share Outrage</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Sheila Broflovski</strong>
+                        <span class="timestamp">2 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="kyle-mention">Kyle came home from school today asking questions about internet safety. SO PROUD of my smart boy! 💙</div>
+                        This got me thinking about how we're protecting ALL our children from online predators, cyberbullying, and inappropriate content. It's 2025 - why don't we have mandatory internet safety courses starting in kindergarten?!
+                        <div class="policy-proposal">
+                            I'm drafting a proposal for the school board demanding comprehensive digital citizenship education. Our children are online whether we like it or not - we need to arm them with knowledge!
+                        </div>
+                        <div class="righteous-indignation">Gerald thinks I'm being "overly cautious," but someone has to think about the children! That's what mothers DO! 👩‍⚖️</div>
+                        <div class="community-organizing">#DigitalSafety</div>
+                        <div class="community-organizing">#ParentRights</div>
+                        <div class="community-organizing">#ProtectOurKids</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (156)</span>
+                        <span class="action-button">💬 Comment (89)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post petition-drive">
+                    <div class="post-header">
+                        <strong>Sheila Broflovski</strong>
+                        <span class="timestamp">4 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="what-what-what">🚨 PETITION DRIVE UPDATE! 🚨</div>
+                        <div class="catastrophic-thinking">We now have 847 signatures demanding stricter playground safety regulations! But we need MORE!</div>
+                        <div class="maternal-protection">
+                            I don't care if people think I'm "overreacting." You know what's overreacting? Waiting until a child gets hurt before we take action! Prevention is ALWAYS better than treatment!
+                        </div>
+                        <div class="policy-proposal">
+                            <strong>CURRENT DEMANDS:</strong><br>
+                            • Softer playground surfaces (minimum 6 inches of cushioning)<br>
+                            • Age-appropriate equipment separation<br>
+                            • Mandatory safety inspections (weekly)<br>
+                            • First aid certified supervision at all times<br>
+                            • Background checks for ALL playground volunteers
+                        </div>
+                        <div class="righteous-indignation">Some parents at the meeting said these rules are "excessive." You know what's excessive? Emergency room bills! Medical trauma! Preventable injuries!</div>
+                        <div class="community-organizing">Link in bio to sign the petition! ✊</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (267)</span>
+                        <span class="action-button">💬 Comment (134)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post moral-crusade">
+                    <div class="post-header">
+                        <strong>Sheila Broflovski</strong>
+                        <span class="timestamp">6 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="what-what-what">WHAT WHAT WHAT?! The library has books with INAPPROPRIATE CONTENT! ⚠️📚</div>
+                        <div class="righteous-indignation">I was volunteering at Kyle's school library today and found books discussing topics that are NOT age-appropriate for elementary school children!</div>
+                        <div class="catastrophic-thinking">
+                            We're talking about books with violence, adult themes, and moral ambiguity! How are 4th graders supposed to process complex ethical situations when they should be learning basic right from wrong?!
+                        </div>
+                        <div class="policy-proposal">
+                            <strong>IMMEDIATE LIBRARY REFORM NEEDED:</strong><br>
+                            • Parent review committee for all new acquisitions<br>
+                            • Age-appropriate content labeling system<br>
+                            • Restricted access sections with parental consent<br>
+                            • Alternative books promoting positive values<br>
+                            • Regular community input on curriculum materials
+                        </div>
+                        <div class="maternal-protection">As a mother, I know what's best for children. We need to protect their innocence while they still have it! There's plenty of time for complex moral questions when they're adults! 👩‍👧‍👦</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (198)</span>
+                        <span class="action-button">💬 Comment (245)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Sheila Broflovski</strong>
+                        <span class="timestamp">8 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Beautiful family dinner tonight with Gerald and Kyle. These moments remind me why I fight so hard for our community - it's all about protecting the families we love! 💕
+                        <div class="kyle-mention">Kyle shared some really thoughtful insights about his history project. That boy has such a strong moral compass! 🧭✨</div>
+                        <div class="maternal-protection">
+                            Gerald sometimes thinks I get too involved in community issues, but someone has to be the voice for families who don't have time to attend every meeting, read every proposal, research every safety concern.
+                        </div>
+                        <div class="righteous-indignation">If more parents stepped up and took responsibility for their community, we wouldn't NEED so many regulations. But since they won't, I will! 💪</div>
+                        <div class="community-organizing">#FamilyFirst</div>
+                        <div class="community-organizing">#CommunityLeadership</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (143)</span>
+                        <span class="action-button">💬 Comment (67)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post moral-crusade">
+                    <div class="post-header">
+                        <strong>Sheila Broflovski</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="what-what-what">VICTORY UPDATE! 🎉⚡</div>
+                        <div class="catastrophic-thinking">The school board has AGREED to implement our new safety protocols for field trips! This is what happens when concerned parents organize and demand action!</div>
+                        <div class="policy-proposal">
+                            <strong>NEW SAFETY REQUIREMENTS INCLUDE:</strong><br>
+                            • 1:3 adult-to-child supervision ratio<br>
+                            • GPS tracking devices for all students<br>
+                            • Emergency contact verification (triple-checked)<br>
+                            • Pre-approved snack and beverage protocols<br>
+                            • Weather contingency planning mandatory<br>
+                            • Insurance documentation for all activities
+                        </div>
+                        <div class="righteous-indignation">Some people called these measures "extreme," but you know what's extreme? Losing a child because we didn't take proper precautions!</div>
+                        <div class="maternal-protection">
+                            This is just the beginning! Next week we're addressing crosswalk safety, playground equipment maintenance schedules, and proper handwashing station placement! 
+                        </div>
+                        <div class="community-organizing">When mothers organize, mountains move! 🏔️➡️⛰️</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (234)</span>
+                        <span class="action-button">💬 Comment (156)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>About Sheila</h3>
+                    <div class="info-item">
+                        <strong>👩‍⚖️ Role:</strong> PTA President & Community Activist
+                    </div>
+                    <div class="info-item">
+                        <strong>👨‍👩‍👦 Family:</strong> Married to Gerald, mother to Kyle
+                    </div>
+                    <div class="info-item">
+                        <strong>🏠 Location:</strong> South Park, Colorado
+                    </div>
+                    <div class="info-item">
+                        <strong>💪 Mission:</strong> Protecting all children from everything
+                    </div>
+                    <div class="info-item">
+                        <strong>⚡ Status:</strong> Permanently outraged about something
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Activism Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">47</span>
+                        <span class="stat-label">Active petitions</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Policy proposals submitted</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">23</span>
+                        <span class="stat-label">Emergency meetings called</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Things to be outraged about</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Crusades</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">🍬</span>
+                        <span class="activity-text">Sugar content emergency meeting</span>
+                        <span class="activity-time">47 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💻</span>
+                        <span class="activity-text">Internet safety proposal drafted</span>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">📚</span>
+                        <span class="activity-text">Library content review demanded</span>
+                        <span class="activity-time">6 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎉</span>
+                        <span class="activity-text">Field trip safety victory!</span>
+                        <span class="activity-time">Earlier today</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Fellow Crusaders</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #2C3E50; color: white;">GB</span>
+                        <span class="friend-name">Gerald Broflovski</span>
+                        <span class="friend-status">💕 Supportive Husband</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #4CAF50; color: white;">KB</span>
+                        <span class="friend-name">Kyle Broflovski</span>
+                        <span class="friend-status">👩‍👦 My Brilliant Son</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FF69B4; color: white;">LC</span>
+                        <span class="friend-name">Liane Cartman</span>
+                        <span class="friend-status">👭 Fellow Mother</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FF6B35; color: white;">PTA</span>
+                        <span class="friend-name">PTA Coalition</span>
+                        <span class="friend-status">⚡ Army of Concerned Parents</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Sheila's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Sheila profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+
+            // Legacy Sheila interactions
+            if (typeof CharacterInteractions !== 'undefined') {
+                const interactions = new CharacterInteractions();
+                interactions.initializeProfile('sheila');
+            }
+            
+            // Add Sheila-specific outrage effects
+            const outrageElements = document.querySelectorAll('.what-what-what, .moral-crusade');
+            outrageElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.animation = 'outrage-shake 0.2s ease-in-out infinite';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Dynamic outrage meter updates
+            const outrageMeter = document.querySelector('.outrage-meter');
+            const outrageStates = [
+                "⚠️ CURRENT OUTRAGE LEVEL: MAXIMUM - COMMUNITY ACTION REQUIRED! ⚠️",
+                "🚨 ALERT: NEW THREAT TO CHILDREN DISCOVERED! MOBILIZING! 🚨",
+                "⚡ EMERGENCY STATUS: CALLING ALL CONCERNED PARENTS! ⚡",
+                "🔥 RIGHTEOUS FURY ACTIVATED: PROTECTING OUR BABIES! 🔥",
+                "📢 MORAL OUTRAGE LEVEL: BEYOND MAXIMUM LIMITS! 📢"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.6) {
+                    const randomState = outrageStates[Math.floor(Math.random() * outrageStates.length)];
+                    outrageMeter.innerHTML = randomState;
+                }
+            }, 35000); // Update every 35 seconds
+            
+            // Escalating outrage effect
+            const catastrophicElements = document.querySelectorAll('.catastrophic-thinking');
+            setInterval(() => {
+                catastrophicElements.forEach(element => {
+                    if (Math.random() > 0.8) {
+                        element.style.color = 'var(--sheila-outrage)';
+                        element.style.fontWeight = 'bolder';
+                        element.style.animation = 'escalation-grow 1s ease-in-out';
+                        setTimeout(() => {
+                            element.style.color = '';
+                            element.style.fontWeight = '';
+                            element.style.animation = '';
+                        }, 1000);
+                    }
+                });
+            }, 25000); // Escalate every 25 seconds
+            
+            // Petition urgency pulses
+            const petitionElements = document.querySelectorAll('.petition-drive');
+            setInterval(() => {
+                petitionElements.forEach(element => {
+                    if (Math.random() > 0.7) {
+                        element.style.animation = 'petition-urgency 0.5s ease-in-out 3';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                        }, 1500);
+                    }
+                });
+            }, 40000); // Urgent pulses every 40 seconds
+            
+            // Random righteous indignation flashes
+            const righteousElements = document.querySelectorAll('.righteous-indignation');
+            setInterval(() => {
+                if (Math.random() > 0.85) {
+                    const randomElement = righteousElements[Math.floor(Math.random() * righteousElements.length)];
+                    randomElement.style.animation = 'righteous-flash 0.8s ease-in-out';
+                    setTimeout(() => {
+                        randomElement.style.animation = '';
+                    }, 800);
+                }
+            }, 30000); // Flash every 30 seconds
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

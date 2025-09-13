@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Park Group Chat Demo</title>
+    <link rel="stylesheet" href="Assets/css/common.css">
+    <link rel="stylesheet" href="Assets/css/mobile-responsive.css">
+    <link rel="stylesheet" href="Assets/css/group-chat.css">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            padding: 20px;
+        }
+        
+        .demo-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .demo-title {
+            font-size: 32px;
+            color: #1877f2;
+            margin-bottom: 10px;
+        }
+        
+        .demo-subtitle {
+            color: #65676b;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: #1877f2;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            background: #166fe5;
+            text-decoration: none;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <a href="facebook.html" class="back-link">← Back to Main Page</a>
+        
+        <div class="demo-header">
+            <h1 class="demo-title">🎭 South Park Group Chat System</h1>
+            <p class="demo-subtitle">Interactive multi-character conversations with authentic South Park personalities</p>
+            <p>Click on a scenario below to start a group chat, then use the buttons to generate realistic character interactions!</p>
+        </div>
+        
+        <div class="chat-scenario-selector">
+            <h2>Choose a Chat Scenario</h2>
+            <div class="scenario-grid">
+                <div class="scenario-card" onclick="startChat('main_four')">
+                    <div class="scenario-title">🏫 The Main Four</div>
+                    <div class="scenario-participants">Cartman, Kyle, Stan, Kenny</div>
+                    <div class="scenario-description">Classic friend group dynamics with Cartman's schemes, Kyle's moral objections, Stan's voice of reason, and Kenny's muffled wisdom.</div>
+                </div>
+                
+                <div class="scenario-card" onclick="startChat('craig_clyde_token')">
+                    <div class="scenario-title">😎 Craig's Crew</div>
+                    <div class="scenario-participants">Craig, Clyde, Token</div>
+                    <div class="scenario-description">Craig's apathy meets Clyde's emotions and Token's practical solutions in this diverse friend group.</div>
+                </div>
+                
+                <div class="scenario-card" onclick="startChat('craig_tweek_couple')">
+                    <div class="scenario-title">💙 Craig & Tweek</div>
+                    <div class="scenario-participants">Craig, Tweek</div>
+                    <div class="scenario-description">Boyfriend chat featuring Craig's calm support and Tweek's anxious energy in their unique relationship dynamic.</div>
+                </div>
+                
+                <div class="scenario-card" onclick="startChat('popular_girls')">
+                    <div class="scenario-title">👑 Popular Girl Squad</div>
+                    <div class="scenario-participants">Bebe, Wendy</div>
+                    <div class="scenario-description">Fashion trends meet social activism as Bebe and Wendy balance popularity with principles.</div>
+                </div>
+                
+                <div class="scenario-card" onclick="startChat('student_government')">
+                    <div class="scenario-title">🏛️ Student Council Chat</div>
+                    <div class="scenario-participants">Wendy, Token, Kyle</div>
+                    <div class="scenario-description">School leadership discussing initiatives with Wendy's passion, Token's realism, and Kyle's ethics.</div>
+                </div>
+                
+                <div class="scenario-card" onclick="startChat('emotional_support')">
+                    <div class="scenario-title">🤗 Feelings Circle</div>
+                    <div class="scenario-participants">Clyde, Butters, Tweek</div>
+                    <div class="scenario-description">Emotional support group where feelings flow freely and everyone supports each other through ups and downs.</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="chat-container">
+            <!-- Group chats will be rendered here -->
+        </div>
+        
+        <div class="demo-info" style="background: white; padding: 20px; border-radius: 8px; margin-top: 30px; text-align: center; color: #65676b;">
+            <h3>🚀 Features Demonstrated</h3>
+            <p><strong>Authentic Character Voices:</strong> Each character responds according to their personality and speech patterns</p>
+            <p><strong>Dynamic Interactions:</strong> Characters respond to each other based on their relationships and dynamics</p>
+            <p><strong>Smart Conversations:</strong> Context-aware messages that reference topics and maintain conversation flow</p>
+            <p><strong>Mobile Responsive:</strong> Works perfectly on all devices with touch-optimized controls</p>
+        </div>
+    </div>
+    
+    <script src="Assets/js/character-interactions.js"></script>
+    <script src="Assets/js/group-chat.js"></script>
+    <script>
+        let activeChats = [];
+        
+        function startChat(scenarioKey) {
+            const chatContainer = document.getElementById('chat-container');
+            
+            // Create new chat
+            const chat = window.groupChatInstance.createGroupChat(scenarioKey);
+            activeChats.push(chat);
+            
+            // Render chat interface
+            window.groupChatInstance.renderGroupChat(chatContainer, chat.id);
+            
+            // Generate initial message to start the conversation
+            setTimeout(() => {
+                const firstParticipant = chat.participants[0];
+                window.groupChatInstance.generateChatMessage(chat.id, firstParticipant);
+                window.groupChatInstance.renderMessages(chat.id);
+            }, 500);
+            
+            // Scroll to the new chat
+            setTimeout(() => {
+                const newChat = chatContainer.lastElementChild;
+                newChat.scrollIntoView({ behavior: 'smooth' });
+            }, 600);
+        }
+        
+        // Add some demo functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎭 South Park Group Chat Demo Ready!');
+            console.log('Click on a scenario to start chatting with the characters!');
+            
+            // Add welcome message
+            setTimeout(() => {
+                if (activeChats.length === 0) {
+                    const welcomeMessage = document.createElement('div');
+                    welcomeMessage.className = 'demo-welcome';
+                    welcomeMessage.style.cssText = `
+                        background: linear-gradient(135deg, #1877f2, #42a5f5);
+                        color: white;
+                        padding: 20px;
+                        border-radius: 12px;
+                        text-align: center;
+                        margin: 20px 0;
+                        animation: welcome-pulse 2s ease-in-out infinite alternate;
+                    `;
+                    welcomeMessage.innerHTML = `
+                        <h3>👋 Welcome to the Group Chat Demo!</h3>
+                        <p>Choose a scenario above to see South Park characters have authentic conversations.</p>
+                        <p>Each character maintains their unique voice and responds based on their relationships!</p>
+                    `;
+                    
+                    // Add pulse animation
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes welcome-pulse {
+                            0% { transform: scale(1); }
+                            100% { transform: scale(1.02); }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    document.getElementById('chat-container').appendChild(welcomeMessage);
+                }
+            }, 1000);
+        });
+        
+        // Make functions globally available
+        window.startChat = startChat;
+    </script>
+</body>
+</html>

@@ -1,0 +1,473 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timmy Burch - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <style>
+        /* Timmy-specific styling */
+        .cover-photo {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 50%, #42a5f5 100%);
+        }
+        
+        .profile-pic {
+            background: linear-gradient(45deg, #2196f3, #1976d2);
+        }
+        
+        .post-avatar {
+            background: linear-gradient(45deg, #2196f3, #1976d2);
+        }
+        
+        .action-btn.primary {
+            background: #2196f3;
+            color: #fff;
+        }
+        
+        .action-btn.primary:hover {
+            background: #1565c0;
+        }
+        
+        .status-indicator {
+            background: #2196f3;
+            animation: timmy-pulse 2s infinite;
+        }
+        
+        @keyframes timmy-pulse {
+            0% { background: #2196f3; }
+            50% { background: #64b5f6; }
+            100% { background: #2196f3; }
+        }
+        
+        .timmy-speak {
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #2196f3;
+            margin: 15px 0;
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            color: #0d47a1;
+            letter-spacing: 2px;
+        }
+        
+        .support-moment {
+            background: linear-gradient(45deg, #f3e5f5, #e1bee7);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 3px solid #9c27b0;
+            margin: 10px 0;
+            font-style: italic;
+            color: #4a148c;
+        }
+        
+        .comedy-collaboration {
+            background: #fff3e0;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #ff9800;
+            margin: 10px 0;
+            font-size: 14px;
+            color: #e65100;
+        }
+        
+        .performance-stats {
+            background: linear-gradient(45deg, #2196f3, #1976d2);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .wheelchair-power {
+            background: linear-gradient(45deg, #4caf50, #388e3c);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .timmy-badge {
+            background: linear-gradient(45deg, #2196f3, #1976d2);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            animation: timmy-glow 3s infinite;
+        }
+        
+        @keyframes timmy-glow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        
+        .friend-avatar.jimmy-avatar {
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+        }
+        
+        .friend-avatar.parents-avatar {
+            background: linear-gradient(45deg, #795548, #5d4037);
+        }
+        
+        .friend-avatar.classmates-avatar {
+            background: linear-gradient(45deg, #607d8b, #455a64);
+        }
+        
+        .timmy-translator {
+            background: #e8f5e8;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 5px 0;
+            font-size: 12px;
+            color: #2e7d32;
+            font-style: italic;
+            border-left: 2px solid #4caf50;
+        }
+        
+        .big-timmy {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2196f3;
+            text-align: center;
+            margin: 10px 0;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../../../facebook.html" class="fb-logo">facebook</a>
+        <div class="search-bar">
+            <input type="text" placeholder="TIMMY!">
+        </div>
+        <div class="nav-icons">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-icon">👥</div>
+            <div class="nav-icon">📺</div>
+            <div class="nav-icon">🎭</div>
+            <div class="nav-icon">♿</div>
+            <div class="nav-icon">🔔</div>
+            <div class="nav-icon">💬</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                🎭 TIMMY AND JIMMY: DYNAMIC COMEDY DUO! 🎭
+            </div>
+            <div class="profile-info">
+                <div class="profile-pic">TB</div>
+                <div class="profile-details">
+                    <h1 class="profile-name">
+                        Timmy Burch
+                        <span class="timmy-badge">TIMMY!</span>
+                        <span class="status-indicator" title="Currently Being Awesome"></span>
+                    </h1>
+                    <p class="profile-subtitle">TIMMY! • Jimmy's Comedy Partner • 4th Grade Student • Wheelchair Racing Champion • TIMMY!</p>
+                </div>
+            </div>
+            <div class="profile-nav-bar">
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Posts</div>
+                    <div class="profile-tab">About</div>
+                    <div class="profile-tab">Friends</div>
+                    <div class="profile-tab">Photos</div>
+                    <div class="profile-tab">More ▾</div>
+                </div>
+                <div class="profile-actions-bar">
+                    <button class="action-btn primary">➕ Add Friend</button>
+                    <button class="action-btn">✉️ Message</button>
+                    <button class="action-btn">⭐ Follow</button>
+                    <button class="action-btn">⋯</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="sidebar">
+                <div class="info-section">
+                    <h3>About Timmy</h3>
+                    <div class="info-item">
+                        <span>🏠</span>Lives in South Park, Colorado
+                    </div>
+                    <div class="info-item">
+                        <span>🏫</span>South Park Elementary - 4th Grade
+                    </div>
+                    <div class="info-item">
+                        <span>🎭</span>Comedy Performer & Jimmy's Best Friend
+                    </div>
+                    <div class="info-item">
+                        <span>♿</span>Wheelchair User & Mobility Expert
+                    </div>
+                    <div class="info-item">
+                        <span>👨‍👩‍👦</span>Son of Richard & Helen Burch
+                    </div>
+                    <div class="info-item">
+                        <span>🏃‍♂️</span>Competitive Racer & Athlete
+                    </div>
+                </div>
+
+                <div class="performance-stats">
+                    <h3>🎭 PERFORMANCE STATS</h3>
+                    <div style="font-size: 20px; margin: 10px 0;">TIMMY!</div>
+                    <div style="font-size: 12px;">Times Said This Week: 247</div>
+                    <div style="font-size: 14px; margin-top: 8px;">Audience Approval: 100%</div>
+                </div>
+
+                <div class="wheelchair-power">
+                    <h3>♿ MOBILITY MASTERY</h3>
+                    <div style="font-size: 16px; margin: 8px 0;">Top Speed: 15 MPH</div>
+                    <div style="font-size: 12px;">Racing Wins This Month: 8</div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Best Friends</h3>
+                    <div class="friends-grid">
+                        <div class="friend-card">
+                            <div class="friend-avatar jimmy-avatar">JV</div>
+                            <div class="friend-name">Jimmy Valmer<br><small>Comedy Partner</small></div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar parents-avatar">RH</div>
+                            <div class="friend-name">Richard & Helen<br><small>Amazing Parents</small></div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar classmates-avatar">SP</div>
+                            <div class="friend-name">Classmates<br><small>TIMMY!</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: #e3f2fd; padding: 12px; border-radius: 6px; margin: 15px 0; border-left: 3px solid #2196f3;">
+                    <h3>🎯 CURRENT PROJECTS</h3>
+                    <div style="font-size: 12px; margin: 5px 0; color: #0d47a1;">🎤 New comedy routine with Jimmy</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #0d47a1;">🏃‍♂️ Training for wheelchair racing championship</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #0d47a1;">🎭 School talent show preparation</div>
+                    <div style="font-size: 12px; margin: 5px 0; color: #0d47a1;">👥 Helping other students be confident</div>
+                </div>
+
+                <div style="background: #fff3e0; padding: 12px; border-radius: 6px; margin: 15px 0; border-left: 3px solid #ff9800;">
+                    <h3>🏆 ACHIEVEMENTS</h3>
+                    <div style="font-size: 11px; margin: 3px 0; color: #e65100;">🎭 Comedy Club Co-Founder</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #e65100;">🏁 Wheelchair Racing Champion</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #e65100;">⭐ Student Inspiration Award</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #e65100;">🤝 Best Friend of the Year (Jimmy's Vote)</div>
+                </div>
+
+                <div style="background: #f3e5f5; padding: 12px; border-radius: 6px; margin: 15px 0; border-left: 3px solid #9c27b0;">
+                    <h3>💬 TIMMY TRANSLATIONS</h3>
+                    <div style="font-size: 11px; margin: 3px 0; color: #4a148c;">TIMMY! = Hello/Yes/Awesome/Excited</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #4a148c;">Timmy... = Thinking/Concerned/Confused</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #4a148c;">TIMMEH! = Very Excited/Surprised</div>
+                    <div style="font-size: 11px; margin: 3px 0; color: #4a148c;">Timmy Burch! = Introducing himself</div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="post-composer">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <div class="post-avatar">TB</div>
+                        <input type="text" placeholder="TIMMY!" style="flex:1; padding:12px 16px; border:1px solid #e4e6eb; border-radius:25px; background:#f0f2f5; font-size:14px;">
+                    </div>
+                    <div class="composer-actions">
+                        <div class="composer-action">🎥 Live Video</div>
+                        <div class="composer-action">📸 Photo/Video</div>
+                        <div class="composer-action">🎭 Comedy Post</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">TB</div>
+                        <div class="post-info">
+                            <h4>Timmy Burch</h4>
+                            <div class="post-time">2 hours ago • 🎭 COMEDY GOLD</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="big-timmy">TIMMY!</div>
+                        
+                        <div class="comedy-collaboration">
+                            Jimmy and I practiced our new routine today for the school talent show! He does the setup and I deliver the punchline. Our comedic timing is PERFECT!
+                        </div>
+                        
+                        <div class="timmy-speak">TIMMEH!</div>
+                        
+                        <div class="timmy-translator">
+                            Translation: "I'm so excited about our performance! The audience is going to love our dynamic!"
+                        </div>
+                        
+                        Jimmy says we're like a classic comedy duo - he's the straight man and I'm the... well, I'm TIMMY! Our friendship makes everything funnier!
+
+                        <div class="support-moment">
+                            The best part is how Jimmy never treats me differently. He knows I have just as much to contribute to our act, and he makes sure everyone else knows it too!
+                        </div>
+                        
+                        Show's this Friday at 7pm! TIMMY!
+                        
+                        #ComedyDuo #TimmyAndJimmy #TalentShow #TIMMY #BestFriends #SchoolShow
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🎭 Can't Wait</div>
+                        <div class="post-action">👏 Dynamic Duo</div>
+                        <div class="post-action">TIMMY! TIMMY!</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">TB</div>
+                        <div class="post-info">
+                            <h4>Timmy Burch</h4>
+                            <div class="post-time">Yesterday • 🏁 RACING VICTORY</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="big-timmy">TIMMY!</div>
+                        
+                        Won the wheelchair racing championship today! 🏆♿
+                        
+                        <div class="timmy-speak">TIMMEH!</div>
+                        
+                        <div class="timmy-translator">
+                            Translation: "I crossed the finish line first and felt amazing! All that training paid off!"
+                        </div>
+                        
+                        Jimmy was there cheering me on from the sidelines! He had a whole comedy routine ready about "rolling to victory" but saved it until after the race because he's the best friend ever!
+                        
+                        <div class="support-moment">
+                            My parents were so proud they cried happy tears. Mom said I inspire her every day to push harder and never give up on her dreams!
+                        </div>
+                        
+                        Next race is in two weeks. Training starts tomorrow! TIMMY!
+                        
+                        #WheelchairRacing #Victory #TIMMY #ProudParents #JimmySupport #NextRace
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🏆 Champion</div>
+                        <div class="post-action">♿ Speed Demon</div>
+                        <div class="post-action">👏 So Proud</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">TB</div>
+                        <div class="post-info">
+                            <h4>Timmy Burch</h4>
+                            <div class="post-time">3 days ago • 🤝 HELPING OTHERS</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="big-timmy">TIMMY!</div>
+                        
+                        Helped a new student today who was feeling shy about using mobility aids at school! 
+                        
+                        <div class="timmy-speak">TIMMY!</div>
+                        
+                        <div class="timmy-translator">
+                            Translation: "I showed him that being different is actually pretty awesome! We're all unique in our own ways!"
+                        </div>
+                        
+                        Jimmy and I did an impromptu comedy show during lunch to make him laugh and feel welcome. By the end of the day, he was smiling and making friends!
+                        
+                        <div class="support-moment">
+                            Sometimes the best way to help someone feel confident is to show them that confidence comes from being yourself, not from being like everyone else!
+                        </div>
+                        
+                        Now he wants to learn wheelchair racing! TIMMY!
+                        
+                        #NewFriend #Confidence #BeYourself #TIMMY #Inclusion #WheelchairRacing #Jimmy
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🤗 So Sweet</div>
+                        <div class="post-action">💪 Inspiring</div>
+                        <div class="post-action">🌟 Role Model</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar">TB</div>
+                        <div class="post-info">
+                            <h4>Timmy Burch</h4>
+                            <div class="post-time">5 days ago • 🎯 SCHOOL PROJECT</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="big-timmy">TIMMY!</div>
+                        
+                        Our group project on "Communication Methods" was a huge success! 📚
+                        
+                        <div class="comedy-collaboration">
+                            Jimmy and I showed the class how we communicate during our comedy routines - he uses words and timing, I use expressions, gestures, and my one perfect word: TIMMY!
+                        </div>
+                        
+                        <div class="timmy-speak">TIMMEH!</div>
+                        
+                        <div class="timmy-translator">
+                            Translation: "We proved that communication isn't just about the number of words you use - it's about connection and understanding!"
+                        </div>
+                        
+                        Ms. Choksondik gave us an A+ and said our presentation was "surprisingly insightful for 4th graders." Jimmy made a joke about surprises, and I delivered the perfect "TIMMY!" punchline!
+                        
+                        <div class="support-moment">
+                            The best part was seeing our classmates realize that different doesn't mean less capable - it just means creative!
+                        </div>
+                        
+                        #GroupProject #Communication #APlus #TIMMY #CreativeSolutions #JimmyAndTimmy
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">📚 Smart Guys</div>
+                        <div class="post-action">💡 Creative</div>
+                        <div class="post-action">🎓 A+ Work</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Timmy's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Timmy profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

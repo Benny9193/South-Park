@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Park Features Showcase</title>
+    <link rel="stylesheet" href="Assets/css/common.css">
+    <link rel="stylesheet" href="Assets/css/mobile-responsive.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f0f2f5 0%, #e3f2fd 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .showcase-header {
+            background: linear-gradient(135deg, #1877f2 0%, #42a5f5 50%, #64b5f6 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .showcase-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        .showcase-title {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .showcase-subtitle {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .notification-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1877f2;
+            color: white;
+            padding: 10px 20px;
+            z-index: 10000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .notification-bell {
+            position: relative;
+            cursor: pointer;
+            font-size: 20px;
+            padding: 5px 10px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .notification-bell:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ff4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .feature-header {
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            position: relative;
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-description {
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .feature-content {
+            padding: 30px;
+        }
+
+        .feature-demo {
+            min-height: 300px;
+            position: relative;
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+        }
+
+        .demo-placeholder {
+            text-align: center;
+            color: #666;
+        }
+
+        .feature-controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background: #1877f2;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .control-btn:hover {
+            background: #166fe5;
+            transform: translateY(-1px);
+        }
+
+        .control-btn.secondary {
+            background: #42b883;
+        }
+
+        .control-btn.secondary:hover {
+            background: #369970;
+        }
+
+        #relationshipCanvas {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: crosshair;
+            width: 100%;
+            height: 400px;
+        }
+
+        .episode-search {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .episode-results {
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .episode-item {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .episode-item:hover {
+            background: #f5f5f5;
+        }
+
+        .episode-title {
+            font-weight: 600;
+            color: #1877f2;
+            margin-bottom: 5px;
+        }
+
+        .episode-details {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .notification-panel {
+            max-height: 400px;
+            overflow-y: auto;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .notification-header {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+        }
+
+        .notification-list {
+            padding: 0;
+        }
+
+        .notification-item {
+            display: flex;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .notification-item:hover {
+            background: #f5f5f5;
+        }
+
+        .notification-item.unread {
+            background: #e3f2fd;
+        }
+
+        .notification-item.unread:hover {
+            background: #bbdefb;
+        }
+
+        .notification-icon {
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1877f2;
+        }
+
+        .notification-message {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .notification-time {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .unread-indicator {
+            color: #1877f2;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .back-to-main {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-to-main:hover {
+            background: rgba(255,255,255,0.3);
+            text-decoration: none;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Character Details Panel Styles */
+        .character-details {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .character-details h3 {
+            color: #1877f2;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .character-details p {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .relationships {
+            margin-top: 15px;
+        }
+
+        .relationships h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .relationship-item {
+            padding: 8px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .showcase-title {
+                font-size: 32px;
+            }
+            
+            .feature-demo {
+                min-height: 250px;
+            }
+            
+            .notification-bar {
+                padding: 8px 15px;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="notification-bar">
+        <div>🎭 South Park Features Showcase - Live Demo</div>
+        <div class="notification-bell" onclick="toggleNotificationPanel()">
+            🔔
+            <span class="notification-badge">0</span>
+        </div>
+    </div>
+
+    <div class="showcase-header">
+        <h1 class="showcase-title">🎭 South Park Facebook Features</h1>
+        <p class="showcase-subtitle">
+            Experience the complete South Park social media universe with interactive characters, 
+            episode references, relationship mapping, and real-time notifications!
+        </p>
+        <a href="facebook.html" class="back-to-main">← Back to Main Page</a>
+    </div>
+
+    <div class="container">
+        <div class="features-grid">
+            <!-- Episode Reference Database -->
+            <div class="feature-card fade-in">
+                <div class="feature-header">
+                    <span class="feature-icon">📺</span>
+                    <h2 class="feature-title">Episode Reference Database</h2>
+                    <p class="feature-description">
+                        Search through South Park episodes and see character posts linked to specific episodes with themes and quotes.
+                    </p>
+                </div>
+                <div class="feature-content">
+                    <input type="text" class="episode-search" placeholder="Search episodes, characters, or themes..." 
+                           oninput="searchEpisodes(this.value)">
+                    <div class="feature-controls">
+                        <button class="control-btn" onclick="showRandomEpisode()">🎲 Random Episode</button>
+                        <button class="control-btn secondary" onclick="generateEpisodePost()">📝 Generate Post</button>
+                        <button class="control-btn" onclick="showEpisodeTimeline()">📅 Timeline</button>
+                    </div>
+                    <div class="feature-demo">
+                        <div id="episode-demo" class="demo-placeholder">
+                            <h3>🎬 Episode Database Demo</h3>
+                            <p>Search for episodes above or click buttons to explore!</p>
+                            <p>Features episode-based character posts and thematic connections</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notification System -->
+            <div class="feature-card fade-in">
+                <div class="feature-header">
+                    <span class="feature-icon">🔔</span>
+                    <h2 class="feature-title">Live Notification System</h2>
+                    <p class="feature-description">
+                        Real-time character updates, breaking news from South Park, and episode-based notifications with authentic character voices.
+                    </p>
+                </div>
+                <div class="feature-content">
+                    <div class="feature-controls">
+                        <button class="control-btn" onclick="generateTestNotification()">🧪 Test Notification</button>
+                        <button class="control-btn secondary" onclick="generateBreakingNews()">📢 Breaking News</button>
+                        <button class="control-btn" onclick="clearAllNotifications()">🧹 Clear All</button>
+                    </div>
+                    <div class="feature-demo">
+                        <div id="notification-demo" class="notification-panel">
+                            <div class="notification-header">
+                                <h3>🔔 Live Notifications</h3>
+                                <button onclick="markAllNotificationsRead()">Mark all read</button>
+                            </div>
+                            <div class="notification-list" id="notification-list">
+                                <div class="demo-placeholder">
+                                    <p>Notifications will appear here!</p>
+                                    <p>Click buttons above to generate test notifications</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Character Relationship Mapper -->
+            <div class="feature-card fade-in" style="grid-column: 1 / -1;">
+                <div class="feature-header">
+                    <span class="feature-icon">🕸️</span>
+                    <h2 class="feature-title">Interactive Character Relationship Mapper</h2>
+                    <p class="feature-description">
+                        Explore the complex web of South Park relationships with an interactive network visualization. 
+                        See friendships, rivalries, family connections, and romantic relationships in real-time.
+                    </p>
+                </div>
+                <div class="feature-content">
+                    <div class="feature-controls">
+                        <button class="control-btn" onclick="focusCharacter('cartman')">👑 Focus Cartman</button>
+                        <button class="control-btn" onclick="focusCharacter('kyle')">🎓 Focus Kyle</button>
+                        <button class="control-btn" onclick="focusCharacter('stan')">🏈 Focus Stan</button>
+                        <button class="control-btn secondary" onclick="filterRelationships('enemies')">⚔️ Enemies</button>
+                        <button class="control-btn secondary" onclick="filterRelationships('best_friends')">🤝 Friends</button>
+                        <button class="control-btn secondary" onclick="filterRelationships('romantic')">💕 Romance</button>
+                        <button class="control-btn" onclick="filterRelationships('all')">🌟 Show All</button>
+                    </div>
+                    <div class="feature-demo">
+                        <canvas id="relationshipCanvas" width="800" height="400">
+                            Your browser doesn't support canvas. Please upgrade to see the relationship mapper.
+                        </canvas>
+                    </div>
+                    <div id="character-details-container"></div>
+                </div>
+            </div>
+
+            <!-- Group Chat System -->
+            <div class="feature-card fade-in">
+                <div class="feature-header">
+                    <span class="feature-icon">💬</span>
+                    <h2 class="feature-title">Enhanced Group Chat System</h2>
+                    <p class="feature-description">
+                        Multiple themed group chats with authentic character interactions and real-time conversation generation.
+                    </p>
+                </div>
+                <div class="feature-content">
+                    <div class="feature-controls">
+                        <button class="control-btn" onclick="window.open('group-chat-demo.html', '_blank')">
+                            🎭 Open Group Chats
+                        </button>
+                        <button class="control-btn secondary" onclick="previewGroupChat()">👀 Preview</button>
+                    </div>
+                    <div class="feature-demo">
+                        <div id="groupchat-demo" class="demo-placeholder">
+                            <h3>💬 Multi-Character Conversations</h3>
+                            <p>Experience authentic South Park group dynamics!</p>
+                            <p>Features: The Main Four, Craig's Crew, Student Council, and more!</p>
+                            <button class="control-btn pulse" onclick="window.open('group-chat-demo.html', '_blank')">
+                                Launch Group Chat Demo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Features Preview -->
+            <div class="feature-card fade-in">
+                <div class="feature-header">
+                    <span class="feature-icon">🚀</span>
+                    <h2 class="feature-title">Advanced Features</h2>
+                    <p class="feature-description">
+                        Progressive Web App capabilities, mobile optimization, and cross-profile interactions.
+                    </p>
+                </div>
+                <div class="feature-content">
+                    <div class="feature-controls">
+                        <button class="control-btn" onclick="testMobileFeatures()">📱 Mobile Test</button>
+                        <button class="control-btn secondary" onclick="showSystemStats()">📊 System Stats</button>
+                        <button class="control-btn" onclick="exportData()">💾 Export Data</button>
+                    </div>
+                    <div class="feature-demo">
+                        <div id="advanced-demo" class="demo-placeholder">
+                            <h3>🔧 System Overview</h3>
+                            <p><strong>Characters:</strong> 20+ complete profiles</p>
+                            <p><strong>Episodes:</strong> Database of 10+ major episodes</p>
+                            <p><strong>Relationships:</strong> Complex network mapping</p>
+                            <p><strong>Features:</strong> PWA, Mobile-first, Interactive</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; margin-top: 60px; padding: 40px; background: white; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+            <h3>🎭 South Park Facebook Project</h3>
+            <p>A comprehensive social media experience featuring authentic character voices, episode references, and interactive features.</p>
+            <p style="color: #666; font-size: 14px;">
+                This is a fan project created for entertainment purposes. All South Park characters © Matt Stone & Trey Parker.
+            </p>
+            <div style="margin-top: 20px;">
+                <a href="facebook.html" class="control-btn">🏠 Main Page</a>
+                <a href="group-chat-demo.html" class="control-btn secondary">💬 Group Chats</a>
+                <button class="control-btn" onclick="window.print()">🖨️ Print</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load all the feature scripts -->
+    <script src="Assets/js/episode-database.js"></script>
+    <script src="Assets/js/notification-system.js"></script>
+    <script src="Assets/js/character-relationship-mapper.js"></script>
+    <script src="Assets/js/character-interactions.js"></script>
+    
+    <script>
+        // Initialize all systems when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎭 South Park Features Showcase Loading...');
+            
+            // Initialize relationship mapper
+            setTimeout(() => {
+                initializeRelationshipMapper('relationshipCanvas');
+                console.log('🕸️ Relationship mapper initialized');
+            }, 500);
+
+            // Set up notification system
+            window.notificationSystem.subscribe((notification) => {
+                updateNotificationUI();
+                updateNotificationList();
+            });
+            
+            // Generate welcome notification
+            setTimeout(() => {
+                window.notificationSystem.createNotification(
+                    'breaking_news',
+                    'news',
+                    'Features Showcase',
+                    '🎉 Welcome to the South Park Features Showcase! Explore all the interactive features and systems.',
+                    { priority: 'high' }
+                );
+            }, 1000);
+
+            console.log('✅ All systems loaded successfully!');
+        });
+
+        // Episode Database Functions
+        function searchEpisodes(query) {
+            if (!query.trim()) {
+                document.getElementById('episode-demo').innerHTML = `
+                    <div class="demo-placeholder">
+                        <h3>🎬 Episode Database Demo</h3>
+                        <p>Search for episodes above or click buttons to explore!</p>
+                        <p>Features episode-based character posts and thematic connections</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const results = window.episodeDatabase.searchEpisodes(query);
+            const resultsHTML = results.slice(0, 5).map(episode => `
+                <div class="episode-item" onclick="selectEpisode('${episode.id}')">
+                    <div class="episode-title">${episode.title}</div>
+                    <div class="episode-details">
+                        Season ${episode.season}, Episode ${episode.episode} | 
+                        Characters: ${episode.characters.join(', ')} | 
+                        Themes: ${episode.themes.join(', ')}
+                    </div>
+                </div>
+            `).join('');
+
+            document.getElementById('episode-demo').innerHTML = `
+                <div class="episode-results">
+                    ${resultsHTML || '<div class="demo-placeholder">No episodes found for "' + query + '"</div>'}
+                </div>
+            `;
+        }
+
+        function selectEpisode(episodeId) {
+            const episode = window.episodeDatabase.getEpisodeData(episodeId);
+            if (episode) {
+                alert(`Selected: ${episode.title}\\n\\nCharacters: ${episode.characters.join(', ')}\\nThemes: ${episode.themes.join(', ')}\\n\\nMemorable Quotes:\\n${episode.memorable_quotes.join('\\n')}`);
+            }
+        }
+
+        function showRandomEpisode() {
+            const characters = ['cartman', 'kyle', 'stan', 'kenny', 'randy'];
+            const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+            const episode = window.episodeDatabase.getRandomEpisodeForCharacter(randomCharacter);
+            
+            if (episode) {
+                document.getElementById('episode-demo').innerHTML = `
+                    <div class="episode-item">
+                        <div class="episode-title">🎲 ${episode.title}</div>
+                        <div class="episode-details">
+                            Season ${episode.season}, Episode ${episode.episode}<br>
+                            Characters: ${episode.characters.join(', ')}<br>
+                            Themes: ${episode.themes.join(', ')}<br>
+                            <strong>Quote:</strong> "${episode.memorable_quotes[0] || 'Classic South Park humor!'}"
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function generateEpisodePost() {
+            const characters = ['cartman', 'kyle', 'stan', 'kenny', 'randy'];
+            const randomCharacter = characters[Math.floor(Math.random() * characters.length)];
+            const post = window.episodeDatabase.generateEpisodeBasedPost(randomCharacter);
+            
+            if (post) {
+                // Also create a notification
+                window.notificationSystem.createNotification(
+                    'episode_reference',
+                    randomCharacter,
+                    `${randomCharacter.charAt(0).toUpperCase() + randomCharacter.slice(1)} posted`,
+                    post.content,
+                    {
+                        episodeId: post.episodeId,
+                        episodeTitle: post.episodeReference
+                    }
+                );
+                
+                alert(`Episode-based Post Generated!\\n\\nCharacter: ${randomCharacter}\\nEpisode: ${post.episodeReference}\\n\\nPost: ${post.content}`);
+            }
+        }
+
+        function showEpisodeTimeline() {
+            const timeline = window.episodeDatabase.generateEpisodeTimeline();
+            const timelineHTML = timeline.slice(0, 8).map(ep => `
+                <div class="episode-item">
+                    <div class="episode-title">${ep.title}</div>
+                    <div class="episode-details">
+                        S${String(ep.season).padStart(2,'0')}E${String(ep.episode).padStart(2,'0')} - ${ep.date}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('episode-demo').innerHTML = `
+                <div class="episode-results">
+                    <h4>📅 Episode Timeline</h4>
+                    ${timelineHTML}
+                </div>
+            `;
+        }
+
+        // Notification System Functions
+        function generateTestNotification() {
+            window.notificationSystem.generateRandomNotification();
+        }
+
+        function generateBreakingNews() {
+            const events = [
+                'Cartman\'s latest scheme backfires spectacularly',
+                'Kenny dies in increasingly bizarre circumstances',
+                'Randy discovers new obsession that worries Sharon',
+                'Kyle starts passionate campaign for social justice',
+                'Stan attempts to restore normalcy to South Park'
+            ];
+            
+            const randomEvent = events[Math.floor(Math.random() * events.length)];
+            window.notificationSystem.generateBreakingNews(randomEvent, ['cartman', 'kyle', 'stan', 'kenny']);
+        }
+
+        function clearAllNotifications() {
+            window.notificationSystem.clearNotifications();
+            updateNotificationList();
+            updateNotificationUI();
+        }
+
+        function updateNotificationList() {
+            const notifications = window.notificationSystem.getRecentNotifications(10);
+            const listHTML = notifications.map(notification => 
+                window.notificationSystem.renderNotificationItem(notification)
+            ).join('');
+            
+            const notificationList = document.getElementById('notification-list');
+            if (notificationList) {
+                notificationList.innerHTML = listHTML || '<div class="demo-placeholder">No notifications yet!</div>';
+            }
+        }
+
+        function updateNotificationUI() {
+            const unreadCount = window.notificationSystem.getUnreadCount();
+            const badge = document.querySelector('.notification-badge');
+            if (badge) {
+                badge.textContent = unreadCount;
+                badge.style.display = unreadCount > 0 ? 'flex' : 'none';
+            }
+        }
+
+        // Advanced Features Functions
+        function testMobileFeatures() {
+            const isMobile = window.innerWidth <= 768;
+            alert(`Mobile Detection: ${isMobile ? 'Mobile' : 'Desktop'}\\n\\nFeatures:\\n✅ Touch-optimized controls\\n✅ Responsive grid layout\\n✅ Mobile-friendly notifications\\n✅ Swipe gestures (where applicable)`);
+        }
+
+        function showSystemStats() {
+            const stats = {
+                characters: window.relationshipMapper.characters.size,
+                relationships: window.relationshipMapper.relationships.size,
+                episodes: window.episodeDatabase.episodes.size,
+                notifications: window.notificationSystem.notifications.length
+            };
+            
+            document.getElementById('advanced-demo').innerHTML = `
+                <h3>📊 Live System Statistics</h3>
+                <p><strong>Characters Mapped:</strong> ${stats.characters}</p>
+                <p><strong>Relationships Tracked:</strong> ${stats.relationships}</p>
+                <p><strong>Episodes in Database:</strong> ${stats.episodes}</p>
+                <p><strong>Total Notifications:</strong> ${stats.notifications}</p>
+                <p><strong>Active Systems:</strong> Episode DB, Notifications, Relationships, Group Chats</p>
+            `;
+        }
+
+        function exportData() {
+            const data = {
+                relationships: window.relationshipMapper.exportRelationshipData(),
+                episodes: Array.from(window.episodeDatabase.episodes.entries()),
+                notifications: window.notificationSystem.getRecentNotifications(50),
+                timestamp: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'south-park-data-export.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function previewGroupChat() {
+            document.getElementById('groupchat-demo').innerHTML = `
+                <h3>💬 Group Chat Preview</h3>
+                <div style="background: #f0f2f5; padding: 15px; border-radius: 8px; text-align: left; margin: 10px 0;">
+                    <strong>Cartman:</strong> Guys, I have the BEST idea for making money! 💰<br>
+                    <strong>Kyle:</strong> Oh no, what is it this time Cartman? 🙄<br>
+                    <strong>Stan:</strong> This is going to end badly isn't it... 😐<br>
+                    <strong>Kenny:</strong> Mmmph mph mmmph! (Translation: Here we go again!) 💀
+                </div>
+                <button class="control-btn" onclick="window.open('group-chat-demo.html', '_blank')">
+                    🚀 Experience Full Group Chats
+                </button>
+            `;
+        }
+
+        // Make functions globally available
+        window.searchEpisodes = searchEpisodes;
+        window.showRandomEpisode = showRandomEpisode;
+        window.generateEpisodePost = generateEpisodePost;
+        window.showEpisodeTimeline = showEpisodeTimeline;
+        window.selectEpisode = selectEpisode;
+        window.generateTestNotification = generateTestNotification;
+        window.generateBreakingNews = generateBreakingNews;
+        window.clearAllNotifications = clearAllNotifications;
+        window.testMobileFeatures = testMobileFeatures;
+        window.showSystemStats = showSystemStats;
+        window.exportData = exportData;
+        window.previewGroupChat = previewGroupChat;
+    </script>
+</body>
+</html>

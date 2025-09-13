@@ -1,0 +1,1085 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenny McCormick - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f0f2f5;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: #1877f2;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .fb-logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .search-bar input::placeholder {
+            color: rgba(255,255,255,0.8);
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .nav-icon:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        
+        .profile-header {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .cover-photo {
+            height: 300px;
+            background: linear-gradient(135deg, #ff8c00 0%, #ff4500 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .profile-info {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            background-image: url('../KennyMcCormick.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            border: 5px solid white;
+            position: absolute;
+            top: -75px;
+            left: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .profile-details {
+            margin-left: 200px;
+            padding-top: 20px;
+        }
+        
+        .profile-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #1c1e21;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profile-subtitle {
+            color: #65676b;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #ff8c00;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #e4e6ea;
+            color: #1c1e21;
+        }
+        
+        .btn-mystery {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        
+        .content-area {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            height: fit-content;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .post-composer {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            background-image: url('../KennyMcCormick.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .mysterion-avatar {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+        }
+        
+        .post-info h4 {
+            color: #1c1e21;
+            margin-bottom: 2px;
+        }
+        
+        .post-time {
+            color: #65676b;
+            font-size: 13px;
+        }
+        
+        .post-content {
+            color: #1c1e21;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .muffled-text {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #ff8c00;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .translation {
+            font-style: italic;
+            color: #65676b;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #e4e6ea;
+            padding-top: 10px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #65676b;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+        
+        .post-action:hover {
+            background: #f0f2f5;
+        }
+        
+        .info-section {
+            margin-bottom: 20px;
+        }
+        
+        .info-section h3 {
+            color: #1c1e21;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            color: #65676b;
+        }
+        
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            background: #ffa500;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 5px;
+            animation: flicker 3s infinite;
+        }
+        
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .friend-card {
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            background: #f7f8fa;
+        }
+        
+        .friend-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .friend-name {
+            font-size: 13px;
+            color: #1c1e21;
+        }
+        
+        .kyle-avatar {
+            background: linear-gradient(45deg, #4CAF50, #2E7D32);
+        }
+        
+        .stan-avatar {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+        }
+        
+        .cartman-avatar {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+        }
+        
+        .death-counter {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .mysterion-section {
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        
+        .poverty-reminder {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            border-radius: 6px;
+            margin: 10px 0;
+            font-size: 13px;
+            color: #856404;
+        }
+
+        /* Facebook-like structural additions */
+        .profile-nav-bar {
+            background: white;
+            border-top: 1px solid #e4e6eb;
+            border-bottom: 1px solid #e4e6eb;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .profile-tabs { display:flex; gap:4px; }
+        .profile-tab {
+            padding:14px 16px; font-size:15px; font-weight:500; color:#65676b; cursor:pointer;
+            border-bottom:3px solid transparent; display:flex; align-items:center; gap:6px; border-radius:4px 4px 0 0;
+        }
+        .profile-tab.active { color:#1c1e21; border-bottom-color:#1877f2; font-weight:600; }
+        .profile-tab:hover { background:#f0f2f5; }
+        .profile-actions-bar { display:flex; gap:8px; align-items:center; }
+        .profile-actions-bar .action-btn { background:#e4e6eb; color:#050505; border:none; padding:8px 14px; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; }
+        .profile-actions-bar .action-btn.primary { background:#ff8c00; color:#fff; }
+        .profile-actions-bar .action-btn:hover { background:#d8dadf; }
+        .profile-actions-bar .action-btn.primary:hover { background:#e67600; }
+        .profile-header, .sidebar, .post, .post-composer { border:1px solid #e4e6eb; }
+        .post-composer .composer-actions { display:flex; justify-content:space-between; padding-top:8px; border-top:1px solid #e4e6eb; margin-top:12px; }
+        .post-composer .composer-action { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:8px 0; cursor:pointer; border-radius:6px; font-size:14px; color:#65676b; }
+        .post-composer .composer-action:hover { background:#f0f2f5; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="../../../facebook.html" class="fb-logo">facebook</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Mmpfh mmpfh mmpfh...">
+        </div>
+        <div class="nav-icons">
+            <div class="nav-icon">🏠</div>
+            <div class="nav-icon">👥</div>
+            <div class="nav-icon">📺</div>
+            <div class="nav-icon">🏪</div>
+            <div class="nav-icon">🎮</div>
+            <div class="nav-icon">🔔</div>
+            <div class="nav-icon">💬</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                🏚️ The View from the Bottom - Where Voices Get Muffled 🏚️
+            </div>
+            <div class="profile-info">
+                <div class="profile-pic"></div>
+                <div class="profile-details">
+                    <h1 class="profile-name">
+                        Kenny McCormick
+                        <span class="status-indicator" title="Perpetually Dying and Resurrecting"></span>
+                    </h1>
+                    <p class="profile-subtitle">Professional Martyr • Part-time Mysterion • Full-time Survivor • The Voice Nobody Hears</p>
+                </div>
+            </div>
+            <div class="profile-nav-bar">
+                <div class="profile-tabs">
+                    <div class="profile-tab active">Posts</div>
+                    <div class="profile-tab">About</div>
+                    <div class="profile-tab">Friends</div>
+                    <div class="profile-tab">Photos</div>
+                    <div class="profile-tab">More ▾</div>
+                </div>
+                <div class="profile-actions-bar">
+                    <button class="action-btn primary">➕ Add Friend</button>
+                    <button class="action-btn">✉️ Message</button>
+                    <button class="action-btn">⭐ Follow</button>
+                    <button class="action-btn">⋯</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="sidebar">
+                <div class="info-section">
+                    <h3>About Kenny</h3>
+                    <div class="info-item">
+                        <span>🏠</span>Lives in South Park, Colorado (The Poor Side of Town)
+                    </div>
+                    <div class="info-item">
+                        <span>🏫</span>South Park Elementary - 4th Grade
+                    </div>
+                    <div class="info-item">
+                        <span>💡</span>Electricity Status: Usually Off
+                    </div>
+                    <div class="info-item">
+                        <span>🍽️</span>Last Real Meal: Tuesday (I think?)
+                    </div>
+                    <div class="info-item">
+                        <span>👕</span>Clothes: Hand-me-downs from Karen's hand-me-downs
+                    </div>
+                    <div class="info-item">
+                        <span>👧</span>Little Sister: Karen (I protect her)
+                    </div>
+                    <div class="info-item">
+                        <span>☠️</span>Deaths This Year: 23 (That I Remember)
+                    </div>
+                    <div class="info-item">
+                        <span>🦸</span>Sometimes: Mysterion (When Needed)
+                    </div>
+                </div>
+
+                <div class="death-counter">
+                    <h3>💀 DEATH COUNTER 💀</h3>
+                    <div style="font-size: 24px; margin: 10px 0;">127</div>
+                    <div style="font-size: 12px;">Deaths Remembered by Kenny Only</div>
+                </div>
+
+                <div class="info-section">
+                    <h3>Friends Who Forget Me (3)</h3>
+                    <div class="friends-grid">
+                        <div class="friend-card">
+                            <div class="friend-avatar stan-avatar">SM</div>
+                            <div class="friend-name">Stan Marsh<br><small>Mourns me for 30 seconds</small></div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar kyle-avatar">KB</div>
+                            <div class="friend-name">Kyle Broflovski<br><small>Always finds a lesson</small></div>
+                        </div>
+                        <div class="friend-card">
+                            <div class="friend-avatar cartman-avatar">EC</div>
+                            <div class="friend-name">Eric Cartman<br><small>Sells my stuff immediately</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mysterion-section">
+                    <h3>🦸‍♂️ MYSTERION SPEAKS</h3>
+                    <p>When the hood comes down, the truth comes out. I remember every death, every resurrection, every moment of cosmic injustice. I am the guardian of those who can't guard themselves.</p>
+                </div>
+
+                <div class="poverty-reminder">
+                    ⚠️ <strong>Note:</strong> Posted from library computer because our internet got cut off again. Dad spent the cable money on beer. Karen doesn't know - she thinks the computer is just "sleeping."
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="post-composer">
+                    <div style="display:flex; align-items:center; gap:10px; margin-bottom:10px;">
+                        <div class="post-avatar"></div>
+                        <input type="text" placeholder="Mmpfh mmpfh... (Say something, Kenny)" style="flex:1; padding:12px 16px; border:1px solid #e4e6eb; border-radius:25px; background:#f0f2f5; font-size:14px;">
+                    </div>
+                    <div class="composer-actions">
+                        <div class="composer-action">🎥 Live Video</div>
+                        <div class="composer-action">📸 Photo/Video</div>
+                        <div class="composer-action">🙂 Feeling/Activity</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">3 hours ago • 🍕 Hungry</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh mmph! Mmph mmpfh mmpfh mmph mmpfh mmph mmph. Mmpfh mmph mmph mmpfh mmph mmpfh mmph mmph!
+                        </div>
+                        <div class="translation">
+                            *Translation: Found half a sandwich in Kyle's locker! He said I could have it because he brought two lunches today. Thanks Kyle you're the best!*
+                        </div>
+                        
+                        Sometimes the small things are the big things. Like when your friend shares their food without making a big deal about it.
+                        
+                        #LunchTime #KyleIsAwesome #SmallKindnesses #StillHungryTho
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🍕 Hungry Too</div>
+                        <div class="post-action">❤️ Kyle's Nice</div>
+                        <div class="post-action">🤗 Share Food</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">Yesterday • 💀 Currently Alive</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmph mmpfh mmph! Mmpfh mmph mmpfh mmpfh mmph mmph. Mmph mmpfh mmph mmpfh mmph mmpfh mmph mmph mmpfh. Mmph mmpfh mmph?
+                        </div>
+                        <div class="translation">
+                            *Translation: Got hit by a truck today helping Mrs. Johnson carry her groceries. Stan yelled "Oh my God, they killed Kenny!" and Kyle was like "You bastards!" But then Cartman immediately asked if he could have my Cheesy Poofs.*
+                        </div>
+                        
+                        Woke up in my bed like nothing happened. Nobody remembers except me. Again.
+                        
+                        At least I helped Mrs. Johnson. She gave me a quarter once.
+                        
+                        #BackFromTheDead #BusAccident #FriendsHaveSelectiveMemory #CosmicJustice
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">😢 RIP (Again)</div>
+                        <div class="post-action">🔄 Welcome Back</div>
+                        <div class="post-action">📝 Translation Needed</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">4 days ago • 📚 Rare Clear Moment</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh! Mmph mmpfh mmph mmpfh mmph mmph mmpfh. Mmpfh mmph mmph mmph mmpfh mmpfh mmph. Mmpfh mmpfh!
+                        </div>
+                        <div class="translation">
+                            *Translation: We had show and tell today! I brought my lucky rock that I found behind City Wok. It's shiny and smooth and fits perfect in my pocket. Everyone else brought expensive stuff but Mrs. Choksondik said mine was "creative." Thanks!*
+                        </div>
+                        
+                        My rock doesn't cost money but it makes me happy. Sometimes the best things are free.
+                        
+                        Found it the day after I died from that falling piano. Maybe it's actually lucky?
+                        
+                        #ShowAndTell #LuckyRock #FreeStuff #MaybeLucky
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🪨 Cool Rock</div>
+                        <div class="post-action">✨ Lucky Find</div>
+                        <div class="post-action">🎒 Show and Tell</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar mysterion-avatar">M</div>
+                        <div class="post-info">
+                            <h4>Mysterion</h4>
+                            <div class="post-time">5 days ago • 🌃 Night Patrol</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Stopped Cartman from selling "magic weight loss pills" (they were just Tic Tacs) to kids at recess.
+                        
+                        Nobody knows it was Kenny McCormick who saved them from getting scammed. They just know some weird kid in a hood showed up.
+                        
+                        Sometimes I think about telling my friends. But then I remember they forget I exist half the time anyway.
+                        
+                        #Mysterion #CartmanScams #ProtectTheInnocent #UnknownHero
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🦸 Hero Work</div>
+                        <div class="post-action">🛑 Stopped Scam</div>
+                        <div class="post-action">🤫 Secret Identity</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">6 days ago • 🍞 Food Hunt</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph! Mmph mmpfh mmpfh mmph mmpfh mmpfh mmph. Mmpfh mmpfh mmph mmpfh Karen mmpfh mmph!
+                        </div>
+                        <div class="translation">
+                            *Translation: Found a whole box of day-old donuts behind the donut shop! The owner Mr. Peterson said I could take them instead of throwing them away. Karen is gonna be so happy!*
+                        </div>
+                        
+                        Sometimes people are really nice. Mr. Peterson always saves the almost-expired food for us instead of just throwing it out.
+                        
+                        Karen ate three donuts and said they were the "best breakfast ever." That made it worth getting up early to check the dumpster.
+                        
+                        #DayOldDonuts #KarenIsHappy #MrPetersonIsNice #BestBreakfastEver
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🍩 Yummy Find</div>
+                        <div class="post-action">👧 Karen's Happy</div>
+                        <div class="post-action">❤️ Kind People</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">1 week ago • 🎮 Watching Friends Play</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh mmpfh! Mmph mmpfh mmpfh mmph Xbox mmpfh mmpfh. Mmpfh mmpfh mmph mmpfh mmpfh mmph mmpfh.
+                        </div>
+                        <div class="translation">
+                            *Translation: Went to Stan's house to watch him play his new video game! He got the latest Call of Duty for his birthday. I just watched but it was still really fun.*
+                        </div>
+                        
+                        Stan asked if I wanted to play but I said I wasn't good at it. Really I just didn't want him to know I've never had my own controller.
+                        
+                        His mom made us sandwiches and gave me two to take home "for later." She's really nice like that.
+                        
+                        #StanIsAGoodFriend #NewVideoGame #SandwichesToGoHome #WatchingIsFunToo
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🎮 Fun to Watch</div>
+                        <div class="post-action">🥪 Extra Sandwiches</div>
+                        <div class="post-action">👍 Good Friends</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">1 week ago • 📺 Late Night TV</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh! Mmph mmpfh mmpfh mmph mmpfh mmpfh Comedy Central. Mmpfh mmpfh mmph mmpfh mmpfh!
+                        </div>
+                        <div class="translation">
+                            *Translation: Parents fell asleep drunk again! So I got to watch late night Comedy Central without getting in trouble. Some of those jokes are pretty funny!*
+                        </div>
+                        
+                        I understand more of the grown-up jokes than my friends do. Guess that's what happens when you don't have a bedtime.
+                        
+                        Karen was already asleep so I kept the volume low. She needs her sleep for school tomorrow.
+                        
+                        #LateNightTV #GrownUpJokes #KarenNeedsSleep #NoParentalSupervision
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">📺 Late Night</div>
+                        <div class="post-action">🤫 Keep Quiet</div>
+                        <div class="post-action">😴 Let Karen Sleep</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">2 weeks ago • 🚌 Bus Hero</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh mmph! Mmph mmpfh Clyde mmpfh mmpfh mmph mmpfh. Mmpfh mmpfh mmph mmph mmpfh!
+                        </div>
+                        <div class="translation">
+                            *Translation: Some big kids were picking on Clyde on the bus today! They took his lunch money and pushed him around. I gave him my sandwich and told the bullies to stop.*
+                        </div>
+                        
+                        They laughed at me because of my torn jacket, but then I reminded them that I literally cannot stay dead. That made them think twice.
+                        
+                        Clyde said thanks and shared his apple with me. Sometimes being the "weird death kid" actually helps.
+                        
+                        #StandUpToBullies #HelpeClyde #DeathHasPerks #SharedApple
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🦸 Everyday Hero</div>
+                        <div class="post-action">🛑 Stop Bullies</div>
+                        <div class="post-action">🍎 Shared Food</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">2 weeks ago • 🤒 Cartman Sick</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph Cartman mmpfh! Mmph mmpfh mmpfh mmph mmpfh mmpfh mmph. Mmpfh mmpfh mmph mmpfh!
+                        </div>
+                        <div class="translation">
+                            *Translation: Cartman got really sick today! Stan and Kyle said he was probably faking but I could tell he wasn't. He looked really pale and sad.*
+                        </div>
+                        
+                        I know Cartman can be a jerk sometimes, but nobody deserves to be sick and alone. So I walked to his house and brought him some soup Karen helped me make.
+                        
+                        He was surprised I came. Said "Kenny, you're the only one who cares when I'm dying." Then he ate the whole bowl and said it was good.
+                        
+                        Even jerks need friends sometimes.
+                        
+                        #CartmanIsSick #KarenMadeSoup #EveryoneNeedsFriends #BeingNice
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🍲 Homemade Soup</div>
+                        <div class="post-action">🤒 Feel Better</div>
+                        <div class="post-action">❤️ Everyone Needs Care</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">3 weeks ago • 🍿 Movie Night</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmph! Mmph Kyle mmpfh mmpfh TV mmpfh mmpfh. Mmpfh mmpfh Terrance and Phillip mmpfh!
+                        </div>
+                        <div class="translation">
+                            *Translation: Awesome night yesterday! Kyle let me come over to watch TV at his house. We watched Terrance and Phillip and laughed until our stomachs hurt!*
+                        </div>
+                        
+                        Kyle's mom made popcorn and hot chocolate. She asked if I wanted to call my parents to say I was staying late, but Kyle just said "It's okay mom, Kenny's fine."
+                        
+                        I love how Kyle always has my back without making it weird. That's what best friends do.
+                        
+                        #TerranceAndPhillip #KylesHouse #HotChocolate #BestFriendsForever
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🍿 Movie Night</div>
+                        <div class="post-action">☕ Hot Chocolate</div>
+                        <div class="post-action">👫 Best Friends</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">3 weeks ago • 👧 Sister Time</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh Karen mmpfh mmph! Mmph mmpfh mmpfh mmph mmpfh school project mmpfh. Mmpfh mmpfh mmph mmpfh library!
+                        </div>
+                        <div class="translation">
+                            *Translation: Karen had a big school project due tomorrow! She needed to do research but our computer is broken again. So we walked to the library together!*
+                        </div>
+                        
+                        She was worried because all the other kids had fancy poster boards and printed pictures. But I helped her draw really good pictures with the free crayons at the library.
+                        
+                        Her project was about butterflies and she made the most beautiful drawings. The librarian said it was "very creative and thoughtful."
+                        
+                        Karen got a B+ and was so happy she hugged me for like five minutes. Best day ever.
+                        
+                        #KarenIsAwesome #LibraryHelper #ButterflyProject #BPlusIsGreat
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">📚 Library Trip</div>
+                        <div class="post-action">🎨 Creative Project</div>
+                        <div class="post-action">🤗 Best Sister Ever</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">4 weeks ago • 💸 Family Money Problems</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh! Mmph mom mmpfh dad mmpfh mmpfh yelling mmpfh money. Mmpfh Karen mmpfh crying mmpfh.
+                        </div>
+                        <div class="translation">
+                            *Translation: Parents had another big fight last night! Mom and dad were yelling about money and bills again. Karen came to my room crying because she was scared.*
+                        </div>
+                        
+                        I told her the grown-ups were just "discussing things loudly" and that everything would be okay. We played tic-tac-toe until she fell asleep.
+                        
+                        This morning dad was passed out on the couch and mom left early for her job at the diner. Karen asked if we were going to be okay and I said yes, because we have each other.
+                        
+                        Sometimes being the big brother means lying a little bit to keep her from being scared.
+                        
+                        #FamilyStuff #ProtectKaren #BeingTheBigBrother #WeHaveEachOther
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🤗 Comfort Sister</div>
+                        <div class="post-action">😢 Family Problems</div>
+                        <div class="post-action">💪 Stay Strong</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">1 month ago • 📝 School Fundraiser</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph school mmpfh! Mmph mmpfh mmpfh fundraiser mmpfh mmpfh candy bars. Mmpfh mmpfh mmph embarrassed mmpfh.
+                        </div>
+                        <div class="translation">
+                            *Translation: School is doing a fundraiser where we're supposed to sell candy bars for new playground equipment. Everyone else is selling to their parents' coworkers and stuff. I'm kind of embarrassed because we don't really have anyone to sell to.*
+                        </div>
+                        
+                        But then Kyle said his mom would buy ten candy bars from me "for the office." And Stan's dad bought five. Even Cartman's mom bought two (though Cartman ate them immediately).
+                        
+                        I ended up selling 20 candy bars total! Not the most in class, but enough that I didn't feel left out during the pizza party.
+                        
+                        My friends are really good at helping without making me feel bad about it.
+                        
+                        #SchoolFundraiser #CandyBars #FriendsHelp #PizzaParty
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🍫 Candy Sales</div>
+                        <div class="post-action">🍕 Pizza Party</div>
+                        <div class="post-action">👫 Friends Help</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">1 month ago • 💭 Deep Thoughts</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh! Mmph mmpfh mmpfh grown-ups mmpfh mmpfh worried mmpfh money. Mmpfh mmpfh mmph Pokemon cards mmpfh!
+                        </div>
+                        <div class="translation">
+                            *Translation: Had a weird thought today! All the grown-ups are always worried about money and bills and stuff. But I still get excited when I find a shiny Pokemon card in the street!*
+                        </div>
+                        
+                        Like, I know we're poor and that's hard. But I also know that finding a Charizard card can make my whole week awesome.
+                        
+                        Maybe that's the trick - you can understand grown-up problems but still let kid stuff make you happy.
+                        
+                        Karen found a really pretty feather yesterday and carried it around all day like it was treasure. She's got the right idea.
+                        
+                        #GrownUpProblems #KidJoys #ShinyPokemonCards #KarenKnowsStuff
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">✨ Shiny Cards</div>
+                        <div class="post-action">🪶 Pretty Feathers</div>
+                        <div class="post-action">💭 Kid Wisdom</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">5 weeks ago • 😔 Invisible Day</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph mmpfh mmph. Mmph mmpfh mmpfh mmpfh raised hand mmpfh class mmpfh. Mmpfh mmpfh mmph invisible mmpfh.
+                        </div>
+                        <div class="translation">
+                            *Translation: Weird day at school today. I raised my hand to answer a question in class but Mrs. Choksondik called on someone else even though I was first. Sometimes I wonder if I'm invisible even when I'm alive.*
+                        </div>
+                        
+                        Then at lunch I sat down at our table and nobody said hi. Not mean or anything, just... like I wasn't there.
+                        
+                        But then Clyde dropped his lunch money and I helped him find it under the table. He said "Thanks Kenny!" really loud and smiled.
+                        
+                        Maybe I'm not invisible. Maybe I'm just quiet. There's a difference, I think.
+                        
+                        #InvisibleDay #QuietNotGone #ClydeSeesMe #StillHere
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">👋 Say Hi More</div>
+                        <div class="post-action">👀 I See You Kenny</div>
+                        <div class="post-action">💫 Quiet But Here</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">6 weeks ago • 🙏 Thank You Post</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph thank you mmpfh! Mmph bus driver mmpfh mmpfh let Karen mmpfh free mmpfh. Mmpfh mmpfh mmph nice!
+                        </div>
+                        <div class="translation">
+                            *Translation: Want to say thank you to the bus driver Mr. Johnson! He saw that Karen lost her bus money and let her ride for free anyway. He didn't make a big deal about it or anything.*
+                        </div>
+                        
+                        Also thank you to the lunch lady who always gives me extra tater tots "by accident." 
+                        
+                        And thank you to whoever left that almost-new hoodie in the lost and found for three whole weeks so I could finally take it home.
+                        
+                        People are nice more often than they're mean. I like remembering that.
+                        
+                        #ThankYouPost #MrJohnsonIsNice #ExtraTaterTots #PeopleAreGood
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">🚌 Nice Bus Driver</div>
+                        <div class="post-action">🍟 Extra Tots</div>
+                        <div class="post-action">🙏 Grateful Heart</div>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <div class="post-avatar"></div>
+                        <div class="post-info">
+                            <h4>Kenny McCormick</h4>
+                            <div class="post-time">7 weeks ago • ⚖️ Hope vs Reality</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <div class="muffled-text">
+                            Mmpfh mmpfh mmph electricity mmpfh back! Mmph mmpfh mmpfh mom mmpfh job mmpfh. Mmpfh mmpfh Karen mmpfh happy mmpfh TV!
+                        </div>
+                        <div class="translation">
+                            *Translation: Good news - electricity is back on! Mom got some extra hours at the diner this week. Karen was so happy she could watch cartoons again and do homework with the lights on!*
+                        </div>
+                        
+                        I know it might not last long. Dad's been talking about "big plans" again and that usually means he'll mess something up.
+                        
+                        But right now Karen is watching SpongeBob and laughing really loud. And right now we have hot water for showers.
+                        
+                        Sometimes right now is enough. You can't live in tomorrow's problems when today has lights and cartoons.
+                        
+                        #ElectricityIsBack #KarenLaughing #HotShowers #RightNowIsEnough
+                    </div>
+                    <div class="post-actions">
+                        <div class="post-action">💡 Lights On</div>
+                        <div class="post-action">📺 Cartoons Back</div>
+                        <div class="post-action">😊 Right Now Joy</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script>
+        // Initialize enhanced features for Kenny's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Kenny profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

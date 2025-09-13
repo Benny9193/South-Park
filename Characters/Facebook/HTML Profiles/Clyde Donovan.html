@@ -1,0 +1,580 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clyde Donovan - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --clyde-primary: #87CEEB;
+            --clyde-secondary: #4169E1;
+            --clyde-accent: #1E90FF;
+            --clyde-tears: #00BFFF;
+            --clyde-background: #F0F8FF;
+            --clyde-emotional: #FF69B4;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--clyde-background) 0%, #E6F3FF 100%);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated tears falling from the top */
+        body::before, body::after {
+            content: "💧";
+            position: fixed;
+            top: -50px;
+            font-size: 20px;
+            animation: tears-fall 8s linear infinite;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        body::before {
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            left: 80%;
+            animation-delay: 4s;
+        }
+
+        @keyframes tears-fall {
+            0% { top: -50px; opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { top: 100vh; opacity: 0; }
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--clyde-primary), var(--clyde-secondary));
+            border: 3px solid var(--clyde-tears);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "😭 EMOTIONAL SUPPORT ZONE 😭";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--clyde-emotional);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--clyde-primary);
+            color: var(--clyde-secondary);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(135, 206, 235, 0.2);
+            border: 2px solid var(--clyde-secondary);
+            animation: emotional-wobble 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes emotional-wobble {
+            0% { transform: scale(1) rotate(-0.5deg); }
+            100% { transform: scale(1.02) rotate(0.5deg); }
+        }
+
+        .cry-meter {
+            background: linear-gradient(90deg, #87ceeb, #4169e1, #1e90ff);
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: sob-pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes sob-pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .tissue-count {
+            background: var(--clyde-accent);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--clyde-secondary);
+            background: rgba(240, 248, 255, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--clyde-tears), var(--clyde-primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.2;
+        }
+
+        .emotional-breakdown {
+            background: linear-gradient(135deg, #ffe6f2, #ffccdf);
+            border: 3px dashed var(--clyde-emotional);
+            animation: breakdown-shake 0.8s ease-in-out infinite alternate;
+        }
+
+        @keyframes breakdown-shake {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-2px); }
+        }
+
+        .crying-emoji {
+            font-size: 24px;
+            color: var(--clyde-tears);
+            animation: cry-bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes cry-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .dramatic-moment {
+            color: var(--clyde-emotional);
+            font-style: italic;
+            border-left: 4px solid var(--clyde-tears);
+            padding-left: 10px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .dramatic-moment::before {
+            content: "😭";
+            position: absolute;
+            left: -15px;
+            animation: tear-drip 2s ease-in-out infinite;
+        }
+
+        @keyframes tear-drip {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; transform: translateY(5px); }
+        }
+
+        .sensitivity-alert {
+            background: rgba(135, 206, 235, 0.2);
+            border: 2px dotted var(--clyde-accent);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .bebe-mention {
+            background: #FFB6C1;
+            color: #FF1493;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .support-group {
+            background: linear-gradient(90deg, #87ceeb, #ffc0cb);
+            color: #4169e1;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #87ceeb;
+        }
+
+        .tears-counter {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(135, 206, 235, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            z-index: 100;
+            animation: counter-bounce 3s ease-in-out infinite;
+        }
+
+        @keyframes counter-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Mobile optimization for emotional effects */
+        @media screen and (max-width: 768px) {
+            .tears-counter {
+                top: 10px;
+                right: 10px;
+                font-size: 12px;
+                padding: 8px;
+            }
+            
+            body::before, body::after {
+                display: none; /* Hide falling tears on mobile for performance */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tears-counter">
+        💧 Daily Tears: 247 (Personal Record!)
+    </div>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--clyde-primary); color: var(--clyde-secondary);">CD</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Clyde Donovan</h1>
+                <p class="character-tagline">"*sobbing* Why does everything have to be so hard?!"</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="cry-meter">
+                    😭 CURRENT EMOTIONAL STATE: OVERWHELMING SADNESS ABOUT EVERYTHING 😭
+                </div>
+
+                <div class="tissue-count">
+                    🧻 TISSUES USED TODAY: 89 BOXES (Mom's getting concerned) 🧻
+                </div>
+
+                <div class="post emotional-breakdown">
+                    <div class="post-header">
+                        <strong>Clyde Donovan</strong>
+                        <span class="timestamp">3 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="crying-emoji">😭😭😭 GUYS I'M LITERALLY DYING! 😭😭😭</div>
+                        <div class="dramatic-moment">The cafeteria ran out of chocolate milk today and I can't stop thinking about how this represents everything wrong with the world! Like, what if this is a sign that all the good things in life are slowly disappearing?!</div>
+                        <div class="support-group">
+                            <strong>EMOTIONAL CRISIS BREAKDOWN:</strong><br>
+                            • Chocolate milk shortage: 100% devastating<br>
+                            • Symbolic representation of life's disappointments: CRUSHING<br>
+                            • Ability to cope with minor setbacks: NONEXISTENT<br>
+                            • Need for emotional support: CRITICAL
+                        </div>
+                        <div class="dramatic-moment">*ugly crying* Someone please tell me it's going to be okay! I need at least 17 people to validate my feelings right now!</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (34)</span>
+                        <span class="action-button">💬 Comment (28)</span>
+                        <span class="action-button">😭 Share Tears</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Clyde Donovan</strong>
+                        <span class="timestamp">1 hour ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="bebe-mention">Thinking about Bebe again... What if she doesn't text me back because I'm too emotional? 💔</div>
+                        I know Craig always says I cry too much, but feelings are IMPORTANT! How am I supposed to just bottle everything up like he does? That seems so unhealthy!
+                        <div class="sensitivity-alert">
+                            Maybe being sensitive is actually my superpower... except it feels more like my kryptonite most of the time 😢
+                        </div>
+                        <div class="dramatic-moment">*sniffling* Why do I have to feel everything so intensely? Sometimes I wish I could just turn off my emotions like a light switch...</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (67)</span>
+                        <span class="action-button">💬 Comment (43)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Clyde Donovan</strong>
+                        <span class="timestamp">2 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        UPDATE: Mom bought me the wrong brand of tissues and now I'm having a complete meltdown about it. These don't even have lotion in them!
+                        <div class="support-group">
+                            I know it seems silly to everyone else, but when you use as many tissues as I do, quality really matters! My nose is already getting red and chapped and it's only 10 AM!
+                        </div>
+                        <div class="dramatic-moment">*dramatic sobbing* Sometimes I feel like the universe is conspiring against my tear ducts! First the chocolate milk, now this!</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (23)</span>
+                        <span class="action-button">💬 Comment (15)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Clyde Donovan</strong>
+                        <span class="timestamp">4 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Had an argument with Token about whether sad movies are good or just torture devices. He says I "seek out reasons to cry" but I think I'm just more in touch with my emotions than he is!
+                        <div class="sensitivity-alert">
+                            Like, why would they make sad movies if they didn't want us to feel sad about them? That's literally the whole point! It's called EMPATHY, Token! 😤
+                        </div>
+                        <div class="bebe-mention">Bebe totally gets it though. She cried during the commercial about the lost puppy yesterday too! 🐶💔</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (41)</span>
+                        <span class="action-button">💬 Comment (22)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post emotional-breakdown">
+                    <div class="post-header">
+                        <strong>Clyde Donovan</strong>
+                        <span class="timestamp">6 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="crying-emoji">EMERGENCY EMOTIONAL BREAKDOWN!</div>
+                        I just realized that every day we get older is one day closer to not being kids anymore, and what if growing up means I lose the ability to feel things as deeply as I do now?!
+                        <div class="support-group">
+                            <strong>EXISTENTIAL CRISIS PROBABILITY:</strong> 97.3%<br>
+                            <strong>NEED FOR REASSURANCE:</strong> Maximum<br>
+                            <strong>TEARS REQUIRED:</strong> All of them
+                        </div>
+                        <div class="dramatic-moment">*inconsolable sobbing* What if being an adult means becoming dead inside like my dad?! He hasn't cried at a movie in YEARS!</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (78)</span>
+                        <span class="action-button">💬 Comment (56)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Clyde Donovan</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        Guys, I need to share something important: I've been keeping a "Feelings Journal" and it's actually helping me process my emotions better!
+                        <div class="sensitivity-alert">
+                            Turns out there's a difference between feeling your feelings and drowning in them. Who knew? 📖✨
+                        </div>
+                        <div class="dramatic-moment">I mean, I'm still going to cry about everything, but now I understand WHY I'm crying. Progress, right?</div>
+                        <div class="bebe-mention">Bebe says I'm becoming more "emotionally intelligent" which sounds way cooler than just "really weepy" 💙</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (92)</span>
+                        <span class="action-button">💬 Comment (31)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>About Clyde</h3>
+                    <div class="info-item">
+                        <strong>🏫 School:</strong> South Park Elementary
+                    </div>
+                    <div class="info-item">
+                        <strong>😭 Occupation:</strong> Professional Emotional Reactor
+                    </div>
+                    <div class="info-item">
+                        <strong>🎯 Life Goal:</strong> Feel all the feelings (mission accomplished daily)
+                    </div>
+                    <div class="info-item">
+                        <strong>💕 Relationship:</strong> Complicated (with feelings in general)
+                    </div>
+                    <div class="info-item">
+                        <strong>🌊 Current Status:</strong> Drowning in emotions
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Emotional Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">247</span>
+                        <span class="stat-label">Tears shed today</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">89</span>
+                        <span class="stat-label">Tissue boxes used</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">156</span>
+                        <span class="stat-label">Things to cry about</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Feelings intensity level</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Emotional Events</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">😭</span>
+                        <span class="activity-text">Cried about chocolate milk shortage</span>
+                        <span class="activity-time">5 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💔</span>
+                        <span class="activity-text">Had feelings about Bebe not texting back</span>
+                        <span class="activity-time">1 hour ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🧻</span>
+                        <span class="activity-text">Complained about tissue quality</span>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">📖</span>
+                        <span class="activity-text">Made breakthrough in feelings journal</span>
+                        <span class="activity-time">6 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Emotional Support Network</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FFB6C1; color: #FF1493;">BS</span>
+                        <span class="friend-name">Bebe Stevens</span>
+                        <span class="friend-status">💖 Crush (Understanding)</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #32CD32; color: #006400;">TB</span>
+                        <span class="friend-name">Token Black</span>
+                        <span class="friend-status">🤝 Voice of Reason</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #87CEEB; color: #4682B4;">CT</span>
+                        <span class="friend-name">Craig Tucker</span>
+                        <span class="friend-status">😑 Emotional Opposite</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FFB6C1; color: #FF69B4;">BT</span>
+                        <span class="friend-name">Butters Stotch</span>
+                        <span class="friend-status">🤗 Fellow Sensitive Soul</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Clyde's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Clyde profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+
+            // Legacy Clyde interactions
+            if (typeof CharacterInteractions !== 'undefined') {
+                const interactions = new CharacterInteractions();
+                interactions.initializeProfile('clyde');
+            }
+            
+            // Add Clyde-specific emotional effects
+            const emotionalElements = document.querySelectorAll('.crying-emoji, .emotional-breakdown');
+            emotionalElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.animation = 'breakdown-shake 0.3s ease-in-out infinite';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Dynamic tears counter that increases randomly
+            const tearsCounter = document.querySelector('.tears-counter');
+            let tearCount = 247;
+            setInterval(() => {
+                if (Math.random() > 0.4) { // 60% chance every interval
+                    tearCount += Math.floor(Math.random() * 3) + 1;
+                    tearsCounter.innerHTML = `💧 Daily Tears: ${tearCount} (Personal Record!)`;
+                }
+            }, 25000); // Check every 25 seconds
+            
+            // Dynamic emotional state updates
+            const cryMeter = document.querySelector('.cry-meter');
+            const emotionalStates = [
+                "😭 CURRENT EMOTIONAL STATE: OVERWHELMING SADNESS ABOUT EVERYTHING 😭",
+                "💔 EMOTIONAL STATUS: CRYING ABOUT MINOR INCONVENIENCES 💔",
+                "😢 FEELINGS LEVEL: MAXIMUM SENSITIVITY ACTIVATED 😢",
+                "🌊 CRY ALERT: DROWNING IN FEELINGS AGAIN 🌊",
+                "😭 BREAKDOWN MODE: WHY IS EVERYTHING SO EMOTIONAL?! 😭"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const randomState = emotionalStates[Math.floor(Math.random() * emotionalStates.length)];
+                    cryMeter.innerHTML = randomState;
+                }
+            }, 40000); // Update every 40 seconds
+            
+            // Add more falling tears randomly
+            setInterval(() => {
+                if (Math.random() > 0.6 && window.innerWidth > 768) { // Only on desktop
+                    const tear = document.createElement('div');
+                    tear.innerHTML = '💧';
+                    tear.style.position = 'fixed';
+                    tear.style.top = '-50px';
+                    tear.style.left = Math.random() * window.innerWidth + 'px';
+                    tear.style.fontSize = '16px';
+                    tear.style.zIndex = '-1';
+                    tear.style.opacity = '0.4';
+                    tear.style.animation = 'tears-fall 6s linear forwards';
+                    document.body.appendChild(tear);
+                    
+                    setTimeout(() => {
+                        tear.remove();
+                    }, 6000);
+                }
+            }, 15000); // Add tear every 15 seconds
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

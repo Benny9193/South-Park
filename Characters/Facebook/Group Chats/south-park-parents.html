@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Park Parents Group Chat</title>
+    <link rel="stylesheet" href="../../../Assets/css/facebook-style.css">
+    <style>
+        .parents-header {
+            background: linear-gradient(135deg, #8B4513, #D2B48C);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .parent-emoji {
+            font-size: 1.5em;
+            margin: 5px;
+        }
+
+        .sheila-message {
+            border-left: 4px solid #FF1493;
+            background: #FFF0F5;
+        }
+
+        .gerald-message {
+            border-left: 4px solid #8B4513;
+            background: #F5F5DC;
+        }
+
+        .randy-message {
+            border-left: 4px solid #4169E1;
+            background: #E6E6FA;
+        }
+
+        .sharon-message {
+            border-left: 4px solid #9370DB;
+            background: #F0E6FF;
+        }
+
+        .liane-message {
+            border-left: 4px solid #FF69B4;
+            background: #FFE4E1;
+        }
+
+        .stuart-message {
+            border-left: 4px solid #FFA500;
+            background: #FFF8DC;
+        }
+
+        .outrage-text {
+            font-weight: bold;
+            color: #FF1493;
+            animation: maternal-fury 1s ease-in-out;
+        }
+
+        @keyframes maternal-fury {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: #FF0000; }
+            100% { transform: scale(1); }
+        }
+
+        .randy-enthusiasm {
+            font-weight: bold;
+            color: #4169E1;
+            animation: dad-excitement 2s ease-in-out;
+        }
+
+        @keyframes dad-excitement {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            75% { transform: rotate(2deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .concern-level {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .concern-low { background: #90EE90; color: #006400; }
+        .concern-medium { background: #FFD700; color: #B8860B; }
+        .concern-high { background: #FF6347; color: #8B0000; }
+        .concern-critical { background: #FF1493; color: #FFFFFF; animation: crisis-alert 1s infinite; }
+
+        @keyframes crisis-alert {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .parent-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .parent-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .troll-hint {
+            opacity: 0.6;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .crisis-mode {
+            background: linear-gradient(45deg, #FF1493, #FF69B4);
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+            animation: emergency-flash 2s ease-in-out infinite;
+        }
+
+        @keyframes emergency-flash {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="facebook-container">
+        <div class="facebook-header">
+            <h1>👨‍👩‍👧‍👦 South Park Parents Group Chat</h1>
+            <p>Where concerned parenting meets small-town drama</p>
+        </div>
+
+        <div class="parents-header">
+            <div>
+                <span class="parent-emoji">👩‍🏫</span>
+                <span class="parent-emoji">👨‍💼</span>
+                <span class="parent-emoji">👨‍🌾</span>
+                <span class="parent-emoji">👩‍⚕️</span>
+                <span class="parent-emoji">👩‍💼</span>
+                <span class="parent-emoji">👨‍🔧</span>
+            </div>
+            <h2>The Parent Network</h2>
+            <p>Sheila • Gerald • Randy • Sharon • Liane • Stuart</p>
+        </div>
+
+        <div class="parent-stats">
+            <div class="parent-card">
+                <strong>Sheila Broflovski</strong><br>
+                <small>Helicopter Parent Level: MAXIMUM</small>
+            </div>
+            <div class="parent-card">
+                <strong>Gerald Broflovski</strong><br>
+                <small>Internet Activity: SUSPICIOUS</small>
+            </div>
+            <div class="parent-card">
+                <strong>Randy Marsh</strong><br>
+                <small>Dad Energy: OVERWHELMING</small>
+            </div>
+            <div class="parent-card">
+                <strong>Sharon Marsh</strong><br>
+                <small>Patience Level: DIMINISHING</small>
+            </div>
+            <div class="parent-card">
+                <strong>Liane Cartman</strong><br>
+                <small>Enabling Status: ACTIVE</small>
+            </div>
+            <div class="parent-card">
+                <strong>Stuart McCormick</strong><br>
+                <small>Sobriety: QUESTIONABLE</small>
+            </div>
+        </div>
+
+        <div class="concern-level concern-high">
+            Current Parent Crisis Level: HIGH - Multiple incidents reported
+        </div>
+
+        <div class="chat-container" id="parentsChat">
+            <!-- Messages will be dynamically loaded -->
+        </div>
+
+        <div class="chat-controls">
+            <button class="control-btn" onclick="startParentDrama()">Start Parent Meeting</button>
+            <button class="control-btn" onclick="activateCrisisMode()">CRISIS MODE</button>
+            <button class="control-btn" onclick="randomParentOutburst()">Random Outburst</button>
+        </div>
+    </div>
+
+    <script>
+        const parentMessages = [
+            {
+                sender: 'Sheila',
+                message: 'EMERGENCY PARENT MEETING! The children were seen near the school playground WITHOUT SUPERVISION!',
+                class: 'sheila-message outrage-text'
+            },
+            {
+                sender: 'Sharon',
+                message: 'Sheila, they\'re at recess. That\'s... normal.',
+                class: 'sharon-message'
+            },
+            {
+                sender: 'Randy',
+                message: 'OH MY GOD! I have thoughts about playground safety! I was a playground safety expert in college!',
+                class: 'randy-message randy-enthusiasm'
+            },
+            {
+                sender: 'Gerald',
+                message: 'Technically, the school is liable for supervision during recess hours. We could sue... hypothetically.',
+                class: 'gerald-message'
+            },
+            {
+                sender: 'Liane',
+                message: 'Oh my! Eric mentioned something about playground drama. Should I be concerned?',
+                class: 'liane-message'
+            },
+            {
+                sender: 'Stuart',
+                message: 'kenny plays on playground all time. he fine. probably.',
+                class: 'stuart-message'
+            },
+            {
+                sender: 'Sheila',
+                message: 'WHAT WHAT WHAT?! Stuart, proper capitalization shows you care about your child\'s education!',
+                class: 'sheila-message outrage-text'
+            },
+            {
+                sender: 'Stuart',
+                message: 'sorry sheila. phone broken. kenny broke it.',
+                class: 'stuart-message'
+            },
+            {
+                sender: 'Randy',
+                message: 'I have a SOLUTION! We need a playground committee! I volunteer as chairman!',
+                class: 'randy-message randy-enthusiasm'
+            },
+            {
+                sender: 'Sharon',
+                message: 'Randy, you can\'t be chairman of everything.',
+                class: 'sharon-message'
+            },
+            {
+                sender: 'Gerald',
+                message: 'Actually, I\'ve been researching playground liability online. Found some... interesting forums about parental oversight.',
+                class: 'gerald-message troll-hint'
+            },
+            {
+                sender: 'Sheila',
+                message: 'Gerald! What kind of forums?!',
+                class: 'sheila-message'
+            },
+            {
+                sender: 'Gerald',
+                message: 'Just... legal research, dear. Nothing inappropriate. *nervous lawyer laugh*',
+                class: 'gerald-message'
+            },
+            {
+                sender: 'Liane',
+                message: 'Should I bring snacks to the next PTA meeting? Eric loves my special brownies!',
+                class: 'liane-message'
+            },
+            {
+                sender: 'Randy',
+                message: 'SPECIAL brownies?! What makes them special?! I NEED TO KNOW!',
+                class: 'randy-message randy-enthusiasm'
+            },
+            {
+                sender: 'Sharon',
+                message: 'Randy, they\'re just regular brownies.',
+                class: 'sharon-message'
+            },
+            {
+                sender: 'Sheila',
+                message: 'We need to focus! Our children\'s safety is at STAKE!',
+                class: 'sheila-message outrage-text'
+            }
+        ];
+
+        const crisisScenarios = [
+            {
+                title: 'UNDERPANTS GNOME SIGHTING',
+                messages: [
+                    { sender: 'Sheila', message: 'EMERGENCY! Kyle reported seeing strange creatures stealing underwear!', class: 'sheila-message outrage-text' },
+                    { sender: 'Randy', message: 'OH MY GOD! I KNEW THIS DAY WOULD COME! THE UNDERPANTS CONSPIRACY IS REAL!', class: 'randy-message randy-enthusiasm' },
+                    { sender: 'Sharon', message: 'Randy, please stop encouraging mass hysteria.', class: 'sharon-message' },
+                    { sender: 'Gerald', message: 'I could research the legal implications of underwear theft...', class: 'gerald-message' }
+                ]
+            },
+            {
+                title: 'CAFETERIA CONTROVERSY',
+                messages: [
+                    { sender: 'Sheila', message: 'The school is serving PROCESSED FOOD! This is an OUTRAGE!', class: 'sheila-message outrage-text' },
+                    { sender: 'Liane', message: 'Oh my! Eric just loves the cafeteria food. Especially the chocolate milk!', class: 'liane-message' },
+                    { sender: 'Stuart', message: 'kenny brings lunch in paper bag. same every day. bologna.', class: 'stuart-message' },
+                    { sender: 'Randy', message: 'I have OPINIONS about school nutrition! Let me tell you about organic farming!', class: 'randy-message randy-enthusiasm' }
+                ]
+            }
+        ];
+
+        let messageIndex = 0;
+
+        function addParentMessage(messageObj) {
+            const chatContainer = document.getElementById('parentsChat');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${messageObj.class}`;
+            
+            let messageContent = messageObj.message;
+            if (messageContent.includes('WHAT WHAT WHAT')) {
+                messageContent = messageContent.replace(/WHAT WHAT WHAT/g, '<span class="outrage-text">WHAT WHAT WHAT</span>');
+            }
+            if (messageContent.includes('OH MY GOD')) {
+                messageContent = messageContent.replace(/OH MY GOD/g, '<span class="randy-enthusiasm">OH MY GOD</span>');
+            }
+            
+            messageDiv.innerHTML = `
+                <div class="message-header">
+                    <strong>${messageObj.sender}</strong>
+                    <span class="message-time">${messageObj.time || 'Now'}</span>
+                </div>
+                <div class="message-content">${messageContent}</div>
+            `;
+            
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function startParentDrama() {
+            if (messageIndex < parentMessages.length) {
+                addParentMessage(parentMessages[messageIndex]);
+                messageIndex++;
+                setTimeout(startParentDrama, 2500);
+            }
+        }
+
+        function activateCrisisMode() {
+            const chatContainer = document.getElementById('parentsChat');
+            const crisisDiv = document.createElement('div');
+            crisisDiv.className = 'crisis-mode';
+            crisisDiv.innerHTML = '🚨 PARENT CRISIS MODE ACTIVATED 🚨<br>All parents report to emergency chat immediately!';
+            chatContainer.appendChild(crisisDiv);
+            
+            setTimeout(() => {
+                const scenario = crisisScenarios[Math.floor(Math.random() * crisisScenarios.length)];
+                addParentMessage({
+                    sender: 'System',
+                    message: `📢 CRISIS: ${scenario.title}`,
+                    class: 'system-message'
+                });
+                
+                scenario.messages.forEach((msg, index) => {
+                    setTimeout(() => addParentMessage(msg), (index + 1) * 2000);
+                });
+            }, 1000);
+        }
+
+        function randomParentOutburst() {
+            const outbursts = [
+                { sender: 'Sheila', message: 'WHAT WHAT WHAT?! Who gave the children SUGAR?!', class: 'sheila-message outrage-text' },
+                { sender: 'Randy', message: 'OH MY GOD! I just had the BEST idea for the science fair!', class: 'randy-message randy-enthusiasm' },
+                { sender: 'Gerald', message: 'I found this interesting parenting forum online... very educational.', class: 'gerald-message troll-hint' },
+                { sender: 'Sharon', message: 'Can we please just have ONE normal day?', class: 'sharon-message' },
+                { sender: 'Liane', message: 'Eric asked for $50 for a "school project." That\'s normal, right?', class: 'liane-message' },
+                { sender: 'Stuart', message: 'kenny said something about aliens. or maybe lunch. hard to tell.', class: 'stuart-message' }
+            ];
+            
+            const randomOutburst = outbursts[Math.floor(Math.random() * outbursts.length)];
+            addParentMessage(randomOutburst);
+        }
+
+        // Initialize chat
+        window.addEventListener('load', () => {
+            addParentMessage({
+                sender: 'System',
+                message: '👨‍👩‍👧‍👦 Welcome to the South Park Parents Group Chat! Prepare for concerned parenting and questionable decision-making.',
+                class: 'system-message'
+            });
+        });
+    </script>
+</body>
+</html>

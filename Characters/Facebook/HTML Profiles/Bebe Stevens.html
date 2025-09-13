@@ -1,0 +1,587 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bebe Stevens - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --bebe-primary: #FF69B4;
+            --bebe-secondary: #FFB6C1;
+            --bebe-accent: #FF1493;
+            --bebe-gold: #FFD700;
+            --bebe-background: #FFF0F5;
+            --bebe-popular: #DA70D6;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bebe-background) 0%, #FFE4E6 100%);
+            position: relative;
+        }
+
+        /* Sparkle effects */
+        body::before, body::after {
+            content: "✨";
+            position: fixed;
+            font-size: 18px;
+            animation: sparkle-float 6s ease-in-out infinite;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        body::before {
+            left: 15%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        body::after {
+            right: 20%;
+            top: 60%;
+            animation-delay: 3s;
+        }
+
+        @keyframes sparkle-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.8; }
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--bebe-primary), var(--bebe-secondary));
+            border: 3px solid var(--bebe-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "👑 POPULAR GIRL ZONE 👑";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--bebe-accent);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--bebe-primary);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(255, 105, 180, 0.2);
+            border: 2px solid var(--bebe-secondary);
+            animation: popular-shine 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes popular-shine {
+            0% { box-shadow: 0 0 5px rgba(255, 105, 180, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(255, 105, 180, 0.6); }
+        }
+
+        .popularity-meter {
+            background: linear-gradient(90deg, #ff69b4, #ffb6c1, #ffd700);
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: popularity-pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes popularity-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .fashion-update {
+            background: var(--bebe-gold);
+            color: var(--bebe-accent);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--bebe-secondary);
+            background: rgba(255, 240, 245, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--bebe-gold), var(--bebe-primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.2;
+        }
+
+        .popular-girl-drama {
+            background: linear-gradient(135deg, #ffe4e6, #ffb6c1);
+            border: 3px dashed var(--bebe-accent);
+            animation: drama-highlight 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes drama-highlight {
+            0% { border-color: var(--bebe-accent); }
+            100% { border-color: var(--bebe-popular); }
+        }
+
+        .fashion-statement {
+            font-size: 18px;
+            color: var(--bebe-accent);
+            font-weight: bold;
+            animation: fashion-shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes fashion-shimmer {
+            0%, 100% { text-shadow: 0 0 5px rgba(255, 105, 180, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(255, 105, 180, 0.8); }
+        }
+
+        .social-hierarchy {
+            color: var(--bebe-popular);
+            font-style: italic;
+            border-left: 4px solid var(--bebe-gold);
+            padding-left: 10px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .social-hierarchy::before {
+            content: "👑";
+            position: absolute;
+            left: -15px;
+            animation: crown-bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes crown-bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .relationship-drama {
+            background: rgba(255, 105, 180, 0.2);
+            border: 2px dotted var(--bebe-accent);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .clyde-mention {
+            background: #87CEEB;
+            color: #4169E1;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .popular-insight {
+            background: linear-gradient(90deg, #ff69b4, #da70d6);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #ff1493;
+        }
+
+        .confidence-boost {
+            position: relative;
+            font-weight: bold;
+            color: var(--bebe-accent);
+        }
+
+        .confidence-boost::after {
+            content: "✨ *hair flip* ✨";
+            position: absolute;
+            right: 0;
+            font-size: 12px;
+            opacity: 0.8;
+            animation: hair-flip 4s ease-in-out infinite;
+        }
+
+        @keyframes hair-flip {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* Mobile optimization */
+        @media screen and (max-width: 768px) {
+            body::before, body::after {
+                display: none; /* Hide sparkles on mobile for performance */
+            }
+            
+            .confidence-boost::after {
+                position: static;
+                display: block;
+                margin-top: 5px;
+            }
+            
+            .popularity-meter {
+                font-size: 14px;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--bebe-primary); color: white;">BS</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Bebe Stevens</h1>
+                <p class="character-tagline">"Obviously I look amazing today! Did you even have to ask? 💅"</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="popularity-meter">
+                    👑 CURRENT POPULARITY LEVEL: MAXIMUM INFLUENCE ACHIEVED 👑
+                </div>
+
+                <div class="fashion-update">
+                    ✨ TODAY'S OUTFIT RATING: 11/10 (Breaking the scale again!) ✨
+                </div>
+
+                <div class="post popular-girl-drama">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">23 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="fashion-statement">Can we talk about how CUTE this new lip gloss is? 💋✨</div>
+                        <div class="social-hierarchy">I literally started a trend just by wearing it to school today. By third period, half the girls were asking where I got it. By lunch, it was basically the new standard for looking put-together.</div>
+                        <div class="popular-insight">
+                            <strong>TREND ANALYSIS:</strong><br>
+                            • Times asked for beauty advice today: 17<br>
+                            • Compliments received: 43<br>
+                            • New trend followers: 28<br>
+                            • Social influence level: Through the roof
+                        </div>
+                        <div class="confidence-boost">Sometimes I forget how much impact I have on the social scene. Then days like this remind me! 💕</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (234)</span>
+                        <span class="action-button">💬 Comment (67)</span>
+                        <span class="action-button">✨ Share Style</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">2 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="clyde-mention">Clyde is actually really sweet when he's not crying about everything. 💙</div>
+                        I know everyone thinks he's too emotional, but honestly? At least he actually FEELS things. Most guys our age are either trying too hard to be cool or completely oblivious to everything around them.
+                        <div class="relationship-drama">
+                            Plus, someone who gets that emotional about little things definitely cares a lot about the big things. That's kind of... refreshing? Even if he does go through a LOT of tissues. 😅
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (156)</span>
+                        <span class="action-button">💬 Comment (89)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">4 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Group project update: I'm basically doing everyone else's work AGAIN, but at least I know it'll be done right. 📚✨
+                        <div class="popular-insight">
+                            Why is it that being popular somehow means people expect you to also be the most responsible? Like, I get that I'm good at organizing and making things look amazing, but that doesn't mean I want to carry the whole team!
+                        </div>
+                        <div class="confidence-boost">Although... when I do take charge, everything does turn out pretty much perfect. Maybe that's just my natural leadership showing! 👑</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (198)</span>
+                        <span class="action-button">💬 Comment (45)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post popular-girl-drama">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">6 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="fashion-statement">EMERGENCY FASHION ALERT! 🚨</div>
+                        <div class="social-hierarchy">Someone showed up to school wearing the EXACT same outfit as me. This has never happened before and I honestly don't know how to process it.</div>
+                        <div class="popular-insight">
+                            <strong>CRISIS MANAGEMENT UPDATE:</strong><br>
+                            • Initial shock level: Maximum<br>
+                            • Social hierarchy threat: Moderate<br>
+                            • Recovery strategy: Accessorize better<br>
+                            • Outcome: Still look better (obviously)
+                        </div>
+                        <div class="relationship-drama">Turns out we both got it from the same online store, but I styled it WAY better. Crisis averted, popularity maintained! 💅</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (287)</span>
+                        <span class="action-button">💬 Comment (134)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">8 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Wendy's latest student government thing is actually pretty cool. Sometimes I forget she's not just about politics - she actually cares about making things better for everyone.
+                        <div class="relationship-drama">
+                            We might not always see eye to eye on priorities, but I respect that she uses her influence to help people instead of just... looking amazing all the time. (Though let's be real, looking amazing is also important!) 💄
+                        </div>
+                        <div class="popular-insight">Maybe there's room for both beauty AND brains in the popular girl hierarchy. Revolutionary concept! 🤯</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (176)</span>
+                        <span class="action-button">💬 Comment (52)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Bebe Stevens</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        Real talk: Being popular isn't just about looking good (though that helps). It's about understanding people, knowing what they want, and making them feel good about themselves.
+                        <div class="confidence-boost">I've figured out that the secret to influence is making other people feel special, not just making yourself look special. When everyone around you feels confident and happy, that reflects back on you too! ✨</div>
+                        <div class="popular-insight">
+                            Plus, when you use your social power to lift people up instead of tear them down, everything just works better. Who knew being nice could be so strategic? 😉
+                        </div>
+                        <div class="clyde-mention">Clyde especially seems happier when people are supportive instead of judging him for being emotional. Maybe we could all learn from that! 💕</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (345)</span>
+                        <span class="action-button">💬 Comment (78)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>About Bebe</h3>
+                    <div class="info-item">
+                        <strong>🏫 School:</strong> South Park Elementary
+                    </div>
+                    <div class="info-item">
+                        <strong>👑 Occupation:</strong> Popular Girl & Trendsetter
+                    </div>
+                    <div class="info-item">
+                        <strong>✨ Life Goal:</strong> Look amazing while being amazing
+                    </div>
+                    <div class="info-item">
+                        <strong>💕 Relationship:</strong> It's complicated (but cute)
+                    </div>
+                    <div class="info-item">
+                        <strong>🌟 Current Status:</strong> Setting trends and taking names
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Popularity Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">567</span>
+                        <span class="stat-label">Compliments received this week</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">43</span>
+                        <span class="stat-label">Trends started this month</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">128</span>
+                        <span class="stat-label">Fashion advice requests</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Natural confidence level</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Social Events</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">💋</span>
+                        <span class="activity-text">Started new lip gloss trend</span>
+                        <span class="activity-time">23 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💙</span>
+                        <span class="activity-text">Posted about Clyde being sweet</span>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🚨</span>
+                        <span class="activity-text">Handled fashion emergency</span>
+                        <span class="activity-time">6 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">👑</span>
+                        <span class="activity-text">Gave leadership masterclass</span>
+                        <span class="activity-time">Earlier today</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Social Circle</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #87CEEB; color: #4169E1;">CD</span>
+                        <span class="friend-name">Clyde Donovan</span>
+                        <span class="friend-status">💙 Sweet & Emotional</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #e91e63; color: white;">WT</span>
+                        <span class="friend-name">Wendy Testaburger</span>
+                        <span class="friend-status">🤝 Fellow Leader</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #FFB6C1; color: #FF1493;">RM</span>
+                        <span class="friend-name">Red McArthur</span>
+                        <span class="friend-status">👭 Girl Squad</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #32CD32; color: #006400;">TB</span>
+                        <span class="friend-name">Token Black</span>
+                        <span class="friend-status">🎯 Voice of Reason</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Bebe's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Bebe profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+
+            // Legacy Bebe interactions
+            if (typeof CharacterInteractions !== 'undefined') {
+                const interactions = new CharacterInteractions();
+                interactions.initializeProfile('bebe');
+            }
+            
+            // Add Bebe-specific popular girl effects
+            const fashionElements = document.querySelectorAll('.fashion-statement, .popular-girl-drama');
+            fashionElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.animation = 'fashion-shimmer 1s ease-in-out infinite';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Dynamic popularity meter updates
+            const popularityMeter = document.querySelector('.popularity-meter');
+            const popularityStates = [
+                "👑 CURRENT POPULARITY LEVEL: MAXIMUM INFLUENCE ACHIEVED 👑",
+                "✨ STATUS UPDATE: TRENDING ON THE SOCIAL SCENE ✨",
+                "💄 POPULARITY ALERT: SETTING NEW STANDARDS DAILY 💄",
+                "🌟 INFLUENCE LEVEL: EVERYONE WANTS TO BE LIKE ME 🌟",
+                "💅 CURRENT VIBE: EFFORTLESSLY PERFECT AS USUAL 💅"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.7) {
+                    const randomState = popularityStates[Math.floor(Math.random() * popularityStates.length)];
+                    popularityMeter.innerHTML = randomState;
+                }
+            }, 40000); // Update every 40 seconds
+            
+            // Add more sparkles randomly on desktop
+            setInterval(() => {
+                if (Math.random() > 0.6 && window.innerWidth > 768) {
+                    const sparkle = document.createElement('div');
+                    sparkle.innerHTML = '✨';
+                    sparkle.style.position = 'fixed';
+                    sparkle.style.left = Math.random() * window.innerWidth + 'px';
+                    sparkle.style.top = Math.random() * window.innerHeight + 'px';
+                    sparkle.style.fontSize = '16px';
+                    sparkle.style.zIndex = '-1';
+                    sparkle.style.opacity = '0.6';
+                    sparkle.style.animation = 'sparkle-float 4s ease-out forwards';
+                    sparkle.style.pointerEvents = 'none';
+                    document.body.appendChild(sparkle);
+                    
+                    setTimeout(() => {
+                        sparkle.remove();
+                    }, 4000);
+                }
+            }, 12000); // Add sparkle every 12 seconds
+            
+            // Crown bounce effect for social hierarchy elements
+            const hierarchyElements = document.querySelectorAll('.social-hierarchy');
+            setInterval(() => {
+                hierarchyElements.forEach(element => {
+                    if (Math.random() > 0.8) {
+                        element.style.animation = 'popular-shine 2s ease-in-out';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                        }, 2000);
+                    }
+                });
+            }, 18000); // Shine every 18 seconds
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

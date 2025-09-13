@@ -1,0 +1,529 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token Black - Facebook</title>
+    <link rel="stylesheet" href="../../../Assets/css/common.css">
+    <link rel="stylesheet" href="../../../Assets/css/character-profile.css">
+    <link rel="stylesheet" href="../../../Assets/css/mobile-responsive.css">
+    <style>
+        :root {
+            --token-primary: #32CD32;
+            --token-secondary: #228B22;
+            --token-accent: #006400;
+            --token-gold: #FFD700;
+            --token-background: #F0FFF0;
+            --token-wisdom: #4169E1;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--token-background) 0%, #E6FFE6 100%);
+            position: relative;
+        }
+
+        .profile-header {
+            background: linear-gradient(45deg, var(--token-primary), var(--token-secondary));
+            border: 3px solid var(--token-gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "🎓 VOICE OF REASON ZONE 🎓";
+            position: absolute;
+            top: 10px;
+            right: -150px;
+            background: var(--token-wisdom);
+            color: white;
+            padding: 5px 200px;
+            transform: rotate(45deg);
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .name-banner {
+            background: var(--token-primary);
+            color: var(--token-accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .profile-stats .stat-item {
+            background: rgba(50, 205, 50, 0.2);
+            border: 2px solid var(--token-secondary);
+            animation: wisdom-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes wisdom-glow {
+            0% { box-shadow: 0 0 5px rgba(50, 205, 50, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(50, 205, 50, 0.6); }
+        }
+
+        .reality-check {
+            background: linear-gradient(90deg, #32cd32, #228b22);
+            color: white;
+            padding: 8px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px 0;
+            animation: truth-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes truth-pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .wealth-indicator {
+            background: var(--token-gold);
+            color: var(--token-accent);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .post {
+            border: 2px solid var(--token-secondary);
+            background: rgba(240, 255, 240, 0.9);
+            position: relative;
+        }
+
+        .post::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, var(--token-gold), var(--token-primary));
+            z-index: -1;
+            border-radius: inherit;
+            opacity: 0.2;
+        }
+
+        .voice-of-reason {
+            background: linear-gradient(135deg, #e6f3ff, #cce7ff);
+            border: 3px solid var(--token-wisdom);
+            animation: reason-highlight 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes reason-highlight {
+            0% { border-color: var(--token-wisdom); }
+            100% { border-color: var(--token-gold); }
+        }
+
+        .competence-display {
+            font-size: 16px;
+            color: var(--token-accent);
+            font-weight: bold;
+            animation: competence-shine 2s ease-in-out infinite;
+        }
+
+        @keyframes competence-shine {
+            0%, 100% { text-shadow: 0 0 5px rgba(50, 205, 50, 0.5); }
+            50% { text-shadow: 0 0 15px rgba(50, 205, 50, 0.8); }
+        }
+
+        .frustrated-wisdom {
+            color: var(--token-wisdom);
+            font-style: italic;
+            border-left: 4px solid var(--token-gold);
+            padding-left: 10px;
+            margin: 10px 0;
+            position: relative;
+        }
+
+        .frustrated-wisdom::before {
+            content: "💡";
+            position: absolute;
+            left: -15px;
+            animation: wisdom-flash 3s ease-in-out infinite;
+        }
+
+        @keyframes wisdom-flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .practical-solution {
+            background: rgba(50, 205, 50, 0.2);
+            border: 2px dotted var(--token-accent);
+            padding: 15px;
+            border-radius: 10px;
+            font-style: italic;
+        }
+
+        .bass-reference {
+            background: #8B4513;
+            color: #FFD700;
+            padding: 5px 10px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 5px 0;
+        }
+
+        .reality-check-alert {
+            background: linear-gradient(90deg, #32cd32, #ffd700);
+            color: #006400;
+            padding: 10px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 2px solid #228b22;
+        }
+
+        .exhausted-sigh {
+            position: relative;
+            font-style: italic;
+            color: var(--token-wisdom);
+        }
+
+        .exhausted-sigh::after {
+            content: "*sighs in competence*";
+            position: absolute;
+            right: 0;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Mobile optimization */
+        @media screen and (max-width: 768px) {
+            .reality-check {
+                font-size: 14px;
+                padding: 6px;
+            }
+            
+            .exhausted-sigh::after {
+                position: static;
+                display: block;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-header">
+            <div class="cover-photo">
+                <div class="profile-picture">
+                    <div class="avatar-circle" style="background: var(--token-primary); color: var(--token-accent);">TB</div>
+                </div>
+            </div>
+            <div class="name-banner">
+                <h1 class="character-name">Token Black</h1>
+                <p class="character-tagline">"Guys, this is obviously a terrible idea... *sigh* never mind."</p>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="main-content">
+                <div class="reality-check">
+                    🎓 CURRENT STATUS: BEING RIGHT ABOUT EVERYTHING (AS USUAL) 🎓
+                </div>
+
+                <div class="wealth-indicator">
+                    💰 FAMILY NET WORTH: Higher than the town's collective IQ 💰
+                </div>
+
+                <div class="post voice-of-reason">
+                    <div class="post-header">
+                        <strong>Token Black</strong>
+                        <span class="timestamp">15 minutes ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="competence-display">Called it. AGAIN. 🎯</div>
+                        <div class="frustrated-wisdom">Remember when I said Cartman's "business plan" was obviously a scam three weeks ago? And everyone ignored me? Well, guess who's now out twenty dollars and a lot of dignity.</div>
+                        <div class="reality-check-alert">
+                            <strong>PATTERN RECOGNITION REPORT:</strong><br>
+                            • Times I've been right this week: 47<br>
+                            • Times people listened to me: 3<br>
+                            • Preventable disasters: 12<br>
+                            • My faith in humanity: Declining steadily
+                        </div>
+                        <div class="exhausted-sigh">Sometimes I wonder if being the voice of reason is worth it when nobody wants to hear reason.</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (156)</span>
+                        <span class="action-button">💬 Comment (73)</span>
+                        <span class="action-button">🎯 Share Truth</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Token Black</strong>
+                        <span class="timestamp">2 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="bass-reference">Just because I can play bass doesn't mean I have some magical musical gene. It's called PRACTICE, people. 🎸</div>
+                        The amount of times someone has handed me an instrument and expected me to instantly know how to play it is honestly exhausting. Yes, I'm good at music. No, it's not because of my race. It's because I actually took lessons and put in the work.
+                        <div class="practical-solution">
+                            Maybe instead of making assumptions about people's abilities, we could ask about their actual interests and experiences? Revolutionary concept, I know. 🤯
+                        </div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (234)</span>
+                        <span class="action-button">💬 Comment (89)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Token Black</strong>
+                        <span class="timestamp">4 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Update on the school fundraiser: We could easily meet our goal if we just did the obvious thing and organized it properly instead of letting chaos reign supreme.
+                        <div class="reality-check-alert">
+                            I've submitted a detailed plan with budget breakdowns, timeline, and contingency options. Will anyone read it? Probably not. Will they blame me when things go wrong? Definitely.
+                        </div>
+                        <div class="frustrated-wisdom">Being the only person who thinks ahead is lonely work, but someone has to do it. *adjusts glasses and prepares for another week of being ignored*</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (198)</span>
+                        <span class="action-button">💬 Comment (67)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post voice-of-reason">
+                    <div class="post-header">
+                        <strong>Token Black</strong>
+                        <span class="timestamp">6 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        <div class="competence-display">PSA: Just because my family has money doesn't mean I'm out of touch with reality.</div>
+                        <div class="practical-solution">
+                            In fact, having resources means I can see problems from multiple angles and actually help solve them. But apparently suggesting practical solutions makes me "privileged" and "not understanding the struggle."
+                        </div>
+                        <div class="frustrated-wisdom">Here's a wild idea: Maybe we could focus on solving problems instead of arguing about who's qualified to suggest solutions? Just a thought. 💭</div>
+                        <div class="exhausted-sigh">Sometimes being right is the loneliest position in the room.</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (312)</span>
+                        <span class="action-button">💬 Comment (145)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Token Black</strong>
+                        <span class="timestamp">8 hours ago</span>
+                    </div>
+                    <div class="post-content">
+                        Friendly reminder that my name is actually "Tolkien" (after J.R.R. Tolkien), not "Token." The fact that everyone heard what they expected to hear instead of what was actually said is... pretty much exactly what I'd expect from this town.
+                        <div class="reality-check-alert">
+                            <strong>SOCIAL EXPERIMENT RESULTS:</strong><br>
+                            • Years people got my name wrong: 10+<br>
+                            • Times I corrected them: Countless<br>
+                            • People who actually listened: 3<br>
+                            • Irony level: Maximum
+                        </div>
+                        <div class="practical-solution">Maybe this is a good opportunity for everyone to examine their assumptions? No? We're just going to pretend this isn't a teachable moment? Cool. Cool cool cool. 😮‍💨</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (567)</span>
+                        <span class="action-button">💬 Comment (203)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+
+                <div class="post">
+                    <div class="post-header">
+                        <strong>Token Black</strong>
+                        <span class="timestamp">Earlier today</span>
+                    </div>
+                    <div class="post-content">
+                        You know what? Despite all my complaining, I actually like being the person people can count on for honest advice and practical solutions. It's exhausting, but it's also kind of my superpower.
+                        <div class="practical-solution">
+                            Being the "reality check" friend means I get to help people avoid disasters, solve actual problems, and occasionally witness the moment when someone finally gets it. Those moments make all the frustration worth it. ✨
+                        </div>
+                        <div class="bass-reference">Plus, I genuinely love playing bass, stereotypes be damned. Music is music, and good music brings people together regardless of where it comes from. 🎵</div>
+                        <div class="frustrated-wisdom">Tomorrow I'll probably have to explain why another obviously bad idea is obviously bad, but hey - that's what friends are for, right? *prepares to be right again*</div>
+                    </div>
+                    <div class="post-actions">
+                        <span class="action-button">👍 Like (423)</span>
+                        <span class="action-button">💬 Comment (98)</span>
+                        <span class="action-button">📱 Share</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="profile-info">
+                    <h3>About Token</h3>
+                    <div class="info-item">
+                        <strong>🏫 School:</strong> South Park Elementary
+                    </div>
+                    <div class="info-item">
+                        <strong>🎯 Occupation:</strong> Voice of Reason & Bass Player
+                    </div>
+                    <div class="info-item">
+                        <strong>🎓 Life Goal:</strong> Make people think before they act
+                    </div>
+                    <div class="info-item">
+                        <strong>💰 Financial Status:</strong> Wealthiest kid in town
+                    </div>
+                    <div class="info-item">
+                        <strong>🎵 Current Status:</strong> Being right about everything
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <h3>Competence Metrics</h3>
+                    <div class="stat-item">
+                        <span class="stat-number">247</span>
+                        <span class="stat-label">Times right this month</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">23</span>
+                        <span class="stat-label">Times people listened</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">67</span>
+                        <span class="stat-label">Disasters prevented</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Patience level required</span>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Reality Checks</h3>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎯</span>
+                        <span class="activity-text">Predicted Cartman's scheme would fail</span>
+                        <span class="activity-time">15 min ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">💡</span>
+                        <span class="activity-text">Submitted fundraiser organization plan</span>
+                        <span class="activity-time">4 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">🎸</span>
+                        <span class="activity-text">Corrected music stereotypes</span>
+                        <span class="activity-time">2 hours ago</span>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">📝</span>
+                        <span class="activity-text">Clarified name pronunciation (again)</span>
+                        <span class="activity-time">8 hours ago</span>
+                    </div>
+                </div>
+
+                <div class="friends-widget">
+                    <h3>Social Network</h3>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #87CEEB; color: #4169E1;">CD</span>
+                        <span class="friend-name">Clyde Donovan</span>
+                        <span class="friend-status">🤝 Fellow Voice of Reason</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #2196F3; color: #1565C0;">SM</span>
+                        <span class="friend-name">Stan Marsh</span>
+                        <span class="friend-status">🎵 Bandmate</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #4CAF50; color: #2E7D32;">KB</span>
+                        <span class="friend-name">Kyle Broflovski</span>
+                        <span class="friend-status">🤝 Intellectual Equal</span>
+                    </div>
+                    <div class="friend-item">
+                        <span class="friend-avatar" style="background: #dc143c; color: #8b0000;">EC</span>
+                        <span class="friend-name">Eric Cartman</span>
+                        <span class="friend-status">😤 Frequent Reality Check Target</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Navigation & Interaction Systems -->
+    <script src="../../../Assets/js/breadcrumb-navigation.js"></script>
+    <script src="../../../Assets/js/character-switcher.js"></script>
+    <script src="../../../Assets/js/fab-integration.js"></script>
+    <script src="../../../Assets/js/emoji-reactions.js"></script>
+    <script src="../../../Assets/js/mobile-enhancements.js"></script>
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script src="../../../Assets/js/dynamic-content.js"></script>
+    <script>
+        // Initialize enhanced features for Token's profile
+        document.addEventListener('DOMContentLoaded', function() {
+            // Character interactions
+            setTimeout(() => {
+                if (window.characterInteractions) {
+                    console.log('Token profile loaded - character interactions enabled');
+                }
+            }, 1000);
+
+            // Add modern animations to posts
+            const posts = document.querySelectorAll('.post');
+            posts.forEach((post, index) => {
+                post.style.animationDelay = `${index * 0.1}s`;
+                post.classList.add('slide-in');
+            });
+
+            // Add hover effects to action buttons
+            const actions = document.querySelectorAll('.post-action, .composer-action');
+            actions.forEach(action => {
+                action.classList.add('card-hover-effect');
+            });
+
+            // Legacy Token interactions
+            if (typeof CharacterInteractions !== 'undefined') {
+                const interactions = new CharacterInteractions();
+                interactions.initializeProfile('token');
+            }
+            
+            // Add Token-specific competence effects
+            const competenceElements = document.querySelectorAll('.competence-display, .voice-of-reason');
+            competenceElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    this.style.animation = 'wisdom-glow 1s ease-in-out infinite';
+                });
+                element.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+            
+            // Dynamic reality check counter that increases
+            const realityCheck = document.querySelector('.reality-check');
+            const statuses = [
+                "🎓 CURRENT STATUS: BEING RIGHT ABOUT EVERYTHING (AS USUAL) 🎓",
+                "💡 STATUS UPDATE: PREDICTED ANOTHER DISASTER CORRECTLY 💡",
+                "🎯 REALITY CHECK: STILL THE ONLY ONE THINKING AHEAD 🎯",
+                "🤦 CURRENT MOOD: EXHAUSTED BY EVERYONE'S POOR DECISIONS 🤦",
+                "📊 STATUS: COMPETENCE LEVEL MAXIMUM, PATIENCE DECLINING 📊"
+            ];
+            
+            setInterval(() => {
+                if (Math.random() > 0.8) {
+                    const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                    realityCheck.innerHTML = randomStatus;
+                }
+            }, 45000); // Update every 45 seconds
+            
+            // Wisdom flash effect for frustrated wisdom elements
+            const wisdomElements = document.querySelectorAll('.frustrated-wisdom');
+            setInterval(() => {
+                wisdomElements.forEach(element => {
+                    if (Math.random() > 0.7) {
+                        element.style.animation = 'wisdom-flash 1s ease-in-out';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                        }, 1000);
+                    }
+                });
+            }, 20000); // Flash every 20 seconds
+        });
+    </script>
+    <script src="../../../Assets/js/navigation.js"></script>
+</body>
+</html>

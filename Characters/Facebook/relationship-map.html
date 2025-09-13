@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Park Character Relationship Map</title>
+    <link rel="stylesheet" href="../../Assets/css/facebook-style.css">
+    <style>
+        .relationship-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .map-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .relationship-network {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .character-node {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .character-node:hover {
+            transform: scale(1.2);
+            z-index: 1000;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .character-node.active {
+            transform: scale(1.3);
+            border: 3px solid #FFD700;
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); }
+            50% { box-shadow: 0 12px 35px rgba(255, 215, 0, 0.8); }
+        }
+
+        .relationship-line {
+            position: absolute;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.6);
+            transform-origin: left center;
+            pointer-events: none;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .relationship-line.enemy { background: linear-gradient(90deg, #FF4444, #CC0000); }
+        .relationship-line.friend { background: linear-gradient(90deg, #44FF44, #00CC00); }
+        .relationship-line.family { background: linear-gradient(90deg, #4444FF, #0000CC); }
+        .relationship-line.romantic { background: linear-gradient(90deg, #FF44FF, #CC00CC); }
+        .relationship-line.rival { background: linear-gradient(90deg, #FFAA00, #CC8800); }
+
+        .relationship-line.highlighted {
+            height: 5px;
+            opacity: 1;
+            animation: flow 2s ease-in-out infinite;
+        }
+
+        @keyframes flow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+
+        .character-info-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            color: #333;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .character-info-panel.active {
+            transform: translateX(0);
+        }
+
+        .relationship-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            color: #333;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .relationship-filter {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border-color: #667eea;
+        }
+
+        .legend {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            color: #333;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .legend-line {
+            width: 30px;
+            height: 3px;
+            margin-right: 10px;
+        }
+
+        /* Character positioning */
+        .cartman-node { top: 100px; left: 200px; background: linear-gradient(45deg, #dc3545, #ff4500); }
+        .kyle-node { top: 100px; left: 400px; background: linear-gradient(45deg, #28a745, #20c997); }
+        .stan-node { top: 100px; left: 600px; background: linear-gradient(45deg, #007bff, #17a2b8); }
+        .kenny-node { top: 100px; left: 800px; background: linear-gradient(45deg, #fd7e14, #ffc107); }
+        
+        .gerald-node { top: 250px; left: 300px; background: linear-gradient(45deg, #6c757d, #495057); }
+        .sheila-node { top: 250px; left: 500px; background: linear-gradient(45deg, #e83e8c, #dc3545); }
+        .randy-node { top: 250px; left: 700px; background: linear-gradient(45deg, #6f42c1, #6610f2); }
+        .sharon-node { top: 250px; left: 900px; background: linear-gradient(45deg, #9370DB, #7B68EE); }
+        .liane-node { top: 250px; left: 100px; background: linear-gradient(45deg, #FF69B4, #FFB6C1); }
+        
+        .butters-node { top: 400px; left: 200px; background: linear-gradient(45deg, #ffc107, #fd7e14); }
+        .wendy-node { top: 400px; left: 400px; background: linear-gradient(45deg, #e91e63, #ad1457); }
+        .craig-node { top: 400px; left: 600px; background: linear-gradient(45deg, #6c757d, #495057); }
+        .tweek-node { top: 400px; left: 800px; background: linear-gradient(45deg, #ffc107, #fd7e14); }
+        
+        .jimmy-node { top: 550px; left: 300px; background: linear-gradient(45deg, #ff6b35, #f7931e); }
+        .timmy-node { top: 550px; left: 500px; background: linear-gradient(45deg, #007bff, #0056b3); }
+        .clyde-node { top: 550px; left: 700px; background: linear-gradient(45deg, #87CEEB, #4169E1); }
+        .token-node { top: 550px; left: 900px; background: linear-gradient(45deg, #28a745, #20c997); }
+        
+        .bebe-node { top: 700px; left: 400px; background: linear-gradient(45deg, #e91e63, #ad1457); }
+        .red-node { top: 700px; left: 600px; background: linear-gradient(45deg, #dc3545, #c82333); }
+        .chef-node { top: 700px; left: 200px; background: linear-gradient(45deg, #795548, #5d4037); }
+
+        .interaction-history {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            max-height: 200px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            color: #333;
+        }
+
+        .history-item {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 3px solid #667eea;
+            padding-left: 10px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="relationship-container">
+        <div class="map-header">
+            <h1>🕸️ South Park Character Relationship Network</h1>
+            <p>Interactive visualization of character connections and dynamics</p>
+        </div>
+
+        <div class="legend">
+            <h4>Relationship Types</h4>
+            <div class="legend-item">
+                <div class="legend-line enemy"></div>
+                <span>Enemies</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line friend"></div>
+                <span>Friends</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line family"></div>
+                <span>Family</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line romantic"></div>
+                <span>Romantic</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-line rival"></div>
+                <span>Rivals</span>
+            </div>
+        </div>
+
+        <div class="relationship-network" id="relationshipNetwork">
+            <!-- Character nodes -->
+            <div class="character-node cartman-node" data-character="cartman">EC<br><small>Cartman</small></div>
+            <div class="character-node kyle-node" data-character="kyle">KB<br><small>Kyle</small></div>
+            <div class="character-node stan-node" data-character="stan">SM<br><small>Stan</small></div>
+            <div class="character-node kenny-node" data-character="kenny">KM<br><small>Kenny</small></div>
+            
+            <div class="character-node gerald-node" data-character="gerald">GB<br><small>Gerald</small></div>
+            <div class="character-node sheila-node" data-character="sheila">SB<br><small>Sheila</small></div>
+            <div class="character-node randy-node" data-character="randy">RM<br><small>Randy</small></div>
+            <div class="character-node sharon-node" data-character="sharon">SM<br><small>Sharon</small></div>
+            <div class="character-node liane-node" data-character="liane">LC<br><small>Liane</small></div>
+            
+            <div class="character-node butters-node" data-character="butters">BS<br><small>Butters</small></div>
+            <div class="character-node wendy-node" data-character="wendy">WT<br><small>Wendy</small></div>
+            <div class="character-node craig-node" data-character="craig">CT<br><small>Craig</small></div>
+            <div class="character-node tweek-node" data-character="tweek">TT<br><small>Tweek</small></div>
+            
+            <div class="character-node jimmy-node" data-character="jimmy">JV<br><small>Jimmy</small></div>
+            <div class="character-node timmy-node" data-character="timmy">TB<br><small>Timmy</small></div>
+            <div class="character-node clyde-node" data-character="clyde">CD<br><small>Clyde</small></div>
+            <div class="character-node token-node" data-character="token">TB<br><small>Token</small></div>
+            
+            <div class="character-node bebe-node" data-character="bebe">BS<br><small>Bebe</small></div>
+            <div class="character-node red-node" data-character="red">RM<br><small>Red</small></div>
+            <div class="character-node chef-node" data-character="chef">CH<br><small>Chef</small></div>
+        </div>
+
+        <div class="character-info-panel" id="infoPanel">
+            <h3 id="characterName">Select a character</h3>
+            <div id="characterDetails">Click on any character to see their relationships and details.</div>
+            <div id="relationshipList"></div>
+        </div>
+
+        <div class="relationship-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalRelationships">127</div>
+                <div>Total Connections</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="activeConflicts">8</div>
+                <div>Active Conflicts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="familyBonds">12</div>
+                <div>Family Bonds</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="friendships">34</div>
+                <div>Friendships</div>
+            </div>
+        </div>
+
+        <div class="relationship-filter">
+            <button class="filter-btn active" data-filter="all">All Relationships</button>
+            <button class="filter-btn" data-filter="enemy">Enemies</button>
+            <button class="filter-btn" data-filter="friend">Friends</button>
+            <button class="filter-btn" data-filter="family">Family</button>
+            <button class="filter-btn" data-filter="romantic">Romance</button>
+        </div>
+
+        <div class="interaction-history" id="interactionHistory">
+            <h4>Recent Interactions</h4>
+            <div class="history-item">Cartman vs Kyle: Business scheme argument</div>
+            <div class="history-item">Randy embarrasses Stan: Tegridy Farms incident</div>
+            <div class="history-item">Sheila activates: WHAT WHAT WHAT mode</div>
+            <div class="history-item">Liane enables Eric: Premium air support</div>
+            <div class="history-item">Sharon reality-checks Randy: Wine required</div>
+        </div>
+    </div>
+
+    <script>
+        const relationships = {
+            'cartman': {
+                enemies: ['kyle'],
+                friends: ['stan', 'kenny', 'butters'],
+                rivals: ['wendy'],
+                family: ['liane'],
+                exploits: ['butters']
+            },
+            'kyle': {
+                enemies: ['cartman'],
+                friends: ['stan', 'kenny', 'wendy'],
+                family: ['gerald', 'sheila'],
+                bestFriend: 'stan',
+                allies: ['wendy', 'token']
+            },
+            'stan': {
+                friends: ['kyle', 'kenny', 'cartman', 'wendy'],
+                family: ['randy', 'sharon'],
+                romantic: ['wendy'],
+                bestFriend: 'kyle',
+                embarrassedBy: ['randy']
+            },
+            'kenny': {
+                friends: ['stan', 'kyle', 'cartman'],
+                family: ['stuart', 'carol', 'karen'],
+                secretIdentity: 'mysterion'
+            },
+            'gerald': {
+                family: ['kyle', 'sheila'],
+                spouse: 'sheila',
+                child: 'kyle',
+                secretLife: 'internet_troll'
+            },
+            'sheila': {
+                family: ['kyle', 'gerald'],
+                spouse: 'gerald',
+                child: 'kyle',
+                activism: ['moral_crusades']
+            },
+            'randy': {
+                family: ['stan', 'sharon'],
+                spouse: 'sharon',
+                child: 'stan',
+                embarrasses: ['stan']
+            },
+            'sharon': {
+                family: ['stan', 'randy'],
+                spouse: 'randy',
+                child: 'stan',
+                tolerates: ['randy']
+            },
+            'liane': {
+                family: ['cartman'],
+                child: 'cartman',
+                enables: ['cartman']
+            },
+            'craig': {
+                romantic: ['tweek'],
+                friends: ['clyde', 'token', 'jimmy']
+            },
+            'tweek': {
+                romantic: ['craig'],
+                anxietyTriggers: ['everything']
+            },
+            'bebe': {
+                friends: ['wendy', 'red'],
+                bestFriend: 'red'
+            },
+            'red': {
+                friends: ['bebe', 'wendy'],
+                bestFriend: 'bebe'
+            }
+        };
+
+        let currentFilter = 'all';
+        let selectedCharacter = null;
+
+        function initializeRelationshipMap() {
+            createRelationshipLines();
+            attachEventListeners();
+            updateStats();
+        }
+
+        function createRelationshipLines() {
+            const network = document.getElementById('relationshipNetwork');
+            
+            Object.keys(relationships).forEach(charKey => {
+                const char = relationships[charKey];
+                const charNode = network.querySelector(`[data-character="${charKey}"]`);
+                
+                if (!charNode) return;
+                
+                Object.keys(char).forEach(relType => {
+                    if (Array.isArray(char[relType])) {
+                        char[relType].forEach(targetKey => {
+                            createLine(charNode, network.querySelector(`[data-character="${targetKey}"]`), relType);
+                        });
+                    } else if (typeof char[relType] === 'string' && relationships[char[relType]]) {
+                        createLine(charNode, network.querySelector(`[data-character="${char[relType]}"]`), relType);
+                    }
+                });
+            });
+        }
+
+        function createLine(fromNode, toNode, type) {
+            if (!fromNode || !toNode) return;
+            
+            const network = document.getElementById('relationshipNetwork');
+            const line = document.createElement('div');
+            line.className = `relationship-line ${type}`;
+            line.dataset.type = type;
+            line.dataset.from = fromNode.dataset.character;
+            line.dataset.to = toNode.dataset.character;
+            
+            const fromRect = fromNode.getBoundingClientRect();
+            const toRect = toNode.getBoundingClientRect();
+            const networkRect = network.getBoundingClientRect();
+            
+            const fromX = fromNode.offsetLeft + 40;
+            const fromY = fromNode.offsetTop + 40;
+            const toX = toNode.offsetLeft + 40;
+            const toY = toNode.offsetTop + 40;
+            
+            const length = Math.sqrt(Math.pow(toX - fromX, 2) + Math.pow(toY - fromY, 2));
+            const angle = Math.atan2(toY - fromY, toX - fromX) * 180 / Math.PI;
+            
+            line.style.left = fromX + 'px';
+            line.style.top = fromY + 'px';
+            line.style.width = length + 'px';
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            network.appendChild(line);
+        }
+
+        function attachEventListeners() {
+            document.querySelectorAll('.character-node').forEach(node => {
+                node.addEventListener('click', (e) => selectCharacter(e.target.dataset.character));
+            });
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => setFilter(e.target.dataset.filter));
+            });
+        }
+
+        function selectCharacter(characterKey) {
+            // Clear previous selection
+            document.querySelectorAll('.character-node').forEach(node => node.classList.remove('active'));
+            document.querySelectorAll('.relationship-line').forEach(line => line.classList.remove('highlighted'));
+            
+            // Set new selection
+            selectedCharacter = characterKey;
+            const node = document.querySelector(`[data-character="${characterKey}"]`);
+            node.classList.add('active');
+            
+            // Highlight related lines
+            document.querySelectorAll('.relationship-line').forEach(line => {
+                if (line.dataset.from === characterKey || line.dataset.to === characterKey) {
+                    line.classList.add('highlighted');
+                }
+            });
+            
+            updateCharacterInfo(characterKey);
+            addInteractionHistory(characterKey);
+        }
+
+        function updateCharacterInfo(characterKey) {
+            const panel = document.getElementById('infoPanel');
+            const nameEl = document.getElementById('characterName');
+            const detailsEl = document.getElementById('characterDetails');
+            const relationshipListEl = document.getElementById('relationshipList');
+            
+            const characterNames = {
+                'cartman': 'Eric Cartman',
+                'kyle': 'Kyle Broflovski',
+                'stan': 'Stan Marsh',
+                'kenny': 'Kenny McCormick',
+                'gerald': 'Gerald Broflovski',
+                'sheila': 'Sheila Broflovski',
+                'randy': 'Randy Marsh',
+                'sharon': 'Sharon Marsh',
+                'liane': 'Liane Cartman',
+                'craig': 'Craig Tucker',
+                'tweek': 'Tweek Tweak',
+                'bebe': 'Bebe Stevens',
+                'red': 'Red McArthur'
+            };
+            
+            nameEl.textContent = characterNames[characterKey] || characterKey;
+            
+            const char = relationships[characterKey];
+            let relationshipHTML = '<h4>Relationships:</h4>';
+            
+            Object.keys(char).forEach(relType => {
+                if (Array.isArray(char[relType])) {
+                    relationshipHTML += `<p><strong>${relType}:</strong> ${char[relType].map(r => characterNames[r] || r).join(', ')}</p>`;
+                } else if (typeof char[relType] === 'string') {
+                    relationshipHTML += `<p><strong>${relType}:</strong> ${characterNames[char[relType]] || char[relType]}</p>`;
+                }
+            });
+            
+            relationshipListEl.innerHTML = relationshipHTML;
+            panel.classList.add('active');
+        }
+
+        function setFilter(filterType) {
+            currentFilter = filterType;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-filter="${filterType}"]`).classList.add('active');
+            
+            document.querySelectorAll('.relationship-line').forEach(line => {
+                if (filterType === 'all' || line.dataset.type === filterType) {
+                    line.style.display = 'block';
+                } else {
+                    line.style.display = 'none';
+                }
+            });
+        }
+
+        function addInteractionHistory(characterKey) {
+            const historyEl = document.getElementById('interactionHistory');
+            const interactions = [
+                `${characterKey} selected for analysis`,
+                `Relationship network updated for ${characterKey}`,
+                `Analyzing ${characterKey}'s connection patterns`,
+                `${characterKey} interaction data loaded`
+            ];
+            
+            const newItem = document.createElement('div');
+            newItem.className = 'history-item';
+            newItem.textContent = interactions[Math.floor(Math.random() * interactions.length)];
+            
+            historyEl.insertBefore(newItem, historyEl.children[1]);
+            
+            if (historyEl.children.length > 8) {
+                historyEl.removeChild(historyEl.lastChild);
+            }
+        }
+
+        function updateStats() {
+            let totalConnections = 0;
+            let conflicts = 0;
+            let families = 0;
+            let friendships = 0;
+            
+            Object.values(relationships).forEach(char => {
+                Object.keys(char).forEach(relType => {
+                    if (Array.isArray(char[relType])) {
+                        totalConnections += char[relType].length;
+                        if (relType === 'enemies') conflicts += char[relType].length;
+                        if (relType === 'family') families += char[relType].length;
+                        if (relType === 'friends') friendships += char[relType].length;
+                    } else {
+                        totalConnections += 1;
+                        if (relType === 'family') families += 1;
+                    }
+                });
+            });
+            
+            document.getElementById('totalRelationships').textContent = totalConnections;
+            document.getElementById('activeConflicts').textContent = conflicts;
+            document.getElementById('familyBonds').textContent = families;
+            document.getElementById('friendships').textContent = friendships;
+        }
+
+        // Auto-select random character every 10 seconds
+        setInterval(() => {
+            if (!selectedCharacter) {
+                const characters = Object.keys(relationships);
+                const randomChar = characters[Math.floor(Math.random() * characters.length)];
+                selectCharacter(randomChar);
+            }
+        }, 10000);
+
+        // Initialize the map
+        window.addEventListener('load', () => {
+            setTimeout(initializeRelationshipMap, 100);
+        });
+    </script>
+</body>
+</html>

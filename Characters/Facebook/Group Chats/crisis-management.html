@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>South Park Crisis Management Hub</title>
+    <link rel="stylesheet" href="../../../Assets/css/facebook-style.css">
+    <style>
+        .crisis-header {
+            background: linear-gradient(135deg, #FF4500 0%, #DC143C 50%, #8B0000 100%);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            animation: crisis-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes crisis-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 69, 0, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 69, 0, 0.8); }
+        }
+
+        .crisis-level {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .crisis-indicator {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-align: center;
+            min-width: 120px;
+            animation: indicator-glow 2s ease-in-out infinite;
+        }
+
+        .level-1 { background: linear-gradient(45deg, #90EE90, #32CD32); color: #006400; }
+        .level-2 { background: linear-gradient(45deg, #FFD700, #FFA500); color: #B8860B; }
+        .level-3 { background: linear-gradient(45deg, #FF6347, #FF4500); color: white; }
+        .level-4 { background: linear-gradient(45deg, #DC143C, #8B0000); color: white; animation: emergency-flash 1s ease-in-out infinite; }
+        .level-5 { background: linear-gradient(45deg, #8B0000, #4B0000); color: white; animation: apocalypse-flash 0.5s ease-in-out infinite; }
+
+        @keyframes emergency-flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes apocalypse-flash {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        .scenario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .scenario-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .scenario-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        }
+
+        .school-crisis { border-left-color: #FF6347; }
+        .family-crisis { border-left-color: #9370DB; }
+        .town-crisis { border-left-color: #DC143C; }
+        .cartman-crisis { border-left-color: #8B0000; }
+
+        .active-crisis {
+            background: linear-gradient(135deg, #FFE4E1, #FFEBEE);
+            border: 3px solid #DC143C;
+            animation: active-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes active-glow {
+            from { box-shadow: 0 4px 8px rgba(220, 20, 60, 0.3); }
+            to { box-shadow: 0 8px 20px rgba(220, 20, 60, 0.5); }
+        }
+
+        .crisis-chat {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .crisis-message {
+            margin: 10px 0;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 70%;
+            position: relative;
+        }
+
+        .sheila-crisis { background: #FFE4E1; border-left: 4px solid #FF1493; margin-left: 0; }
+        .gerald-crisis { background: #F5F5DC; border-left: 4px solid #8B4513; margin-left: 0; }
+        .randy-crisis { background: #E6E6FA; border-left: 4px solid #9370DB; margin-left: 0; }
+        .sharon-crisis { background: #F0E6FF; border-left: 4px solid #9370DB; margin-left: 0; }
+        .liane-crisis { background: #FFE4E1; border-left: 4px solid #FF69B4; margin-left: 0; }
+
+        .panic-mode {
+            background: linear-gradient(45deg, #FF1493, #FF69B4);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            animation: panic-flash 1s ease-in-out infinite;
+        }
+
+        @keyframes panic-flash {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; filter: brightness(1.2); }
+        }
+
+        .intervention-mode {
+            background: linear-gradient(45deg, #4169E1, #6495ED);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            text-align: center;
+            animation: intervention-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes intervention-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .escalation-tracker {
+            background: linear-gradient(90deg, #90EE90, #FFD700, #FF6347, #DC143C, #8B0000);
+            height: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .escalation-pointer {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 3px solid #333;
+            border-radius: 50%;
+            top: -5px;
+            animation: escalation-move 10s ease-in-out infinite;
+        }
+
+        @keyframes escalation-move {
+            0% { left: 5%; }
+            25% { left: 25%; }
+            50% { left: 50%; }
+            75% { left: 75%; }
+            100% { left: 90%; }
+        }
+
+        .control-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .crisis-btn {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            min-width: 180px;
+        }
+
+        .activate-btn { background: linear-gradient(45deg, #FF4500, #DC143C); color: white; }
+        .escalate-btn { background: linear-gradient(45deg, #DC143C, #8B0000); color: white; }
+        .resolve-btn { background: linear-gradient(45deg, #32CD32, #228B22); color: white; }
+        .nuclear-btn { background: linear-gradient(45deg, #8B0000, #4B0000); color: white; animation: nuclear-warning 1s ease-in-out infinite; }
+
+        @keyframes nuclear-warning {
+            0%, 100% { box-shadow: 0 0 10px rgba(139, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(139, 0, 0, 0.8); }
+        }
+
+        .crisis-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="facebook-container">
+        <div class="facebook-header">
+            <h1>🚨 South Park Crisis Management Hub 🚨</h1>
+            <p>Real-time monitoring and response to community emergencies</p>
+        </div>
+
+        <div class="crisis-header">
+            <h2>🔥 CURRENT CRISIS STATUS 🔥</h2>
+            <p>Monitoring all South Park emergency situations</p>
+        </div>
+
+        <div class="crisis-level">
+            <div class="crisis-indicator level-1">LEVEL 1<br><small>Normal Chaos</small></div>
+            <div class="crisis-indicator level-2">LEVEL 2<br><small>Elevated Concern</small></div>
+            <div class="crisis-indicator level-3 active">LEVEL 3<br><small>Active Crisis</small></div>
+            <div class="crisis-indicator level-4">LEVEL 4<br><small>Emergency</small></div>
+            <div class="crisis-indicator level-5">LEVEL 5<br><small>Apocalypse</small></div>
+        </div>
+
+        <div class="escalation-tracker">
+            <div class="escalation-pointer" id="escalationPointer"></div>
+        </div>
+        <div style="text-align: center; margin-bottom: 20px;">
+            <strong>Crisis Escalation Level: Currently at MODERATE</strong>
+        </div>
+
+        <div class="scenario-grid">
+            <div class="scenario-card school-crisis active-crisis" onclick="activateScenario('cafeteria')">
+                <h3>🍽️ CAFETERIA CONTROVERSY</h3>
+                <p><strong>Status:</strong> ACTIVE CRISIS</p>
+                <p><strong>Trigger:</strong> Non-organic vegetables discovered</p>
+                <p><strong>Response Team:</strong> Sheila (Lead), Kyle, Wendy</p>
+                <p><strong>Threat Level:</strong> Maternal Outrage (High)</p>
+                <div class="panic-mode">
+                    WHAT WHAT WHAT?! THIS IS UNACCEPTABLE!
+                </div>
+            </div>
+
+            <div class="scenario-card cartman-crisis" onclick="activateScenario('business')">
+                <h3>💰 CARTMAN BUSINESS SCHEME</h3>
+                <p><strong>Status:</strong> Monitoring</p>
+                <p><strong>Trigger:</strong> Premium air bottle enterprise</p>
+                <p><strong>Response Team:</strong> Kyle (Opposition), Liane (Enabler)</p>
+                <p><strong>Threat Level:</strong> Economic Disaster (Medium)</p>
+            </div>
+
+            <div class="scenario-card family-crisis" onclick="activateScenario('randy')">
+                <h3>🌿 RANDY'S LATEST OBSESSION</h3>
+                <p><strong>Status:</strong> Developing</p>
+                <p><strong>Trigger:</strong> Revolutionary marijuana innovation</p>
+                <p><strong>Response Team:</strong> Sharon (Damage Control), Stan (Embarrassment Management)</p>
+                <p><strong>Threat Level:</strong> Family Sanity (Critical)</p>
+            </div>
+
+            <div class="scenario-card town-crisis" onclick="activateScenario('underpants')">
+                <h3>👙 UNDERPANTS GNOME SIGHTING</h3>
+                <p><strong>Status:</strong> Unconfirmed</p>
+                <p><strong>Trigger:</strong> Missing underwear reports</p>
+                <p><strong>Response Team:</strong> All Parents (Panic Mode)</p>
+                <p><strong>Threat Level:</strong> Community Hysteria (Unknown)</p>
+            </div>
+
+            <div class="scenario-card school-crisis" onclick="activateScenario('playground')">
+                <h3>🏫 PLAYGROUND SAFETY INCIDENT</h3>
+                <p><strong>Status:</strong> Resolved (Temporarily)</p>
+                <p><strong>Trigger:</strong> Unsupervised recess activities</p>
+                <p><strong>Response Team:</strong> Randy (Committee Chairman), Sheila (Oversight)</p>
+                <p><strong>Threat Level:</strong> Parental Anxiety (Moderate)</p>
+            </div>
+
+            <div class="scenario-card family-crisis" onclick="activateScenario('intervention')">
+                <h3>👨‍👩‍👦 FAMILY INTERVENTION</h3>
+                <p><strong>Status:</strong> Ready to Deploy</p>
+                <p><strong>Trigger:</strong> Extreme enabling behavior detected</p>
+                <p><strong>Response Team:</strong> Sharon, Gerald, Other Concerned Parents</p>
+                <p><strong>Threat Level:</strong> Child Development (High)</p>
+                <div class="intervention-mode">
+                    INTERVENTION PROTOCOLS STANDING BY
+                </div>
+            </div>
+        </div>
+
+        <div class="crisis-chat" id="crisisChat">
+            <div class="crisis-message sheila-crisis">
+                <strong>Sheila Broflovski:</strong> EMERGENCY PARENT MEETING! The cafeteria situation is OUT OF CONTROL!
+            </div>
+            <div class="crisis-message sharon-crisis">
+                <strong>Sharon Marsh:</strong> *sigh* What happened now? And please tell me it's not related to Randy's latest project...
+            </div>
+            <div class="crisis-message gerald-crisis">
+                <strong>Gerald Broflovski:</strong> I've been researching the legal implications of cafeteria negligence...
+            </div>
+            <div class="crisis-message liane-crisis">
+                <strong>Liane Cartman:</strong> Oh my! Should I bring snacks to the emergency meeting? Eric makes the most wonderful suggestions!
+            </div>
+            <div class="crisis-message sheila-crisis">
+                <strong>Sheila Broflovski:</strong> WHAT WHAT WHAT?! Liane, this is exactly why we have problems! No more enabling!
+            </div>
+            <div class="crisis-message sharon-crisis">
+                <strong>Sharon Marsh:</strong> I need wine. Anyone else need wine? This is a wine situation.
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <button class="crisis-btn activate-btn" onclick="activateCrisis()">🚨 ACTIVATE CRISIS</button>
+            <button class="crisis-btn escalate-btn" onclick="escalateCrisis()">⬆️ ESCALATE SITUATION</button>
+            <button class="crisis-btn resolve-btn" onclick="resolveCrisis()">✅ ATTEMPT RESOLUTION</button>
+            <button class="crisis-btn nuclear-btn" onclick="nuclearOption()">☢️ NUCLEAR OPTION</button>
+        </div>
+    </div>
+
+    <script src="../../../Assets/js/character-interactions.js"></script>
+    <script>
+        let currentCrisisLevel = 3;
+        let activeCrisis = 'cafeteria';
+        
+        const crisisScenarios = {
+            'cafeteria': {
+                messages: [
+                    { speaker: 'Sheila', message: 'WHAT WHAT WHAT?! The children are being POISONED by non-organic vegetables!', type: 'sheila-crisis' },
+                    { speaker: 'Kyle', message: 'Mom, maybe we should approach this rationally...', type: 'kyle-crisis' },
+                    { speaker: 'Cartman', message: 'This gives me an idea for organic air bottles!', type: 'cartman-crisis' },
+                    { speaker: 'Sharon', message: 'Has anyone actually confirmed these vegetables are harmful?', type: 'sharon-crisis' },
+                    { speaker: 'Randy', message: 'OH MY GOD! I have the PERFECT solution involving Tegridy Farms!', type: 'randy-crisis' }
+                ]
+            },
+            'business': {
+                messages: [
+                    { speaker: 'Cartman', message: 'Seriously you guys, premium air is the future!', type: 'cartman-crisis' },
+                    { speaker: 'Liane', message: 'Eric is such a little entrepreneur! I bought him 500 bottles!', type: 'liane-crisis' },
+                    { speaker: 'Kyle', message: 'This is exactly the kind of scam that hurts people!', type: 'kyle-crisis' },
+                    { speaker: 'Gerald', message: 'From a legal standpoint, this raises interesting fraud questions...', type: 'gerald-crisis' },
+                    { speaker: 'Sharon', message: 'Why is a ten-year-old running a business anyway?', type: 'sharon-crisis' }
+                ]
+            },
+            'randy': {
+                messages: [
+                    { speaker: 'Randy', message: 'I\'m going to REVOLUTIONIZE the industry with Tegridy Farms 2.0!', type: 'randy-crisis' },
+                    { speaker: 'Sharon', message: 'Randy... we talked about this. Multiple times.', type: 'sharon-crisis' },
+                    { speaker: 'Stan', message: 'Oh God, what is my dad planning now?', type: 'stan-crisis' },
+                    { speaker: 'Sheila', message: 'Randy, think about the children! What kind of example is this?', type: 'sheila-crisis' },
+                    { speaker: 'Gerald', message: 'I could help with the legal paperwork... for research purposes...', type: 'gerald-crisis' }
+                ]
+            }
+        };
+
+        function activateScenario(scenarioKey) {
+            activeCrisis = scenarioKey;
+            document.querySelectorAll('.scenario-card').forEach(card => card.classList.remove('active-crisis'));
+            event.target.closest('.scenario-card').classList.add('active-crisis');
+            
+            const chat = document.getElementById('crisisChat');
+            chat.innerHTML = '<div style="text-align: center; padding: 20px;"><strong>🚨 CRISIS ACTIVATED: ' + scenarioKey.toUpperCase() + ' 🚨</strong></div>';
+            
+            if (crisisScenarios[scenarioKey]) {
+                crisisScenarios[scenarioKey].messages.forEach((msg, index) => {
+                    setTimeout(() => {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'crisis-message ' + msg.type;
+                        messageDiv.innerHTML = '<strong>' + msg.speaker + ':</strong> ' + msg.message;
+                        chat.appendChild(messageDiv);
+                        chat.scrollTop = chat.scrollHeight;
+                    }, index * 1500);
+                });
+            }
+        }
+
+        function activateCrisis() {
+            currentCrisisLevel = Math.min(currentCrisisLevel + 1, 5);
+            updateCrisisLevel();
+            addCrisisMessage('System', '🚨 CRISIS LEVEL ELEVATED TO ' + currentCrisisLevel + '! ALL UNITS RESPOND!', 'system-crisis');
+        }
+
+        function escalateCrisis() {
+            if (currentCrisisLevel < 5) {
+                currentCrisisLevel++;
+                updateCrisisLevel();
+                addCrisisMessage('System', '⬆️ SITUATION ESCALATING! Now at Level ' + currentCrisisLevel, 'system-crisis');
+                
+                if (currentCrisisLevel >= 4) {
+                    addCrisisMessage('Sheila', 'THIS IS A PARENTAL EMERGENCY! ALL HANDS ON DECK!', 'sheila-crisis');
+                    addCrisisMessage('Sharon', 'I\'m opening the emergency wine. This is not a drill.', 'sharon-crisis');
+                }
+            }
+        }
+
+        function resolveCrisis() {
+            if (currentCrisisLevel > 1) {
+                currentCrisisLevel--;
+                updateCrisisLevel();
+                addCrisisMessage('System', '✅ Crisis de-escalation attempt... Level reduced to ' + currentCrisisLevel, 'system-crisis');
+                addCrisisMessage('Sharon', 'Finally, some sanity returns to this town.', 'sharon-crisis');
+            }
+        }
+
+        function nuclearOption() {
+            currentCrisisLevel = 5;
+            updateCrisisLevel();
+            addCrisisMessage('System', '☢️ NUCLEAR OPTION ACTIVATED! DEFCON 1!', 'system-crisis');
+            addCrisisMessage('Sheila', 'WHAT WHAT WHAT?! EMERGENCY PTA MEETING RIGHT NOW!', 'sheila-crisis');
+            addCrisisMessage('Randy', 'OH MY GOD! This is HUGE! I need to document everything!', 'randy-crisis');
+            addCrisisMessage('Sharon', 'I\'m calling in sick for the rest of the week.', 'sharon-crisis');
+            addCrisisMessage('Liane', 'Oh my! Should I make emergency snacks for everyone?', 'liane-crisis');
+        }
+
+        function updateCrisisLevel() {
+            document.querySelectorAll('.crisis-indicator').forEach(indicator => indicator.classList.remove('active'));
+            document.querySelector('.level-' + currentCrisisLevel).classList.add('active');
+            
+            const pointer = document.getElementById('escalationPointer');
+            pointer.style.left = (currentCrisisLevel * 20 - 5) + '%';
+        }
+
+        function addCrisisMessage(speaker, message, type) {
+            const chat = document.getElementById('crisisChat');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'crisis-message ' + type;
+            messageDiv.innerHTML = '<strong>' + speaker + ':</strong> ' + message;
+            chat.appendChild(messageDiv);
+            chat.scrollTop = chat.scrollHeight;
+        }
+
+        // Auto-escalation simulation
+        setInterval(() => {
+            if (Math.random() < 0.1 && currentCrisisLevel < 5) {
+                const randomMessages = [
+                    { speaker: 'Randy', message: 'OH MY GOD! I just realized something HUGE!', type: 'randy-crisis' },
+                    { speaker: 'Cartman', message: 'This crisis gives me an idea for another business!', type: 'cartman-crisis' },
+                    { speaker: 'Sheila', message: 'The situation is getting worse! We need ACTION!', type: 'sheila-crisis' },
+                    { speaker: 'Sharon', message: 'Can we please just have ONE normal day?', type: 'sharon-crisis' }
+                ];
+                const randomMsg = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+                addCrisisMessage(randomMsg.speaker, randomMsg.message, randomMsg.type);
+            }
+        }, 15000);
+
+        // Initialize
+        updateCrisisLevel();
+        activateScenario('cafeteria');
+    </script>
+</body>
+</html>
